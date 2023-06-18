@@ -7,6 +7,7 @@ public class FishMultiTag : MonoBehaviour
     // Allows gameObjects to have multiple tags. This is used to give info on fish characteristics
     // https://discussions.unity.com/t/multiple-tags-for-one-gameobject/203921/4
 
+    [HideInInspector]
     public List<string> tags = new List<string>();
 
     public bool HasTag(string tag)

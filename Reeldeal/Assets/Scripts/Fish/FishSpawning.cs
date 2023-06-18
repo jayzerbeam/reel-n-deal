@@ -6,7 +6,6 @@ public class FishSpawning : MonoBehaviour
 {
     // game object intialization
     public GameObject[] fishPrefabs;
-    public Material[] fishMaterials; 
     public LayerMask waterLayer;
 
     // spawn parameters
@@ -69,13 +68,14 @@ public class FishSpawning : MonoBehaviour
         //spawn fish somewhere randomly in the specified range
 
         Collider[] waterColliders = Physics.OverlapSphere(playerTransform.position, maxSpawnDistance, waterLayer);
+        Collider randomWaterCollider = waterColliders[Random.Range(0, waterColliders.Length)]; // pick random body of water
 
-        Collider randomWaterCollider = waterColliders[Random.Range(0, waterColliders.Length)];
-        Vector3 spawnPosition = GetRandomPointOnCollider(randomWaterCollider);
+        string waterTag = randomWaterCollider.gameObject.tag; // tag of chosen body of water
+        Vector3 spawnPosition = GetRandomPointOnCollider(randomWaterCollider); // random spot on water that meets spawning criteria
 
         if (spawnPosition == Vector3.zero)
         {
-            return;
+            return; // if no spot found
         }
 
         // pick prefab based on tags
@@ -84,7 +84,7 @@ public class FishSpawning : MonoBehaviour
         foreach (GameObject prefab in fishPrefabs)
         {
             FishMultiTag prefabMultiTag = prefab.GetComponent<FishMultiTag>(); // Use the correct variable name here
-            if (prefabMultiTag.HasTag("Lake"))
+            if (prefabMultiTag.HasTag(waterTag))
             {
                 potentialFishPrefabs.Add(prefab);
             }
@@ -99,17 +99,8 @@ public class FishSpawning : MonoBehaviour
             return; // no spawning if not found
         }
 
-        Material fishMaterial = fishMaterials[Random.Range(0, fishMaterials.Length)]; // randomly pick material
-
         // create fish (docs.unity3d.com/ScriptReference/Object.Instantiate.html)
         GameObject fish = Instantiate(fishPrefab, spawnPosition, Quaternion.identity);
-
-        Renderer fishRenderer = fish.GetComponent<Renderer>(); // allows for material modification
-        if (fishRenderer != null)
-        {
-            fishRenderer.material = fishMaterial;
-        }
-
 
         // all for debugging
         FishMultiTag fishMultiTag = fish.GetComponent<FishMultiTag>();

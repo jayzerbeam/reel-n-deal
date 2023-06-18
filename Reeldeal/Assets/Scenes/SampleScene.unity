@@ -1635,13 +1635,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishPrefabs:
-  - {fileID: 7523508162906838357, guid: 48baf7c3c42874b4fb18a9085ec97abd, type: 3}
-  - {fileID: 7332476648570852876, guid: 04f06b345e2297745b5b7981daed12ad, type: 3}
-  - {fileID: 2450923380468685383, guid: 09fdd037ed14af14c8b739de1d241cd4, type: 3}
-  - {fileID: 8584920237691702717, guid: 7f8191b07fdc8d5409fc58c466106ad8, type: 3}
-  - {fileID: 6228699227254926085, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4, type: 3}
-  fishMaterials:
-  - {fileID: 2100000, guid: 847f517cdf7e7714e8cda2ef238706fe, type: 2}
+  - prefabVariant: {fileID: 1364396136748257496, guid: 4a6ef7d93e2d26349b17037f56616f2a,
+      type: 3}
+    weight: 35
+  - prefabVariant: {fileID: 7124064829773335154, guid: 10e81ca0d3e17414f9ed7de698aeffbf,
+      type: 3}
+    weight: 35
+  - prefabVariant: {fileID: 1610416759530808355, guid: aa9ac38480fcfdf45a0289b1a98ba29f,
+      type: 3}
+    weight: 10
+  - prefabVariant: {fileID: 2438780535423873260, guid: bde1090e823fee642b29065f0cc8c00e,
+      type: 3}
+    weight: 20
+  - prefabVariant: {fileID: 1109966895654629808, guid: 9d1d2fdf6be695345a7faca863ed16cf,
+      type: 3}
+    weight: 10
+  - prefabVariant: {fileID: 6354174465930141549, guid: 0720aed7194740c4e8a14229540fd697,
+      type: 3}
+    weight: 20
+  - prefabVariant: {fileID: 6125982513613110239, guid: de63d4845d8d69e46a4d23f338ed3613,
+      type: 3}
+    weight: 30
+  - prefabVariant: {fileID: 1145599391018588633, guid: 093c9a0d3d5936041a398d8b51e5f135,
+      type: 3}
+    weight: 30
+  - prefabVariant: {fileID: 6151169042313680969, guid: 249487bda2c2dfa408eb57720e71d5e8,
+      type: 3}
+    weight: 100
   waterLayer:
     serializedVersion: 2
     m_Bits: 16

@@ -81,11 +81,18 @@ public class FishSpawning : MonoBehaviour
         //spawn fish somewhere randomly in the specified range
 
         Collider[] waterColliders = Physics.OverlapSphere(playerTransform.position, maxSpawnDistance, waterLayer);
-        Collider randomWaterCollider = waterColliders[Random.Range(0, waterColliders.Length)]; // pick random body of water
+        if (waterColliders.Length == 0)
+        {
+            Debug.Log("ERROR: No Water Found");
+            return;
+        }
 
+        Collider randomWaterCollider = waterColliders[Random.Range(0, waterColliders.Length)]; // pick random body of water
         string waterTag = randomWaterCollider.gameObject.tag; // tag of chosen body of water
         Vector3 spawnPosition = GetRandomPointOnCollider(randomWaterCollider); // random spot on water that meets spawning criteria
-        //Debug.Log("waterTag: " + waterTag);
+        Debug.Log("NAME: " + randomWaterCollider.gameObject.name);
+        Debug.Log("waterTag: " + waterTag);
+        //Debug.Log("spawn position" + spawnPosition);
         if (spawnPosition == Vector3.zero)
         {
             Debug.Log("Spawn Location Failure");
@@ -100,42 +107,34 @@ public class FishSpawning : MonoBehaviour
 
         // all for debugging
         FishMultiTag fishMultiTag = fish.GetComponent<FishMultiTag>();
-        Debug.Log("------------");
+        //Debug.Log("------------");
         Debug.Log("Fish Spawned at " + spawnPosition);
-        Debug.Log("Distance to player: " + Vector3.Distance(spawnPosition, playerTransform.position));
-        Debug.Log("Fish Tags: " + string.Join(", ", fishMultiTag.tags));
-        Debug.Log("Water Type: " + waterTag);
+        //Debug.Log("Distance to player: " + Vector3.Distance(spawnPosition, playerTransform.position));
+        //Debug.Log("Fish Tags: " + string.Join(", ", fishMultiTag.tags));
+        //Debug.Log("Water Type: " + waterTag);
     }
 
     private Vector3 GetRandomPointOnCollider(Collider collider)
     {
-        
-        Bounds bounds = collider.bounds; // get bounds of water plane (https://forum.unity.com/threads/what-are-bounds.480975/)
-        // Calculate the ranges within the collider bounds
-        float maxRange = Mathf.Min(maxSpawnDistance, Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z) / 2f);
-        float minRange = Mathf.Min(minSpawnDistance, maxRange);
+        Bounds bounds = collider.bounds;
 
-        // Generate a valid random point within the spawning range
-        Vector3 randomPoint;
         float distance;
         int attempt = 0;
+        Vector3 randomPoint;
         while (attempt < spawnAttempts)
         {
+            // generate random point within the collider bounds
             randomPoint = new Vector3(Random.Range(bounds.min.x, bounds.max.x), bounds.max.y, Random.Range(bounds.min.z, bounds.max.z));
             distance = Vector3.Distance(randomPoint, playerTransform.position);
+            // conditions needed to spawn
             if (InWater(randomPoint) && IsPointAboveGround(randomPoint) && distance >= minSpawnDistance && distance <= maxSpawnDistance)
             {
                 return randomPoint;
             }
-
             attempt++;
         }
-
-        // return if no valid point found after a few attempts to prevent game freezes
-        //Debug.Log("Failed to find a valid spawn point");
         return Vector3.zero;
     }
-
 
     private bool InWater(Vector3 point)
     {
@@ -146,19 +145,30 @@ public class FishSpawning : MonoBehaviour
 
     private bool IsPointAboveGround(Vector3 point)
     {
-        // Raycast straight down determines if it is immediately overlapping with land
-        RaycastHit hit;
-        if (Physics.Raycast(point, Vector3.down, out hit))
+        float highestPoint = float.MinValue;
+
+        // highest point on map
+        Terrain[] terrains = Terrain.activeTerrains;
+        foreach (Terrain terrain in terrains)
         {
-            if (hit.distance > 1f)
+            float terrainHeight = terrain.SampleHeight(point);
+            if (terrainHeight > highestPoint)
             {
-                return true;
+                highestPoint = terrainHeight;
             }
         }
-        return false;
+
+        // check if greater than potential spawn position
+        if (point.y < highestPoint)
+        {
+            Debug.Log("Spawn Point Below Ground");
+            return false;
+        }
+
+        return true;
     }
 
-    
+
 
     private GameObject GetRandomFishPrefab(string waterTag)
     {
@@ -169,7 +179,6 @@ public class FishSpawning : MonoBehaviour
         foreach (FishPrefabInfo variant in fishPrefabs)
         {
             FishMultiTag multiTag = variant.prefabVariant.GetComponent<FishMultiTag>();
-
             if (multiTag != null && multiTag.HasTag(waterTag))
             {
                 potentialFishPrefabs.Add(new PotentialFishPrefabs { prefab = variant.prefabVariant, weight = variant.weight });
@@ -194,9 +203,8 @@ public class FishSpawning : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Prefab error");
         return null;
     }
-
-
 
 }

@@ -81,18 +81,46 @@ public class FishSpawning : MonoBehaviour
         //spawn fish somewhere randomly in the specified range
 
         Collider[] waterColliders = Physics.OverlapSphere(playerTransform.position, maxSpawnDistance, waterLayer);
-        if (waterColliders.Length == 0)
+        if (waterColliders.Length == 0) // exits if no water around
         {
             Debug.Log("ERROR: No Water Found");
             return;
         }
 
-        Collider randomWaterCollider = waterColliders[Random.Range(0, waterColliders.Length)]; // pick random body of water
+        List<float> colliderAreas = new List<float>(); // get areas, save to list
+        float totalWeight = 0f;
+        float weight = 0f;
+        foreach (Collider collider in waterColliders) 
+        {
+            Bounds bounds = collider.bounds;
+            weight = bounds.size.x * bounds.size.z;
+            if (collider.gameObject.CompareTag("Ocean"))
+            {
+                weight *= 0.1f; // done so oceans don't get all the spawns
+            }
+            colliderAreas.Add(weight);
+            totalWeight += weight; 
+        }
+
+        // determine which collider to try to spawn on
+        float threshold = Random.Range(0f, totalWeight);
+        float cumulativeWeight = 0f;
+        Collider randomWaterCollider = null;
+        for (int i = 0; i < waterColliders.Length; i++)
+        {
+            cumulativeWeight += colliderAreas[i];
+
+            if (threshold <= cumulativeWeight)
+            {
+                randomWaterCollider = waterColliders[i];
+                break;
+            }
+        }
+
+        //Collider randomWaterCollider = waterColliders[Random.Range(0, waterColliders.Length)]; // pick random body of water
         string waterTag = randomWaterCollider.gameObject.tag; // tag of chosen body of water
         Vector3 spawnPosition = GetRandomPointOnCollider(randomWaterCollider); // random spot on water that meets spawning criteria
-        Debug.Log("NAME: " + randomWaterCollider.gameObject.name);
-        Debug.Log("waterTag: " + waterTag);
-        //Debug.Log("spawn position" + spawnPosition);
+        
         if (spawnPosition == Vector3.zero)
         {
             Debug.Log("Spawn Location Failure");
@@ -109,8 +137,8 @@ public class FishSpawning : MonoBehaviour
         FishMultiTag fishMultiTag = fish.GetComponent<FishMultiTag>();
         //Debug.Log("------------");
         Debug.Log("Fish Spawned at " + spawnPosition);
-        //Debug.Log("Distance to player: " + Vector3.Distance(spawnPosition, playerTransform.position));
-        //Debug.Log("Fish Tags: " + string.Join(", ", fishMultiTag.tags));
+        Debug.Log("Distance to player: " + Vector3.Distance(spawnPosition, playerTransform.position));
+        Debug.Log("Fish Tags: " + string.Join(", ", fishMultiTag.tags));
         //Debug.Log("Water Type: " + waterTag);
     }
 

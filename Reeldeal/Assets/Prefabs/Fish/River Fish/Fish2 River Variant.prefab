@@ -15,17 +15,29 @@ PrefabInstance:
     - target: {fileID: 3940581000686889306, guid: 04f06b345e2297745b5b7981daed12ad,
         type: 3}
       propertyPath: m_LocalScale.x
+<<<<<<< HEAD
       value: 1.0058584
+=======
+      value: 1.4176445
+>>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 3940581000686889306, guid: 04f06b345e2297745b5b7981daed12ad,
         type: 3}
       propertyPath: m_LocalScale.y
+<<<<<<< HEAD
       value: 1.0058584
+=======
+      value: 1.4176445
+>>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 3940581000686889306, guid: 04f06b345e2297745b5b7981daed12ad,
         type: 3}
       propertyPath: m_LocalScale.z
+<<<<<<< HEAD
       value: 1.0058584
+=======
+      value: 1.4176445
+>>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 3940581000686889306, guid: 04f06b345e2297745b5b7981daed12ad,
         type: 3}
@@ -136,3 +148,11 @@ MonoBehaviour:
     weight: 10
   minSize: 0.75
   maxSize: 1.5
+  totalWaypoints: 8
+  maxWaypointSpacing: 25
+  waypointPrefab: {fileID: 6407778700360433460, guid: a22b8e0fe38e5d04f9e7696cbc76882c,
+    type: 3}
+  waypoints: []
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16

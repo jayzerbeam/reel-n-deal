@@ -123,7 +123,7 @@ public class FishSpawning : MonoBehaviour
         
         if (spawnPosition == Vector3.zero)
         {
-            Debug.Log("Spawn Location Failure");
+            //Debug.Log("Spawn Location Failure");
             return; // if no spot found
         }
 
@@ -133,12 +133,17 @@ public class FishSpawning : MonoBehaviour
         // create fish (docs.unity3d.com/ScriptReference/Object.Instantiate.html)
         GameObject fish = Instantiate(fishPrefab, spawnPosition, Quaternion.identity);
 
+        // move fish into water
+        Renderer FishRenderer = fish.GetComponent<Renderer>();
+        fish.transform.position = new Vector3(fish.transform.position.x, randomWaterCollider.bounds.max.y - FishRenderer.bounds.size.y / 2, fish.transform.position.z) ; // half body in water
+
+
         // all for debugging
         FishMultiTag fishMultiTag = fish.GetComponent<FishMultiTag>();
         //Debug.Log("------------");
         Debug.Log("Fish Spawned at " + spawnPosition);
-        Debug.Log("Distance to player: " + Vector3.Distance(spawnPosition, playerTransform.position));
-        Debug.Log("Fish Tags: " + string.Join(", ", fishMultiTag.tags));
+        //Debug.Log("Distance to player: " + Vector3.Distance(spawnPosition, playerTransform.position));
+        //Debug.Log("Fish Tags: " + string.Join(", ", fishMultiTag.tags));
         //Debug.Log("Water Type: " + waterTag);
     }
 

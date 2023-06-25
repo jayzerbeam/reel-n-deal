@@ -35,17 +35,29 @@ PrefabInstance:
     - target: {fileID: 2974835879693598973, guid: 09fdd037ed14af14c8b739de1d241cd4,
         type: 3}
       propertyPath: m_LocalScale.x
+<<<<<<< HEAD
       value: 1.8927343
+=======
+      value: 0.86022806
+>>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 2974835879693598973, guid: 09fdd037ed14af14c8b739de1d241cd4,
         type: 3}
       propertyPath: m_LocalScale.y
+<<<<<<< HEAD
       value: 1.8927343
+=======
+      value: 0.86022806
+>>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 2974835879693598973, guid: 09fdd037ed14af14c8b739de1d241cd4,
         type: 3}
       propertyPath: m_LocalScale.z
+<<<<<<< HEAD
       value: 1.8927343
+=======
+      value: 0.86022806
+>>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 2974835879693598973, guid: 09fdd037ed14af14c8b739de1d241cd4,
         type: 3}
@@ -101,7 +113,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 847f517cdf7e7714e8cda2ef238706fe, type: 2}
+      objectReference: {fileID: 2100000, guid: 5bd69fba1acdf0f4eb3369f5f9fd1d1f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09fdd037ed14af14c8b739de1d241cd4, type: 3}
 --- !u!1 &6125982513613110239 stripped
@@ -136,6 +148,14 @@ MonoBehaviour:
     weight: 10
   minSize: 0.75
   maxSize: 2
+  totalWaypoints: 8
+  maxWaypointSpacing: 25
+  waypointPrefab: {fileID: 6407778700360433460, guid: a22b8e0fe38e5d04f9e7696cbc76882c,
+    type: 3}
+  waypoints: []
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
 --- !u!114 &6735317410812065790
 MonoBehaviour:
   m_ObjectHideFlags: 0

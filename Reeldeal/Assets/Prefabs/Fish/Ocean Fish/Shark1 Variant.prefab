@@ -25,17 +25,29 @@ PrefabInstance:
     - target: {fileID: 6717990064111481279, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
         type: 3}
       propertyPath: m_LocalScale.x
+<<<<<<< HEAD
       value: 1.1374463
+=======
+      value: 1.6521968
+>>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 6717990064111481279, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
         type: 3}
       propertyPath: m_LocalScale.y
+<<<<<<< HEAD
       value: 1.1374463
+=======
+      value: 1.6521968
+>>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 6717990064111481279, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
         type: 3}
       propertyPath: m_LocalScale.z
+<<<<<<< HEAD
       value: 1.1374463
+=======
+      value: 1.6521968
+>>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 6717990064111481279, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
         type: 3}
@@ -87,6 +99,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7679978545144725018, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -4108424097152807243, guid: 7247ff808156fb141a5e8e40a974992c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4, type: 3}
 --- !u!1 &6151169042313680969 stripped
@@ -140,3 +158,11 @@ MonoBehaviour:
     weight: 5
   minSize: 0.5
   maxSize: 5
+  totalWaypoints: 8
+  maxWaypointSpacing: 25
+  waypointPrefab: {fileID: 6407778700360433460, guid: a22b8e0fe38e5d04f9e7696cbc76882c,
+    type: 3}
+  waypoints: []
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16

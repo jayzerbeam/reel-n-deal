@@ -15,17 +15,17 @@ PrefabInstance:
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2491871
+      value: 1.4698666
       objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2491871
+      value: 1.4698666
       objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2491871
+      value: 1.4698666
       objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
@@ -136,3 +136,11 @@ MonoBehaviour:
     weight: 10
   minSize: 0.75
   maxSize: 1.5
+  totalWaypoints: 8
+  maxWaypointSpacing: 25
+  waypointPrefab: {fileID: 6407778700360433460, guid: a22b8e0fe38e5d04f9e7696cbc76882c,
+    type: 3}
+  waypoints: []
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16

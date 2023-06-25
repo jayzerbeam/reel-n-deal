@@ -11,7 +11,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7f5a18dba89d42e408097b246b044f11, type: 2}
+      objectReference: {fileID: 2100000, guid: 847f517cdf7e7714e8cda2ef238706fe, type: 2}
     - target: {fileID: 8584920237691702717, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}
       propertyPath: m_Name
@@ -25,17 +25,17 @@ PrefabInstance:
     - target: {fileID: 8964436860375750407, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4622581
+      value: 1.2419535
       objectReference: {fileID: 0}
     - target: {fileID: 8964436860375750407, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4622581
+      value: 1.2419535
       objectReference: {fileID: 0}
     - target: {fileID: 8964436860375750407, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.4622581
+      value: 1.2419535
       objectReference: {fileID: 0}
     - target: {fileID: 8964436860375750407, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}
@@ -136,3 +136,11 @@ MonoBehaviour:
     weight: 10
   minSize: 0.75
   maxSize: 1.5
+  totalWaypoints: 8
+  maxWaypointSpacing: 25
+  waypointPrefab: {fileID: 6407778700360433460, guid: a22b8e0fe38e5d04f9e7696cbc76882c,
+    type: 3}
+  waypoints: []
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16

@@ -26,7 +26,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 847f517cdf7e7714e8cda2ef238706fe, type: 2}
+      objectReference: {fileID: 2100000, guid: 305e8beb1a03f634883fc49111794c2e, type: 2}
     - target: {fileID: 8584920237691702717, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}
       propertyPath: m_Name
@@ -40,29 +40,17 @@ PrefabInstance:
     - target: {fileID: 8964436860375750407, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}
       propertyPath: m_LocalScale.x
-<<<<<<< HEAD
-      value: 1.214451
-=======
       value: 1.4535911
->>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 8964436860375750407, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}
       propertyPath: m_LocalScale.y
-<<<<<<< HEAD
-      value: 1.214451
-=======
       value: 1.4535911
->>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 8964436860375750407, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}
       propertyPath: m_LocalScale.z
-<<<<<<< HEAD
-      value: 1.214451
-=======
       value: 1.4535911
->>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 8964436860375750407, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}

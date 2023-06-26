@@ -35,29 +35,17 @@ PrefabInstance:
     - target: {fileID: 2974835879693598973, guid: 09fdd037ed14af14c8b739de1d241cd4,
         type: 3}
       propertyPath: m_LocalScale.x
-<<<<<<< HEAD
-      value: 1.8927343
-=======
       value: 0.86022806
->>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 2974835879693598973, guid: 09fdd037ed14af14c8b739de1d241cd4,
         type: 3}
       propertyPath: m_LocalScale.y
-<<<<<<< HEAD
-      value: 1.8927343
-=======
       value: 0.86022806
->>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 2974835879693598973, guid: 09fdd037ed14af14c8b739de1d241cd4,
         type: 3}
       propertyPath: m_LocalScale.z
-<<<<<<< HEAD
-      value: 1.8927343
-=======
       value: 0.86022806
->>>>>>> fishAI
       objectReference: {fileID: 0}
     - target: {fileID: 2974835879693598973, guid: 09fdd037ed14af14c8b739de1d241cd4,
         type: 3}

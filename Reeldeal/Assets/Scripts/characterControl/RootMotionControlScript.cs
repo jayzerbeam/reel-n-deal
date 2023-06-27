@@ -19,13 +19,13 @@ public class RootMotionControlScript : MonoBehaviour
     private Transform rightFoot;
 
 
-    public GameObject buttonPressStandingSpot;
-    public float buttonCloseEnoughForMatchDistance = 2f;
-    public float buttonCloseEnoughForPressDistance = 0.22f;
-    public float buttonCloseEnoughForPressAngleDegrees = 5f;
+    //public GameObject buttonPressStandingSpot;
+    //public float buttonCloseEnoughForMatchDistance = 2f;
+    //public float buttonCloseEnoughForPressDistance = 0.22f;
+    //public float buttonCloseEnoughForPressAngleDegrees = 5f;
     public float initalMatchTargetsAnimTime = 0.25f;
     public float exitMatchTargetsAnimTime = 0.75f;
-    public GameObject buttonObject;
+    //public GameObject buttonObject;
 
 
     // classic input system only polls in Update()
@@ -121,14 +121,14 @@ public class RootMotionControlScript : MonoBehaviour
         //work
         bool isGrounded = IsGrounded || CharacterCommon.CheckGroundNear(this.transform.position, jumpableGroundNormalMaxAngle, 0.1f, 1f, out closeToJumpableGround);
 
-        float buttonDistance = float.MaxValue;
-        float buttonAngleDegrees = float.MaxValue;
+        //float buttonDistance = float.MaxValue;
+        //float buttonAngleDegrees = float.MaxValue;
 
-        if (buttonPressStandingSpot != null)
-        {
-            buttonDistance = Vector3.Distance(transform.position, buttonPressStandingSpot.transform.position);
-            buttonAngleDegrees = Quaternion.Angle(transform.rotation, buttonPressStandingSpot.transform.rotation);
-        }
+        //if (buttonPressStandingSpot != null)
+        //{
+        //    buttonDistance = Vector3.Distance(transform.position, buttonPressStandingSpot.transform.position);
+        //    buttonAngleDegrees = Quaternion.Angle(transform.rotation, buttonPressStandingSpot.transform.rotation);
+        //}
 
         if (_inputActionFired)
         {
@@ -136,46 +136,46 @@ public class RootMotionControlScript : MonoBehaviour
 
             Debug.Log("Action pressed");
 
-            if (buttonDistance <= buttonCloseEnoughForMatchDistance)
-            {
-                if (buttonDistance <= buttonCloseEnoughForPressDistance &&
-                    buttonAngleDegrees <= buttonCloseEnoughForPressAngleDegrees)
-                {
-                    Debug.Log("Button press initiated");
+            //if (buttonDistance <= buttonCloseEnoughForMatchDistance)
+            //{
+            //    if (buttonDistance <= buttonCloseEnoughForPressDistance &&
+            //        buttonAngleDegrees <= buttonCloseEnoughForPressAngleDegrees)
+            //    {
+            //        Debug.Log("Button press initiated");
 
-                    doButtonPress = true;
+            //        doButtonPress = true;
 
-                }
-                else
-                {
-                    // TODO UNCOMMENT THESE LINES FOR TARGET MATCHING
-                    Debug.Log("match to button initiated");
-                    doMatchToButtonPress = true;
-                }
+            //    }
+            //    else
+            //    {
+            //        // TODO UNCOMMENT THESE LINES FOR TARGET MATCHING
+            //        Debug.Log("match to button initiated");
+            //        doMatchToButtonPress = true;
+            //    }
 
-            }
+            //}
         }
 
 
         // TODO HANDLE BUTTON MATCH TARGET HERE
 
-        //get info about current animatiuon
-        var animState = anim.GetCurrentAnimatorStateInfo(0);
-        // correct char pos if button pressed
-        if (animState.IsName("MatchToButtonPress") && !anim.IsInTransition(0) && anim.isMatchingTarget)
-        {
-            if (buttonPressStandingSpot != null)
-            {
-                Debug.Log("Target matching correction started");
-                initalMatchTargetsAnimTime = animState.normalizedTime;
-                var t = buttonPressStandingSpot.transform;
-                anim.MatchTarget(t.position, t.rotation, AvatarTarget.Root,
-                new MatchTargetWeightMask(new Vector3(1f, 0f, 1f),
-                1f),
-                initalMatchTargetsAnimTime,
-                exitMatchTargetsAnimTime);
-            }
-        }
+        ////get info about current animatiuon
+        //var animState = anim.GetCurrentAnimatorStateInfo(0);
+        //// correct char pos if button pressed
+        //if (animState.IsName("MatchToButtonPress") && !anim.IsInTransition(0) && anim.isMatchingTarget)
+        //{
+        //    if (buttonPressStandingSpot != null)
+        //    {
+        //        Debug.Log("Target matching correction started");
+        //        initalMatchTargetsAnimTime = animState.normalizedTime;
+        //        var t = buttonPressStandingSpot.transform;
+        //        anim.MatchTarget(t.position, t.rotation, AvatarTarget.Root,
+        //        new MatchTargetWeightMask(new Vector3(1f, 0f, 1f),
+        //        1f),
+        //        initalMatchTargetsAnimTime,
+        //        exitMatchTargetsAnimTime);
+        //    }
+        //}
 
 
         anim.SetFloat("velx", _inputTurn);
@@ -219,26 +219,26 @@ public class RootMotionControlScript : MonoBehaviour
         if (anim)
         {
             AnimatorStateInfo astate = anim.GetCurrentAnimatorStateInfo(0);
-            if (astate.IsName("ButtonPress"))
-            {
-                float buttonWeight = anim.GetFloat("buttonClose");
-                // Set the look target position, if one has been assigned
-                if (buttonObject != null)
-                {
-                    anim.SetLookAtWeight(buttonWeight);
-                    anim.SetLookAtPosition(buttonObject.transform.position);
-                    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, buttonWeight);
-                    anim.SetIKPosition(AvatarIKGoal.RightHand,
-                    buttonObject.transform.position);
-                }
+            //if (astate.IsName("ButtonPress"))
+            //{
+            //    float buttonWeight = anim.GetFloat("buttonClose");
+            //    // Set the look target position, if one has been assigned
+            //    if (buttonObject != null)
+            //    {
+            //        anim.SetLookAtWeight(buttonWeight);
+            //        anim.SetLookAtPosition(buttonObject.transform.position);
+            //        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, buttonWeight);
+            //        anim.SetIKPosition(AvatarIKGoal.RightHand,
+            //        buttonObject.transform.position);
+            //    }
 
-            }
-            else
-            {
-                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-                anim.SetLookAtWeight(0);
+            //}
+            //else
+            //{
+            //    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
+            //    anim.SetLookAtWeight(0);
 
-            }
+            //}
         }
     }
 

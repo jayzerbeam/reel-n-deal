@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterInputController : MonoBehaviour
 {
 
-    public string Name = "George P Burdell";
+    public string Name = "Player_character_Name";
 
     private float filteredForwardInput = 0f;
     private float filteredTurnInput = 0f;

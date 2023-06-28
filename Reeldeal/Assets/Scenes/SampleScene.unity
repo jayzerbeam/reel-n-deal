@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: be9e42257e1a43a49b20bc2a351e3dd2, type: 2}
 --- !u!1 &33445287
 GameObject:
   m_ObjectHideFlags: 3
@@ -4793,10 +4793,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657910044}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.9, y: 37.9, z: -0.1}
-  m_LocalScale: {x: 2, y: 1, z: 3.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 838872819}
@@ -5468,10 +5464,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792945098}
-  m_LocalRotation: {x: 0.00028808403, y: -0.17580076, z: 0.0028792932, w: -0.98442155}
-  m_LocalPosition: {x: -74.3, y: 3.2, z: -18.8}
-  m_LocalScale: {x: 2.4855788, y: 1, z: 4.3766923}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1795388837}
@@ -8630,7 +8622,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193660516}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1201897311
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11980,7 +11971,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645290665}
-  m_LocalRotation: {x: 0.07147452, y: -0.92844135, z: 0.25119925, w: 0.26417238}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

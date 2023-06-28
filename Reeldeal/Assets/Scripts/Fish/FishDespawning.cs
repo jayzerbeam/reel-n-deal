@@ -28,7 +28,6 @@ public class FishDespawning : MonoBehaviour
             if (Vector3.Distance(fish.transform.position, playerTransform.position) > despawnRange)
             {
                 Destroy(fish);
-                Debug.Log("Fish Despawned");
             }
         }
     }

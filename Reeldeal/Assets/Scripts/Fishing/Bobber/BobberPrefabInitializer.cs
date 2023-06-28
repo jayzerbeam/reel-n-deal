@@ -46,6 +46,7 @@ public class BobberPrefabInitializer : MonoBehaviour
         {
             bobberParts[i].material = bobberMaterials[i];
         }
+
     }
 
 }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 public class FishAI : MonoBehaviour
 {
@@ -35,7 +37,6 @@ public class FishAI : MonoBehaviour
         FishPrefabInitializer fishPrefabInitializer = GetComponent<FishPrefabInitializer>();
         waypoints = fishPrefabInitializer.waypoints;
         currWaypointIndex = 0;
-
     }
 
     private void Update()
@@ -43,21 +44,39 @@ public class FishAI : MonoBehaviour
         switch (aiState)
         {
             case AIState.idleState: // idle - move between waypoints
-                GameObject currWaypoint = waypoints[currWaypointIndex];
-                
-                // determine distance between points and required rotation / velocity
-                Vector3 distance = currWaypoint.transform.position - transform.position;
-                Quaternion rotation = Quaternion.LookRotation(distance, Vector3.up);
-                float remainingDistance = Vector3.Distance(transform.position, currWaypoint.transform.position);
+                // check for state changes first
 
-                // set rotation and speed
-                rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, rotation, rotationSpeed * Time.deltaTime));
-                float adjustedSpeed = Mathf.Lerp(0f, idleSpeed, remainingDistance / 0.5f);
-                currentSpeed = Mathf.Lerp(currentSpeed, adjustedSpeed, Time.deltaTime);
-                rb.velocity = this.transform.forward * currentSpeed;
+                // set to "hungry" if bobber is nearby
+                GameObject bobber = GameObject.FindWithTag("Bobber");
+
+                if (bobber != null)
+                {
+                    // get bobber info
+                    Vector3.Distance(transform.position, bobber.transform.position);
+                    BobberPrefabInitializer bobberInitializer = bobber.GetComponent<BobberPrefabInitializer>();
+                    List<BobberPrefabInitializer.AttractiveBobberInfo> bobberInfo = bobberInitializer.attractiveBobberInfo;
+
+                    // get fish info
+                    FishPrefabInitializer fishPrefabInitializer = gameObject.GetComponent<FishPrefabInitializer>();
+                    GameObject fishPrefab = fishPrefabInitializer.gameObject; // get prefab
+
+                    // match fish prefab with the one in the attractive bobber class, get the respective radius
+                    // https://stackoverflow.com/questions/1024559/when-to-use-first-and-when-to-use-firstordefault-with-linq
+                    string fishPrefabName = fishPrefab.name.Replace("(Clone)", ""); // remove "Clone" from name
+                    BobberPrefabInitializer.AttractiveBobberInfo bobberMechanics = bobberInfo.FirstOrDefault(x => x.fishPrefab.name == fishPrefabName);
+
+                    float bobberDistance = Vector3.Distance(transform.position, bobber.transform.position);
+
+                    if (bobberDistance < bobberMechanics.radius)
+                    {
+                        aiState = AIState.hungryState;
+                    }
+                }
+
+                UpdateTravel(waypoints[currWaypointIndex]);
 
                 // determine if waypoint reached
-                if (Vector3.Distance(rb.position, currWaypoint.transform.position) < 0.5)
+                if (Vector3.Distance(rb.position, waypoints[currWaypointIndex].transform.position) < 0.5)
                 {
                     currWaypointIndex++;
                     if (currWaypointIndex >= waypoints.Length)
@@ -65,9 +84,21 @@ public class FishAI : MonoBehaviour
                         currWaypointIndex = Random.Range(0, waypoints.Length);
                     }
                 }
+
                 break;
+
             case AIState.hungryState:
+                bobber = GameObject.FindWithTag("Bobber");
+
+                if (bobber == null)
+                {
+                    aiState = AIState.idleState;
+                }
+
+                UpdateTravel(bobber);
+
                 break;
+
             case AIState.aggressiveState:
                 break;
             default:
@@ -76,6 +107,18 @@ public class FishAI : MonoBehaviour
         }
     }
 
-    
-}
+    private void UpdateTravel(GameObject destination)
+    {
+        // determine distance between points and required rotation / velocity
+        Vector3 distance = destination.transform.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(distance, Vector3.up);
+        float remainingDistance = Vector3.Distance(transform.position, destination.transform.position);
 
+        // set rotation and speed
+        rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, rotation, rotationSpeed * Time.deltaTime));
+        float adjustedSpeed = Mathf.Lerp(0f, idleSpeed, remainingDistance / 0.5f);
+        currentSpeed = Mathf.Lerp(currentSpeed, adjustedSpeed, Time.deltaTime);
+        rb.velocity = this.transform.forward * currentSpeed;
+    }
+
+}

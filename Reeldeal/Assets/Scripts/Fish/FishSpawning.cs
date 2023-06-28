@@ -35,7 +35,7 @@ public class FishSpawning : MonoBehaviour
     void Start()
     {
         playerTransform = transform;
-        spawnTimer = 5f;
+        spawnTimer = 0f;
 
         //add tags to fish prefabs
         foreach (FishPrefabInfo fishPrefabInfo in fishPrefabs)
@@ -83,7 +83,7 @@ public class FishSpawning : MonoBehaviour
         Collider[] waterColliders = Physics.OverlapSphere(playerTransform.position, maxSpawnDistance, waterLayer);
         if (waterColliders.Length == 0) // exits if no water around
         {
-            Debug.Log("ERROR: No Water Found");
+            //Debug.Log("ERROR: No Water Found");
             return;
         }
 
@@ -141,7 +141,7 @@ public class FishSpawning : MonoBehaviour
         // all for debugging
         FishMultiTag fishMultiTag = fish.GetComponent<FishMultiTag>();
         //Debug.Log("------------");
-        Debug.Log("Fish Spawned at " + spawnPosition);
+        //Debug.Log("Fish Spawned at " + spawnPosition);
         //Debug.Log("Distance to player: " + Vector3.Distance(spawnPosition, playerTransform.position));
         //Debug.Log("Fish Tags: " + string.Join(", ", fishMultiTag.tags));
         //Debug.Log("Water Type: " + waterTag);
@@ -194,7 +194,7 @@ public class FishSpawning : MonoBehaviour
         // check if greater than potential spawn position
         if (point.y < highestPoint)
         {
-            Debug.Log("Spawn Point Below Ground");
+            //Debug.Log("Spawn Point Below Ground");
             return false;
         }
 
@@ -236,7 +236,7 @@ public class FishSpawning : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Prefab error");
+        //Debug.Log("Prefab error");
         return null;
     }
 

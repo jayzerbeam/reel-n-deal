@@ -142,7 +142,6 @@ public class FishPrefabInitializer : MonoBehaviour
     {
         // checks if point is in water
         Collider[] waterColliders = Physics.OverlapSphere(point, 1f, waterLayer);
-        Debug.Log(waterColliders.Length > 0);
         return waterColliders.Length > 0;
     }
 
@@ -164,10 +163,8 @@ public class FishPrefabInitializer : MonoBehaviour
         // check if greater than potential spawn position
         if (point.y < highestPoint)
         {
-            Debug.Log("Ground: False");
             return false;
         }
-        Debug.Log("Ground: True");
         return true;
     }
 

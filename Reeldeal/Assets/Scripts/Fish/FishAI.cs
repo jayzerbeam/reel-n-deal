@@ -49,7 +49,7 @@ public class FishAI : MonoBehaviour
                 // set to "hungry" if bobber is nearby
                 GameObject bobber = GameObject.FindWithTag("Bobber");
 
-                if (bobber != null)
+                /*if (bobber != null)
                 {
                     // get bobber info
                     Vector3.Distance(transform.position, bobber.transform.position);
@@ -64,14 +64,16 @@ public class FishAI : MonoBehaviour
                     // https://stackoverflow.com/questions/1024559/when-to-use-first-and-when-to-use-firstordefault-with-linq
                     string fishPrefabName = fishPrefab.name.Replace("(Clone)", ""); // remove "Clone" from name
                     BobberPrefabInitializer.AttractiveBobberInfo bobberMechanics = bobberInfo.FirstOrDefault(x => x.fishPrefab.name == fishPrefabName);
-
-                    float bobberDistance = Vector3.Distance(transform.position, bobber.transform.position);
-
-                    if (bobberDistance < bobberMechanics.radius)
+                    if (bobberMechanics != null)
                     {
-                        aiState = AIState.hungryState;
+                        float bobberDistance = Vector3.Distance(transform.position, bobber.transform.position);
+
+                        if (bobberDistance < bobberMechanics.radius)
+                        {
+                            aiState = AIState.hungryState;
+                        }
                     }
-                }
+                }*/
 
                 UpdateTravel(waypoints[currWaypointIndex]);
 

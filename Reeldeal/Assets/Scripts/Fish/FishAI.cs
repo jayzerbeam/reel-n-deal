@@ -49,7 +49,7 @@ public class FishAI : MonoBehaviour
                 // set to "hungry" if bobber is nearby
                 GameObject bobber = GameObject.FindWithTag("Bobber");
 
-                /*if (bobber != null)
+                if (bobber != null)
                 {
                     // get bobber info
                     Vector3.Distance(transform.position, bobber.transform.position);
@@ -73,7 +73,7 @@ public class FishAI : MonoBehaviour
                             aiState = AIState.hungryState;
                         }
                     }
-                }*/
+                }
 
                 UpdateTravel(waypoints[currWaypointIndex]);
 

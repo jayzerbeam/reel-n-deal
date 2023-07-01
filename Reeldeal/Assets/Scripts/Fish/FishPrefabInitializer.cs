@@ -14,6 +14,7 @@ public class FishPrefabInitializer : MonoBehaviour
     private GameObject waypointParent;
     public GameObject[] waypoints;
     public LayerMask waterLayer;
+    private Animator anim
 
     // individual materials
     [System.Serializable]
@@ -56,6 +57,8 @@ public class FishPrefabInitializer : MonoBehaviour
         SelectTexture();
 
         GenerateWaypoints();
+
+        anim = GetComponent<Animator>();
     }
 
     private void SelectSize(FishMultiTag multiTag)

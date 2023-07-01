@@ -51,18 +51,25 @@ public class FishPrefabInitializer : MonoBehaviour
             multiTag.AddTag(tag);
         }
 
-        SelectSize();
+        SelectSize(multiTag);
 
         SelectTexture();
 
         GenerateWaypoints();
     }
 
-    private void SelectSize()
+    private void SelectSize(FishMultiTag multiTag)
     {
         // randomize size
         float size = Random.Range(minSize, maxSize);
-        transform.localScale = new Vector3(size, size, size);
+        if (!multiTag.HasTag("Boss"))
+        {
+            transform.localScale = new Vector3(size, size, size);
+        }
+        else
+        {
+            transform.localScale = new Vector3(100, 80, 80);
+        }
     }
 
     private void SelectTexture()

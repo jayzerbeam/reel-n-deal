@@ -1,26 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8829185980056192397
+--- !u!1001 &6963573525166465118
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3361145939128465707, guid: 48baf7c3c42874b4fb18a9085ec97abd,
+    - target: {fileID: -6427563191684506325, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
-      propertyPath: fishTags.Array.size
-      value: 2
+      propertyPath: idleSpeed
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 3361145939128465707, guid: 48baf7c3c42874b4fb18a9085ec97abd,
+    - target: {fileID: -6427563191684506325, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
-      propertyPath: fishTags.Array.data[0]
-      value: Lake
+      propertyPath: rayLength
+      value: 60
       objectReference: {fileID: 0}
-    - target: {fileID: 3361145939128465707, guid: 48baf7c3c42874b4fb18a9085ec97abd,
+    - target: {fileID: -6427563191684506325, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
-      propertyPath: fishTags.Array.data[1]
-      value: Passive
+      propertyPath: hungrySpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -6427563191684506325, guid: 48baf7c3c42874b4fb18a9085ec97abd,
+        type: 3}
+      propertyPath: aggressiveSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
@@ -30,32 +35,22 @@ PrefabInstance:
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.71453357
-      objectReference: {fileID: 0}
-    - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.71453357
-      objectReference: {fileID: 0}
-    - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.71453357
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.6822333
+      value: 357.8
       objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8876245
+      value: 48.1
       objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.641196
+      value: -62.3
       objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
@@ -70,12 +65,12 @@ PrefabInstance:
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
@@ -95,64 +90,38 @@ PrefabInstance:
     - target: {fileID: 7523508162906838357, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_Name
-      value: Fish1 Lake Variant
+      value: BossFish
       objectReference: {fileID: 0}
-    - target: {fileID: 8315934783276315776, guid: 48baf7c3c42874b4fb18a9085ec97abd,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 847f517cdf7e7714e8cda2ef238706fe, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48baf7c3c42874b4fb18a9085ec97abd, type: 3}
---- !u!1 &1364396136748257496 stripped
+--- !u!1 &633683640501204235 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7523508162906838357, guid: 48baf7c3c42874b4fb18a9085ec97abd,
     type: 3}
-  m_PrefabInstance: {fileID: 8829185980056192397}
+  m_PrefabInstance: {fileID: 6963573525166465118}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5910892174167598201
+--- !u!114 &1267212492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364396136748257496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0150d67692217c1418424b55de74cf4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tags:
-  - Lake
-  - Passive
---- !u!114 &6748306639171284100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364396136748257496}
+  m_GameObject: {fileID: 633683640501204235}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 581ddbcd81d76fa4e88a911a1731ff83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fishTags:
-  - Lake
-  - Passive
-  - Fleeable
+  - Agressive
+  - Persistent
+  - Boss
   fishMaterials:
-  - fishMaterial: {fileID: 2100000, guid: 847f517cdf7e7714e8cda2ef238706fe, type: 2}
-    weight: 40
-  - fishMaterial: {fileID: 2100000, guid: 305e8beb1a03f634883fc49111794c2e, type: 2}
-    weight: 30
-  - fishMaterial: {fileID: 2100000, guid: 5bd69fba1acdf0f4eb3369f5f9fd1d1f, type: 2}
-    weight: 20
-  - fishMaterial: {fileID: 2100000, guid: 7f5a18dba89d42e408097b246b044f11, type: 2}
-    weight: 10
-  minSize: 0.5
-  maxSize: 1.25
-  totalWaypoints: 8
+  - fishMaterial: {fileID: 2100000, guid: 09f01faf72be43d40b096ef610a23bd7, type: 2}
+    weight: 1
+  minSize: 10
+  maxSize: 10
+  totalWaypoints: 4
   maxWaypointSpacing: 25
   waypointPrefab: {fileID: 6407778700360433460, guid: a22b8e0fe38e5d04f9e7696cbc76882c,
     type: 3}
@@ -160,3 +129,16 @@ MonoBehaviour:
   waterLayer:
     serializedVersion: 2
     m_Bits: 16
+--- !u!114 &1267212493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633683640501204235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0150d67692217c1418424b55de74cf4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: []

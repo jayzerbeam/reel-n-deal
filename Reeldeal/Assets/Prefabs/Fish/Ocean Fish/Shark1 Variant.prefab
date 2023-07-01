@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4207220409504934134, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
+        type: 3}
+      propertyPath: aggressiveSpeed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5580017671327976144, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -145,7 +150,7 @@ MonoBehaviour:
   - fishMaterial: {fileID: 2100000, guid: 684288274e18252479b1044ddf63bb68, type: 2}
     weight: 5
   minSize: 0.5
-  maxSize: 5
+  maxSize: 2
   totalWaypoints: 8
   maxWaypointSpacing: 25
   waypointPrefab: {fileID: 6407778700360433460, guid: a22b8e0fe38e5d04f9e7696cbc76882c,

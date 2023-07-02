@@ -55,7 +55,7 @@ public class playerInventory : MonoBehaviour
     }
 
     // Function to add a fish to the player's inventory
-    public void AddFish(string fishDetails)
+    public void AddFishedFish(string fishDetails)
     {
         // Split the fish details string into individual csv, string type vals
         string[] details = fishDetails.Split(',');
@@ -73,18 +73,55 @@ public class playerInventory : MonoBehaviour
         fishInventory[fishType].Add(fishDetails);
     }
 
-    // Function to remove a fish from the player's inventory
-    public void RemoveFish(string fishType)
+    // Function to add a certain amount of a certain type of fish to the player's inventory
+    public void AddFish(string fishType, int amount = 1)
+    {
+        // If this type of fish isn't in the inventory yet, add it
+        if (!fishInventory.ContainsKey(fishType))
+        {
+            fishInventory[fishType] = new List<string>();
+        }
+
+        // Add the specified amount of fish to the list for this fish type
+        for (int i = 0; i < amount; i++)
+        {
+            fishInventory[fishType].Add(fishType);
+        }
+    }
+
+
+    // Function to remove a certain amount of a certain type of fish from the player's inventory
+    public void RemoveFish(string fishType, int amount = 1)
     {
         // Ensure this type of fish is in the inventory before trying to remove it
-        if (fishInventory.ContainsKey(fishType) && fishInventory[fishType].Count > 0)
+        if (fishInventory.ContainsKey(fishType) && fishInventory[fishType].Count >= amount)
         {
-            fishInventory[fishType].RemoveAt(0);
+            // Remove the specified amount of fish
+            for (int i = 0; i < amount; i++)
+            {
+                fishInventory[fishType].RemoveAt(0);
+            }
         }
         else
         {
-            Debug.Log("Go fish!, no fish of this type in inventory.");
+            Debug.Log("Go fish!, not enough fish of this type in inventory.");
         }
+    }
+
+    // Function to check if the player has a certain amount of a certain type of fish
+    public bool HasFish(string fishType, int amount)
+    {
+        // Check if the player has any fish of this type
+        if (fishInventory.ContainsKey(fishType))
+        {
+            // Check if the player has enough fish of this type
+            if (fishInventory[fishType].Count >= amount)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // Function to remove a random percentage of fish from the inventory when the player dies

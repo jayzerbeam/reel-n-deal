@@ -39,18 +39,46 @@ public class villagerTrading : MonoBehaviour
                 // Print the greeting and request
                 Debug.Log(greeting + " I want " + numFish + " of " + fishType + ".");
 
-                // Call the AddMoney or RemoveFish function in the PlayerInventory script
-                if (Random.value < 0.5f)
+                // Check if the player has enough fish of the desired type
+                if (playerInventory.HasFish(fishType, numFish))
                 {
-                    playerInventory.AddMoney(numFish*10);
+                    // Remove the fish from the player's inventory
+                    playerInventory.RemoveFish(fishType, numFish);
+
+                    int randomPayoutMultiplier = Random.Range(1, 5);
+
+                    // Give the player 5 money
+                    playerInventory.AddMoney(randomPayoutMultiplier * numFish);
                 }
                 else
                 {
-                    for (int i = 0; i < numFish; i++)
+                    Debug.Log("You don't have enough " + fishType + ".");
+                    if (Random.value < 0.9f)
                     {
-                        playerInventory.RemoveFish(fishType);
+                        playerInventory.AddMoney(1); // debugging code randomly give player gift
+                        Debug.Log("But go ahead and take this gift to help you.");
+                    }
+                    else
+                    {
+                        for (int i = 0; i < numFish; i++)
+                        {
+                            playerInventory.RemoveFish(fishType);
+                        }
                     }
                 }
+
+                //// Call the AddMoney or RemoveFish function in the PlayerInventory script
+                //if (Random.value < 0.5f)
+                //{
+                //    playerInventory.AddMoney(numFish*10);
+                //}
+                //else
+                //{
+                //    for (int i = 0; i < numFish; i++)
+                //    {
+                //        playerInventory.RemoveFish(fishType);
+                //    }
+                //}
             }
         }
     }

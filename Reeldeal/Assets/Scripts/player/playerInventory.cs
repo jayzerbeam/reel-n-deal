@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class playerInventory : MonoBehaviour
 {
     // The amount of money the player has
     public int money; // change to private after debugging
+    public TextMeshProUGUI moneyText;
 
     // A dictionary to store fish by type. Each fish type maps to a list of fish details.
     // when a fish is caught there will be a string containing details of the fish in the form "fish name, fish type, fish location, fish color, fish size, fish sex, fish age, fish time caught"
@@ -14,7 +16,8 @@ public class playerInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        money = 10;
+        UpdateMoneyText();
     }
 
     // Update is called once per frame
@@ -27,6 +30,8 @@ public class playerInventory : MonoBehaviour
     public void AddMoney(int amount)
     {
         money += amount;
+        // Update the money text whenever the player's money changes
+        UpdateMoneyText(); 
     }
 
     // Function to subtract money from the player's inventory
@@ -36,11 +41,18 @@ public class playerInventory : MonoBehaviour
         if (money >= amount)
         {
             money -= amount;
+            UpdateMoneyText(); // Update the money text whenever the player's money changes
         }
         else
         {
             Debug.Log("Oops you're broke, not enough money to complete transaction.");
         }
+    }
+
+    // Function to update the money text
+    private void UpdateMoneyText()
+    {
+        moneyText.text = "Money: " + money.ToString();
     }
 
     // Function to add a fish to the player's inventory

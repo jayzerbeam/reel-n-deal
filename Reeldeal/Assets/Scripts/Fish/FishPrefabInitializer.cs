@@ -14,10 +14,7 @@ public class FishPrefabInitializer : MonoBehaviour
     private GameObject waypointParent;
     public GameObject[] waypoints;
     public LayerMask waterLayer;
-<<<<<<< HEAD
     private Animator anim;
-=======
->>>>>>> fishAI
 
     // individual materials
     [System.Serializable]

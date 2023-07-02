@@ -8,6 +8,7 @@ public class playerInventory : MonoBehaviour
     // The amount of money the player has
     public int money = 0; // change to private after debugging
     public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI debugFishList;
 
     // A dictionary to store fish by type. Each fish type maps to a list of fish details.
     // when a fish is caught there will be a string containing details of the fish in the form "fish name, fish type, fish location, fish color, fish size, fish sex, fish age, fish time caught"
@@ -17,6 +18,7 @@ public class playerInventory : MonoBehaviour
     void Start()
     {
         UpdateMoneyText();
+        UpdateFishInvText();
     }
 
     // Update is called once per frame
@@ -54,6 +56,19 @@ public class playerInventory : MonoBehaviour
         moneyText.text = "Money: " + money.ToString();
     }
 
+    private void UpdateFishInvText()
+    {
+        // Clear the existing text
+        debugFishList.text = "";
+
+        // Append each item from the list
+        foreach (KeyValuePair<string, List<string>> kvp in fishInventory)
+        {
+            // Append the key and value to the Text component
+            debugFishList.text += kvp.Key + ": " + kvp.Value.ToString() + "\n";
+        }
+    }
+
     // Function to add a fish to the player's inventory
     public void AddFishedFish(string fishDetails)
     {
@@ -71,6 +86,7 @@ public class playerInventory : MonoBehaviour
 
         // Add the fish details to the list for this fish type
         fishInventory[fishType].Add(fishDetails);
+        UpdateFishInvText();
     }
 
     // Function to add a certain amount of a certain type of fish to the player's inventory
@@ -87,6 +103,7 @@ public class playerInventory : MonoBehaviour
         {
             fishInventory[fishType].Add(fishType);
         }
+        UpdateFishInvText();
     }
 
 
@@ -101,11 +118,13 @@ public class playerInventory : MonoBehaviour
             {
                 fishInventory[fishType].RemoveAt(0);
             }
+            UpdateFishInvText();
         }
         else
         {
             Debug.Log("Go fish!, not enough fish of this type in inventory.");
         }
+
     }
 
     // Function to check if the player has a certain amount of a certain type of fish
@@ -139,6 +158,7 @@ public class playerInventory : MonoBehaviour
             // Remove the calculated number of fish
             fishInventory[fishType].RemoveRange(0, fishToRemove);
         }
+        UpdateFishInvText();
     }
 }
 

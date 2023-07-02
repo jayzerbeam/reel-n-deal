@@ -16,6 +16,7 @@ public class FishPrefabInitializer : MonoBehaviour
     public LayerMask waterLayer;
 <<<<<<< HEAD
     private Animator anim;
+=======
 >>>>>>> fishAI
 
     // individual materials

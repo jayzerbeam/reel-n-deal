@@ -5938,7 +5938,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e4df250b2f78ce8418a02913880b14f6, type: 2}
+      objectReference: {fileID: 2100000, guid: adafefe63d59e5f46b4a958e73ae01d8, type: 2}
     - target: {fileID: 2649896872464236078, guid: 41764932739abc24cbe353f5fc54e5cb,
         type: 3}
       propertyPath: m_RootOrder
@@ -9168,7 +9168,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e4df250b2f78ce8418a02913880b14f6, type: 2}
+      objectReference: {fileID: 2100000, guid: cd6602ef9f6a368459401a926751003c, type: 2}
     - target: {fileID: 2649896872464236078, guid: 41764932739abc24cbe353f5fc54e5cb,
         type: 3}
       propertyPath: m_RootOrder
@@ -9662,7 +9662,7 @@ PrefabInstance:
     - target: {fileID: 475985157333359062, guid: 81c9759b64087a8499e7f5b5046bb669,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 27.1
       objectReference: {fileID: 0}
     - target: {fileID: 475985157333359062, guid: 81c9759b64087a8499e7f5b5046bb669,
         type: 3}
@@ -9672,7 +9672,7 @@ PrefabInstance:
     - target: {fileID: 475985157333359062, guid: 81c9759b64087a8499e7f5b5046bb669,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 331.8
+      value: 323.6
       objectReference: {fileID: 0}
     - target: {fileID: 475985157333359062, guid: 81c9759b64087a8499e7f5b5046bb669,
         type: 3}
@@ -9714,6 +9714,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishingBoat
       objectReference: {fileID: 0}
+    - target: {fileID: 1643854709685576377, guid: 81c9759b64087a8499e7f5b5046bb669,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12d26e42c49e1ec479be4ad7961ea4e5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c9759b64087a8499e7f5b5046bb669, type: 3}
 --- !u!1 &1104530486 stripped
@@ -9741,6 +9746,20 @@ MonoBehaviour:
   FishBoatGUI: {fileID: 0}
   WoodBoatGUI: {fileID: 0}
   inventory: {fileID: 0}
+--- !u!136 &1104530488
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104530486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.9005165
+  m_Height: 1.9961332
+  m_Direction: 1
+  m_Center: {x: -0.2932587, y: 0.6107784, z: -0.000000017479579}
 --- !u!1 &1140440616
 GameObject:
   m_ObjectHideFlags: 0
@@ -14253,7 +14272,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e4df250b2f78ce8418a02913880b14f6, type: 2}
+      objectReference: {fileID: 2100000, guid: cb88a417ea76ee54981fba642d2b2063, type: 2}
     - target: {fileID: 2649896872464236078, guid: 41764932739abc24cbe353f5fc54e5cb,
         type: 3}
       propertyPath: m_RootOrder
@@ -15705,6 +15724,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5735974946036584528, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cf66b3967b44b2c498dea0e015a65969, type: 2}
     - target: {fileID: 6096390253191541125, guid: b106031c03782614ab6c2336c64d2ff0,
         type: 3}
       propertyPath: m_Name
@@ -15718,7 +15742,7 @@ PrefabInstance:
     - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.3
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
         type: 3}
@@ -15728,7 +15752,7 @@ PrefabInstance:
     - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 334.3
+      value: 325.4
       objectReference: {fileID: 0}
     - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
         type: 3}
@@ -15792,6 +15816,20 @@ MonoBehaviour:
   FishBoatGUI: {fileID: 0}
   WoodBoatGUI: {fileID: 0}
   inventory: {fileID: 0}
+--- !u!136 &1834726280
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834726278}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.0189097
+  m_Height: 0.59922653
+  m_Direction: 1
+  m_Center: {x: -0.0254969, y: 0.4999155, z: -0.04004988}
 --- !u!1 &1868707242
 GameObject:
   m_ObjectHideFlags: 0

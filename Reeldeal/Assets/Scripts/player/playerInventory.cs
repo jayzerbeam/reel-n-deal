@@ -6,7 +6,7 @@ using TMPro;
 public class playerInventory : MonoBehaviour
 {
     // The amount of money the player has
-    public int money; // change to private after debugging
+    public int money = 0; // change to private after debugging
     public TextMeshProUGUI moneyText;
 
     // A dictionary to store fish by type. Each fish type maps to a list of fish details.
@@ -16,7 +16,6 @@ public class playerInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        money = 10;
         UpdateMoneyText();
     }
 

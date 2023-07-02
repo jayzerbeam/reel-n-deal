@@ -11,6 +11,8 @@ TagManager:
   - Spring
   - Waterfall
   - Ground
+  - Boots
+  - Bobber
   layers:
   - Default
   - TransparentFX

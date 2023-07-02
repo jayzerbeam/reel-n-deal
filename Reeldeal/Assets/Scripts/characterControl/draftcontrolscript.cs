@@ -32,6 +32,7 @@ public class draftcontrolscript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bobber = GameObject.FindWithTag("Bobber"); 
         rb = GetComponent<Rigidbody>();
     }
 

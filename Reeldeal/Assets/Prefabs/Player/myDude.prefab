@@ -543,7 +543,7 @@ MonoBehaviour:
   speed: 10
   rotationSpeed: 150
   jumpStrength: 70
-  distanceCanJump: 0.65
+  distanceCanJump: 0.25
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -553,6 +553,10 @@ MonoBehaviour:
   distanceToGround: 0
   allowedAirTime: 5
   airTimeCounter: 0
+  bobber: {fileID: 0}
+  timeToSink: 2
+  sinkBy: 0.01
+  floatUpBy: 0.05
   onGround: 0
   onWater: 0
 --- !u!1 &9039607591213089505

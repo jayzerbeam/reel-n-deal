@@ -330,4 +330,10 @@ MonoBehaviour:
   hungrySpeed: 1
   aggressiveSpeed: 1.25
   rotationSpeed: 10
+  fleeSpeed: 8
+  rayCount: 5
+  rayLength: 40
+  sightHeight: 2
+  rayColor: {r: 1, g: 0, b: 0, a: 1}
+  fleeTimer: 0
   aiState: 0

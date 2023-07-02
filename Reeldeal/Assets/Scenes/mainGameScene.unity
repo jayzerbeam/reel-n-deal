@@ -1249,7 +1249,7 @@ Transform:
   - {fileID: 9039607591813637103}
   - {fileID: 1567532130}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &208573708
 PrefabInstance:
@@ -2646,7 +2646,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
@@ -5562,7 +5562,7 @@ RectTransform:
   - {fileID: 1674661775}
   - {fileID: 222665867}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6219,7 +6219,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &796167900
 BoxCollider:
@@ -6681,7 +6681,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &838872818
 GameObject:
@@ -7479,7 +7479,7 @@ Transform:
   - {fileID: 890009496}
   - {fileID: 215159787}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &890009496 stripped
 Transform:
@@ -8585,6 +8585,31 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5f4dd35b6f84022429de57d056b9b378, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eda16b775854fbf4a99b4759a8dc23b0, type: 3}
+--- !u!1 &997808026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 348052895357539915, guid: eda16b775854fbf4a99b4759a8dc23b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 997808025}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &997808027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997808026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RodUpgradeGUI: {fileID: 0}
+  RodStandardGUI: {fileID: 0}
+  BootsGUI: {fileID: 0}
+  TNTGUI: {fileID: 0}
+  FishBoatGUI: {fileID: 0}
+  WoodBoatGUI: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &1004861794
 GameObject:
   m_ObjectHideFlags: 0
@@ -9061,7 +9086,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &1050571889
 PrefabInstance:
@@ -9622,6 +9647,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c9759b64087a8499e7f5b5046bb669, type: 3}
+--- !u!1 &1104530486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 995534481434002284, guid: 81c9759b64087a8499e7f5b5046bb669,
+    type: 3}
+  m_PrefabInstance: {fileID: 1104530485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1104530487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104530486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RodUpgradeGUI: {fileID: 0}
+  RodStandardGUI: {fileID: 0}
+  BootsGUI: {fileID: 0}
+  TNTGUI: {fileID: 0}
+  FishBoatGUI: {fileID: 0}
+  WoodBoatGUI: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &1140440616
 GameObject:
   m_ObjectHideFlags: 0
@@ -10410,6 +10460,31 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: adafefe63d59e5f46b4a958e73ae01d8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8144a91d06334544f9e9aa08397ad96d, type: 3}
+--- !u!1 &1257096291 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8017791192736228273, guid: 8144a91d06334544f9e9aa08397ad96d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1257096290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1257096292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257096291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RodUpgradeGUI: {fileID: 0}
+  RodStandardGUI: {fileID: 0}
+  BootsGUI: {fileID: 0}
+  TNTGUI: {fileID: 0}
+  FishBoatGUI: {fileID: 0}
+  WoodBoatGUI: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &1272484388
 GameObject:
   m_ObjectHideFlags: 0
@@ -12287,7 +12362,7 @@ Transform:
   - {fileID: 142000002}
   - {fileID: 1603073718}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1485302708
 GameObject:
@@ -13713,6 +13788,16 @@ PrefabInstance:
       propertyPath: m_text
       value: Purchase
       objectReference: {fileID: 0}
+    - target: {fileID: 7335463383246348781, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1834726279}
+    - target: {fileID: 7335463383246348781, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonClick
+      objectReference: {fileID: 0}
     - target: {fileID: 7335463383398216993, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
         type: 3}
       propertyPath: m_text
@@ -13737,6 +13822,46 @@ PrefabInstance:
 
 
         Price: 7 fish'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335463383629657830, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1709839788}
+    - target: {fileID: 7335463383629657830, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335463383738963890, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1257096292}
+    - target: {fileID: 7335463383738963890, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335463384006908920, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1104530487}
+    - target: {fileID: 7335463384006908920, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335463384046799044, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1700310465}
+    - target: {fileID: 7335463384046799044, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 7335463384143103570, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
         type: 3}
@@ -13847,6 +13972,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335463384169637790, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 997808027}
+    - target: {fileID: 7335463384169637790, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 7335463384381642809, guid: 4b1e4fc7d0ae85149bf9ff879dadd15f,
         type: 3}
@@ -14805,6 +14940,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c393709331c01e54194f366e2c353038, type: 3}
+--- !u!1 &1700310464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1340559430164178685, guid: c393709331c01e54194f366e2c353038,
+    type: 3}
+  m_PrefabInstance: {fileID: 1700310463}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1700310465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700310464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RodUpgradeGUI: {fileID: 0}
+  RodStandardGUI: {fileID: 0}
+  BootsGUI: {fileID: 0}
+  TNTGUI: {fileID: 0}
+  FishBoatGUI: {fileID: 0}
+  WoodBoatGUI: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1001 &1707129174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14954,6 +15114,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c7bee859536e54408d21ef23a05cc10, type: 3}
+--- !u!1 &1709839787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1425707857730953680, guid: 0c7bee859536e54408d21ef23a05cc10,
+    type: 3}
+  m_PrefabInstance: {fileID: 1709839786}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1709839788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709839787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RodUpgradeGUI: {fileID: 0}
+  RodStandardGUI: {fileID: 0}
+  BootsGUI: {fileID: 0}
+  TNTGUI: {fileID: 0}
+  FishBoatGUI: {fileID: 0}
+  WoodBoatGUI: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &1738515317
 GameObject:
   m_ObjectHideFlags: 0
@@ -15096,7 +15281,7 @@ Transform:
   - {fileID: 1272484389}
   - {fileID: 44965357}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1743644083
 GameObject:
@@ -15375,6 +15560,100 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1001 &1834726277
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6096390253191541125, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_Name
+      value: WoodenBoat
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 46.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 334.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9659259
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.258819
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904416312216447807, guid: b106031c03782614ab6c2336c64d2ff0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b106031c03782614ab6c2336c64d2ff0, type: 3}
+--- !u!1 &1834726278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6096390253191541125, guid: b106031c03782614ab6c2336c64d2ff0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1834726277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1834726279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834726278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RodUpgradeGUI: {fileID: 0}
+  RodStandardGUI: {fileID: 0}
+  BootsGUI: {fileID: 0}
+  TNTGUI: {fileID: 0}
+  FishBoatGUI: {fileID: 0}
+  WoodBoatGUI: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &1868707242
 GameObject:
   m_ObjectHideFlags: 0
@@ -15851,7 +16130,7 @@ Transform:
   - {fileID: 540357629}
   - {fileID: 1407680689}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1933128291
 GameObject:
@@ -15980,7 +16259,7 @@ Transform:
   - {fileID: 903031561}
   - {fileID: 1611515897}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1975211355
 GameObject:
@@ -16773,7 +17052,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2083477198
 BoxCollider:

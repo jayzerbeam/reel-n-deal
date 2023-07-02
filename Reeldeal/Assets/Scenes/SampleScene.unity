@@ -3838,7 +3838,8 @@ PrefabInstance:
         type: 3}
       propertyPath: bobber
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2886670933728575070, guid: 135aeada52e85c64c8f5493b85d529ad,
+        type: 3}
     - target: {fileID: 20247080490775706, guid: 901387fad219cf948baafb853057b84d,
         type: 3}
       propertyPath: m_Enabled

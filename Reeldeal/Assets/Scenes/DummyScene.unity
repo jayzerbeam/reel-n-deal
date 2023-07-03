@@ -568,7 +568,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 82d38f988d20f2c74a026572584e549c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf05020019032b1718b4f2c5f0daaaa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpHeight: 3
+  _jumpHeight: 2
   _gravity: -9.81
 --- !u!114 &1071432906
 MonoBehaviour:
@@ -720,6 +720,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 970636855}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1071432908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071432889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9790afa530737b76a9a785c00ad39b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 75
 --- !u!1 &1186649921
 GameObject:
   m_ObjectHideFlags: 0

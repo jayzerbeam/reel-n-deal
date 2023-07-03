@@ -18,6 +18,16 @@ public class PlayerLook : MonoBehaviour
         _playerInput.CharacterControls.Look.performed += OnLook;
     }
 
+    void OnEnable()
+    {
+        _playerInput.CharacterControls.Enable();
+    }
+
+    void OnDisable()
+    {
+        _playerInput.CharacterControls.Disable();
+    }
+
     void Update()
     {
         HandleLook();

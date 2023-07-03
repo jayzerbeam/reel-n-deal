@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
 
     float _runSpeed = 8.0f;
     float _walkSpeed = 2.8f;
+    float _rotate;
+
+    [SerializeField]
+    float _rotationSpeed = 75f;
 
     void Awake()
     {
@@ -39,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
         // Run input
         _playerInput.CharacterControls.Run.performed += OnRun;
         _playerInput.CharacterControls.Run.canceled += OnRun;
+        // Look input
+        _playerInput.CharacterControls.Look.performed += OnLook;
     }
 
     void OnEnable()
@@ -54,7 +60,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         HandleAnimation();
+        HandleRotation();
         HandleMove();
+    }
+
+    void OnLook(InputAction.CallbackContext context)
+    {
+        _rotate = context.ReadValue<Vector2>().x;
     }
 
     void OnRun(InputAction.CallbackContext context)
@@ -102,5 +114,14 @@ public class PlayerMovement : MonoBehaviour
         {
             _characterController.Move(moveDirection.normalized * _walkSpeed * Time.deltaTime);
         }
+    }
+
+    void HandleRotation()
+    {
+        if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0f)
+        {
+            _rotationSpeed = 5f;
+        }
+        transform.Rotate(Vector3.up * _rotate * _rotationSpeed * Time.deltaTime);
     }
 }

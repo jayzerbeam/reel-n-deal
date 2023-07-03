@@ -9109,6 +9109,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishingBoat
       objectReference: {fileID: 0}
+    - target: {fileID: 995534481434002284, guid: 81c9759b64087a8499e7f5b5046bb669,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1643854709685576377, guid: 81c9759b64087a8499e7f5b5046bb669,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c47a8046d422cf44ab127456e4917876, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c9759b64087a8499e7f5b5046bb669, type: 3}
 --- !u!1 &1108874487
@@ -13694,6 +13704,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TNT
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340559430164178685, guid: c393709331c01e54194f366e2c353038,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1340559430164178686, guid: c393709331c01e54194f366e2c353038,
         type: 3}

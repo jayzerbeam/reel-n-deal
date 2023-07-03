@@ -10,7 +10,8 @@ public class PlayerMove : MonoBehaviour
     CharacterController _characterController;
     Animator _animator;
 
-    Vector2 currMovementInput;
+    Vector2 _inputValues;
+
     Vector3 currMovement;
     Vector3 currRunMovement;
 
@@ -64,14 +65,17 @@ public class PlayerMove : MonoBehaviour
 
     void OnMovementInput(InputAction.CallbackContext context)
     {
-        currMovementInput = context.ReadValue<Vector2>();
+        _inputValues = context.ReadValue<Vector2>();
+
         // Walk input
-        currMovement.x = currMovementInput.x * _walkSpeed;
-        currMovement.z = currMovementInput.y * _walkSpeed;
+        currMovement.x = _inputValues.x * _walkSpeed;
+        currMovement.z = _inputValues.y * _walkSpeed;
+
         // Run Input
-        currRunMovement.x = currMovementInput.x * _runSpeed;
-        currRunMovement.z = currMovementInput.y * _runSpeed;
-        _isMovementPressed = currMovementInput.x != 0 || currMovementInput.y != 0;
+        currRunMovement.x = _inputValues.x * _runSpeed;
+        currRunMovement.z = _inputValues.y * _runSpeed;
+
+        _isMovementPressed = _inputValues.x != 0 || _inputValues.y != 0;
     }
 
     // Can use CharacterController.velocity.x etc to match to animation states

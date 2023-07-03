@@ -186,6 +186,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8e367ab3-84e1-48c6-943e-8ef5d0dd56f3"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fish"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""986462b1-3448-4575-86fb-19fecb62175a"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",

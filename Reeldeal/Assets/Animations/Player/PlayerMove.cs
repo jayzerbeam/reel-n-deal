@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovementController : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     PlayerInput _playerInput;
     CharacterController _characterController;
     Animator _animator;
 
-    Vector2 currMovementInput;
+    Vector2 _inputValues;
+
     Vector3 currMovement;
     Vector3 currRunMovement;
 
@@ -22,10 +23,6 @@ public class PlayerMovementController : MonoBehaviour
 
     float _runSpeed = 8.0f;
     float _walkSpeed = 2.8f;
-    float _rotate;
-
-    [SerializeField]
-    float _rotationSpeed = 75f;
 
     void Awake()
     {
@@ -43,8 +40,6 @@ public class PlayerMovementController : MonoBehaviour
         // Run input
         _playerInput.CharacterControls.Run.performed += OnRun;
         _playerInput.CharacterControls.Run.canceled += OnRun;
-        // Look input
-        _playerInput.CharacterControls.Look.performed += OnLook;
     }
 
     void OnEnable()
@@ -59,13 +54,8 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
-        HandleRotation();
+        HandleAnimation();
         HandleMove();
-    }
-
-    void OnLook(InputAction.CallbackContext context)
-    {
-        _rotate = context.ReadValue<Vector2>().x;
     }
 
     void OnRun(InputAction.CallbackContext context)
@@ -75,32 +65,34 @@ public class PlayerMovementController : MonoBehaviour
 
     void OnMovementInput(InputAction.CallbackContext context)
     {
-        currMovementInput = context.ReadValue<Vector2>();
+        _inputValues = context.ReadValue<Vector2>();
+
         // Walk input
-        currMovement.x = currMovementInput.x * _walkSpeed;
-        currMovement.z = currMovementInput.y * _walkSpeed;
+        currMovement.x = _inputValues.x * _walkSpeed;
+        currMovement.z = _inputValues.y * _walkSpeed;
+
         // Run Input
-        currRunMovement.x = currMovementInput.x * _runSpeed;
-        currRunMovement.z = currMovementInput.y * _runSpeed;
-        _isMovementPressed = currMovementInput.x != 0 || currMovementInput.y != 0;
+        currRunMovement.x = _inputValues.x * _runSpeed;
+        currRunMovement.z = _inputValues.y * _runSpeed;
+
+        _isMovementPressed = _inputValues.x != 0 || _inputValues.y != 0;
     }
 
-    // Can use CharacterController.velocity to match to animation states
-    // See PlayerJump.cs
-    // void HandleAnimation()
-    // {
-    //     bool isWalking = _animator.GetBool(_isWalkingHash);
-    //     bool isRunning = _animator.GetBool(_isRunningHash);
-    //
-    //     if (_isMovementPressed && !isWalking)
-    //     {
-    //         _animator.SetBool(_isWalkingHash, true);
-    //     }
-    //     else if (!_isMovementPressed && isWalking)
-    //     {
-    //         _animator.SetBool(_isWalkingHash, false);
-    //     }
-    // }
+    // Can use CharacterController.velocity.x etc to match to animation states
+    void HandleAnimation()
+    {
+        bool isWalking = _animator.GetBool(_isWalkingHash);
+        bool isRunning = _animator.GetBool(_isRunningHash);
+
+        if (_isMovementPressed && !isWalking)
+        {
+            _animator.SetBool(_isWalkingHash, true);
+        }
+        else if (!_isMovementPressed && isWalking)
+        {
+            _animator.SetBool(_isWalkingHash, false);
+        }
+    }
 
     void HandleMove()
     {
@@ -114,14 +106,5 @@ public class PlayerMovementController : MonoBehaviour
         {
             _characterController.Move(moveDirection.normalized * _walkSpeed * Time.deltaTime);
         }
-    }
-
-    void HandleRotation()
-    {
-        if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0f)
-        {
-            _rotationSpeed = 5f;
-        }
-        transform.Rotate(Vector3.up * _rotate * _rotationSpeed * Time.deltaTime);
     }
 }

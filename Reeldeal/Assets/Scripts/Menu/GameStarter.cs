@@ -7,7 +7,8 @@ public class GameStarter : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        Debug.Log("Starting Game");
+        SceneManager.LoadScene("mainGameScene");
         Time.timeScale = 1f;
     }
 }

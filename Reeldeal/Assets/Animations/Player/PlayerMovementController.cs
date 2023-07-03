@@ -59,6 +59,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
+        HandleAnimation();
         HandleRotation();
         HandleMove();
     }
@@ -85,22 +86,21 @@ public class PlayerMovementController : MonoBehaviour
         _isMovementPressed = currMovementInput.x != 0 || currMovementInput.y != 0;
     }
 
-    // Can use CharacterController.velocity to match to animation states
-    // See PlayerJump.cs
-    // void HandleAnimation()
-    // {
-    //     bool isWalking = _animator.GetBool(_isWalkingHash);
-    //     bool isRunning = _animator.GetBool(_isRunningHash);
-    //
-    //     if (_isMovementPressed && !isWalking)
-    //     {
-    //         _animator.SetBool(_isWalkingHash, true);
-    //     }
-    //     else if (!_isMovementPressed && isWalking)
-    //     {
-    //         _animator.SetBool(_isWalkingHash, false);
-    //     }
-    // }
+    // Can use CharacterController.velocity.x etc to match to animation states
+    void HandleAnimation()
+    {
+        bool isWalking = _animator.GetBool(_isWalkingHash);
+        bool isRunning = _animator.GetBool(_isRunningHash);
+
+        if (_isMovementPressed && !isWalking)
+        {
+            _animator.SetBool(_isWalkingHash, true);
+        }
+        else if (!_isMovementPressed && isWalking)
+        {
+            _animator.SetBool(_isWalkingHash, false);
+        }
+    }
 
     void HandleMove()
     {

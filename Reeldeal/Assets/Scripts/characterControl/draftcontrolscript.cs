@@ -16,23 +16,21 @@ public class draftcontrolscript : MonoBehaviour
     public float airTimeCounter; // Time counter for player's air time
     private bool jumpRequest = false; // Flag to handle jump requests
     public GameObject bobber;
+
     //private bool swimRequest = false;
     private float waterTime;
     public float timeToSink = 2f;
     public float sinkBy = 0.01f;
     public float floatUpBy = 0.05f;
 
-
-
     private Rigidbody rb;
     public bool onGround;
     public bool onWater;
 
-
     // Start is called before the first frame update
     void Start()
     {
-        bobber = GameObject.FindWithTag("Bobber"); 
+        bobber = GameObject.FindWithTag("Bobber");
         rb = GetComponent<Rigidbody>();
     }
 
@@ -90,7 +88,7 @@ public class draftcontrolscript : MonoBehaviour
         //{
         //    waterTime += Time.deltaTime;
         //}
-        //else if (onWater && waterTime > timeToSink) 
+        //else if (onWater && waterTime > timeToSink)
         //{
         //    transform.position = new Vector3(transform.position.x, transform.position.y - sinkBy, transform.position.z);
         //}
@@ -130,7 +128,9 @@ public class draftcontrolscript : MonoBehaviour
     void CheckGround()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, distanceCanJump, groundLayer))
+        if (
+            Physics.Raycast(transform.position, Vector3.down, out hit, distanceCanJump, groundLayer)
+        )
         {
             distanceToGround = hit.distance; // Save the distance to the ground
             if (hit.collider.gameObject.CompareTag("Ground"))
@@ -143,7 +143,17 @@ public class draftcontrolscript : MonoBehaviour
         onGround = false;
 
         // Teleport to nearest ground position if not on ground and air time exceeds allowed air time
-        if (!onGround && airTimeCounter > allowedAirTime && Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer))
+        if (
+            !onGround
+            && airTimeCounter > allowedAirTime
+            && Physics.Raycast(
+                transform.position,
+                Vector3.down,
+                out hit,
+                Mathf.Infinity,
+                groundLayer
+            )
+        )
         {
             distanceToGround = hit.distance; // Save the distance to the ground
             transform.position = hit.point;
@@ -171,7 +181,7 @@ public class draftcontrolscript : MonoBehaviour
     //    if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, waterLayer))
     //    {
     //        onWater = true;
-    //    } 
+    //    }
     //    else if (Physics.Raycast(transform.position, Vector3.up, out hit, 55f, waterLayer))
     //    {
     //        onWater = true;

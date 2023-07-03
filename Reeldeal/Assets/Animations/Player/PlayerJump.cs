@@ -35,6 +35,10 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
         HandleAnimation();
+    }
+
+    void FixedUpdate()
+    {
         HandleGravity();
         HandleJump();
     }

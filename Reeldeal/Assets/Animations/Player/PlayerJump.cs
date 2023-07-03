@@ -15,7 +15,7 @@ public class PlayerJump : MonoBehaviour
 
     // Can edit in Unity
     [SerializeField]
-    private float _jumpHeight = 3.25f;
+    private float _jumpHeight = 2f;
 
     // Can edit in Unity
     [SerializeField]

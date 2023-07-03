@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 1268496698446942888}
   - component: {fileID: -4094798936014000309}
   - component: {fileID: 3585576198716771717}
+  - component: {fileID: 6086685127371482982}
   - component: {fileID: -7116569889765426282}
   m_Layer: 0
   m_Name: Bobber
@@ -306,6 +307,18 @@ MonoBehaviour:
     fishPrefab: {fileID: 633683640501204235, guid: 0dd2ce3ff0ed6ad4e87c22ce04b38883,
       type: 3}
     fishSizeBounds: []
+--- !u!114 &6086685127371482982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2886670933728575070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e100e23be60e248bff4a76ad5c20a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &-7116569889765426282
 Rigidbody:
   m_ObjectHideFlags: 0

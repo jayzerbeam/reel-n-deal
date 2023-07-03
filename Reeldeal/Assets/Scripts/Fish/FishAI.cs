@@ -160,7 +160,7 @@ public class FishAI : MonoBehaviour
 
                 if (bobber != null)
                 {
-                    UpdateTravel(bobber.transform.position, idleSpeed);
+                    UpdateTravel(bobber.transform.position, hungrySpeed);
                 }
 
                 break;

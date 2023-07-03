@@ -32,7 +32,7 @@ public class playerInventory : MonoBehaviour
     {
         money += amount;
         // Update the money text whenever the player's money changes
-        UpdateMoneyText(); 
+        UpdateMoneyText();
     }
 
     // Function to subtract money from the player's inventory
@@ -161,4 +161,3 @@ public class playerInventory : MonoBehaviour
         UpdateFishInvText();
     }
 }
-

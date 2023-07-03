@@ -16,7 +16,7 @@ public class draftcontrolscript : MonoBehaviour
     public float airTimeCounter; // Time counter for player's air time
     private bool jumpRequest = false; // Flag to handle jump requests
     public GameObject bobber;
-    private bool swimRequest = false;
+    //private bool swimRequest = false;
     private float waterTime;
     public float timeToSink = 2f;
     public float sinkBy = 0.01f;

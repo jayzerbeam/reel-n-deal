@@ -10,9 +10,9 @@ public class player_controller : MonoBehaviour
 
     public LayerMask ground;
 
-    private bool grounded = false;
+    //private bool grounded = false;
     private float groundDisCheck;
-    private float fudgeFactRayCast = 0.2f;
+    //private float fudgeFactRayCast = 0.2f;
 
     // Start is called before the first frame update
     void Start()

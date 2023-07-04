@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6026064403612513966}
   - component: {fileID: 8377846410235855460}
   - component: {fileID: 7171282352457473772}
-  - component: {fileID: 7171282352457473763}
+  - component: {fileID: 1257096292}
   m_Layer: 0
   m_Name: FishingRodUpgrade
   m_TagString: FishingRodUpgrade
@@ -27,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8017791192736228273}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.66536, y: 0.6061454, z: 31.880478}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4814387500147316422, guid: 7454e17b283ddd442a3b5bdd48b7f86f, type: 3}
+  - {fileID: 2100000, guid: adafefe63d59e5f46b4a958e73ae01d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +99,7 @@ CapsuleCollider:
   m_Height: 0.10000003
   m_Direction: 1
   m_Center: {x: 0.09675604, y: 0.005249966, z: 0.18676049}
---- !u!114 &7171282352457473763
+--- !u!114 &1257096292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8017791192736228273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb5adbba108a47540b5c5bf68be4e7cc, type: 3}
+  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   RodUpgradeGUI: {fileID: 0}

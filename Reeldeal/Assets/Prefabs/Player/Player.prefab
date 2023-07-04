@@ -1261,7 +1261,7 @@ Transform:
   m_Children:
   - {fileID: 2595381419017174730}
   - {fileID: 7413056755661979228}
-  - {fileID: 4945267253745948185}
+  - {fileID: 2548359355681368823}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   onGround: 0
   onWater: 0
   distanceCanJump: 0.25
-  _isFishPressed: 0
+  _isFishButtonPressed: 0
 --- !u!114 &6141649143267876813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2140,7 +2140,7 @@ Transform:
   m_Father: {fileID: 41251784434410179}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &6141649144873845937
+--- !u!1001 &3658906776352454751
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2209,9 +2209,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 135aeada52e85c64c8f5493b85d529ad, type: 3}
---- !u!4 &4945267253745948185 stripped
+--- !u!4 &2548359355681368823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1268496698446942888, guid: 135aeada52e85c64c8f5493b85d529ad,
     type: 3}
-  m_PrefabInstance: {fileID: 6141649144873845937}
+  m_PrefabInstance: {fileID: 3658906776352454751}
   m_PrefabAsset: {fileID: 0}

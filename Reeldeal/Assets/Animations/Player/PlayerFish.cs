@@ -7,6 +7,7 @@ public class PlayerFish : MonoBehaviour
 {
     PlayerInput _playerInput;
     CharacterController _characterController;
+    private Animator _animator;
     public GameObject bobber;
     public LayerMask groundLayer; // Layer for the ground
     public LayerMask waterLayer; // Layer for the water
@@ -17,16 +18,17 @@ public class PlayerFish : MonoBehaviour
     public bool onGround;
     public bool onWater;
     public float distanceCanJump = 0.25f; // Distance to ground to enable jumping
-    public bool _isFishPressed;
+    private bool _doesBobberExist = false;
 
-    void Start()
-    {
-        bobber = GameObject.FindWithTag("Bobber");
-    }
+    private int _isFishingHash;
+    public bool _isFishButtonPressed;
 
     void Awake()
     {
+        bobber = GameObject.FindGameObjectWithTag("Bobber");
         _playerInput = new PlayerInput();
+        _animator = GetComponent<Animator>();
+        _isFishingHash = Animator.StringToHash("isFishing");
         _playerInput.CharacterControls.Fish.started += OnFish;
         _playerInput.CharacterControls.Fish.canceled += OnFish;
         _playerInput.CharacterControls.Fish.performed += OnFish;
@@ -35,6 +37,7 @@ public class PlayerFish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleAnimation();
         CheckGround();
         HandleFish();
     }
@@ -49,17 +52,32 @@ public class PlayerFish : MonoBehaviour
         _playerInput.CharacterControls.Disable();
     }
 
+    void HandleAnimation()
+    {
+        bool isFishing = _animator.GetBool(_isFishingHash);
+
+        if (_isFishButtonPressed && !isFishing)
+        {
+            _animator.SetBool(_isFishingHash, true);
+        }
+        else if (!_isFishButtonPressed && isFishing)
+        {
+            _animator.SetBool(_isFishingHash, false);
+        }
+    }
+
     void HandleFish()
     {
-        if (_isFishPressed)
+        if (_isFishButtonPressed && !_doesBobberExist)
         {
             Instantiate(bobber, transform.position, Quaternion.identity);
+            _doesBobberExist = true;
         }
     }
 
     void OnFish(InputAction.CallbackContext context)
     {
-        _isFishPressed = context.ReadValueAsButton();
+        _isFishButtonPressed = context.ReadValueAsButton();
     }
 
     void CheckGround()

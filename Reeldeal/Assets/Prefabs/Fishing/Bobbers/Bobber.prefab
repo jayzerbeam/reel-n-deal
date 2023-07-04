@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7061015994482696423}
   - component: {fileID: 1393847507818413375}
   - component: {fileID: 7621073102345273692}
+  - component: {fileID: 5646392330663717226}
   m_Layer: 0
   m_Name: Bobber Top Half
-  m_TagString: Untagged
+  m_TagString: Bobber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &5646392330663717226
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291197382460586368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.01
+  m_Height: 0.019999998
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1917846518685476123
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +207,7 @@ GameObject:
   - component: {fileID: 1268496698446942888}
   - component: {fileID: -4094798936014000309}
   - component: {fileID: 3585576198716771717}
+  - component: {fileID: 6086685127371482982}
   - component: {fileID: -7116569889765426282}
   m_Layer: 0
   m_Name: Bobber
@@ -306,6 +322,24 @@ MonoBehaviour:
     fishPrefab: {fileID: 633683640501204235, guid: 0dd2ce3ff0ed6ad4e87c22ce04b38883,
       type: 3}
     fishSizeBounds: []
+--- !u!114 &6086685127371482982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2886670933728575070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e100e23be60e248bff4a76ad5c20a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishCaught: 0
+  release: 0
+  bobberLocked: 0
+  catchCoolDown: 5
+  catchCoolDownTimer: 0
+  startCoolDown: 0
 --- !u!54 &-7116569889765426282
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -335,7 +369,7 @@ GameObject:
   - component: {fileID: 810850175728014205}
   m_Layer: 0
   m_Name: Bobber Bottom Half
-  m_TagString: Untagged
+  m_TagString: Bobber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

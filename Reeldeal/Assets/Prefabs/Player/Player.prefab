@@ -1240,6 +1240,7 @@ GameObject:
   - component: {fileID: 6141649143267876811}
   - component: {fileID: 6141649143267876813}
   - component: {fileID: 6141649143267876812}
+  - component: {fileID: 2429052457064081109}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1333,7 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 340f866f3feaf4701845f795ba7a4d17,
     type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -1396,6 +1397,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44771dcf1448dca63a1247ff47a38541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bobber: {fileID: 2886670933728575070, guid: 135aeada52e85c64c8f5493b85d529ad, type: 3}
+  _castSpeed: 25
+  _castHeight: 2
+  _bobberGravity: -35
 --- !u!114 &6141649143267876813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,6 +1426,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78630b1c351c49b898deca67934f895c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2429052457064081109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483754695257692263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10bf690153458168b8eab7159cedad0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reelSpeed: 2
 --- !u!1 &6507593493205178434
 GameObject:
   m_ObjectHideFlags: 0

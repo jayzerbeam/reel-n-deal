@@ -20,7 +20,7 @@ public class PlayerReel : MonoBehaviour
     GameObject _caughtFish;
 
     [SerializeField]
-    float _reelSpeed = 2f;
+    float _reelSpeed = 10f;
 
     void Awake()
     {

@@ -12,13 +12,13 @@ public class PlayerCast : MonoBehaviour
     public GameObject bobber;
 
     [SerializeField]
-    float _castSpeed = 25f;
+    float _castSpeed = 50f;
 
     [SerializeField]
     float _castHeight = 2f;
 
     [SerializeField]
-    float _bobberGravity = -35f;
+    float _bobberGravity = -100f;
 
     int _isCastingHash;
     bool _isCasting;

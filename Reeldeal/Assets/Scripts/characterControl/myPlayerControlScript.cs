@@ -74,10 +74,10 @@ public class myPlayerControlScript : MonoBehaviour
         //}
 
         // spawn bobber
-        if (onGround && Input.GetButtonDown("Fire1"))
-        {
-            Instantiate(bobber, transform.position, Quaternion.identity);
-        }
+        //if (onGround && Input.GetButtonDown("Fire1"))
+        //{
+        //    Instantiate(bobber, transform.position, Quaternion.identity);
+        //}
     }
 
     // Handle jump in FixedUpdate

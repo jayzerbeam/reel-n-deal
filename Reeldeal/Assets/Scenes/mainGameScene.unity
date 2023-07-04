@@ -545,6 +545,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishingRodStandard
       objectReference: {fileID: 0}
+    - target: {fileID: 7793485987252702969, guid: 75f46367c6eb27248a0aaf6e42a13246,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75f46367c6eb27248a0aaf6e42a13246, type: 3}
 --- !u!114 &95832170 stripped
@@ -745,6 +750,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FoldingTable3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458923268542370899, guid: 09dd4169747019b47adfe87ad0e5a408,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4461639140001955623, guid: 09dd4169747019b47adfe87ad0e5a408,
         type: 3}
@@ -1133,6 +1143,154 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[0].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[1].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[2].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[3].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[4].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[5].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[6].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[7].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[8].weight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[9].weight
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[10].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[11].weight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[12].weight
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[0].prefabVariant
+      value: 
+      objectReference: {fileID: 1364396136748257496, guid: 4a6ef7d93e2d26349b17037f56616f2a,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[1].prefabVariant
+      value: 
+      objectReference: {fileID: 7124064829773335154, guid: 10e81ca0d3e17414f9ed7de698aeffbf,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[2].prefabVariant
+      value: 
+      objectReference: {fileID: 1610416759530808355, guid: aa9ac38480fcfdf45a0289b1a98ba29f,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[3].prefabVariant
+      value: 
+      objectReference: {fileID: 2438780535423873260, guid: bde1090e823fee642b29065f0cc8c00e,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[4].prefabVariant
+      value: 
+      objectReference: {fileID: 5626766585896780354, guid: 3978e4efe724e10409e81b3d5715de14,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[5].prefabVariant
+      value: 
+      objectReference: {fileID: 8448709220953298428, guid: 03725e01590182d44807a89c0e0119b7,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[6].prefabVariant
+      value: 
+      objectReference: {fileID: 3594257395714561010, guid: f7e211fab639a2d4cba3e46238b8b493,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[7].prefabVariant
+      value: 
+      objectReference: {fileID: 126874304408444663, guid: 82da3d47ef5aa8c4aa6f37d60022b4a5,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[8].prefabVariant
+      value: 
+      objectReference: {fileID: 1109966895654629808, guid: 9d1d2fdf6be695345a7faca863ed16cf,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[9].prefabVariant
+      value: 
+      objectReference: {fileID: 6354174465930141549, guid: 0720aed7194740c4e8a14229540fd697,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[10].prefabVariant
+      value: 
+      objectReference: {fileID: 6125982513613110239, guid: de63d4845d8d69e46a4d23f338ed3613,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[11].prefabVariant
+      value: 
+      objectReference: {fileID: 1145599391018588633, guid: 093c9a0d3d5936041a398d8b51e5f135,
+        type: 3}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: fishPrefabs.Array.data[12].prefabVariant
+      value: 
+      objectReference: {fileID: 6151169042313680969, guid: 249487bda2c2dfa408eb57720e71d5e8,
+        type: 3}
     - target: {fileID: 5958609917625189085, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_RootOrder
@@ -5464,6 +5622,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishPile
       objectReference: {fileID: 0}
+    - target: {fileID: 4008284865952398126, guid: 82ec9199a82da0e43b9295a9e6aeb62f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4008284865952398127, guid: 82ec9199a82da0e43b9295a9e6aeb62f,
         type: 3}
       propertyPath: m_RootOrder
@@ -5953,6 +6116,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FishingRodUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017791192736228273, guid: 8144a91d06334544f9e9aa08397ad96d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8144a91d06334544f9e9aa08397ad96d, type: 3}
@@ -8804,6 +8972,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FoldingTable1
       objectReference: {fileID: 0}
+    - target: {fileID: 4458923268542370899, guid: 09dd4169747019b47adfe87ad0e5a408,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4461639140001955623, guid: 09dd4169747019b47adfe87ad0e5a408,
         type: 3}
       propertyPath: m_RootOrder
@@ -9743,7 +9916,7 @@ PrefabInstance:
     - target: {fileID: 995534481434002284, guid: 81c9759b64087a8499e7f5b5046bb669,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1643854709685576377, guid: 81c9759b64087a8499e7f5b5046bb669,
         type: 3}
@@ -10923,6 +11096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TNT
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340559430164178685, guid: c393709331c01e54194f366e2c353038,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1340559430164178686, guid: c393709331c01e54194f366e2c353038,
         type: 3}
@@ -12960,6 +13138,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodenBoat
       objectReference: {fileID: 0}
+    - target: {fileID: 338965422384727991, guid: 5fba83169f8b379488ce223ef2166300,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1152903834621811981, guid: 5fba83169f8b379488ce223ef2166300,
         type: 3}
       propertyPath: m_RootOrder
@@ -13133,6 +13316,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FoldingTable2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458923268542370899, guid: 09dd4169747019b47adfe87ad0e5a408,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4461639140001955623, guid: 09dd4169747019b47adfe87ad0e5a408,
         type: 3}
@@ -15773,6 +15961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boots
+      objectReference: {fileID: 0}
+    - target: {fileID: 348052895357539915, guid: eda16b775854fbf4a99b4759a8dc23b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eda16b775854fbf4a99b4759a8dc23b0, type: 3}

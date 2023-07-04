@@ -9,6 +9,7 @@ public class PlayerReel : MonoBehaviour
     PlayerInput _playerInput;
     CharacterController _characterController;
     Animator _animator;
+    Inventory _inventory;
 
     int _isCastingHash;
     bool _isCasting;
@@ -27,6 +28,7 @@ public class PlayerReel : MonoBehaviour
         _animator = GetComponent<Animator>();
         _isReelingHash = Animator.StringToHash("isReeling");
         _characterController = GetComponent<CharacterController>();
+        _inventory = new Inventory();
 
         _playerInput.CharacterControls.Reel.started += OnReel;
         _playerInput.CharacterControls.Reel.canceled += OnReel;
@@ -59,6 +61,7 @@ public class PlayerReel : MonoBehaviour
         {
             Destroy(_bobber);
             Destroy(_caughtFish);
+            _inventory.AddItem("Fish", true);
         }
     }
 

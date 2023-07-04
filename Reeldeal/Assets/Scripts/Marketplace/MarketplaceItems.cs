@@ -96,61 +96,61 @@ public class MarketplaceItems : MonoBehaviour
     }
 
 
-    public void OnButtonClick()
-    {
+    //public void OnButtonClick()
+    //{
 
-        if (gameObject.CompareTag("FishingRodUpgrade") && RodUpgradeGUI != null && triggeredObject != null)
-        {
-            RodUpgradeGUI.SetActive(false);
-            inventory.AddItem("FishingRodUpgrade", false);
-            Destroy(triggeredObject);
-            triggeredObject = null;
-        }
+    //    if (gameObject.CompareTag("FishingRodUpgrade") && RodUpgradeGUI != null && triggeredObject != null)
+    //    {
+    //        RodUpgradeGUI.SetActive(false);
+    //        inventory.AddItem("FishingRodUpgrade", false);
+    //        Destroy(triggeredObject);
+    //        triggeredObject = null;
+    //    }
 
-        else if (gameObject.CompareTag("FishingRodStandard") && RodStandardGUI != null && triggeredObject != null)
-        {
-            RodStandardGUI.SetActive(false);
-            inventory.AddItem("FishingRodStandard", false);
-            Destroy(triggeredObject);
-            triggeredObject = null;
-        }
-
-
-        else if (gameObject.CompareTag("Boots") && BootsGUI != null && triggeredObject != null)
-        {
-            BootsGUI.SetActive(false);
-            inventory.AddItem("Boots", false);
-            Destroy(triggeredObject);
-            triggeredObject = null;
-        }
-
-        else if (gameObject.CompareTag("TNT") && TNTGUI != null && triggeredObject != null)
-        {
-            TNTGUI.SetActive(false);
-            inventory.AddItem("TNT", false);
-            Destroy(triggeredObject);
-            triggeredObject = null;
-        }
-
-        else if (gameObject.CompareTag("FishingBoat") && FishBoatGUI != null && triggeredObject != null)
-        {
-            FishBoatGUI.SetActive(false);
-            inventory.AddItem("FishingBoat", false);
-            Destroy(triggeredObject);
-            triggeredObject = null;
-        }
-
-        else if (gameObject.CompareTag("WoodenBoat") && WoodBoatGUI != null && triggeredObject != null)
-        {
-            WoodBoatGUI.SetActive(false);
-            inventory.AddItem("WoodenBoat", false);
-            Destroy(triggeredObject);
-            triggeredObject = null;
-        }
+    //    else if (gameObject.CompareTag("FishingRodStandard") && RodStandardGUI != null && triggeredObject != null)
+    //    {
+    //        RodStandardGUI.SetActive(false);
+    //        inventory.AddItem("FishingRodStandard", false);
+    //        Destroy(triggeredObject);
+    //        triggeredObject = null;
+    //    }
 
 
+    //    else if (gameObject.CompareTag("Boots") && BootsGUI != null && triggeredObject != null)
+    //    {
+    //        BootsGUI.SetActive(false);
+    //        inventory.AddItem("Boots", false);
+    //        Destroy(triggeredObject);
+    //        triggeredObject = null;
+    //    }
 
-    }
+    //    else if (gameObject.CompareTag("TNT") && TNTGUI != null && triggeredObject != null)
+    //    {
+    //        TNTGUI.SetActive(false);
+    //        inventory.AddItem("TNT", false);
+    //        Destroy(triggeredObject);
+    //        triggeredObject = null;
+    //    }
+
+    //    else if (gameObject.CompareTag("FishingBoat") && FishBoatGUI != null && triggeredObject != null)
+    //    {
+    //        FishBoatGUI.SetActive(false);
+    //        inventory.AddItem("FishingBoat", false);
+    //        Destroy(triggeredObject);
+    //        triggeredObject = null;
+    //    }
+
+    //    else if (gameObject.CompareTag("WoodenBoat") && WoodBoatGUI != null && triggeredObject != null)
+    //    {
+    //        WoodBoatGUI.SetActive(false);
+    //        inventory.AddItem("WoodenBoat", false);
+    //        Destroy(triggeredObject);
+    //        triggeredObject = null;
+    //    }
+
+
+
+    //}
 
 }
 

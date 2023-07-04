@@ -6,21 +6,21 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerJump : MonoBehaviour
 {
-    PlayerInput _playerInput;
-    CharacterController _characterController;
-    Animator _animator;
-    Vector3 _characterVelocity;
-    int _isJumpingHash;
-    bool _isJumpButtonPressed;
+    private PlayerInput _playerInput;
+    private CharacterController _characterController;
+    private Animator _animator;
+    private Vector3 _characterVelocity;
+    private int _isJumpingHash;
+    private bool _isJumpButtonPressed;
 
     // Can edit in Unity
     [SerializeField]
-    float _jumpHeight = 2f;
+    private float _jumpHeight = 2f;
 
     // Can edit in Unity
     [SerializeField]
-    float _gravity = -9.81f;
-    float _groundedGravity = 0.05f;
+    private float _gravity = -9.81f;
+    private float _groundedGravity = 0.05f;
 
     void Awake()
     {

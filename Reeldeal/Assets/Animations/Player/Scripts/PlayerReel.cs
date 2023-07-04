@@ -16,9 +16,10 @@ public class PlayerReel : MonoBehaviour
     int _isReelingHash;
     float _reelValue = 0.0f;
     GameObject _bobber;
+    GameObject _caughtFish;
 
     [SerializeField]
-    float _reelSpeed = 10f;
+    float _reelSpeed = 2f;
 
     void Awake()
     {
@@ -42,7 +43,7 @@ public class PlayerReel : MonoBehaviour
         _playerInput.CharacterControls.Disable();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         HandleReel();
     }
@@ -57,6 +58,7 @@ public class PlayerReel : MonoBehaviour
         if (collision.gameObject.CompareTag("Bobber"))
         {
             Destroy(_bobber);
+            Destroy(_caughtFish);
         }
     }
 
@@ -68,14 +70,15 @@ public class PlayerReel : MonoBehaviour
         // Player must only be able to reel if bobber exists and if _isCasting is false
         _bobber = GameObject.FindWithTag("Bobber");
 
-        if (_reelValue > 0.0f && _bobber) // && !_isCasting
+        if (_reelValue > 0.7f && _bobber) // && !_isCasting
         {
             {
                 Rigidbody bobberRB = _bobber.GetComponent<Rigidbody>();
-                bobberRB.constraints = RigidbodyConstraints.None;
 
                 if (bobberRB != null)
                 {
+                    // Make sure the frozen bobber can move
+                    bobberRB.constraints = RigidbodyConstraints.None;
                     Vector3 reelDirection = -transform.forward * _reelSpeed;
 
                     bobberRB.velocity = new Vector3(
@@ -83,6 +86,19 @@ public class PlayerReel : MonoBehaviour
                         -5f * Time.deltaTime,
                         reelDirection.z
                     );
+
+                    Rigidbody fishRB = _bobber.GetComponentInChildren<Rigidbody>();
+
+                    if (fishRB != null)
+                    {
+                        _caughtFish = fishRB.gameObject;
+                        fishRB.constraints = RigidbodyConstraints.None;
+                        fishRB.velocity = new Vector3(
+                            reelDirection.x,
+                            -5f * Time.deltaTime,
+                            reelDirection.z
+                        );
+                    }
                 }
             }
         }

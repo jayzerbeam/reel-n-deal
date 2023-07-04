@@ -16,6 +16,7 @@ public class FishCatching : MonoBehaviour
     private Quaternion bobberLockedRotation;
     private Vector3 fishLockedPosition;
     private Quaternion fishLockedRotation;
+    private GameObject caughtFish;
 
     private Rigidbody _rb;
 
@@ -27,12 +28,6 @@ public class FishCatching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bobberLocked)
-        {
-            // caughtFish.transform.position = fishLockedPosition;
-            // caughtFish.transform.rotation = fishLockedRotation;
-        }
-
         // if (fishCaught)
         // {
         //     create method to have player press keys here
@@ -71,39 +66,39 @@ public class FishCatching : MonoBehaviour
             )
             {
                 _rb.constraints = RigidbodyConstraints.FreezePosition;
+                bobberLocked = true;
             }
             // check for fish collision
-            // if (collision.gameObject.CompareTag("Fish"))
-            // {
-            //     collision.transform.SetParent(transform);
-            //     Rigidbody fishRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-            //     if (fishRigidbody != null)
-            //     {
-            //         fishRigidbody.velocity = Vector3.zero;
-            //     }
-            //
-            //     fishLockedPosition = collision.gameObject.transform.position;
-            //     fishLockedRotation = collision.gameObject.transform.rotation;
-            //
-            //     FishAI fishAIscript = collision.gameObject.GetComponent<FishAI>();
-            //     fishAIscript.aiState = FishAI.AIState.fleeState;
-            //     fishAIscript.enabled = false; // turn off AI when caught
-            //     // caughtFish = collision.gameObject;
-            //     fishCaught = true;
-            // }
+            if (collision.gameObject.CompareTag("Fish"))
+            {
+                collision.transform.SetParent(transform);
+                Rigidbody fishRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+                if (fishRigidbody != null)
+                {
+                    fishRigidbody.velocity = Vector3.zero;
+                }
+
+                fishRigidbody.constraints = RigidbodyConstraints.FreezePosition;
+
+                FishAI fishAIscript = collision.gameObject.GetComponent<FishAI>();
+                fishAIscript.aiState = FishAI.AIState.fleeState;
+                fishAIscript.enabled = false; // turn off AI when caught
+                caughtFish = collision.gameObject;
+                fishCaught = true;
+            }
         }
     }
 
-    // private void ReleaseFish()
-    // {
-    //     FishAI fishAIscript = caughtFish.GetComponent<FishAI>();
-    //     fishAIscript.enabled = true;
-    //
-    //     caughtFish.transform.SetParent(null);
-    //     caughtFish = null;
-    //     release = false;
-    //
-    //     startCoolDown = true;
-    //     catchCoolDownTimer = catchCoolDown;
-    // }
+    private void ReleaseFish()
+    {
+        FishAI fishAIscript = caughtFish.GetComponent<FishAI>();
+        fishAIscript.enabled = true;
+
+        caughtFish.transform.SetParent(null);
+        caughtFish = null;
+        release = false;
+
+        startCoolDown = true;
+        catchCoolDownTimer = catchCoolDown;
+    }
 }

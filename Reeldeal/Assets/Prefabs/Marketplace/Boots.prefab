@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 348052895357539914}
-  - component: {fileID: 348052895357539909}
   - component: {fileID: 348052895357539908}
+  - component: {fileID: 997808027}
   m_Layer: 0
   m_Name: Boots
   m_TagString: Boots
@@ -25,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348052895357539915}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -65.14537, y: -0.33985448, z: 66.36047}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348052896489870580}
@@ -35,25 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &348052895357539909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348052895357539915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb5adbba108a47540b5c5bf68be4e7cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RodUpgradeGUI: {fileID: 0}
-  RodStandardGUI: {fileID: 0}
-  BootsGUI: {fileID: 0}
-  TNTGUI: {fileID: 0}
-  FishBoatGUI: {fileID: 0}
-  WoodBoatGUI: {fileID: 0}
-  inventory: {fileID: 0}
 --- !u!136 &348052895357539908
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -64,10 +45,29 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 5
+  m_Radius: 9
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &997808027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348052895357539915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RodUpgradeGUI: {fileID: 0}
+  RodStandardGUI: {fileID: 0}
+  BootsGUI: {fileID: 0}
+  TNTGUI: {fileID: 0}
+  FishBoatGUI: {fileID: 0}
+  WoodBoatGUI: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1001 &348052894933910949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,10 +79,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a090667a4389ae8488a44925515c6879, type: 2}
+      objectReference: {fileID: 2100000, guid: 5f4dd35b6f84022429de57d056b9b378, type: 2}
     - target: {fileID: 100000, guid: 511ae3cff5b97bb46a037e013d2a228b, type: 3}
       propertyPath: m_Name
-      value: scarpa_lowFBX
+      value: Boots
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 511ae3cff5b97bb46a037e013d2a228b, type: 3}
       propertyPath: m_RootOrder
@@ -136,6 +136,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 348052894933910949}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &348052894933877509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 511ae3cff5b97bb46a037e013d2a228b,
+    type: 3}
+  m_PrefabInstance: {fileID: 348052894933910949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &255026372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348052894933877509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RodUpgradeGUI: {fileID: 0}
+  RodStandardGUI: {fileID: 0}
+  BootsGUI: {fileID: 0}
+  TNTGUI: {fileID: 0}
+  FishBoatGUI: {fileID: 0}
+  WoodBoatGUI: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1001 &348052896489999988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -147,10 +172,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 376ebc00eca2c5f4abbb473f0027fa93, type: 2}
+      objectReference: {fileID: 2100000, guid: a473c8280a6867041afceb2cdbedb993, type: 2}
     - target: {fileID: 100000, guid: 511ae3cff5b97bb46a037e013d2a228b, type: 3}
       propertyPath: m_Name
-      value: scarpa_lowFBX (1)
+      value: Boots
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 511ae3cff5b97bb46a037e013d2a228b, type: 3}
       propertyPath: m_RootOrder
@@ -204,3 +229,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 348052896489999988}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &348052896489965780 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 511ae3cff5b97bb46a037e013d2a228b,
+    type: 3}
+  m_PrefabInstance: {fileID: 348052896489999988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1211089489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348052896489965780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RodUpgradeGUI: {fileID: 0}
+  RodStandardGUI: {fileID: 0}
+  BootsGUI: {fileID: 0}
+  TNTGUI: {fileID: 0}
+  FishBoatGUI: {fileID: 0}
+  WoodBoatGUI: {fileID: 0}
+  inventory: {fileID: 0}

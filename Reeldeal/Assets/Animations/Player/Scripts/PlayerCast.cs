@@ -9,7 +9,7 @@ public class PlayerCast : MonoBehaviour
     PlayerInput _playerInput;
     CharacterController _characterController;
     Animator _animator;
-    GameObject _bobber;
+    public GameObject _bobber;
 
     int _isCastingHash;
     bool _isCastButtonPressed;
@@ -18,7 +18,7 @@ public class PlayerCast : MonoBehaviour
 
     void Awake()
     {
-        _bobber = GameObject.FindGameObjectWithTag("Bobber");
+        // _bobber = GameObject.FindGameObjectWithTag("Bobber");
         _playerInput = new PlayerInput();
         _animator = GetComponent<Animator>();
         _isCastingHash = Animator.StringToHash("isCasting");
@@ -72,7 +72,11 @@ public class PlayerCast : MonoBehaviour
     {
         if (_isCastButtonPressed && !_doesBobberExist && _characterController.isGrounded)
         {
-            Instantiate(_bobber, transform.position, Quaternion.identity);
+            Instantiate(
+                _bobber,
+                new Vector3(transform.position.x, 0.2f, transform.position.z),
+                transform.rotation
+            );
             _doesBobberExist = true;
         }
     }

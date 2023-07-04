@@ -971,6 +971,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1997858296}
+    - target: {fileID: 6141649143267876809, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6483754695257692263, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_Name

@@ -9,24 +9,16 @@ public class PlayerReel : MonoBehaviour
     PlayerInput _playerInput;
     CharacterController _characterController;
     Animator _animator;
+
+    int _isCastingHash;
+    bool _isCasting;
+
     int _isReelingHash;
-    bool _isReelButtonPressed;
+    float _reelValue = 0.0f;
+    GameObject _bobber;
 
-    // Grady's stuff
-    public bool fishCaught = false;
-    public bool release = false;
-    public bool bobberLocked = false;
-    public float catchCoolDown = 5f;
-    public float catchCoolDownTimer = 0f;
-    public bool startCoolDown;
-
-    // Grady's stuff
-    private Vector3 bobberLockedPosition;
-    private Quaternion bobberLockedRotation;
-    private Vector3 fishLockedPosition;
-    private Quaternion fishLockedRotation;
-
-    public GameObject caughtFish;
+    [SerializeField]
+    float _reelSpeed = 10f;
 
     void Awake()
     {
@@ -50,98 +42,49 @@ public class PlayerReel : MonoBehaviour
         _playerInput.CharacterControls.Disable();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (bobberLocked)
-        {
-            transform.position = bobberLockedPosition; // prevents other fish from meshing with position
-            transform.rotation = bobberLockedRotation;
-
-            caughtFish.transform.position = fishLockedPosition;
-            caughtFish.transform.rotation = fishLockedRotation;
-        }
-
-        if (fishCaught)
-        {
-            // create method to have player press keys here
-            HandleReel();
-        }
-
-        if (release) // enter if player doesn't press correct inputs
-        {
-            ReleaseFish();
-            bobberLocked = false;
-        }
-
-        catchCoolDownTimer -= Time.deltaTime;
-        if (startCoolDown)
-        {
-            transform.position = bobberLockedPosition; // prevents other fish from meshing with position
-            transform.rotation = bobberLockedRotation;
-            if (catchCoolDownTimer < 0f && fishCaught)
-            {
-                fishCaught = false;
-                startCoolDown = false;
-            }
-        }
+        HandleReel();
     }
 
     void OnReel(InputAction.CallbackContext context)
     {
-        _isReelButtonPressed = context.ReadValueAsButton();
+        _reelValue = context.ReadValue<float>();
     }
 
-    void HandleReel()
+    void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("You snagged a fish! Reel it in!");
-    }
-
-    void HandleAnimation() { }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        // https://docs.unity3d.com/ScriptReference/Collider.OnCollisionEnter.html
-        // https://forum.unity.com/threads/add-an-object-as-a-child-of-another-gameobject-into-a-different-scene.1292907/
-        if (!fishCaught)
+        if (collision.gameObject.CompareTag("Bobber"))
         {
-            // check for fish collision
-            if (collision.gameObject.CompareTag("Fish"))
-            {
-                bobberLocked = true;
-                bobberLockedPosition = transform.position;
-                bobberLockedRotation = transform.rotation;
-
-                collision.transform.SetParent(transform);
-                Rigidbody fishRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-
-                if (fishRigidbody != null)
-                {
-                    fishRigidbody.velocity = Vector3.zero;
-                }
-
-                fishLockedPosition = collision.gameObject.transform.position;
-                fishLockedRotation = collision.gameObject.transform.rotation;
-
-                FishAI fishAIscript = collision.gameObject.GetComponent<FishAI>();
-                fishAIscript.aiState = FishAI.AIState.fleeState;
-                fishAIscript.enabled = false; // turn off AI when caught
-                caughtFish = collision.gameObject;
-                fishCaught = true;
-            }
+            Destroy(_bobber);
         }
     }
 
-    private void ReleaseFish()
+    // Idle reel animation should be attached
+    // void HandleAnimation() { }
+
+    void HandleReel()
     {
-        FishAI fishAIscript = caughtFish.GetComponent<FishAI>();
-        fishAIscript.enabled = true;
+        // Player must only be able to reel if bobber exists and if _isCasting is false
+        _bobber = GameObject.FindWithTag("Bobber");
 
-        caughtFish.transform.SetParent(null);
-        caughtFish = null;
-        release = false;
+        if (_reelValue > 0.0f && _bobber) // && !_isCasting
+        {
+            {
+                Rigidbody bobberRB = _bobber.GetComponent<Rigidbody>();
+                bobberRB.constraints = RigidbodyConstraints.None;
 
-        startCoolDown = true;
-        catchCoolDownTimer = catchCoolDown;
+                if (bobberRB != null)
+                {
+                    Vector3 reelDirection = -transform.forward * _reelSpeed;
+
+                    bobberRB.velocity = new Vector3(
+                        reelDirection.x,
+                        -5f * Time.deltaTime,
+                        reelDirection.z
+                    );
+                }
+            }
+        }
     }
 }

@@ -9,16 +9,23 @@ public class PlayerCast : MonoBehaviour
     PlayerInput _playerInput;
     CharacterController _characterController;
     Animator _animator;
-    public GameObject _bobber;
+    public GameObject bobber;
+
+    [SerializeField]
+    float _castSpeed = 25f;
+
+    [SerializeField]
+    float _castHeight = 2f;
+
+    [SerializeField]
+    float _bobberGravity = -35f;
 
     int _isCastingHash;
+    bool _isCasting;
     bool _isCastButtonPressed;
-
-    bool _doesBobberExist = false;
 
     void Awake()
     {
-        // _bobber = GameObject.FindGameObjectWithTag("Bobber");
         _playerInput = new PlayerInput();
         _animator = GetComponent<Animator>();
         _isCastingHash = Animator.StringToHash("isCasting");
@@ -68,16 +75,32 @@ public class PlayerCast : MonoBehaviour
         }
     }
 
+    // Todo: allow a variety of different cast forces
     void HandleCast()
     {
-        if (_isCastButtonPressed && !_doesBobberExist && _characterController.isGrounded)
+        if (GameObject.FindWithTag("Bobber") == null)
         {
-            Instantiate(
-                _bobber,
-                new Vector3(transform.position.x, 0.2f, transform.position.z),
-                transform.rotation
-            );
-            _doesBobberExist = true;
+            if (_isCastButtonPressed && _characterController.isGrounded)
+            {
+                GameObject newBobber = Instantiate(
+                    bobber,
+                    this.transform.position + new Vector3(0.5f, _castHeight, 1),
+                    this.transform.rotation
+                );
+
+                if (newBobber != null)
+                {
+                    Rigidbody bobberRB = newBobber.GetComponent<Rigidbody>();
+
+                    Vector3 castDirection = transform.forward * _castSpeed;
+
+                    bobberRB.velocity = new Vector3(
+                        castDirection.x,
+                        _bobberGravity * Time.deltaTime,
+                        castDirection.z
+                    );
+                }
+            }
         }
     }
 }

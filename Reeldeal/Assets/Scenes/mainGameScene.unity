@@ -543,10 +543,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3321141485302660848, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4778043229347064254, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5340096723996770309, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
@@ -696,6 +706,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6151169042313680969, guid: 249487bda2c2dfa408eb57720e71d5e8,
         type: 3}
+    - target: {fileID: 5652006128394740047, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5958609917625189085, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_RootOrder
@@ -704,17 +719,17 @@ PrefabInstance:
     - target: {fileID: 5958609917625189085, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.36
+      value: 35.791
       objectReference: {fileID: 0}
     - target: {fileID: 5958609917625189085, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 56.795
+      value: 56.16
       objectReference: {fileID: 0}
     - target: {fileID: 5958609917625189085, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -100.4
+      value: -113.9
       objectReference: {fileID: 0}
     - target: {fileID: 5958609917625189085, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
@@ -754,17 +769,22 @@ PrefabInstance:
     - target: {fileID: 6141649143267876802, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6141649143267876808, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6141649143267876809, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141649143267876809, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6141649143267876811, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
@@ -774,17 +794,22 @@ PrefabInstance:
     - target: {fileID: 6141649143267876811, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6141649143267876812, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6141649143267876813, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411301826289002661, guid: cd718a7a732e9b6edbce95558701e90e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6411301826289002661, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
@@ -3509,7 +3534,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 955545777}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.25
   m_Height: 1.75
   m_Direction: 1

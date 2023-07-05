@@ -5,7 +5,7 @@ public class playerDeath : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Water"))
+        if (other.CompareTag("Lake") || other.CompareTag("Waterfall") || other.CompareTag("River") || other.CompareTag("Spring") || other.CompareTag("Ocean"))
         {
             Destroy(gameObject);
             SceneManager.LoadScene("MainMenu");

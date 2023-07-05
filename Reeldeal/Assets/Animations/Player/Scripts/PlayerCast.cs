@@ -18,7 +18,7 @@ public class PlayerCast : MonoBehaviour
     float _castHeight = 2f;
 
     [SerializeField]
-    float _bobberGravity = -100f;
+    float _bobberGravity = -10f;
 
     int _isCastingHash;
     bool _isCasting;
@@ -84,7 +84,7 @@ public class PlayerCast : MonoBehaviour
             {
                 GameObject newBobber = Instantiate(
                     bobber,
-                    this.transform.position + new Vector3(0.5f, _castHeight, 1),
+                    this.transform.position + new Vector3(0f, _castHeight, 1),
                     this.transform.rotation
                 );
 
@@ -92,12 +92,12 @@ public class PlayerCast : MonoBehaviour
                 {
                     Rigidbody bobberRB = newBobber.GetComponent<Rigidbody>();
 
-                    Vector3 castDirection = transform.forward * _castSpeed;
+                    Vector3 castDirection = transform.forward;
 
                     bobberRB.velocity = new Vector3(
-                        castDirection.x,
+                        castDirection.x * _castSpeed,
                         _bobberGravity * Time.deltaTime,
-                        castDirection.z
+                        castDirection.z * _castSpeed
                     );
                 }
             }

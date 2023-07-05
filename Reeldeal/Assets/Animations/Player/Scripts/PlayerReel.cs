@@ -47,6 +47,7 @@ public class PlayerReel : MonoBehaviour
 
     void Update()
     {
+        HandleAnimation();
         HandleReel();
     }
 
@@ -65,8 +66,19 @@ public class PlayerReel : MonoBehaviour
         }
     }
 
-    // Idle reel animation should be attached
-    // void HandleAnimation() { }
+    void HandleAnimation()
+    {
+        bool isReeling = _animator.GetBool(_isReelingHash);
+
+        if (!isReeling && _reelValue > 0)
+        {
+            _animator.SetBool(_isReelingHash, true);
+        }
+        else if (isReeling && _reelValue <= 0)
+        {
+            _animator.SetBool(_isReelingHash, false);
+        }
+    }
 
     void HandleReel()
     {

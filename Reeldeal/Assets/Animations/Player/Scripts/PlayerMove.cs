@@ -87,20 +87,24 @@ public class PlayerMove : MonoBehaviour
         bool isWalking = _animator.GetBool(_isWalkingHash);
         bool isRunning = _animator.GetBool(_isRunningHash);
 
+        // Run!
         if (_isMovementPressed && _isRunPressed)
         {
             float runMultiplier = 2.0f;
             _animator.SetBool(_isRunningHash, true);
+            _animator.SetBool(_isWalkingHash, false);
             _animator.SetFloat(_velocityZHash, _inputValues.y * runMultiplier);
             _animator.SetFloat(_velocityXHash, _inputValues.x * runMultiplier);
         }
-        else if (_isMovementPressed && !isWalking && !_isRunPressed)
+        // Walk.
+        else if (_isMovementPressed && !_isRunPressed)
         {
             _animator.SetBool(_isWalkingHash, true);
             _animator.SetBool(_isRunningHash, false);
             _animator.SetFloat(_velocityZHash, _inputValues.y);
             _animator.SetFloat(_velocityXHash, _inputValues.x);
         }
+        // Idle.
         else if (!_isMovementPressed && isWalking || !_isMovementPressed && isRunning)
         {
             float resetMultiplier = 0.0f;

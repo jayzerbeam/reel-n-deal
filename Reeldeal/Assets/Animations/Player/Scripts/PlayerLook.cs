@@ -9,7 +9,7 @@ public class PlayerLook : MonoBehaviour
 
     // Can modify in Unity
     [SerializeField]
-    float _rotationSpeed = 75f;
+    float _rotationSpeed = 80f;
     float _rotate;
 
     void Awake()

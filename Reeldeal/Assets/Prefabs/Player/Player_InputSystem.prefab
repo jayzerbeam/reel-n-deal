@@ -1280,7 +1280,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!143 &6141649143267876802
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1296,7 +1296,7 @@ CharacterController:
   m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.01
+  m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &6141649143267876795

@@ -12,45 +12,70 @@ public class FishCatching : MonoBehaviour
     public float catchCoolDownTimer = 0f;
     public bool startCoolDown;
 
+    GameObject _canvasObject;
+    Canvas _fishCaughtMsg; // Reference to the canvas GameObject
+
     private Vector3 bobberLockedPosition;
     private Quaternion bobberLockedRotation;
     private Vector3 fishLockedPosition;
     private Quaternion fishLockedRotation;
-    private GameObject caughtFish;
 
+    private GameObject caughtFish;
     private Rigidbody _rb;
 
+    PlayerReel _playerReel = new PlayerReel();
+
+    // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _canvasObject = GameObject.Find("FishCaughtMsg");
+
+        if (_canvasObject != null)
+        {
+            _fishCaughtMsg = _canvasObject.GetComponent<Canvas>();
+            _fishCaughtMsg.enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (fishCaught)
-        // {
-        //     create method to have player press keys here
-        // }
+        if (bobberLocked)
+        {
+            // transform.position = bobberLockedPosition; // prevents other fish from meshing with position
+            // transform.rotation = bobberLockedRotation;
+        }
+        if (caughtFish)
+        {
+            // caughtFish.transform.position = fishLockedPosition;
+            // caughtFish.transform.rotation = fishLockedRotation;
+        }
 
-        // if (release) // enter if player doesn't press correct inputs
-        // {
-        //     ReleaseFish();
-        //     bobberLocked = false;
-        // }
+        if (fishCaught)
+        {
+            // create method to have player press keys here
+            _playerReel.HandleCatchFish();
+        }
 
-        // catchCoolDownTimer -= Time.deltaTime;
-        //
-        // if (startCoolDown)
-        // {
-        //     transform.position = bobberLockedPosition; // prevents other fish from meshing with position
-        //     transform.rotation = bobberLockedRotation;
-        //     if (catchCoolDownTimer < 0f && fishCaught)
-        //     {
-        //         fishCaught = false;
-        //         startCoolDown = false;
-        //     }
-        // }
+        if (release) // enter if player doesn't press correct inputs
+        {
+            ReleaseFish();
+            bobberLocked = false;
+        }
+
+        catchCoolDownTimer -= Time.deltaTime;
+
+        if (startCoolDown)
+        {
+            transform.position = bobberLockedPosition; // prevents other fish from meshing with position
+            transform.rotation = bobberLockedRotation;
+            if (catchCoolDownTimer < 0f && fishCaught)
+            {
+                fishCaught = false;
+                startCoolDown = false;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -65,20 +90,28 @@ public class FishCatching : MonoBehaviour
                 || collision.gameObject.CompareTag("Water")
             )
             {
-                _rb.constraints = RigidbodyConstraints.FreezePosition;
                 bobberLocked = true;
+                bobberLockedPosition = transform.position;
+                bobberLockedRotation = transform.rotation;
+
+                _rb.constraints = RigidbodyConstraints.FreezePosition;
             }
             // check for fish collision
             if (collision.gameObject.CompareTag("Fish"))
             {
                 collision.transform.SetParent(transform);
                 Rigidbody fishRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+
+                _fishCaughtMsg.enabled = true;
+
                 if (fishRigidbody != null)
                 {
                     fishRigidbody.velocity = Vector3.zero;
                 }
 
                 fishRigidbody.constraints = RigidbodyConstraints.FreezePosition;
+                fishLockedPosition = collision.gameObject.transform.position;
+                fishLockedRotation = collision.gameObject.transform.rotation;
 
                 FishAI fishAIscript = collision.gameObject.GetComponent<FishAI>();
                 fishAIscript.aiState = FishAI.AIState.fleeState;

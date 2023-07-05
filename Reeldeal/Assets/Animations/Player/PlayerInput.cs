@@ -80,6 +80,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""15d95f89-42cc-45ef-9c76-236b194dddc4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -269,6 +278,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Reel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a66806c-085a-4e5c-a248-082047fbc334"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ac631fd-e955-4f83-aa40-188e071db5e0"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +314,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_CharacterControls_Jump = m_CharacterControls.FindAction("Jump", throwIfNotFound: true);
         m_CharacterControls_Look = m_CharacterControls.FindAction("Look", throwIfNotFound: true);
         m_CharacterControls_Reel = m_CharacterControls.FindAction("Reel", throwIfNotFound: true);
+        m_CharacterControls_Cancel = m_CharacterControls.FindAction("Cancel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -350,6 +382,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterControls_Jump;
     private readonly InputAction m_CharacterControls_Look;
     private readonly InputAction m_CharacterControls_Reel;
+    private readonly InputAction m_CharacterControls_Cancel;
     public struct CharacterControlsActions
     {
         private @PlayerInput m_Wrapper;
@@ -360,6 +393,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_CharacterControls_Jump;
         public InputAction @Look => m_Wrapper.m_CharacterControls_Look;
         public InputAction @Reel => m_Wrapper.m_CharacterControls_Reel;
+        public InputAction @Cancel => m_Wrapper.m_CharacterControls_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -387,6 +421,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Reel.started += instance.OnReel;
             @Reel.performed += instance.OnReel;
             @Reel.canceled += instance.OnReel;
+            @Cancel.started += instance.OnCancel;
+            @Cancel.performed += instance.OnCancel;
+            @Cancel.canceled += instance.OnCancel;
         }
 
         private void UnregisterCallbacks(ICharacterControlsActions instance)
@@ -409,6 +446,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Reel.started -= instance.OnReel;
             @Reel.performed -= instance.OnReel;
             @Reel.canceled -= instance.OnReel;
+            @Cancel.started -= instance.OnCancel;
+            @Cancel.performed -= instance.OnCancel;
+            @Cancel.canceled -= instance.OnCancel;
         }
 
         public void RemoveCallbacks(ICharacterControlsActions instance)
@@ -434,5 +474,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnReel(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
 }

@@ -1241,6 +1241,10 @@ GameObject:
   - component: {fileID: 6141649143267876813}
   - component: {fileID: 6141649143267876812}
   - component: {fileID: 2429052457064081109}
+  - component: {fileID: 8711655847203499706}
+  - component: {fileID: 2063810464150162670}
+  - component: {fileID: 8642389409343979033}
+  - component: {fileID: 6852037400769901638}
   m_Layer: 0
   m_Name: Player_InputSystem
   m_TagString: Player
@@ -1439,6 +1443,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reelSpeed: 10
+--- !u!114 &8711655847203499706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483754695257692263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca26f1d28706ece42abdc4368c239fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2063810464150162670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483754695257692263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5ee6fe564110d4b8d990ef8ade2eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  despawnRange: 128
+--- !u!114 &8642389409343979033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483754695257692263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e46475134e9a32438b5396cb5a630ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishPrefabs: []
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
+  maxSpawnDistance: 128
+  minSpawnDistance: 24
+  spawnAttempts: 30
+  spawnInterval: 2
+  maxFish: 30
+--- !u!114 &6852037400769901638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483754695257692263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa5ffbd8dd7466b45a71b6afb8ccd1e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 0
+  moneyText: {fileID: 0}
+  debugFishList: {fileID: 0}
 --- !u!1 &6507593493205178434
 GameObject:
   m_ObjectHideFlags: 0

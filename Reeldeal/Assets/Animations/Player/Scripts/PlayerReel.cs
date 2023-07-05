@@ -163,41 +163,41 @@ public class PlayerReel : MonoBehaviour
 
     void HandleReel()
     {
-        _bobber = GameObject.FindWithTag("Bobber");
-        _bobberRB = _bobber.GetComponent<Rigidbody>();
-
-        if (_bobberRB != null)
+        if (GameObject.FindWithTag("Bobber"))
         {
-            if (_reelValue > 0.0f && _bobber && !_isCasting)
-            {
-                // Make sure the frozen bobber can move
-                _bobberRB.constraints = RigidbodyConstraints.None;
-                Vector3 reelDirection = -transform.forward * _reelSpeed;
+            _bobber = GameObject.FindWithTag("Bobber");
+            _bobberRB = _bobber.GetComponent<Rigidbody>();
+        }
 
-                _bobberRB.velocity = new Vector3(
+        if (_reelValue > 0.0f && _bobber && !_isCasting)
+        {
+            // Make sure the frozen bobber can move
+            _bobberRB.constraints = RigidbodyConstraints.None;
+            Vector3 reelDirection = -transform.forward * _reelSpeed;
+
+            _bobberRB.velocity = new Vector3(
+                reelDirection.x,
+                -5f * Time.deltaTime,
+                reelDirection.z
+            );
+
+            Rigidbody fishRB = _bobber.GetComponentInChildren<Rigidbody>();
+
+            if (fishRB != null)
+            {
+                _caughtFish = fishRB.gameObject;
+                fishRB.constraints = RigidbodyConstraints.None;
+                fishRB.velocity = new Vector3(
                     reelDirection.x,
                     -5f * Time.deltaTime,
                     reelDirection.z
                 );
-
-                Rigidbody fishRB = _bobber.GetComponentInChildren<Rigidbody>();
-
-                if (fishRB != null)
-                {
-                    _caughtFish = fishRB.gameObject;
-                    fishRB.constraints = RigidbodyConstraints.None;
-                    fishRB.velocity = new Vector3(
-                        reelDirection.x,
-                        -5f * Time.deltaTime,
-                        reelDirection.z
-                    );
-                }
             }
-            else if (_reelValue <= 0.0f && _bobber && !_isCasting)
-            {
-                // Not reeling - Bobber must stop in place
-                _bobberRB.constraints = RigidbodyConstraints.FreezePosition;
-            }
+        }
+        else if (_reelValue <= 0.0f && _bobber && !_isCasting)
+        {
+            // Not reeling - Bobber must stop in place
+            _bobberRB.constraints = RigidbodyConstraints.FreezePosition;
         }
     }
 }

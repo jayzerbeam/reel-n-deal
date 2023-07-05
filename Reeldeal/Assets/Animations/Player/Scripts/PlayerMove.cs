@@ -17,6 +17,8 @@ public class PlayerMove : MonoBehaviour
 
     int _isWalkingHash;
     int _isRunningHash;
+    int _velocityZHash;
+    int _velocityXHash;
 
     bool _isMovementPressed;
     bool _isRunPressed;
@@ -32,6 +34,8 @@ public class PlayerMove : MonoBehaviour
 
         _isWalkingHash = Animator.StringToHash("isWalking");
         _isRunningHash = Animator.StringToHash("isRunning");
+        _velocityXHash = Animator.StringToHash("Velocity X");
+        _velocityZHash = Animator.StringToHash("Velocity Z");
 
         // Walk input
         _playerInput.CharacterControls.Move.started += OnMovementInput;
@@ -78,19 +82,32 @@ public class PlayerMove : MonoBehaviour
         _isMovementPressed = _inputValues.x != 0 || _inputValues.y != 0;
     }
 
-    // Can use CharacterController.velocity.x etc to match to animation states
     void HandleAnimation()
     {
         bool isWalking = _animator.GetBool(_isWalkingHash);
         bool isRunning = _animator.GetBool(_isRunningHash);
 
-        if (_isMovementPressed && !isWalking)
+        if (_isMovementPressed && _isRunPressed)
+        {
+            float runMultiplier = 2.0f;
+            _animator.SetBool(_isRunningHash, true);
+            _animator.SetFloat(_velocityZHash, _inputValues.y * runMultiplier);
+            _animator.SetFloat(_velocityXHash, _inputValues.x * runMultiplier);
+        }
+        else if (_isMovementPressed && !isWalking && !_isRunPressed)
         {
             _animator.SetBool(_isWalkingHash, true);
+            _animator.SetBool(_isRunningHash, false);
+            _animator.SetFloat(_velocityZHash, _inputValues.y);
+            _animator.SetFloat(_velocityXHash, _inputValues.x);
         }
-        else if (!_isMovementPressed && isWalking)
+        else if (!_isMovementPressed && isWalking || !_isMovementPressed && isRunning)
         {
+            float resetMultiplier = 0.0f;
             _animator.SetBool(_isWalkingHash, false);
+            _animator.SetBool(_isRunningHash, false);
+            _animator.SetFloat(_velocityZHash, resetMultiplier);
+            _animator.SetFloat(_velocityXHash, resetMultiplier);
         }
     }
 

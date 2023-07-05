@@ -2,16 +2,18 @@ Team: Quantum Quill
 Team Members (Name, email, Canvas account)
 - Cassandra Durkee, cdurkee6@gatech.edu, 
 - Beto Icaza, laip3@gatech.edu
-- Jason Long, jlong326@gatech.edu
+- Jason Long, jlong326@gatech.edu, jlong326
 - - Grady Sullivan, gsullivan36@gatech.edu, gsullivan36
 
 Main Scene: mainGameScene
 
 Controls:
-movement controls - WASD
-sprint - 
-cast rod - 
-reel in rod -
+movement controls - WASD, Gamepad Left Stick
+Jump - Gamepad Button South, Spacebar
+sprint - Left Shift, Gamepad Left Shoulder
+cast rod - Gamepad Right Trigger, Mouse Right Button, F Key
+reel in rod - Gamepad Left Trigger, Mouse Left Button
+Look - Gamepad Right Stick, Mouse Delta (X-axis scrolling)
 
 Gameplay Information:
 This game revolves fishing and trading in catches for trades in the market to geat up and catch the big goldfish boss.
@@ -90,7 +92,30 @@ Luis Alberto
 
 - 
 
+Jason Long
+- Player movement 
+  - PlayerMove.cs
+  - PlayerJump.cs
+- Camera control
+  - PlayerLook.cs
+- Player Input controller
+  - PlayerInput.cs (Input System package)
+- Player animation / blendtree
+  - PlayerAnimationController
+- Player cast and reel mechanic (w/Grady's help)
+  - PlayerCast.cs
+  - PlayerReel.cs
+- Fish rigging (in Blender) and animations (Unity)
+  - Fish1Rigged / Fish1Swim
+  - Fish2Rigged / Fish2Swim
+  - Fish3Rigged / Fish3Swim
+  - Fish4Rigged / Fish4Swim
+  - SharkRigged / SharkSwim
+
 Sources:
 
 - Fish models: https://assetstore.unity.com/packages/3d/characters/animals/fish/fish-polypack-202232
-- 
+- Player models: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/stylized-npc-peasant-nolant-252440
+- Player animations: https://mixamo.com/ 
+  - Links to individual animations are not available
+

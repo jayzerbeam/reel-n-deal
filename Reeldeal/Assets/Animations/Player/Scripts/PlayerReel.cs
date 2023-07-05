@@ -15,6 +15,8 @@ public class PlayerReel : MonoBehaviour
     bool _isCasting;
 
     int _isReelingHash;
+    bool _isReeling;
+
     float _reelValue = 0.0f;
     GameObject _bobber;
     GameObject _caughtFish;
@@ -27,6 +29,7 @@ public class PlayerReel : MonoBehaviour
         _playerInput = new PlayerInput();
         _animator = GetComponent<Animator>();
         _isReelingHash = Animator.StringToHash("isReeling");
+        _isCastingHash = Animator.StringToHash("isCasting");
         _characterController = GetComponent<CharacterController>();
         _inventory = new Inventory();
 
@@ -47,6 +50,8 @@ public class PlayerReel : MonoBehaviour
 
     void Update()
     {
+        _isReeling = _animator.GetBool(_isReelingHash);
+        _isCasting = _animator.GetBool(_isCastingHash);
         HandleAnimation();
         HandleReel();
     }
@@ -68,13 +73,11 @@ public class PlayerReel : MonoBehaviour
 
     void HandleAnimation()
     {
-        bool isReeling = _animator.GetBool(_isReelingHash);
-
-        if (!isReeling && _reelValue > 0)
+        if (!_isReeling && _reelValue > 0)
         {
             _animator.SetBool(_isReelingHash, true);
         }
-        else if (isReeling && _reelValue <= 0)
+        else if (_isReeling && _reelValue <= 0)
         {
             _animator.SetBool(_isReelingHash, false);
         }
@@ -82,15 +85,15 @@ public class PlayerReel : MonoBehaviour
 
     void HandleReel()
     {
-        // Player must only be able to reel if bobber exists and if _isCasting is false
+        Debug.Log(_isCasting);
+
         _bobber = GameObject.FindWithTag("Bobber");
+        Rigidbody bobberRB = _bobber.GetComponent<Rigidbody>();
 
-        if (_reelValue > 0.7f && _bobber) // && !_isCasting
+        if (bobberRB != null)
         {
+            if (_reelValue > 0.0f && _bobber && !_isCasting)
             {
-                Rigidbody bobberRB = _bobber.GetComponent<Rigidbody>();
-
-                if (bobberRB != null)
                 {
                     // Make sure the frozen bobber can move
                     bobberRB.constraints = RigidbodyConstraints.None;
@@ -115,6 +118,11 @@ public class PlayerReel : MonoBehaviour
                         );
                     }
                 }
+            }
+            else if (_reelValue <= 0.0f && _bobber && !_isCasting)
+            {
+                // Not reeling - Bobber must stop in place
+                bobberRB.constraints = RigidbodyConstraints.FreezePosition;
             }
         }
     }

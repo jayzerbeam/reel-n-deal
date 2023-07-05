@@ -29,6 +29,7 @@ public class PlayerCast : MonoBehaviour
         _playerInput = new PlayerInput();
         _animator = GetComponent<Animator>();
         _isCastingHash = Animator.StringToHash("isCasting");
+        _isCastingHash = Animator.StringToHash("isCasting");
         _characterController = GetComponent<CharacterController>();
 
         _playerInput.CharacterControls.Cast.started += OnCast;
@@ -38,6 +39,7 @@ public class PlayerCast : MonoBehaviour
 
     void Update()
     {
+        _isCasting = _animator.GetBool(_isCastingHash);
         HandleAnimation();
     }
 
@@ -63,13 +65,11 @@ public class PlayerCast : MonoBehaviour
 
     void HandleAnimation()
     {
-        bool isCasting = _animator.GetBool(_isCastingHash);
-
-        if (_isCastButtonPressed && !isCasting)
+        if (_isCastButtonPressed && !_isCasting)
         {
             _animator.SetBool(_isCastingHash, true);
         }
-        else if (!_isCastButtonPressed && isCasting)
+        else if (!_isCastButtonPressed && _isCasting)
         {
             _animator.SetBool(_isCastingHash, false);
         }

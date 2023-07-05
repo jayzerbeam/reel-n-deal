@@ -12,13 +12,13 @@ public class PlayerCast : MonoBehaviour
     public GameObject bobber;
 
     [SerializeField]
-    float _castSpeed = 50f;
+    float _castSpeed = 100f;
 
     [SerializeField]
     float _castHeight = 2f;
 
     [SerializeField]
-    float _bobberGravity = -100f;
+    float _bobberGravity = -10f;
 
     int _isCastingHash;
     bool _isCasting;
@@ -38,6 +38,7 @@ public class PlayerCast : MonoBehaviour
 
     void Update()
     {
+        _isCasting = _animator.GetBool(_isCastingHash);
         HandleAnimation();
     }
 
@@ -63,43 +64,33 @@ public class PlayerCast : MonoBehaviour
 
     void HandleAnimation()
     {
-        bool isCasting = _animator.GetBool(_isCastingHash);
-
-        if (_isCastButtonPressed && !isCasting)
+        if (_isCastButtonPressed && !_isCasting)
         {
             _animator.SetBool(_isCastingHash, true);
         }
-        else if (!_isCastButtonPressed && isCasting)
+        else if (!_isCastButtonPressed && _isCasting)
         {
             _animator.SetBool(_isCastingHash, false);
         }
     }
 
-    // Todo: allow a variety of different cast forces
     void HandleCast()
     {
-        if (GameObject.FindWithTag("Bobber") == null)
+        if (_isCastButtonPressed && !GameObject.FindWithTag("Bobber"))
         {
-            if (_isCastButtonPressed && _characterController.isGrounded)
+            GameObject newBobber = Instantiate(
+                bobber,
+                this.transform.position + new Vector3(0f, _castHeight, 1),
+                this.transform.rotation
+            );
+
+            if (newBobber != null)
             {
-                GameObject newBobber = Instantiate(
-                    bobber,
-                    this.transform.position + new Vector3(0.5f, _castHeight, 1),
-                    this.transform.rotation
-                );
+                Rigidbody bobberRB = newBobber.GetComponent<Rigidbody>();
 
-                if (newBobber != null)
-                {
-                    Rigidbody bobberRB = newBobber.GetComponent<Rigidbody>();
+                Vector3 castVelocity = transform.forward * _castSpeed;
 
-                    Vector3 castDirection = transform.forward * _castSpeed;
-
-                    bobberRB.velocity = new Vector3(
-                        castDirection.x,
-                        _bobberGravity * Time.deltaTime,
-                        castDirection.z
-                    );
-                }
+                bobberRB.velocity = new Vector3(castVelocity.x, _bobberGravity, castVelocity.z);
             }
         }
     }

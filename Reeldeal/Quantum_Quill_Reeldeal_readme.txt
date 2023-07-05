@@ -100,6 +100,7 @@ Jason Long
 - Player Input controller
   - PlayerInput.cs (Input System package)
 - Player animation / blendtree
+  - PlayerAnimationController
 - Player cast and reel mechanic (w/Grady's help)
   - PlayerCast.cs
   - PlayerReel.cs

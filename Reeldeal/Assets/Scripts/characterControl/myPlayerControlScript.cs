@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class myPlayerControlScript : MonoBehaviour
 {
@@ -78,6 +79,15 @@ public class myPlayerControlScript : MonoBehaviour
         //{
         //    Instantiate(bobber, transform.position, Quaternion.identity);
         //}
+
+        if (onWater)
+        {
+            waterTime += Time.deltaTime;
+            if (waterTime >= 3f)
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
     }
 
     // Handle jump in FixedUpdate
@@ -175,20 +185,29 @@ public class myPlayerControlScript : MonoBehaviour
         }
     }
 
-    //void CheckWater()
+    void CheckWater()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, waterLayer))
+        {
+            onWater = true;
+        }
+        else if (Physics.Raycast(transform.position, Vector3.up, out hit, 55f, waterLayer))
+        {
+            onWater = true;
+        }
+        else
+        {
+            onWater = false;
+        }
+        
+    }
+
+    //private void OnDestroy()
     //{
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, waterLayer))
-    //    {
-    //        onWater = true;
-    //    }
-    //    else if (Physics.Raycast(transform.position, Vector3.up, out hit, 55f, waterLayer))
-    //    {
-    //        onWater = true;
-    //    }
-    //    else
-    //    {
-    //        onWater = false;
-    //    }
+    //    Destroy(gameObject); 
+    //    SceneManager.LoadScene("MainMenu");
     //}
+
+
 }

@@ -77,24 +77,21 @@ public class PlayerCast : MonoBehaviour
     // Todo: allow a variety of different cast forces
     void HandleCast()
     {
-        if (GameObject.FindWithTag("Bobber") == null)
+        if (_isCastButtonPressed && !GameObject.FindWithTag("Bobber"))
         {
-            if (_isCastButtonPressed && _characterController.isGrounded)
+            GameObject newBobber = Instantiate(
+                bobber,
+                this.transform.position + new Vector3(0f, _castHeight, 1),
+                this.transform.rotation
+            );
+
+            if (newBobber != null)
             {
-                GameObject newBobber = Instantiate(
-                    bobber,
-                    this.transform.position + new Vector3(0f, _castHeight, 1),
-                    this.transform.rotation
-                );
+                Rigidbody bobberRB = newBobber.GetComponent<Rigidbody>();
 
-                if (newBobber != null)
-                {
-                    Rigidbody bobberRB = newBobber.GetComponent<Rigidbody>();
+                Vector3 castVelocity = transform.forward * _castSpeed;
 
-                    Vector3 castVelocity = transform.forward * _castSpeed;
-
-                    bobberRB.velocity = new Vector3(castVelocity.x, _bobberGravity, castVelocity.z);
-                }
+                bobberRB.velocity = new Vector3(castVelocity.x, _bobberGravity, castVelocity.z);
             }
         }
     }

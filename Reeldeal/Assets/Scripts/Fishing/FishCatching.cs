@@ -38,8 +38,8 @@ public class FishCatching : MonoBehaviour
         }
         if (caughtFish)
         {
-            caughtFish.transform.position = fishLockedPosition;
-            caughtFish.transform.rotation = fishLockedRotation;
+            // caughtFish.transform.position = fishLockedPosition;
+            // caughtFish.transform.rotation = fishLockedRotation;
         }
 
         if (fishCaught)
@@ -96,6 +96,7 @@ public class FishCatching : MonoBehaviour
                     fishRigidbody.velocity = Vector3.zero;
                 }
 
+                fishRigidbody.constraints = RigidbodyConstraints.FreezePosition;
                 fishLockedPosition = collision.gameObject.transform.position;
                 fishLockedRotation = collision.gameObject.transform.rotation;
 

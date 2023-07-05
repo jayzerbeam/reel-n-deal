@@ -9,7 +9,7 @@ public class PlayerReel : MonoBehaviour
     PlayerInput _playerInput;
     CharacterController _characterController;
     Animator _animator;
-    Inventory _inventory;
+    playerInventory _inventory;
 
     bool _isCanceled;
 
@@ -39,7 +39,7 @@ public class PlayerReel : MonoBehaviour
         _isReelingHash = Animator.StringToHash("isReeling");
         _isCastingHash = Animator.StringToHash("isCasting");
         _characterController = GetComponent<CharacterController>();
-        _inventory = new Inventory();
+        _inventory = new playerInventory();
 
         _playerInput.CharacterControls.Reel.started += OnReel;
         _playerInput.CharacterControls.Reel.canceled += OnReel;
@@ -90,8 +90,7 @@ public class PlayerReel : MonoBehaviour
             {
                 _fishCaughtMsg.enabled = false;
                 Destroy(_caughtFish);
-                // TODO what should this value be?
-                _inventory.AddItem("Fish", true);
+                _inventory.AddFishedFish("Alpha Fish");
             }
         }
     }
@@ -154,9 +153,9 @@ public class PlayerReel : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Bobber"));
             if (_caughtFish)
             {
+                _fishCaughtMsg.enabled = false;
                 Destroy(_caughtFish);
-                // TODO what should this value be?
-                _inventory.AddItem("Fish", true);
+                _inventory.AddFishedFish("Alpha Fish");
             }
         }
     }

@@ -8,11 +8,12 @@ Team Members (Name, email, Canvas account)
 Main Scene: mainGameScene
 
 Controls:
-movement controls - WASD, Gamepad Left 
-Jump - Gamepad South, Spacebar
-sprint - Left Shift, Gamepad Left Bumper
-cast rod - Gamepad Right Trigger, Mouse Right Trigger
-reel in rod - Gamepad Left Trigger, Mouse Left Trigger
+movement controls - WASD, Gamepad Left Stick
+Jump - Gamepad Button South, Spacebar
+sprint - Left Shift, Gamepad Left Shoulder
+cast rod - Gamepad Right Trigger, Mouse Right Button, F Key
+reel in rod - Gamepad Left Trigger, Mouse Left Button
+Look - Gamepad Right Stick, Mouse Delta (X-axis scrolling)
 
 Gameplay Information:
 This game revolves fishing and trading in catches for trades in the market to geat up and catch the big goldfish boss.

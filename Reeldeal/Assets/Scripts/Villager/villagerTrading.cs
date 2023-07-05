@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 //using UnityEditor.Build.Content;
 
 public class villagerTrading : MonoBehaviour
@@ -10,6 +11,9 @@ public class villagerTrading : MonoBehaviour
     private string[] greetings = { "Hello!", "Hi!", "Hey!", "Greetings!", "Good to see you!" };
     private string[] fishTypes = { "Fish Type 1", "Fish Type 2", "Fish Type 3" };
     public float radiusToTrade = 2.5f; // Set this to whatever radius you want
+    public TextMeshProUGUI talk_to_playerText;
+    public float timeToErase = 5f;
+    private string msg;
 
     void Start()
     {
@@ -17,8 +21,6 @@ public class villagerTrading : MonoBehaviour
     }
 
     // Update is called once per frame
-
-
     private void Update()
     {
         // Check if "Fire2" was pressed
@@ -37,7 +39,10 @@ public class villagerTrading : MonoBehaviour
                 int numFish = Random.Range(1, 6);
 
                 // Print the greeting and request
-                Debug.Log(greeting + " I want " + numFish + " of " + fishType + ".");
+                //Debug.Log(greeting + " I want " + numFish + " of " + fishType + ".");
+                msg = greeting.ToString() + " I want " + numFish.ToString() + " of " + fishType.ToString() + ".";
+                Debug.Log(msg);
+                talk_to_player(msg);
 
                 // Check if the player has enough fish of the desired type
                 if (playerInventory.HasFish(fishType, numFish))
@@ -52,11 +57,14 @@ public class villagerTrading : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("You don't have enough " + fishType + ".");
+                    msg = "You don't have enough " + fishType.ToString() + ".";
+                    Debug.Log(msg);
+                    talk_to_player(msg);
                     if (Random.value < 0.9f)
                     {
                         playerInventory.AddMoney(1); // debugging code randomly give player gift
                         Debug.Log("But go ahead and take this gift to help you.");
+                        talk_to_player(msg + " But go ahead and take this gift to help you.");
                     }
                     else
                     {
@@ -80,7 +88,33 @@ public class villagerTrading : MonoBehaviour
                 //    }
                 //}
             }
+
         }
+    }
+
+
+    //// Function to update the money text
+    //private void UpdateTextToPlayer (string Text, int flag = 0)
+    //{
+    //    talk_to_playerText.text = "Villager: " + Text.ToString();
+    //    if (flag == 1)
+    //    {
+    //        talk_to_playerText.text = "";
+    //    }
+    //}
+
+    public void talk_to_player(string talk_to)
+    {
+        StartCoroutine(talk_to_playerWritethenEraseText(talk_to));
+    }
+
+    private IEnumerator talk_to_playerWritethenEraseText(string text)
+    {
+        talk_to_playerText.text = text;
+
+        yield return new WaitForSeconds(timeToErase);
+
+        talk_to_playerText.text = "";
     }
 
     //private void Update()

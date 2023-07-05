@@ -25,32 +25,27 @@ public class FishCatching : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // if (fishCaught)
-        // {
-        //     create method to have player press keys here
-        // }
+        if (release) // enter if player doesn't press correct inputs
+        {
+            ReleaseFish();
+            bobberLocked = false;
+        }
 
-        // if (release) // enter if player doesn't press correct inputs
-        // {
-        //     ReleaseFish();
-        //     bobberLocked = false;
-        // }
+        catchCoolDownTimer -= Time.deltaTime;
 
-        // catchCoolDownTimer -= Time.deltaTime;
-        //
-        // if (startCoolDown)
-        // {
-        //     transform.position = bobberLockedPosition; // prevents other fish from meshing with position
-        //     transform.rotation = bobberLockedRotation;
-        //     if (catchCoolDownTimer < 0f && fishCaught)
-        //     {
-        //         fishCaught = false;
-        //         startCoolDown = false;
-        //     }
-        // }
+        if (startCoolDown)
+        {
+            transform.position = bobberLockedPosition; // prevents other fish from meshing with position
+            transform.rotation = bobberLockedRotation;
+
+            if (catchCoolDownTimer < 0f && fishCaught)
+            {
+                fishCaught = false;
+                startCoolDown = false;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -65,8 +60,11 @@ public class FishCatching : MonoBehaviour
                 || collision.gameObject.CompareTag("Water")
             )
             {
-                _rb.constraints = RigidbodyConstraints.FreezePosition;
-                bobberLocked = true;
+                if (_rb)
+                {
+                    _rb.constraints = RigidbodyConstraints.FreezePosition;
+                    bobberLocked = true;
+                }
             }
             // check for fish collision
             if (collision.gameObject.CompareTag("Fish"))

@@ -380,7 +380,7 @@ PrefabInstance:
     - target: {fileID: 6141649143267876811, guid: 303e4658defaa73c7bac6ab02a91e0bc,
         type: 3}
       propertyPath: _bobberGravity
-      value: -10
+      value: -1000
       objectReference: {fileID: 0}
     - target: {fileID: 6141649143267876813, guid: 303e4658defaa73c7bac6ab02a91e0bc,
         type: 3}

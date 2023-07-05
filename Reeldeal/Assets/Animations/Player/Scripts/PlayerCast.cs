@@ -29,7 +29,6 @@ public class PlayerCast : MonoBehaviour
         _playerInput = new PlayerInput();
         _animator = GetComponent<Animator>();
         _isCastingHash = Animator.StringToHash("isCasting");
-        _isCastingHash = Animator.StringToHash("isCasting");
         _characterController = GetComponent<CharacterController>();
 
         _playerInput.CharacterControls.Cast.started += OnCast;
@@ -92,13 +91,9 @@ public class PlayerCast : MonoBehaviour
                 {
                     Rigidbody bobberRB = newBobber.GetComponent<Rigidbody>();
 
-                    Vector3 castDirection = transform.forward;
+                    Vector3 castVelocity = transform.forward * _castSpeed;
 
-                    bobberRB.velocity = new Vector3(
-                        castDirection.x * _castSpeed,
-                        _bobberGravity * Time.deltaTime,
-                        castDirection.z * _castSpeed
-                    );
+                    bobberRB.velocity = new Vector3(castVelocity.x, _bobberGravity, castVelocity.z);
                 }
             }
         }

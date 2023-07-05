@@ -17,6 +17,7 @@ public class myPlayerControlScript : MonoBehaviour
     public float airTimeCounter; // Time counter for player's air time
     private bool jumpRequest = false; // Flag to handle jump requests
     public GameObject bobber;
+    //private GameObject waterCountdownGUI;
 
     //private bool swimRequest = false;
     private float waterTime;
@@ -33,6 +34,8 @@ public class myPlayerControlScript : MonoBehaviour
     {
         bobber = GameObject.FindWithTag("Bobber");
         rb = GetComponent<Rigidbody>();
+        //waterCountdownGUI = GameObject.Find("WaterCountdownGUI");
+
     }
 
     //// Update is called once per frame
@@ -83,10 +86,24 @@ public class myPlayerControlScript : MonoBehaviour
         if (onWater)
         {
             waterTime += Time.deltaTime;
+            //if (waterCountdownGUI != null)
+            //{
+            //    waterCountdownGUI.SetActive(true);
+            //    waterCountdownGUI.GetComponentInChildren<TextMesh>().text = waterTime.ToString("F1");
+            //}
             if (waterTime >= 3f)
             {
                 SceneManager.LoadScene("MainMenu");
             }
+        }
+
+        if (!onWater)
+        {
+            //if (waterCountdownGUI != null)
+            //{
+            //    waterCountdownGUI.SetActive(false);
+            //}
+            waterTime = 0f; 
         }
     }
 
@@ -202,12 +219,6 @@ public class myPlayerControlScript : MonoBehaviour
         }
         
     }
-
-    //private void OnDestroy()
-    //{
-    //    Destroy(gameObject); 
-    //    SceneManager.LoadScene("MainMenu");
-    //}
 
 
 }

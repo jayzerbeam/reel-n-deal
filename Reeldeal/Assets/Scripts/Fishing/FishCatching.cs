@@ -12,6 +12,9 @@ public class FishCatching : MonoBehaviour
     public float catchCoolDownTimer = 0f;
     public bool startCoolDown;
 
+    GameObject _canvasObject;
+    Canvas _fishCaughtMsg; // Reference to the canvas GameObject
+
     private Vector3 bobberLockedPosition;
     private Quaternion bobberLockedRotation;
     private Vector3 fishLockedPosition;
@@ -26,6 +29,13 @@ public class FishCatching : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _canvasObject = GameObject.Find("FishCaughtMsg");
+
+        if (_canvasObject != null)
+        {
+            _fishCaughtMsg = _canvasObject.GetComponent<Canvas>();
+            _fishCaughtMsg.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -55,6 +65,7 @@ public class FishCatching : MonoBehaviour
         }
 
         catchCoolDownTimer -= Time.deltaTime;
+
         if (startCoolDown)
         {
             transform.position = bobberLockedPosition; // prevents other fish from meshing with position
@@ -90,6 +101,8 @@ public class FishCatching : MonoBehaviour
             {
                 collision.transform.SetParent(transform);
                 Rigidbody fishRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+
+                _fishCaughtMsg.enabled = true;
 
                 if (fishRigidbody != null)
                 {

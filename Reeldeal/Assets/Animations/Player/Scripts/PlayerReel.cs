@@ -29,6 +29,9 @@ public class PlayerReel : MonoBehaviour
     [SerializeField]
     float _reelSpeed = 10f;
 
+    GameObject _canvasObject;
+    Canvas _fishCaughtMsg; // Reference to the canvas GameObject
+
     void Awake()
     {
         _playerInput = new PlayerInput();
@@ -42,7 +45,16 @@ public class PlayerReel : MonoBehaviour
         _playerInput.CharacterControls.Reel.canceled += OnReel;
         _playerInput.CharacterControls.Reel.performed += OnReel;
 
-        // _playerInput.CharacterControls.Cancel.started += OnCancel;
+        _playerInput.CharacterControls.Cancel.started += OnCancel;
+        _playerInput.CharacterControls.Cancel.canceled += OnCancel;
+        _playerInput.CharacterControls.Cancel.performed += OnCancel;
+
+        _canvasObject = GameObject.Find("FishCaughtMsg");
+
+        if (_canvasObject != null)
+        {
+            _fishCaughtMsg = _canvasObject.GetComponent<Canvas>();
+        }
     }
 
     void OnEnable()
@@ -60,6 +72,7 @@ public class PlayerReel : MonoBehaviour
         _isReeling = _animator.GetBool(_isReelingHash);
         _isCasting = _animator.GetBool(_isCastingHash);
         HandleAnimation();
+        HandleCancel();
         HandleReel();
     }
 
@@ -75,6 +88,7 @@ public class PlayerReel : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Bobber"));
             if (_caughtFish)
             {
+                _fishCaughtMsg.enabled = false;
                 Destroy(_caughtFish);
                 // TODO what should this value be?
                 _inventory.AddItem("Fish", true);
@@ -83,18 +97,18 @@ public class PlayerReel : MonoBehaviour
     }
 
     // TODO Preventing recast.
-    // void OnCancel(InputAction.CallbackContext context)
-    // {
-    //     _isCanceled = context.ReadValueAsButton();
-    // }
+    void OnCancel(InputAction.CallbackContext context)
+    {
+        _isCanceled = context.ReadValueAsButton();
+    }
 
-    // void HandleCancel()
-    // {
-    //     if (_isCanceled)
-    //     {
-    //         Destroy(GameObject.FindGameObjectWithTag("Bobber"));
-    //     }
-    // }
+    void HandleCancel()
+    {
+        if (_isCanceled)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+        }
+    }
 
     void HandleAnimation()
     {

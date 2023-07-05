@@ -12,7 +12,7 @@ public class PlayerCast : MonoBehaviour
     public GameObject bobber;
 
     [SerializeField]
-    float _castSpeed = 50f;
+    float _castSpeed = 100f;
 
     [SerializeField]
     float _castHeight = 2f;
@@ -74,7 +74,6 @@ public class PlayerCast : MonoBehaviour
         }
     }
 
-    // Todo: allow a variety of different cast forces
     void HandleCast()
     {
         if (_isCastButtonPressed && !GameObject.FindWithTag("Bobber"))

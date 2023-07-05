@@ -19,6 +19,8 @@ public class PlayerReel : MonoBehaviour
     int _isReelingHash;
     bool _isReeling;
 
+    int pressCount = 0;
+
     float _reelValue = 0.0f;
     GameObject _bobber;
     Rigidbody _bobberRB;
@@ -40,7 +42,7 @@ public class PlayerReel : MonoBehaviour
         _playerInput.CharacterControls.Reel.canceled += OnReel;
         _playerInput.CharacterControls.Reel.performed += OnReel;
 
-        _playerInput.CharacterControls.Cancel.performed += OnCancel;
+        // _playerInput.CharacterControls.Cancel.started += OnCancel;
     }
 
     void OnEnable()
@@ -58,7 +60,6 @@ public class PlayerReel : MonoBehaviour
         _isReeling = _animator.GetBool(_isReelingHash);
         _isCasting = _animator.GetBool(_isCastingHash);
         HandleAnimation();
-        HandleCancel();
         HandleReel();
     }
 
@@ -67,16 +68,11 @@ public class PlayerReel : MonoBehaviour
         _reelValue = context.ReadValue<float>();
     }
 
-    void OnCancel(InputAction.CallbackContext context)
-    {
-        _isCanceled = context.ReadValueAsButton();
-    }
-
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bobber"))
         {
-            Destroy(_bobber);
+            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
             if (_caughtFish)
             {
                 Destroy(_caughtFish);
@@ -86,15 +82,19 @@ public class PlayerReel : MonoBehaviour
         }
     }
 
-    // !!! Won't allow recast
-    void HandleCancel()
-    {
-        GameObject currentBobber = GameObject.FindWithTag("Bobber");
-        if (_isCanceled && currentBobber)
-        {
-            Destroy(currentBobber);
-        }
-    }
+    // TODO Preventing recast.
+    // void OnCancel(InputAction.CallbackContext context)
+    // {
+    //     _isCanceled = context.ReadValueAsButton();
+    // }
+
+    // void HandleCancel()
+    // {
+    //     if (_isCanceled)
+    //     {
+    //         Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+    //     }
+    // }
 
     void HandleAnimation()
     {
@@ -109,7 +109,7 @@ public class PlayerReel : MonoBehaviour
         }
     }
 
-    void HandleReel()
+    public void HandleCatchFish()
     {
         _bobber = GameObject.FindWithTag("Bobber");
 
@@ -117,6 +117,40 @@ public class PlayerReel : MonoBehaviour
         {
             _bobberRB = _bobber.GetComponent<Rigidbody>();
         }
+
+        Rigidbody fishRB = _bobber.GetComponentInChildren<Rigidbody>();
+
+        if (fishRB != null)
+        {
+            _caughtFish = fishRB.gameObject;
+            fishRB.constraints = RigidbodyConstraints.None;
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            pressCount += 1;
+            Debug.Log(pressCount);
+        }
+        // Exit condition
+        if (pressCount == 5)
+        {
+            Debug.Log("You caught the fish!");
+            pressCount = 0;
+
+            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+            if (_caughtFish)
+            {
+                Destroy(_caughtFish);
+                // TODO what should this value be?
+                _inventory.AddItem("Fish", true);
+            }
+        }
+    }
+
+    void HandleReel()
+    {
+        _bobber = GameObject.FindWithTag("Bobber");
+        _bobberRB = _bobber.GetComponent<Rigidbody>();
 
         if (_bobberRB != null)
         {

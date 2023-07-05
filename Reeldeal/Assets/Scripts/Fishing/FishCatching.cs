@@ -16,17 +16,38 @@ public class FishCatching : MonoBehaviour
     private Quaternion bobberLockedRotation;
     private Vector3 fishLockedPosition;
     private Quaternion fishLockedRotation;
-    private GameObject caughtFish;
 
+    private GameObject caughtFish;
     private Rigidbody _rb;
 
+    PlayerReel _playerReel = new PlayerReel();
+
+    // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
     }
 
+    // Update is called once per frame
     void Update()
     {
+        if (bobberLocked)
+        {
+            // transform.position = bobberLockedPosition; // prevents other fish from meshing with position
+            // transform.rotation = bobberLockedRotation;
+        }
+        if (caughtFish)
+        {
+            caughtFish.transform.position = fishLockedPosition;
+            caughtFish.transform.rotation = fishLockedRotation;
+        }
+
+        if (fishCaught)
+        {
+            // create method to have player press keys here
+            _playerReel.HandleCatchFish();
+        }
+
         if (release) // enter if player doesn't press correct inputs
         {
             ReleaseFish();
@@ -34,12 +55,10 @@ public class FishCatching : MonoBehaviour
         }
 
         catchCoolDownTimer -= Time.deltaTime;
-
         if (startCoolDown)
         {
             transform.position = bobberLockedPosition; // prevents other fish from meshing with position
             transform.rotation = bobberLockedRotation;
-
             if (catchCoolDownTimer < 0f && fishCaught)
             {
                 fishCaught = false;
@@ -60,23 +79,25 @@ public class FishCatching : MonoBehaviour
                 || collision.gameObject.CompareTag("Water")
             )
             {
-                if (_rb)
-                {
-                    _rb.constraints = RigidbodyConstraints.FreezePosition;
-                    bobberLocked = true;
-                }
+                bobberLocked = true;
+                bobberLockedPosition = transform.position;
+                bobberLockedRotation = transform.rotation;
+
+                _rb.constraints = RigidbodyConstraints.FreezePosition;
             }
             // check for fish collision
             if (collision.gameObject.CompareTag("Fish"))
             {
                 collision.transform.SetParent(transform);
                 Rigidbody fishRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+
                 if (fishRigidbody != null)
                 {
                     fishRigidbody.velocity = Vector3.zero;
                 }
 
-                fishRigidbody.constraints = RigidbodyConstraints.FreezePosition;
+                fishLockedPosition = collision.gameObject.transform.position;
+                fishLockedRotation = collision.gameObject.transform.rotation;
 
                 FishAI fishAIscript = collision.gameObject.GetComponent<FishAI>();
                 fishAIscript.aiState = FishAI.AIState.fleeState;

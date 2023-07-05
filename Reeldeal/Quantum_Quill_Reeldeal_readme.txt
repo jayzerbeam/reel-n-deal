@@ -90,7 +90,12 @@ Luis Alberto
 - Added a struct to store details of fishes caught
 	- playerInventory
 
-- 
+Sources:
+
+- Shading: https://www.youtube.com/watch?v=qH4XQaZhihw, https://www.youtube.com/watch?v=78WCzTVmc28, https://www.youtube.com/watch?v=cq2CoHVDxSQ
+- Textures: https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
+- Scripting: https://stackoverflow.com/, https://www.youtube.com/watch?v=UCwwn2q4Vys, https://docs.unity3d.com/
+
 
 Jason Long
 - Player movement 

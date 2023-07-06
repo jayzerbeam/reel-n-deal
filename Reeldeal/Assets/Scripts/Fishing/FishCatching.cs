@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FishCatching : MonoBehaviour
 {
@@ -12,9 +13,6 @@ public class FishCatching : MonoBehaviour
     public float catchCoolDownTimer = 0f;
     public bool startCoolDown;
 
-    GameObject _canvasObject;
-    Canvas _fishCaughtMsg; // Reference to the canvas GameObject
-
     private Vector3 bobberLockedPosition;
     private Quaternion bobberLockedRotation;
     private Vector3 fishLockedPosition;
@@ -23,18 +21,20 @@ public class FishCatching : MonoBehaviour
     private GameObject caughtFish;
     private Rigidbody _rb;
 
-    PlayerReel _playerReel = new PlayerReel();
+    // PlayerReel _playerReel = new PlayerReel();
+
+    TextMeshProUGUI fishCaughtMsg;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _canvasObject = GameObject.Find("FishCaughtMsg");
 
-        if (_canvasObject != null)
+        GameObject tmpObject = GameObject.Find("FishCaughtMsg");
+
+        if (tmpObject != null)
         {
-            _fishCaughtMsg = _canvasObject.GetComponent<Canvas>();
-            _fishCaughtMsg.enabled = false;
+            fishCaughtMsg = tmpObject.GetComponent<TextMeshProUGUI>();
         }
     }
 
@@ -55,7 +55,7 @@ public class FishCatching : MonoBehaviour
         if (fishCaught)
         {
             // create method to have player press keys here
-            _playerReel.HandleCatchFish();
+            // _playerReel.HandleCatchFish();
         }
 
         if (release) // enter if player doesn't press correct inputs
@@ -116,7 +116,7 @@ public class FishCatching : MonoBehaviour
                 collision.transform.SetParent(transform);
                 Rigidbody fishRigidbody = collision.gameObject.GetComponent<Rigidbody>();
 
-                _fishCaughtMsg.enabled = true;
+                fishCaughtMsg.enabled = true;
 
                 if (fishRigidbody != null)
                 {

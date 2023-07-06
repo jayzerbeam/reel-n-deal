@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
@@ -29,8 +30,7 @@ public class PlayerReel : MonoBehaviour
     [SerializeField]
     float _reelSpeed = 10f;
 
-    GameObject _canvasObject;
-    Canvas _fishCaughtMsg; // Reference to the canvas GameObject
+    public TextMeshProUGUI fishCaughtMsg;
 
     void Awake()
     {
@@ -48,13 +48,6 @@ public class PlayerReel : MonoBehaviour
         _playerInput.CharacterControls.Cancel.started += OnCancel;
         _playerInput.CharacterControls.Cancel.canceled += OnCancel;
         _playerInput.CharacterControls.Cancel.performed += OnCancel;
-
-        _canvasObject = GameObject.Find("FishCaughtMsg");
-
-        if (_canvasObject != null)
-        {
-            _fishCaughtMsg = _canvasObject.GetComponent<Canvas>();
-        }
     }
 
     void OnEnable()
@@ -74,6 +67,7 @@ public class PlayerReel : MonoBehaviour
         HandleAnimation();
         HandleCancel();
         HandleReel();
+        HandleCatchFish();
     }
 
     void OnReel(InputAction.CallbackContext context)
@@ -88,7 +82,7 @@ public class PlayerReel : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Bobber"));
             if (_caughtFish)
             {
-                _fishCaughtMsg.enabled = false;
+                fishCaughtMsg.enabled = false;
                 Destroy(_caughtFish);
                 _inventory.AddFishedFish("Alpha Fish");
             }
@@ -147,13 +141,13 @@ public class PlayerReel : MonoBehaviour
         // Exit condition
         if (pressCount == 5)
         {
+            fishCaughtMsg.enabled = false;
             Debug.Log("You caught the fish!");
             pressCount = 0;
 
             Destroy(GameObject.FindGameObjectWithTag("Bobber"));
             if (_caughtFish)
             {
-                _fishCaughtMsg.enabled = false;
                 Destroy(_caughtFish);
                 _inventory.AddFishedFish("Alpha Fish");
             }

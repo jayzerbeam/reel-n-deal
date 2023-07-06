@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1470247, g: 0.36394262, b: 0.5799059, a: 1}
+  m_IndirectSpecularColor: {r: 0.14686076, g: 0.36449513, b: 0.5798105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1473,7 +1473,7 @@ RectTransform:
   m_Children:
   - {fileID: 1883760952}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6723,7 +6723,7 @@ PrefabInstance:
     - target: {fileID: 5958609917625189085, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 30
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 5958609917625189085, guid: cd718a7a732e9b6edbce95558701e90e,
         type: 3}
@@ -7087,71 +7087,6 @@ Transform:
   m_Father: {fileID: 44965357}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1880078888
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1880078890}
-  - component: {fileID: 1880078889}
-  - component: {fileID: 1880078891}
-  m_Layer: 0
-  m_Name: BossFishScript
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1880078889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880078888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0ecf41cebf1cd498f5c10db45d0d8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RodUpgradeGUI: {fileID: 0}
-  RodStandardGUI: {fileID: 0}
-  BootsGUI: {fileID: 0}
-  TNTGUI: {fileID: 0}
-  FishBoatGUI: {fileID: 0}
-  WoodBoatGUI: {fileID: 0}
-  inventory: {fileID: 0}
---- !u!4 &1880078890
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880078888}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.57, y: 50.67, z: 306.47}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 27
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1880078891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880078888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718fa8f17dad78046a9a6565ed3b2849, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossFish: {fileID: 0}
 --- !u!1 &1883760951
 GameObject:
   m_ObjectHideFlags: 0
@@ -11959,7 +11894,7 @@ PrefabInstance:
     - target: {fileID: 6656420190864697286, guid: 7ed3e0aa3b2c9c44daa68b4e68d2a09b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 6656420190864697286, guid: 7ed3e0aa3b2c9c44daa68b4e68d2a09b,
         type: 3}
@@ -13099,13 +13034,14 @@ GameObject:
   - component: {fileID: 2379371834243359460}
   - component: {fileID: 7451797665827094365}
   - component: {fileID: 7451797665827094364}
+  - component: {fileID: 8404189589188512592}
   m_Layer: 0
   m_Name: BossFish
   m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &8055166603900773177
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13343,6 +13279,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8404189589188512592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8043800119619988122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718fa8f17dad78046a9a6565ed3b2849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossFish: {fileID: 0}
 --- !u!23 &8586387870472169285
 MeshRenderer:
   m_ObjectHideFlags: 0

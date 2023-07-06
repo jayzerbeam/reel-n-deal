@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public class villagerMovement : MonoBehaviour
 {
@@ -12,11 +13,17 @@ public class villagerMovement : MonoBehaviour
     public LayerMask groundLayer;
 
     private NavMeshAgent agent;
+    private Animator animator; // Reference to the Animator component
+
+
+    float _runSpeed = 8.0f;
+    float _walkSpeed = 2.8f;
 
     // Start is called before the first frame update
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         MoveToNewDestination();
     }
 
@@ -28,6 +35,10 @@ public class villagerMovement : MonoBehaviour
         {
             MoveToNewDestination();
         }
+
+        Vector3 localVelocity = transform.InverseTransformDirection(agent.velocity);
+        animator.SetFloat("velX", localVelocity.x);
+        animator.SetFloat("velZ", localVelocity.z);
     }
 
     private void MoveToNewDestination()
@@ -56,4 +67,5 @@ public class villagerMovement : MonoBehaviour
 
         agent.SetDestination(destination);
     }
+
 }

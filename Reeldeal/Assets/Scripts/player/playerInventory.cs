@@ -11,7 +11,8 @@ public class playerInventory : MonoBehaviour
     public TextMeshProUGUI debugFishList;
 
     // A dictionary to store fish by type. Each fish type maps to a list of fish details.
-    // when a fish is caught there will be a string containing details of the fish in the form "fish name, fish type, fish location, fish color, fish size, fish sex, fish age, fish time caught"
+    // when a fish is caught there will be a string containing details of the fish in the form:
+    // "fish name, fish type, fish location, fish color, fish size, fish sex, fish age, fish time caught"
     public Dictionary<string, List<string>> fishInventory = new Dictionary<string, List<string>>(); // cahnge to private after debugging
 
     // Start is called before the first frame update

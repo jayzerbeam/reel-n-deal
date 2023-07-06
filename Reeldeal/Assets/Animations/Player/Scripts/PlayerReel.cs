@@ -32,6 +32,11 @@ public class PlayerReel : MonoBehaviour
 
     public TextMeshProUGUI fishCaughtMsg;
 
+
+    public TextMeshProUGUI talk_to_playerText;
+    public float timeToErase = 5f;
+    private string msg;
+
     void Awake()
     {
         _playerInput = new PlayerInput();
@@ -143,6 +148,7 @@ public class PlayerReel : MonoBehaviour
         {
             fishCaughtMsg.enabled = false;
             Debug.Log("You caught the fish!");
+            talk_to_player("You caught the fish!");
             pressCount = 0;
 
             Destroy(GameObject.FindGameObjectWithTag("Bobber"));
@@ -152,6 +158,20 @@ public class PlayerReel : MonoBehaviour
                 _inventory.AddFishedFish("Alpha Fish Test Fish");
             }
         }
+    }
+
+    public void talk_to_player(string talk_to)
+    {
+        StartCoroutine(talk_to_playerWritethenEraseText(talk_to));
+    }
+
+    private IEnumerator talk_to_playerWritethenEraseText(string text)
+    {
+        talk_to_playerText.text = text;
+
+        yield return new WaitForSeconds(timeToErase);
+
+        talk_to_playerText.text = "";
     }
 
     void HandleReel()

@@ -30,7 +30,7 @@ a small penalty for failing to catch the fish.
 Known Issues:
 - occasional odd behavior when two fish collide
 - fish animations to be implemented
-- 
+- Some items in marketplace do not disappear when purchased 
 
 Teammate Contributions
 
@@ -124,3 +124,35 @@ Sources:
 - Player animations: https://mixamo.com/ 
   - Links to individual animations are not available
 
+
+Cassandra Durkee
+ - Added marketplace items tables, TNT, boots, boats, fishing rods, villagers 
+   - Assets/Prefabs/Marketplace/FishingRodUpgrade
+   - Assets/Prefabs/Marketplace/FishingRodStandard
+   - Assets/Prefabs/Marketplace/TNT
+   - Assets/Prefabs/Marketplace/Boots
+   - Assets/Prefabs/Marketplace/FishingBoat
+   - Assets/Prefabs/Marketplace/WoodenBoat
+   - Assets/Prefabs/Marketplace/FoldingTable1
+   - Assets/Prefabs/Marketplace/FoldingTable2
+   - Assets/Prefabs/Marketplace/FoldingTable3
+   - Assets/Prefabs/Marketplace/FishPile
+   - Assets/Prefabs/Marketplace/Villager_cassye_1
+   - Assets/Prefabs/Marketplace/Villager_cassye_2
+   - Assets/Prefabs/Marketplace/Villager_cassye_3
+ - Added GUI to show which items have been purchased at marketplace by pressing "G" with scripts
+   - Assets/Prefabs/Marketplace/UICanvas
+   - Assets/Prefabs/Marketplace/InventoryGUI
+   - Assets/Prefabs/Marketplace/Inventory
+  -Added GUIs for each marketplace item, to show item description and option to purchase by pressing a button
+   - Assets/Scripts/Marketplace/MarketplaceItems.cs
+   - Assets/Scripts/Marketplace/Collectables.cs
+ - Added/Modified script that has player die if they are in the water for three continuous seconds
+   - Assets/Scripts/player/PlayerDeath.cs
+ - Added script that renders the boss fish invisible until the marketplace item FishingRodUpgrade is purchased 
+   - Assets/Scripts/Fish/BossFishSpawn.cs 
+   
+   sources:
+   https://assetstore.unity.com/packages/3d/vehicles/sea/boats-polypack-189866
+   https://assetstore.unity.com/packages/3d/props/furniture/folding-table-and-chair-pbr-111726
+   https://assetstore.unity.com/packages/3d/props/clothing/female-ankle-boots-photoscanned-159578 

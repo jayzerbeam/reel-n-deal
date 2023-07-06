@@ -30,7 +30,7 @@ a small penalty for failing to catch the fish.
 Known Issues:
 - occasional odd behavior when two fish collide
 - fish animations to be implemented
-- 
+- Some items in marketplace do not disappear when purchased 
 
 Teammate Contributions
 

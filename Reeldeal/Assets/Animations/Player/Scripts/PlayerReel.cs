@@ -84,7 +84,7 @@ public class PlayerReel : MonoBehaviour
             {
                 fishCaughtMsg.enabled = false;
                 Destroy(_caughtFish);
-                _inventory.AddFishedFish("Alpha Fish");
+                _inventory.AddFishedFish("Alpha Fish Test Fish");
             }
         }
     }
@@ -149,7 +149,7 @@ public class PlayerReel : MonoBehaviour
             if (_caughtFish)
             {
                 Destroy(_caughtFish);
-                _inventory.AddFishedFish("Alpha Fish");
+                _inventory.AddFishedFish("Alpha Fish Test Fish");
             }
         }
     }

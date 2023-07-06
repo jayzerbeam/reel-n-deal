@@ -16,8 +16,8 @@ public class villagerMovement : MonoBehaviour
     private Animator animator; // Reference to the Animator component
 
 
-    float _runSpeed = 8.0f;
-    float _walkSpeed = 2.8f;
+    //float _runSpeed = 8.0f;
+    //float _walkSpeed = 2.8f;
 
     // Start is called before the first frame update
     private void Start()

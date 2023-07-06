@@ -5,12 +5,14 @@ using UnityEngine;
 public class BossFishSpawn : MonoBehaviour
 {
     public GameObject bossFish;
-    private GameObject fishingRodUpgrade; 
+    private GameObject fishingRodUpgrade;
 
     private void Start()
     {
         bossFish = GameObject.Find("BossFish");
         fishingRodUpgrade = GameObject.FindGameObjectWithTag("FishingRodUpgrade");
+        Renderer renderer = GetComponent<Renderer>();
+        renderer.enabled = false;
 
         if (bossFish == null)
         {
@@ -20,10 +22,11 @@ public class BossFishSpawn : MonoBehaviour
 
     private void Update()
     {
-        if (fishingRodUpgrade == null && bossFish != null)
+        if (fishingRodUpgrade == null)
         {
-            bossFish.SetActive(true);
-            enabled = false;
+            Renderer renderer = GetComponent<Renderer>();
+            renderer.enabled = true; 
+            enabled = false; 
         }
     }
 }

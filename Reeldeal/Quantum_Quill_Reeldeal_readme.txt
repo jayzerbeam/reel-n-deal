@@ -151,8 +151,11 @@ Cassandra Durkee
    - Assets/Scripts/player/PlayerDeath.cs
  - Added script that renders the boss fish invisible until the marketplace item FishingRodUpgrade is purchased 
    - Assets/Scripts/Fish/BossFishSpawn.cs 
+ - Add music to main scene 
+   - Assets/Scripts/Menu/sad_main_menu
    
    sources:
    https://assetstore.unity.com/packages/3d/vehicles/sea/boats-polypack-189866
    https://assetstore.unity.com/packages/3d/props/furniture/folding-table-and-chair-pbr-111726
    https://assetstore.unity.com/packages/3d/props/clothing/female-ankle-boots-photoscanned-159578 
+   https://pixabay.com/sound-effects/search/heavy-metal/

@@ -78,6 +78,23 @@ public class FishCatching : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (
+            collider.gameObject.CompareTag("River")
+            || collider.gameObject.CompareTag("Lake")
+            || collider.gameObject.CompareTag("Ocean")
+            || collider.gameObject.CompareTag("Spring")
+        )
+        {
+            bobberLocked = true;
+            bobberLockedPosition = transform.position;
+            bobberLockedRotation = transform.rotation;
+
+            _rb.constraints = RigidbodyConstraints.FreezePosition;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         // https://docs.unity3d.com/ScriptReference/Collider.OnCollisionEnter.html
@@ -85,13 +102,7 @@ public class FishCatching : MonoBehaviour
         if (!fishCaught)
         {
             // Ground or water collision to stop bobber
-            if (
-                collision.gameObject.CompareTag("Ground")
-                || collision.gameObject.CompareTag("River")
-                || collision.gameObject.CompareTag("Lake")
-                || collision.gameObject.CompareTag("Ocean")
-                || collision.gameObject.CompareTag("Spring")
-            )
+            if (collision.gameObject.CompareTag("Ground"))
             {
                 bobberLocked = true;
                 bobberLockedPosition = transform.position;

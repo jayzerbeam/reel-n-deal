@@ -9,7 +9,7 @@ public class PlayerReel : MonoBehaviour
     PlayerInput _playerInput;
     CharacterController _characterController;
     Animator _animator;
-    Inventory _inventory;
+    playerInventory _inventory;
 
     bool _isCanceled;
 
@@ -39,7 +39,7 @@ public class PlayerReel : MonoBehaviour
         _isReelingHash = Animator.StringToHash("isReeling");
         _isCastingHash = Animator.StringToHash("isCasting");
         _characterController = GetComponent<CharacterController>();
-        _inventory = new Inventory();
+        _inventory = new playerInventory();
 
         _playerInput.CharacterControls.Reel.started += OnReel;
         _playerInput.CharacterControls.Reel.canceled += OnReel;
@@ -90,8 +90,7 @@ public class PlayerReel : MonoBehaviour
             {
                 _fishCaughtMsg.enabled = false;
                 Destroy(_caughtFish);
-                // TODO what should this value be?
-                _inventory.AddItem("Fish", true);
+                _inventory.AddFishedFish("Alpha Fish");
             }
         }
     }
@@ -154,50 +153,50 @@ public class PlayerReel : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Bobber"));
             if (_caughtFish)
             {
+                _fishCaughtMsg.enabled = false;
                 Destroy(_caughtFish);
-                // TODO what should this value be?
-                _inventory.AddItem("Fish", true);
+                _inventory.AddFishedFish("Alpha Fish");
             }
         }
     }
 
     void HandleReel()
     {
-        _bobber = GameObject.FindWithTag("Bobber");
-        _bobberRB = _bobber.GetComponent<Rigidbody>();
-
-        if (_bobberRB != null)
+        if (GameObject.FindWithTag("Bobber"))
         {
-            if (_reelValue > 0.0f && _bobber && !_isCasting)
-            {
-                // Make sure the frozen bobber can move
-                _bobberRB.constraints = RigidbodyConstraints.None;
-                Vector3 reelDirection = -transform.forward * _reelSpeed;
+            _bobber = GameObject.FindWithTag("Bobber");
+            _bobberRB = _bobber.GetComponent<Rigidbody>();
+        }
 
-                _bobberRB.velocity = new Vector3(
+        if (_reelValue > 0.0f && _bobber && !_isCasting)
+        {
+            // Make sure the frozen bobber can move
+            _bobberRB.constraints = RigidbodyConstraints.None;
+            Vector3 reelDirection = -transform.forward * _reelSpeed;
+
+            _bobberRB.velocity = new Vector3(
+                reelDirection.x,
+                -5f * Time.deltaTime,
+                reelDirection.z
+            );
+
+            Rigidbody fishRB = _bobber.GetComponentInChildren<Rigidbody>();
+
+            if (fishRB != null)
+            {
+                _caughtFish = fishRB.gameObject;
+                fishRB.constraints = RigidbodyConstraints.None;
+                fishRB.velocity = new Vector3(
                     reelDirection.x,
                     -5f * Time.deltaTime,
                     reelDirection.z
                 );
-
-                Rigidbody fishRB = _bobber.GetComponentInChildren<Rigidbody>();
-
-                if (fishRB != null)
-                {
-                    _caughtFish = fishRB.gameObject;
-                    fishRB.constraints = RigidbodyConstraints.None;
-                    fishRB.velocity = new Vector3(
-                        reelDirection.x,
-                        -5f * Time.deltaTime,
-                        reelDirection.z
-                    );
-                }
             }
-            else if (_reelValue <= 0.0f && _bobber && !_isCasting)
-            {
-                // Not reeling - Bobber must stop in place
-                _bobberRB.constraints = RigidbodyConstraints.FreezePosition;
-            }
+        }
+        else if (_reelValue <= 0.0f && _bobber && !_isCasting)
+        {
+            // Not reeling - Bobber must stop in place
+            _bobberRB.constraints = RigidbodyConstraints.FreezePosition;
         }
     }
 }

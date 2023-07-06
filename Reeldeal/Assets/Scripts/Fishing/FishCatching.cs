@@ -87,7 +87,10 @@ public class FishCatching : MonoBehaviour
             // Ground or water collision to stop bobber
             if (
                 collision.gameObject.CompareTag("Ground")
-                || collision.gameObject.CompareTag("Water")
+                || collision.gameObject.CompareTag("River")
+                || collision.gameObject.CompareTag("Lake")
+                || collision.gameObject.CompareTag("Ocean")
+                || collision.gameObject.CompareTag("Spring")
             )
             {
                 bobberLocked = true;

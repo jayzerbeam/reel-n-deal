@@ -22,10 +22,7 @@ public class playerInventory : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    void Update() { }
 
     // Function to add money to the player's inventory
     public void AddMoney(int amount)
@@ -106,7 +103,6 @@ public class playerInventory : MonoBehaviour
         UpdateFishInvText();
     }
 
-
     // Function to remove a certain amount of a certain type of fish from the player's inventory
     public void RemoveFish(string fishType, int amount = 1)
     {
@@ -124,7 +120,6 @@ public class playerInventory : MonoBehaviour
         {
             Debug.Log("Go fish!, not enough fish of this type in inventory.");
         }
-
     }
 
     // Function to check if the player has a certain amount of a certain type of fish

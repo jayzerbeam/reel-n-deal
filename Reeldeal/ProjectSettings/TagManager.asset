@@ -13,11 +13,16 @@ TagManager:
   - Ground
   - Boots
   - Bobber
+  - WoodenBoat
+  - FishingBoat
+  - TNT
+  - FishingRodStandard
+  - FishingRodUpgrade
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcessing
   - Water
   - UI
   - Ground

@@ -90,13 +90,6 @@ Luis Alberto
 - Added a struct to store details of fishes caught
 	- playerInventory
 
-Sources:
-
-- Shading: https://www.youtube.com/watch?v=qH4XQaZhihw, https://www.youtube.com/watch?v=78WCzTVmc28, https://www.youtube.com/watch?v=cq2CoHVDxSQ
-- Textures: https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
-- Scripting: https://stackoverflow.com/, https://www.youtube.com/watch?v=UCwwn2q4Vys, https://docs.unity3d.com/
-
-
 Jason Long
 - Player movement 
   - PlayerMove.cs
@@ -116,14 +109,6 @@ Jason Long
   - Fish3Rigged / Fish3Swim
   - Fish4Rigged / Fish4Swim
   - SharkRigged / SharkSwim
-
-Sources:
-
-- Fish models: https://assetstore.unity.com/packages/3d/characters/animals/fish/fish-polypack-202232
-- Player models: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/stylized-npc-peasant-nolant-252440
-- Player animations: https://mixamo.com/ 
-  - Links to individual animations are not available
-
 
 Cassandra Durkee
  - Added marketplace items tables, TNT, boots, boats, fishing rods, villagers 
@@ -154,8 +139,17 @@ Cassandra Durkee
  - Add music to main scene 
    - Assets/Scripts/Menu/sad_main_menu
    
-   sources:
-   https://assetstore.unity.com/packages/3d/vehicles/sea/boats-polypack-189866
-   https://assetstore.unity.com/packages/3d/props/furniture/folding-table-and-chair-pbr-111726
-   https://assetstore.unity.com/packages/3d/props/clothing/female-ankle-boots-photoscanned-159578 
-   https://pixabay.com/sound-effects/search/heavy-metal/
+
+Sources:
+
+Game Menu Music: Chunky Monkey - https://assetstore.unity.com/packages/audio/music/free-music-tracks-for-games-156413
+Shading: https://www.youtube.com/watch?v=qH4XQaZhihw, https://www.youtube.com/watch?v=78WCzTVmc28, https://www.youtube.com/watch?v=cq2CoHVDxSQ
+Textures: https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
+Scripting: https://stackoverflow.com/, https://www.youtube.com/watch?v=UCwwn2q4Vys, https://docs.unity3d.com/
+https://assetstore.unity.com/packages/3d/vehicles/sea/boats-polypack-189866
+https://assetstore.unity.com/packages/3d/props/furniture/folding-table-and-chair-pbr-111726
+https://assetstore.unity.com/packages/3d/props/clothing/female-ankle-boots-photoscanned-159578 
+https://pixabay.com/sound-effects/search/heavy-metal/
+Fish models: https://assetstore.unity.com/packages/3d/characters/animals/fish/fish-polypack-202232
+Player models: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/stylized-npc-peasant-nolant-252440
+Player animations: https://mixamo.com/ (Links to individual animations are not available)

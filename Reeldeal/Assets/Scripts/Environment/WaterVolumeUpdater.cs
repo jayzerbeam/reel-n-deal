@@ -24,7 +24,7 @@ public class WaterVolumeUpdater : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        
+        // when player enters water   
         if (collider.CompareTag("Player"))
         {
             if (!transitioning)
@@ -39,7 +39,7 @@ public class WaterVolumeUpdater : MonoBehaviour
 
     void OnTriggerExit(Collider collider)
     {
-       
+       // when player exits water
         if (collider.CompareTag("Player"))
         {
             if (!transitioning)
@@ -58,6 +58,7 @@ public class WaterVolumeUpdater : MonoBehaviour
 
     void Update()
     {
+        // smooth transition from 0% to 100% volume when entering, 100% to 0% when exiting
         if (transitioning)
         {
             timer += Time.deltaTime;
@@ -78,6 +79,7 @@ public class WaterVolumeUpdater : MonoBehaviour
                 transitioning = false;
                 if (transition == "out")
                 {
+                    // exit volume changed at end (enter volume changed at beginning)
                     volume.profile = originalVolumeProfile;
                 }
                 transition = null;

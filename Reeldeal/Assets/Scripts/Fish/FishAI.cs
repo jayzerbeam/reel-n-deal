@@ -128,12 +128,10 @@ public class FishAI : MonoBehaviour
                     {
                         if (hit.collider.CompareTag("Player") && fishMultiTag.HasTag("Fleeable"))
                         {
-                            Debug.Log("Enter Flee");
                             aiState = AIState.fleeState;
                         }
                         else if (hit.collider.CompareTag("Player") && fishMultiTag.HasTag("Agressive"))
                         {
-                            Debug.Log("Enter Agressive");
                             aiState = AIState.aggressiveState;
                         }
                     }

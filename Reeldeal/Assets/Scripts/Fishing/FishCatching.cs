@@ -43,13 +43,13 @@ public class FishCatching : MonoBehaviour
     {
         if (bobberLocked)
         {
-            // transform.position = bobberLockedPosition; // prevents other fish from meshing with position
-            // transform.rotation = bobberLockedRotation;
+            transform.position = bobberLockedPosition; // prevents other fish from meshing with position
+            transform.rotation = bobberLockedRotation;
         }
         if (caughtFish)
         {
-            // caughtFish.transform.position = fishLockedPosition;
-            // caughtFish.transform.rotation = fishLockedRotation;
+            caughtFish.transform.position = fishLockedPosition;
+            caughtFish.transform.rotation = fishLockedRotation;
         }
 
         if (fishCaught)

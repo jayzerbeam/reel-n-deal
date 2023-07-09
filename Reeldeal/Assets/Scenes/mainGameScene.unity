@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1470247, g: 0.36394262, b: 0.5799059, a: 1}
+  m_IndirectSpecularColor: {r: 0.14686076, g: 0.36449513, b: 0.5798105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -935,6 +935,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 978062761}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &322393128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322393127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007446e8aeff8dccaa3ff2d3f37d05ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bobber: {fileID: 2886670933728575070, guid: 135aeada52e85c64c8f5493b85d529ad, type: 3}
+  _reelSpeed: 10
+  _castSpeed: 80
+  _castHeight: 2
+  _bobberGravity: -10
 --- !u!1 &325869414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CamOffset: {x: 0, y: 3, z: -5}
-  player_obj: {fileID: 322393127}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,6 +2559,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8642389409343979033, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
+    - {fileID: 6141649143267876811, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
+    - {fileID: 2429052457064081109, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
 --- !u!1 &980698885
 GameObject:

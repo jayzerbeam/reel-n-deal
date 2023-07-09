@@ -22,10 +22,10 @@ public class PlayerFish : MonoBehaviour
     bool _isCastButtonPressed;
 
     int _isCastingHash;
-    int _isReelingHash;
+    int _isFishingHash;
 
-    bool _isCasting;
-    bool _isReeling;
+    bool _isCastingAnim;
+    bool _isFishingAnim;
 
     float _reelValue = 0.0f;
 
@@ -48,7 +48,7 @@ public class PlayerFish : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
 
         _isCastingHash = Animator.StringToHash("isCasting");
-        _isReelingHash = Animator.StringToHash("isReeling");
+        _isFishingHash = Animator.StringToHash("isFishing");
 
         _playerInput.CharacterControls.Cast.started += OnCast;
         _playerInput.CharacterControls.Cast.canceled += OnCast;
@@ -65,9 +65,6 @@ public class PlayerFish : MonoBehaviour
 
     void Update()
     {
-        _isReeling = _animator.GetBool(_isReelingHash);
-        _isCasting = _animator.GetBool(_isCastingHash);
-
         HandleAnimation();
         HandleCancel();
         FindBobber();
@@ -123,27 +120,27 @@ public class PlayerFish : MonoBehaviour
 
     void HandleAnimation()
     {
+        _isCastingAnim = _animator.GetBool(_isCastingHash);
+        _isFishingAnim = _animator.GetBool(_isFishingHash);
+
         //Cast
-        if (_isCastButtonPressed && !_isCasting && !FindBobber())
+        if (_isCastButtonPressed && !_isCastingAnim && !FindBobber())
         {
             _animator.SetBool(_isCastingHash, true);
+            _animator.SetBool(_isFishingHash, true);
         }
-        else if (!_isCastButtonPressed && _isCasting)
+        if (!_isCastButtonPressed && _isCastingAnim)
         {
             _animator.SetBool(_isCastingHash, false);
         }
-        // Reel
-        if (!_isReeling && _reelValue > 0)
+        if (_isFishingAnim && !FindBobber())
         {
-            _animator.SetBool(_isReelingHash, true);
-        }
-        else if (_isReeling && _reelValue <= 0 || _isCanceled)
-        {
-            _animator.SetBool(_isReelingHash, false);
-            _animator.SetBool(_isCastingHash, false);
+            // TODO WHY ISN'T THIS WORKING?
+            _animator.SetBool(_isFishingHash, false);
         }
     }
 
+    // TODO this should not cancel when the player is casting; only when "fishing"
     void HandleCancel()
     {
         if (_isCanceled)
@@ -154,7 +151,7 @@ public class PlayerFish : MonoBehaviour
 
     void HandleCast()
     {
-        if (_isCastButtonPressed && !FindBobber())
+        if (_isCastButtonPressed && !FindBobber() && _characterController.isGrounded)
         {
             GameObject newBobber = Instantiate(
                 bobber,
@@ -175,14 +172,14 @@ public class PlayerFish : MonoBehaviour
 
     void HandleReel()
     {
-        if (GameObject.FindWithTag("Bobber"))
+        if (FindBobber())
         {
             _bobber = GameObject.FindWithTag("Bobber");
             _bobberRB = _bobber.GetComponent<Rigidbody>();
         }
 
         // SHOULD PROBABLY USE FORCEMODE.ACCELERATION
-        if (_reelValue > 0.0f && _bobber && !_isCasting)
+        if (_reelValue > 0.0f && _bobber && !_isCastingAnim)
         {
             // Make sure the frozen bobber can move
             _bobberRB.constraints = RigidbodyConstraints.None;
@@ -207,7 +204,7 @@ public class PlayerFish : MonoBehaviour
                 );
             }
         }
-        else if (_reelValue <= 0.0f && _bobber && !_isCasting)
+        else if (_reelValue <= 0.0f && _bobber && !_isCastingAnim)
         {
             // Not reeling - Bobber must stop in place
             _bobberRB.constraints = RigidbodyConstraints.FreezePosition;

@@ -20,8 +20,6 @@ public class PlayerReel : MonoBehaviour
     int _isReelingHash;
     bool _isReeling;
 
-    int pressCount = 0;
-
     float _reelValue = 0.0f;
     GameObject _bobber;
     Rigidbody _bobberRB;
@@ -30,10 +28,6 @@ public class PlayerReel : MonoBehaviour
     [SerializeField]
     float _reelSpeed = 10f;
 
-    public TextMeshProUGUI fishCaughtMsg;
-
-    public TextMeshProUGUI talk_to_playerText;
-    public float timeToErase = 5f;
     private string msg;
 
     void Awake()
@@ -72,7 +66,6 @@ public class PlayerReel : MonoBehaviour
         HandleCancel();
         // This method is causing the bobber to float.
         // HandleReel();
-        HandleCatchFish();
     }
 
     void OnReel(InputAction.CallbackContext context)
@@ -87,14 +80,12 @@ public class PlayerReel : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Bobber"));
             if (_caughtFish)
             {
-                fishCaughtMsg.enabled = false;
                 Destroy(_caughtFish);
                 _inventory.AddFishedFish("Alpha Fish Test Fish");
             }
         }
     }
 
-    // TODO Preventing recast.
     void OnCancel(InputAction.CallbackContext context)
     {
         _isCanceled = context.ReadValueAsButton();
@@ -119,59 +110,6 @@ public class PlayerReel : MonoBehaviour
             _animator.SetBool(_isReelingHash, false);
             _animator.SetBool(_isCastingHash, false);
         }
-    }
-
-    public void HandleCatchFish()
-    {
-        _bobber = GameObject.FindWithTag("Bobber");
-
-        if (_bobber)
-        {
-            _bobberRB = _bobber.GetComponent<Rigidbody>();
-        }
-
-        Rigidbody fishRB = _bobber.GetComponentInChildren<Rigidbody>();
-
-        if (fishRB != null)
-        {
-            _caughtFish = fishRB.gameObject;
-            fishRB.constraints = RigidbodyConstraints.None;
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            pressCount += 1;
-            Debug.Log(pressCount);
-        }
-        // Exit condition
-        if (pressCount == 5)
-        {
-            fishCaughtMsg.enabled = false;
-            Debug.Log("You caught the fish!");
-            talk_to_player("You caught the fish!");
-            pressCount = 0;
-
-            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
-            if (_caughtFish)
-            {
-                Destroy(_caughtFish);
-                _inventory.AddFishedFish("Alpha Fish Test Fish");
-            }
-        }
-    }
-
-    public void talk_to_player(string talk_to)
-    {
-        StartCoroutine(talk_to_playerWritethenEraseText(talk_to));
-    }
-
-    private IEnumerator talk_to_playerWritethenEraseText(string text)
-    {
-        talk_to_playerText.text = text;
-
-        yield return new WaitForSeconds(timeToErase);
-
-        talk_to_playerText.text = "";
     }
 
     void HandleReel()

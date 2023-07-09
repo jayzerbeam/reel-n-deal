@@ -246,7 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CamOffset: {x: 0, y: 3, z: -5}
-  player_obj: {fileID: 1434143772}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,12 +632,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1434143772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6483754695257692263, guid: 303e4658defaa73c7bac6ab02a91e0bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 2053944810}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1464294117
 GameObject:
   m_ObjectHideFlags: 0

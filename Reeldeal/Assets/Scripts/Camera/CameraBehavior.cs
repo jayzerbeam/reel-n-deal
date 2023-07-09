@@ -6,16 +6,35 @@ public class CameraBehavior : MonoBehaviour
 {
     public Vector3 CamOffset = new Vector3(0f, 3f, -5f);
     private Transform _target;
-    public GameObject player_obj;
+    private GameObject _player;
+    private GameObject _bobber;
 
-    // Start is called before the first frame update
     void Start()
     {
-        _target = player_obj.transform; 
-        //_target = GameObject.Find("Player_InputSystem").transform;
+        _player = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
+    void Update()
+    {
+        GetTarget();
+    }
+
+    void GetTarget()
+    {
+        _bobber = GameObject.FindWithTag("Bobber");
+
+        if (_bobber)
+        {
+            _target = _bobber.transform;
+            CamOffset = new Vector3(0f, 40f, 35f);
+        }
+        else
+        {
+            _target = _player.transform;
+            CamOffset = new Vector3(0f, 3, -5f);
+        }
+    }
+
     void LateUpdate()
     {
         this.transform.position = _target.TransformPoint(CamOffset);

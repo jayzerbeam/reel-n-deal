@@ -120,6 +120,7 @@ public class PlayerReel : MonoBehaviour
             _bobberRB = _bobber.GetComponent<Rigidbody>();
         }
 
+        // SHOULD PROBABLY USE FORCEMODE.ACCELERATION
         if (_reelValue > 0.0f && _bobber && !_isCasting)
         {
             // Make sure the frozen bobber can move

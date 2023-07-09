@@ -29,7 +29,7 @@ public class BobberBehavior : MonoBehaviour
 
     private void FreezeBobber()
     {
-        _rb.constraints = RigidbodyConstraints.FreezePosition;
+        _rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     private void OnCollisionEnter(Collision collision)

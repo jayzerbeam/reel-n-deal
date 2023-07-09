@@ -68,8 +68,8 @@ public class FishCatching : MonoBehaviour
 
         if (startCoolDown)
         {
-            transform.position = bobberLockedPosition; // prevents other fish from meshing with position
-            transform.rotation = bobberLockedRotation;
+            // transform.position = bobberLockedPosition; // prevents other fish from meshing with position
+            // transform.rotation = bobberLockedRotation;
             if (catchCoolDownTimer < 0f && fishCaught)
             {
                 fishCaught = false;

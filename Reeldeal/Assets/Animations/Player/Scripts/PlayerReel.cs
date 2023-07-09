@@ -32,7 +32,6 @@ public class PlayerReel : MonoBehaviour
 
     public TextMeshProUGUI fishCaughtMsg;
 
-
     public TextMeshProUGUI talk_to_playerText;
     public float timeToErase = 5f;
     private string msg;
@@ -71,7 +70,8 @@ public class PlayerReel : MonoBehaviour
         _isCasting = _animator.GetBool(_isCastingHash);
         HandleAnimation();
         HandleCancel();
-        HandleReel();
+        // This method is causing the bobber to float.
+        // HandleReel();
         HandleCatchFish();
     }
 

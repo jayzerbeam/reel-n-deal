@@ -38,12 +38,12 @@ public class PlayerCast : MonoBehaviour
 
     void Update()
     {
-        _isCasting = _animator.GetBool(_isCastingHash);
         HandleAnimation();
     }
 
     void FixedUpdate()
     {
+        FindBobber();
         HandleCast();
     }
 
@@ -62,9 +62,16 @@ public class PlayerCast : MonoBehaviour
         _isCastButtonPressed = context.ReadValueAsButton();
     }
 
+    bool FindBobber()
+    {
+        return GameObject.FindWithTag("Bobber");
+    }
+
     void HandleAnimation()
     {
-        if (_isCastButtonPressed && !_isCasting)
+        _isCasting = _animator.GetBool(_isCastingHash);
+
+        if (_isCastButtonPressed && !_isCasting && !FindBobber())
         {
             _animator.SetBool(_isCastingHash, true);
         }
@@ -76,7 +83,7 @@ public class PlayerCast : MonoBehaviour
 
     void HandleCast()
     {
-        if (_isCastButtonPressed && !GameObject.FindWithTag("Bobber"))
+        if (_isCastButtonPressed && !FindBobber())
         {
             GameObject newBobber = Instantiate(
                 bobber,

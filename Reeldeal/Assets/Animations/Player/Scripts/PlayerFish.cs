@@ -10,6 +10,7 @@ public class PlayerFish : MonoBehaviour
     // private string msg;
 
     PlayerInput _playerInput;
+    GameObject _player;
     CharacterController _characterController;
     Animator _animator;
     GameObject _bobber;
@@ -27,22 +28,20 @@ public class PlayerFish : MonoBehaviour
     bool _isCastingAnim;
     bool _isFishingAnim;
 
-    float _reelValue = 0.0f;
-
-    [SerializeField]
-    float _reelSpeed = 10f;
+    float _reelForce = 0.0f;
 
     [SerializeField]
     float _castSpeed = 80f;
 
     [SerializeField]
-    float _castHeight = 2f;
+    float _castHeight = 2.5f;
 
     [SerializeField]
     float _bobberGravity = -10f;
 
     void Awake()
     {
+        _player = GameObject.FindWithTag("Player");
         _playerInput = new PlayerInput();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
@@ -74,7 +73,7 @@ public class PlayerFish : MonoBehaviour
     void FixedUpdate()
     {
         HandleCast();
-        // HandleReel();
+        HandleReel();
     }
 
     void OnEnable()
@@ -111,7 +110,7 @@ public class PlayerFish : MonoBehaviour
 
     void OnReel(InputAction.CallbackContext context)
     {
-        _reelValue = context.ReadValue<float>();
+        _reelForce = context.ReadValue<float>();
     }
 
     bool FindBobber()
@@ -136,9 +135,13 @@ public class PlayerFish : MonoBehaviour
         }
         if (_isFishingAnim && !FindBobber())
         {
-            // TODO WHY ISN'T THIS WORKING?
             _animator.SetBool(_isFishingHash, false);
         }
+    }
+
+    float DistanceToPlayer()
+    {
+        return (_player.transform.position - _bobber.transform.position).magnitude;
     }
 
     // TODO this should not cancel when the player is casting; only when "fishing"
@@ -155,61 +158,73 @@ public class PlayerFish : MonoBehaviour
     {
         if (_isCastButtonPressed && !FindBobber() && _characterController.isGrounded)
         {
-            GameObject newBobber = Instantiate(
+            _bobber = Instantiate(
                 bobber,
-                this.transform.position + new Vector3(0f, _castHeight, 1),
+                this.transform.position + new Vector3(0f, _castHeight, 0f),
                 this.transform.rotation
             );
 
-            if (newBobber != null)
+            if (_bobber != null)
             {
-                Rigidbody bobberRB = newBobber.GetComponent<Rigidbody>();
-
+                _bobberRB = _bobber.GetComponent<Rigidbody>();
                 Vector3 castVelocity = transform.forward * _castSpeed;
-
-                bobberRB.velocity = new Vector3(castVelocity.x, _bobberGravity, castVelocity.z);
+                _bobberRB.velocity = new Vector3(castVelocity.x, _bobberGravity, castVelocity.z);
             }
         }
     }
 
     void HandleReel()
     {
+        Rigidbody hookedFishRB = null;
+
         if (FindBobber())
         {
             _bobber = GameObject.FindWithTag("Bobber");
             _bobberRB = _bobber.GetComponent<Rigidbody>();
+            hookedFishRB = _bobber.GetComponentInChildren<Rigidbody>();
         }
 
-        // SHOULD PROBABLY USE FORCEMODE.ACCELERATION
-        if (_reelValue > 0.0f && _bobber && !_isCastingAnim)
+        if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
         {
-            // Make sure the frozen bobber can move
+            float minReelSpeed = 3.0f;
+            float reelSpeed = 6.0f;
+            float slowdownDistance = 4.0f;
+            float retrieveDistance = 1.0f;
+
+            // Can I freeze such that the bobber can only move in a straight line?
             _bobberRB.constraints = RigidbodyConstraints.None;
-            Vector3 reelDirection = -transform.forward * _reelSpeed;
+            Vector3 playerPosition = this.transform.position;
+            Vector3 reelDirection = playerPosition - _bobber.transform.position;
 
-            _bobberRB.velocity = new Vector3(
-                reelDirection.x,
-                -5f * Time.deltaTime,
-                reelDirection.z
-            );
+            reelDirection.Normalize();
 
-            Rigidbody fishRB = _bobber.GetComponentInChildren<Rigidbody>();
-
-            if (fishRB != null)
+            if (DistanceToPlayer() > slowdownDistance)
             {
-                _caughtFish = fishRB.gameObject;
-                fishRB.constraints = RigidbodyConstraints.None;
-                fishRB.velocity = new Vector3(
-                    reelDirection.x,
-                    -5f * Time.deltaTime,
-                    reelDirection.z
-                );
+                _bobberRB.AddForce(reelDirection * reelSpeed, ForceMode.Acceleration);
+            }
+            else if (
+                DistanceToPlayer() <= slowdownDistance && DistanceToPlayer() > retrieveDistance
+            )
+            {
+                float decelerationRate = 0.005f;
+
+                while (reelSpeed >= minReelSpeed)
+                {
+                    reelSpeed -= decelerationRate;
+                }
+
+                Vector3 opposingForce = -_bobberRB.velocity * reelSpeed;
+                _bobberRB.AddForce(opposingForce, ForceMode.Acceleration);
+            }
+            else
+            {
+                Destroy(GameObject.FindGameObjectWithTag("Bobber"));
             }
         }
-        else if (_reelValue <= 0.0f && _bobber && !_isCastingAnim)
-        {
-            // Not reeling - Bobber must stop in place
-            _bobberRB.constraints = RigidbodyConstraints.FreezePosition;
-        }
+        // else if (
+        //     _reelForce <= 0.0f && _bobber && !_isCastingAnim && _isFishingAnim
+        // )
+        // {
+        // }
     }
 }

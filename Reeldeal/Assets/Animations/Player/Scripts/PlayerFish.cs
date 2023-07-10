@@ -50,6 +50,7 @@ public class PlayerFish : MonoBehaviour
         _isCastingHash = Animator.StringToHash("isCasting");
         _isFishingHash = Animator.StringToHash("isFishing");
 
+        // TODO prune these (if possible)
         _playerInput.CharacterControls.Cast.started += OnCast;
         _playerInput.CharacterControls.Cast.canceled += OnCast;
         _playerInput.CharacterControls.Cast.performed += OnCast;
@@ -141,6 +142,7 @@ public class PlayerFish : MonoBehaviour
     }
 
     // TODO this should not cancel when the player is casting; only when "fishing"
+    // Could allow for early animation ending
     void HandleCancel()
     {
         if (_isCanceled)

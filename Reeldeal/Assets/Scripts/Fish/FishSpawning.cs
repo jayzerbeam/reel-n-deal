@@ -135,8 +135,8 @@ public class FishSpawning : MonoBehaviour
 
         // move fish into water
         Renderer FishRenderer = fish.GetComponent<Renderer>();
-        fish.transform.position = new Vector3(fish.transform.position.x, randomWaterCollider.bounds.max.y - FishRenderer.bounds.size.y / 2, fish.transform.position.z) ; // half body in water
-
+        fish.transform.position = new Vector3(fish.transform.position.x, randomWaterCollider.bounds.max.y - FishRenderer.bounds.size.y / 2, fish.transform.position.z); // half body in water
+        spawnPosition = new Vector3(fish.transform.position.x, randomWaterCollider.bounds.max.y - FishRenderer.bounds.size.y / 2, fish.transform.position.z);
 
         // all for debugging
         FishMultiTag fishMultiTag = fish.GetComponent<FishMultiTag>();

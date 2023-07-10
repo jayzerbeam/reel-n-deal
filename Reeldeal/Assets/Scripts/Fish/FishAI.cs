@@ -128,12 +128,10 @@ public class FishAI : MonoBehaviour
                     {
                         if (hit.collider.CompareTag("Player") && fishMultiTag.HasTag("Fleeable"))
                         {
-                            Debug.Log("Enter Flee");
                             aiState = AIState.fleeState;
                         }
                         else if (hit.collider.CompareTag("Player") && fishMultiTag.HasTag("Agressive"))
                         {
-                            Debug.Log("Enter Agressive");
                             aiState = AIState.aggressiveState;
                         }
                     }
@@ -222,14 +220,18 @@ public class FishAI : MonoBehaviour
         float remainingDistance = Vector3.Distance(transform.position, destination);
 
         // set rotation and speed
-        rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, Quaternion.Euler(0f, rotation.eulerAngles.y, 0f), rotationSpeed * Time.deltaTime)); // only update y rotation (spinning)
+        if (aiState != AIState.hungryState)
+            rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, Quaternion.Euler(0f, rotation.eulerAngles.y, 0f), rotationSpeed * Time.deltaTime)); // only update y rotation (spinning)
+        else
+            rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, Quaternion.Euler(rotation.eulerAngles.x, rotation.eulerAngles.y, 0f), rotationSpeed * Time.deltaTime));
         float adjustedSpeed = Mathf.Lerp(0f, fishSpeed, remainingDistance / 0.5f);
         currentSpeed = Mathf.Lerp(currentSpeed, adjustedSpeed, Time.deltaTime);
         rb.velocity = this.transform.forward * currentSpeed;
 
         // keep at correct y-level
         Vector3 newPosition = transform.position;
-        newPosition = new Vector3(newPosition.x, yValue, newPosition.z);
+        if (aiState != AIState.hungryState)
+            newPosition = new Vector3(newPosition.x, yValue, newPosition.z);
         transform.position = newPosition;
     }
 

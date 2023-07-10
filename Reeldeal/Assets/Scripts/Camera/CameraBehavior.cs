@@ -38,7 +38,10 @@ public class CameraBehavior : MonoBehaviour
 
     void LateUpdate()
     {
-        this.transform.position = _target.TransformPoint(CamOffset);
-        this.transform.LookAt(_target);
+        if (_target)
+        {
+            this.transform.position = _target.TransformPoint(CamOffset);
+            this.transform.LookAt(_target);
+        }
     }
 }

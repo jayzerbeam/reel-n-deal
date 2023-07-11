@@ -31,7 +31,7 @@ public class PlayerFish : MonoBehaviour
     float _reelForce = 0.0f;
 
     [SerializeField]
-    float _castSpeed = 80f;
+    float _castSpeed = 20f;
 
     [SerializeField]
     float _castHeight = 2.5f;
@@ -167,8 +167,9 @@ public class PlayerFish : MonoBehaviour
             if (_bobber != null)
             {
                 _bobberRB = _bobber.GetComponent<Rigidbody>();
-                Vector3 castVelocity = transform.forward * _castSpeed;
-                _bobberRB.velocity = new Vector3(castVelocity.x, _bobberGravity, castVelocity.z);
+                Vector3 castDirection = transform.forward;
+                Vector3 castVelocity = castDirection * _castSpeed;
+                _bobberRB.AddForce(castVelocity, ForceMode.Impulse);
             }
         }
     }
@@ -186,45 +187,35 @@ public class PlayerFish : MonoBehaviour
 
         if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
         {
-            float minReelSpeed = 3.0f;
-            float reelSpeed = 6.0f;
-            float slowdownDistance = 4.0f;
-            float retrieveDistance = 1.0f;
+            float reelSpeed = 8.0f;
+            float minReelSpeed = reelSpeed / 8.0f;
+            float slowdownDistance = 2.5f;
 
-            // Can I freeze such that the bobber can only move in a straight line?
             _bobberRB.constraints = RigidbodyConstraints.None;
+            // Largely prevents the bobber from rolling away
+
+            _bobberRB.constraints = RigidbodyConstraints.FreezeRotationY;
+            // _bobberRB.constraints = RigidbodyConstraints.FreezeRotationZ;
+
             Vector3 playerPosition = this.transform.position;
             Vector3 reelDirection = playerPosition - _bobber.transform.position;
-
             reelDirection.Normalize();
+
+            Debug.Log(DistanceToPlayer());
 
             if (DistanceToPlayer() > slowdownDistance)
             {
-                _bobberRB.AddForce(reelDirection * reelSpeed, ForceMode.Acceleration);
+                _bobberRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
             }
-            else if (
-                DistanceToPlayer() <= slowdownDistance && DistanceToPlayer() > retrieveDistance
-            )
+            else if (DistanceToPlayer() <= slowdownDistance)
             {
-                float decelerationRate = 0.005f;
-
-                while (reelSpeed >= minReelSpeed)
-                {
-                    reelSpeed -= decelerationRate;
-                }
-
-                Vector3 opposingForce = -_bobberRB.velocity * reelSpeed;
-                _bobberRB.AddForce(opposingForce, ForceMode.Acceleration);
-            }
-            else
-            {
-                Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+                _bobberRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
             }
         }
-        // else if (
-        //     _reelForce <= 0.0f && _bobber && !_isCastingAnim && _isFishingAnim
-        // )
+        // Freezing bobber mid-air.
+        // else if (_reelForce <= 0.0f && _bobber && bobberIsGrounded)
         // {
+        //     _bobberRB.constraints = RigidbodyConstraints.FreezePosition;
         // }
     }
 }

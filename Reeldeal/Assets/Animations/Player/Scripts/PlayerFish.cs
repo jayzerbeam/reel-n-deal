@@ -187,21 +187,19 @@ public class PlayerFish : MonoBehaviour
 
         if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
         {
-            float reelSpeed = 8.0f;
-            float minReelSpeed = reelSpeed / 8.0f;
-            float slowdownDistance = 2.5f;
+            float reelSpeed = 6.0f;
+            float minReelSpeed = 1.0f;
+            float slowdownDistance = 4.0f;
 
             _bobberRB.constraints = RigidbodyConstraints.None;
             // Largely prevents the bobber from rolling away
 
             _bobberRB.constraints = RigidbodyConstraints.FreezeRotationY;
-            // _bobberRB.constraints = RigidbodyConstraints.FreezeRotationZ;
+            _bobberRB.constraints = RigidbodyConstraints.FreezeRotationZ;
 
             Vector3 playerPosition = this.transform.position;
             Vector3 reelDirection = playerPosition - _bobber.transform.position;
             reelDirection.Normalize();
-
-            Debug.Log(DistanceToPlayer());
 
             if (DistanceToPlayer() > slowdownDistance)
             {

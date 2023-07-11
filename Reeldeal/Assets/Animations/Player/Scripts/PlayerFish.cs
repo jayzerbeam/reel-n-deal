@@ -93,6 +93,7 @@ public class PlayerFish : MonoBehaviour
         _isCanceled = context.ReadValueAsButton();
     }
 
+    // TODO should this simply destroy the fish and the bobber, or should it add the fish to the inventory?
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bobber"))
@@ -151,6 +152,7 @@ public class PlayerFish : MonoBehaviour
         }
     }
 
+    // TODO add variable cast force on hold.
     void HandleCast()
     {
         if (_isCastButtonPressed && !FindBobber() && _characterController.isGrounded)
@@ -171,6 +173,8 @@ public class PlayerFish : MonoBehaviour
         }
     }
 
+    // TODO if fish is caught and reeled in, make sure to add to inventory.
+    // Or - just destroy
     void HandleReel()
     {
         Rigidbody hookedFishRB = null;
@@ -185,13 +189,15 @@ public class PlayerFish : MonoBehaviour
 
         if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
         {
+            // TODO vary the reelspeed based on how close the bobber is to the player
+            // Must have a high reelspeed, like 15f, for the bobber to overcome steep angles
             float reelSpeed = 15.0f;
             float minReelSpeed = 1.0f;
             float slowdownDistance = 4.0f;
             float retrieveDistance = 1.0f;
 
             _bobberRB.constraints = RigidbodyConstraints.None;
-            // Largely prevents the bobber from rolling away
+            // Prevents the bobber from rolling away
             _bobberRB.constraints = RigidbodyConstraints.FreezeRotation;
 
             Vector3 playerPosition = this.transform.position;
@@ -206,6 +212,7 @@ public class PlayerFish : MonoBehaviour
                 DistanceToPlayer() <= slowdownDistance && DistanceToPlayer() > retrieveDistance
             )
             {
+                // Snap the bobber to the player
                 _bobberRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
             }
             else if (DistanceToPlayer() <= retrieveDistance)

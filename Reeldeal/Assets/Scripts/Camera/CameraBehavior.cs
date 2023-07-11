@@ -23,7 +23,7 @@ public class CameraBehavior : MonoBehaviour
     {
         // Disabling for now - do not want this to affect the camera on main.
         // ENABLE FOR BOBBER TRACKER
-        // _bobber = GameObject.FindWithTag("Bobber");
+        _bobber = GameObject.FindWithTag("Bobber");
 
         if (_bobber)
         {

@@ -5,45 +5,42 @@ using TMPro;
 
 public class FishCatching : MonoBehaviour
 {
-    public bool fishCaught = false;
-    public bool release = false;
-    public float catchCoolDown = 5f;
-    public float catchCoolDownTimer = 0f;
-    public bool startCoolDown;
-
-    private GameObject caughtFish;
+    public bool isFishCaught = false;
+    private GameObject hookedFishGO;
+    private Rigidbody hookedFishRB;
     private Rigidbody _rb;
 
-    int pressCount = 0;
+    public TextMeshProUGUI talk_to_playerText;
+    public float timeToErase = 2f;
+
+    // HandleCatch Variables
+    int keyPressesRemaining = 5;
+    string[] inputKeys = { "w", "a", "s", "d", "q", "e" };
+    System.Random random = new System.Random();
+    string randomInputKey = "";
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+
+        GameObject textToPlayer = GameObject.Find("textToPlayer");
+        // Random array selection found here
+        // https://stackoverflow.com/questions/14297853/how-to-get-random-values-from-array-in-c-sharp
+        randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
+
+        if (textToPlayer != null)
+        {
+            talk_to_playerText = textToPlayer.GetComponent<TextMeshProUGUI>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (fishCaught)
+        if (isFishCaught)
         {
-            CatchFish();
-        }
-
-        if (release) // enter if player doesn't press correct inputs
-        {
-            ReleaseFish();
-        }
-
-        catchCoolDownTimer -= Time.deltaTime;
-
-        if (startCoolDown)
-        {
-            if (catchCoolDownTimer < 0f && fishCaught)
-            {
-                fishCaught = false;
-                startCoolDown = false;
-            }
+            HandleCatch();
         }
     }
 
@@ -51,95 +48,107 @@ public class FishCatching : MonoBehaviour
     {
         // https://docs.unity3d.com/ScriptReference/Collider.OnCollisionEnter.html
         // https://forum.unity.com/threads/add-an-object-as-a-child-of-another-gameobject-into-a-different-scene.1292907/
-        if (!fishCaught)
+        if (!isFishCaught)
         {
             // check for fish collision
             if (collision.gameObject.CompareTag("Fish"))
             {
+                // Freeze the bobber
                 _rb.constraints = RigidbodyConstraints.FreezeAll;
                 collision.transform.SetParent(transform);
-                Rigidbody fishRigidbody = collision.gameObject.GetComponent<Rigidbody>();
 
-                if (fishRigidbody != null)
+                hookedFishGO = collision.gameObject;
+                hookedFishRB = hookedFishGO.GetComponent<Rigidbody>();
+
+                if (hookedFishRB != null)
                 {
-                    fishRigidbody.velocity = Vector3.zero;
+                    hookedFishRB.velocity = Vector3.zero;
+                    hookedFishRB.constraints = RigidbodyConstraints.FreezeAll;
                 }
 
-                fishRigidbody.constraints = RigidbodyConstraints.FreezePosition;
-
                 FishAI fishAIscript = collision.gameObject.GetComponent<FishAI>();
-                fishAIscript.aiState = FishAI.AIState.fleeState;
                 fishAIscript.enabled = false; // turn off AI when caught
-                caughtFish = collision.gameObject;
-                fishCaught = true;
+                isFishCaught = true;
             }
         }
     }
 
     private void ReleaseFish()
     {
-        FishAI fishAIscript = caughtFish.GetComponent<FishAI>();
+        FishAI fishAIscript = hookedFishGO.GetComponent<FishAI>();
         fishAIscript.enabled = true;
-
-        caughtFish.transform.SetParent(null);
-        caughtFish = null;
-        release = false;
-
-        startCoolDown = true;
-        catchCoolDownTimer = catchCoolDown;
+        fishAIscript.aiState = FishAI.AIState.fleeState;
+        hookedFishGO.transform.SetParent(null);
+        hookedFishGO = null;
+        isFishCaught = false;
     }
 
-    // Add fishcaught logic
-    public void CatchFish()
+    // TODO countdown in real time and display to user
+    void ShowCountdown()
     {
-        Rigidbody fishRB = _rb.GetComponentInChildren<Rigidbody>();
+        // 3-5 second timer
+        float countdownSeconds = 0.0f;
+        float minSeconds = 3.0f;
+        float maxSeconds = 5.0f;
+        talk_to_player(countdownSeconds.ToString());
+    }
 
-        // Better placed elsewhere?
-        if (fishRB != null)
+    void HandleCatch()
+    {
+        timeToErase = float.PositiveInfinity;
+        hookedFishRB.constraints = RigidbodyConstraints.None;
+
+        if (randomInputKey != "")
         {
-            caughtFish = fishRB.gameObject;
-            fishRB.constraints = RigidbodyConstraints.None;
+            talk_to_player(
+                $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\nKeypresses remaining: {keyPressesRemaining}"
+            );
+            // TODO must display the countdown timer
         }
-
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.anyKeyDown && Input.GetKeyDown(randomInputKey))
         {
-            pressCount += 1;
-        }
+            string prevInputKey = randomInputKey;
+            randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
 
-        // Exit condition
-        if (pressCount == 5)
-        {
-            // talk_to_player("You caught the fish!");
-
-            pressCount = 0;
-
-            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
-
-            if (caughtFish)
+            // Ensure the next input is not the same as the previous input
+            while (prevInputKey == randomInputKey)
             {
-                Destroy(caughtFish);
-                // TODO
-                // _inventory.AddFishedFish("Alpha Fish Test Fish");
+                randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
             }
+            keyPressesRemaining -= 1;
+        }
+        else if (Input.anyKeyDown && !Input.GetKeyDown(randomInputKey))
+        {
+            keyPressesRemaining = 5;
+            timeToErase = 3.0f;
+            talk_to_player("Oh no! The fish got away...");
+            ReleaseFish();
+        }
+        if (keyPressesRemaining == 0)
+        {
+            keyPressesRemaining = 5;
+            isFishCaught = false;
+            timeToErase = 3f;
+            talk_to_player("CONGRATS! You caught a fish!");
+            randomInputKey = "";
+            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+            // TODO Actually add to inventory
+            Destroy(hookedFishGO);
         }
     }
 
     // Remove or replace later with the actual instantiated function.
-    //
-    // public TextMeshProUGUI talk_to_playerText;
-    // public float timeToErase = 5f;
-    //
-    // public void talk_to_player(string talk_to)
-    // {
-    //     StartCoroutine(talk_to_playerWritethenEraseText(talk_to));
-    // }
-    //
-    // private IEnumerator talk_to_playerWritethenEraseText(string text)
-    // {
-    //     talk_to_playerText.text = text;
-    //
-    //     yield return new WaitForSeconds(timeToErase);
-    //
-    //     talk_to_playerText.text = "";
-    // }
+    public void talk_to_player(string talk_to)
+    {
+        StartCoroutine(talk_to_playerWritethenEraseText(talk_to));
+    }
+
+    private IEnumerator talk_to_playerWritethenEraseText(string text)
+    {
+        talk_to_playerText.text = text;
+
+        yield return new WaitForSeconds(timeToErase);
+
+        talk_to_playerText.text = "";
+    }
 }

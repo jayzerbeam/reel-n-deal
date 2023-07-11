@@ -36,9 +36,6 @@ public class PlayerFish : MonoBehaviour
     [SerializeField]
     float _castHeight = 2.5f;
 
-    [SerializeField]
-    float _bobberGravity = -10f;
-
     void Awake()
     {
         _player = GameObject.FindWithTag("Player");
@@ -182,19 +179,20 @@ public class PlayerFish : MonoBehaviour
         {
             _bobber = GameObject.FindWithTag("Bobber");
             _bobberRB = _bobber.GetComponent<Rigidbody>();
+            _bobberRB.sleepThreshold = 1f;
             hookedFishRB = _bobber.GetComponentInChildren<Rigidbody>();
         }
 
         if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
         {
-            float reelSpeed = 6.0f;
+            float reelSpeed = 20.0f;
             float minReelSpeed = 1.0f;
             float slowdownDistance = 4.0f;
+            float retrieveDistance = 1.0f;
 
             _bobberRB.constraints = RigidbodyConstraints.None;
             // Largely prevents the bobber from rolling away
-            _bobberRB.constraints = RigidbodyConstraints.FreezeRotationY;
-            _bobberRB.constraints = RigidbodyConstraints.FreezeRotationZ;
+            _bobberRB.constraints = RigidbodyConstraints.FreezeRotation;
 
             Vector3 playerPosition = this.transform.position;
             Vector3 reelDirection = playerPosition - _bobber.transform.position;
@@ -204,15 +202,17 @@ public class PlayerFish : MonoBehaviour
             {
                 _bobberRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
             }
-            else if (DistanceToPlayer() <= slowdownDistance)
+            else if (
+                DistanceToPlayer() <= slowdownDistance && DistanceToPlayer() > retrieveDistance
+            )
             {
                 _bobberRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
             }
+            else if (DistanceToPlayer() <= retrieveDistance)
+            {
+                // TODO account for attached fish
+                Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+            }
         }
-        // Freezing bobber mid-air.
-        // else if (_reelForce <= 0.0f && _bobber && bobberIsGrounded)
-        // {
-        //     _bobberRB.constraints = RigidbodyConstraints.FreezePosition;
-        // }
     }
 }

@@ -22,7 +22,7 @@ public class BobberBehavior : MonoBehaviour
     // https://stackoverflow.com/questions/63036126/floating-objects-in-unity#63043878
     void HandleFloat()
     {
-        Vector3 floatGravity = -Physics.gravity * _rb.mass * (-_rb.velocity.y);
+        Vector3 floatGravity = -Physics.gravity * _rb.mass * (-_rb.velocity.y * 10f);
         _rb.AddForceAtPosition(floatGravity, transform.position);
     }
 

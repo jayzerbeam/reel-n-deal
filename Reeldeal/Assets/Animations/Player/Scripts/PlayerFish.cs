@@ -185,7 +185,7 @@ public class PlayerFish : MonoBehaviour
 
         if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
         {
-            float reelSpeed = 20.0f;
+            float reelSpeed = 15.0f;
             float minReelSpeed = 1.0f;
             float slowdownDistance = 4.0f;
             float retrieveDistance = 1.0f;

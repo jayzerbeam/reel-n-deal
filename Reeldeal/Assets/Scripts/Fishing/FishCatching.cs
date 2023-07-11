@@ -7,16 +7,9 @@ public class FishCatching : MonoBehaviour
 {
     public bool fishCaught = false;
     public bool release = false;
-    public bool bobberLocked = false;
-
     public float catchCoolDown = 5f;
     public float catchCoolDownTimer = 0f;
     public bool startCoolDown;
-
-    private Vector3 bobberLockedPosition;
-    private Quaternion bobberLockedRotation;
-    private Vector3 fishLockedPosition;
-    private Quaternion fishLockedRotation;
 
     private GameObject caughtFish;
     private Rigidbody _rb;
@@ -32,18 +25,6 @@ public class FishCatching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bobberLocked)
-        {
-            transform.position = bobberLockedPosition; // prevents other fish from meshing with position
-            transform.rotation = bobberLockedRotation;
-        }
-
-        if (caughtFish)
-        {
-            caughtFish.transform.position = fishLockedPosition;
-            caughtFish.transform.rotation = fishLockedRotation;
-        }
-
         if (fishCaught)
         {
             CatchFish();
@@ -52,15 +33,12 @@ public class FishCatching : MonoBehaviour
         if (release) // enter if player doesn't press correct inputs
         {
             ReleaseFish();
-            bobberLocked = false;
         }
 
         catchCoolDownTimer -= Time.deltaTime;
 
         if (startCoolDown)
         {
-            transform.position = bobberLockedPosition; // prevents other fish from meshing with position
-            transform.rotation = bobberLockedRotation;
             if (catchCoolDownTimer < 0f && fishCaught)
             {
                 fishCaught = false;
@@ -78,6 +56,7 @@ public class FishCatching : MonoBehaviour
             // check for fish collision
             if (collision.gameObject.CompareTag("Fish"))
             {
+                _rb.constraints = RigidbodyConstraints.FreezeAll;
                 collision.transform.SetParent(transform);
                 Rigidbody fishRigidbody = collision.gameObject.GetComponent<Rigidbody>();
 
@@ -86,9 +65,7 @@ public class FishCatching : MonoBehaviour
                     fishRigidbody.velocity = Vector3.zero;
                 }
 
-                // fishRigidbody.constraints = RigidbodyConstraints.FreezePosition;
-                fishLockedPosition = collision.gameObject.transform.position;
-                fishLockedRotation = collision.gameObject.transform.rotation;
+                fishRigidbody.constraints = RigidbodyConstraints.FreezePosition;
 
                 FishAI fishAIscript = collision.gameObject.GetComponent<FishAI>();
                 fishAIscript.aiState = FishAI.AIState.fleeState;

@@ -18,6 +18,8 @@ public class BobberBehavior : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
+    // Modified from here:
+    // https://stackoverflow.com/questions/63036126/floating-objects-in-unity#63043878
     void HandleFloat()
     {
         Vector3 floatGravity = -Physics.gravity * _rb.mass * (-_rb.velocity.y);

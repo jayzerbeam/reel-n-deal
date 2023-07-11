@@ -193,7 +193,6 @@ public class PlayerFish : MonoBehaviour
 
             _bobberRB.constraints = RigidbodyConstraints.None;
             // Largely prevents the bobber from rolling away
-
             _bobberRB.constraints = RigidbodyConstraints.FreezeRotationY;
             _bobberRB.constraints = RigidbodyConstraints.FreezeRotationZ;
 

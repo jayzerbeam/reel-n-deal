@@ -11,14 +11,29 @@ public class BobberBehavior : MonoBehaviour
     float _gravity = -9.81f;
     float _groundedGravity = 0.05f;
 
+    private bool _isInWater = false;
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
 
+    void HandleFloat()
+    {
+        Vector3 floatGravity = -Physics.gravity * _rb.mass * (-_rb.velocity.y);
+        _rb.AddForceAtPosition(floatGravity, transform.position);
+    }
+
     void FixedUpdate()
     {
-        HandleGravity();
+        if (_isInWater)
+        {
+            HandleFloat();
+        }
+        else
+        {
+            HandleGravity();
+        }
     }
 
     void HandleGravity()
@@ -46,9 +61,15 @@ public class BobberBehavior : MonoBehaviour
     {
         foreach (string tag in _tags)
         {
-            if (gameObject.CompareTag(tag))
+            if (gameObject.CompareTag(tag) && tag == "Ground")
             {
                 FreezeBobber();
+                _isInWater = false;
+            }
+            else if (gameObject.CompareTag(tag))
+            {
+                FreezeBobber();
+                _isInWater = true;
             }
         }
     }

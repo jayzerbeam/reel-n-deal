@@ -22,7 +22,8 @@ public class CameraBehavior : MonoBehaviour
     void GetTarget()
     {
         // Disabling for now - do not want this to affect the camera on main.
-        _bobber = GameObject.FindWithTag("Bobber");
+        // ENABLE FOR BOBBER TRACKER
+        // _bobber = GameObject.FindWithTag("Bobber");
 
         if (_bobber)
         {

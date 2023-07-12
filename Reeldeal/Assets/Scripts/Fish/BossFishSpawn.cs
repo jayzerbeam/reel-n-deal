@@ -9,8 +9,9 @@ public class BossFishSpawn : MonoBehaviour
 
     private AudioSource audioPlay;
 
-    private GameObject BossFishAlert;
-    
+    private GameObject bossFishAlert;
+    private float displayTime;
+    private float timer; 
 
     private void Start()
     {
@@ -25,7 +26,10 @@ public class BossFishSpawn : MonoBehaviour
         }
 
         audioPlay = GetComponent<AudioSource>();
-        audioPlay.playOnAwake = false; 
+        audioPlay.playOnAwake = false;
+
+        bossFishAlert = GameObject.Find("UICanvas/BossFishAlert");
+        bossFishAlert.SetActive(false);
     }
 
     private void Update()
@@ -35,7 +39,18 @@ public class BossFishSpawn : MonoBehaviour
             Renderer renderer = GetComponent<Renderer>();
             renderer.enabled = true;
             audioPlay.Play();
+            bossFishAlert.SetActive(true);
+            timer = displayTime;
             enabled = false; 
+        }
+
+        if (timer > 0f)
+        {
+            displayTime -= Time.deltaTime;
+            if (displayTime <= 0f)
+            {
+                bossFishAlert.SetActive(false);
+            }
         }
     }
 }

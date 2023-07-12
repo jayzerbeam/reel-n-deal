@@ -184,6 +184,7 @@ public class PlayerFish : MonoBehaviour
             _bobber = GameObject.FindWithTag("Bobber");
             _bobberRB = _bobber.GetComponent<Rigidbody>();
             _bobberRB.sleepThreshold = 1f;
+            // TODO this is causing the bobber to Roll!
             hookedFishRB = _bobber.GetComponentInChildren<Rigidbody>();
         }
 
@@ -207,7 +208,8 @@ public class PlayerFish : MonoBehaviour
             if (hookedFishRB != null)
             {
                 _caughtFish = hookedFishRB.gameObject;
-                hookedFishRB.constraints = RigidbodyConstraints.None;
+                // TODO this is causing the bobber to Roll!
+                // hookedFishRB.constraints = RigidbodyConstraints.None;
             }
 
             if (DistanceToPlayer() > slowdownDistance)

@@ -13,6 +13,8 @@ public class MarketplaceItems : MonoBehaviour
     private GameObject triggeredObject;
     public Inventory inventory;
 
+    private AudioSource audioPlay; 
+
     public void Start()
     {
         Transform findChild = GameObject.Find("UICanvas").transform;
@@ -24,6 +26,9 @@ public class MarketplaceItems : MonoBehaviour
         WoodBoatGUI = findChild.Find("WoodBoatGUI").gameObject;
 
         inventory = GameObject.Find("InventoryGUI").GetComponent<Inventory>();
+
+        //audioPlay = GetComponent<AudioSource>();
+        audioPlay.playOnAwake = false; 
     }
 
     private void OnTriggerEnter(Collider c)
@@ -98,10 +103,13 @@ public class MarketplaceItems : MonoBehaviour
 
     public void OnButtonClick()
     {
+        audioPlay = GetComponent<AudioSource>();
 
         if (gameObject.CompareTag("FishingRodUpgrade") && RodUpgradeGUI != null && triggeredObject != null)
         {
             RodUpgradeGUI.SetActive(false);
+            audioPlay.Play();
+            //audioPlay = GetComponent<AudioSource>();
             inventory.AddItem("FishingRodUpgrade", false);
             Destroy(triggeredObject);
             triggeredObject = null;
@@ -111,6 +119,7 @@ public class MarketplaceItems : MonoBehaviour
         {
             RodStandardGUI.SetActive(false);
             inventory.AddItem("FishingRodStandard", false);
+            //audioPlay.Play();
             Destroy(triggeredObject);
             triggeredObject = null;
         }
@@ -120,6 +129,7 @@ public class MarketplaceItems : MonoBehaviour
         {
             BootsGUI.SetActive(false);
             inventory.AddItem("Boots", false);
+            //audioPlay.Play();
             Destroy(triggeredObject);
             triggeredObject = null;
         }
@@ -128,6 +138,7 @@ public class MarketplaceItems : MonoBehaviour
         {
             TNTGUI.SetActive(false);
             inventory.AddItem("TNT", false);
+            //audioPlay.Play();
             Destroy(triggeredObject);
             triggeredObject = null;
         }
@@ -136,6 +147,7 @@ public class MarketplaceItems : MonoBehaviour
         {
             FishBoatGUI.SetActive(false);
             inventory.AddItem("FishingBoat", false);
+            //audioPlay.Play();
             Destroy(triggeredObject);
             triggeredObject = null;
         }
@@ -144,6 +156,7 @@ public class MarketplaceItems : MonoBehaviour
         {
             WoodBoatGUI.SetActive(false);
             inventory.AddItem("WoodenBoat", false);
+            //audioPlay.Play();
             Destroy(triggeredObject);
             triggeredObject = null;
         }

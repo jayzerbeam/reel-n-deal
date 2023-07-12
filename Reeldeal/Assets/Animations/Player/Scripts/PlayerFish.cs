@@ -13,9 +13,12 @@ public class PlayerFish : MonoBehaviour
     GameObject _player;
     CharacterController _characterController;
     Animator _animator;
+    private FishCatching _fc;
+
     GameObject _bobber;
     Rigidbody _bobberRB;
-    GameObject _caughtFish;
+
+    GameObject _caughtFishGO;
 
     public GameObject bobber;
 
@@ -42,6 +45,7 @@ public class PlayerFish : MonoBehaviour
         _playerInput = new PlayerInput();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
+        _fc = new FishCatching();
 
         _isCastingHash = Animator.StringToHash("isCasting");
         _isFishingHash = Animator.StringToHash("isFishing");
@@ -99,9 +103,9 @@ public class PlayerFish : MonoBehaviour
         if (collision.gameObject.CompareTag("Bobber"))
         {
             Destroy(GameObject.FindGameObjectWithTag("Bobber"));
-            if (_caughtFish)
+            if (_caughtFishGO)
             {
-                Destroy(_caughtFish);
+                Destroy(_caughtFishGO);
             }
         }
     }
@@ -184,8 +188,6 @@ public class PlayerFish : MonoBehaviour
             _bobber = GameObject.FindWithTag("Bobber");
             _bobberRB = _bobber.GetComponent<Rigidbody>();
             _bobberRB.sleepThreshold = 1f;
-            // TODO this is causing the bobber to Roll!
-            hookedFishRB = _bobber.GetComponentInChildren<Rigidbody>();
         }
 
         if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
@@ -205,11 +207,12 @@ public class PlayerFish : MonoBehaviour
             Vector3 reelDirection = playerPosition - _bobber.transform.position;
             reelDirection.Normalize();
 
-            if (hookedFishRB != null)
+            _caughtFishGO = _fc.GetHookedFishGO();
+
+            if (_caughtFishGO != null)
             {
-                _caughtFish = hookedFishRB.gameObject;
-                // TODO this is causing the bobber to Roll!
-                // hookedFishRB.constraints = RigidbodyConstraints.None;
+                hookedFishRB = _caughtFishGO.GetComponentInChildren<Rigidbody>();
+                hookedFishRB.constraints = RigidbodyConstraints.None;
             }
 
             if (DistanceToPlayer() > slowdownDistance)

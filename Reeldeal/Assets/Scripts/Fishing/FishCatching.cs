@@ -47,6 +47,18 @@ public class FishCatching : MonoBehaviour
         }
     }
 
+    public GameObject GetHookedFishGO()
+    {
+        if (isFishCaught)
+        {
+            return hookedFishGO;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         // https://docs.unity3d.com/ScriptReference/Collider.OnCollisionEnter.html

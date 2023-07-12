@@ -7,23 +7,22 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerFish : MonoBehaviour
 {
-    // private string msg;
-
     PlayerInput _playerInput;
     GameObject _player;
     CharacterController _characterController;
     Animator _animator;
-    private FishCatching _fc;
+    FishCatching _fc;
 
     GameObject _bobber;
     Rigidbody _bobberRB;
 
-    GameObject _caughtFishGO;
+    GameObject _hookedFishGO;
 
-    public GameObject bobber;
+    public GameObject bobberPrefab;
 
     bool _isCanceled;
     bool _isCastButtonPressed;
+    bool _wasFishCaught = false;
 
     int _isCastingHash;
     int _isFishingHash;
@@ -97,16 +96,11 @@ public class PlayerFish : MonoBehaviour
         _isCanceled = context.ReadValueAsButton();
     }
 
-    // TODO should this simply destroy the fish and the bobber, or should it add the fish to the inventory?
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bobber"))
         {
-            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
-            if (_caughtFishGO)
-            {
-                Destroy(_caughtFishGO);
-            }
+            Destroy(GameObject.FindWithTag("Bobber"));
         }
     }
 
@@ -152,7 +146,7 @@ public class PlayerFish : MonoBehaviour
     {
         if (_isCanceled)
         {
-            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+            Destroy(GameObject.FindWithTag("Bobber"));
         }
     }
 
@@ -162,7 +156,7 @@ public class PlayerFish : MonoBehaviour
         if (_isCastButtonPressed && !FindBobber() && _characterController.isGrounded)
         {
             _bobber = Instantiate(
-                bobber,
+                bobberPrefab,
                 this.transform.position + new Vector3(0f, _castHeight, 0f),
                 this.transform.rotation
             );
@@ -177,8 +171,11 @@ public class PlayerFish : MonoBehaviour
         }
     }
 
-    // TODO if fish is caught and reeled in, make sure to add to inventory.
-    // Or - just destroy
+    public bool WasReelCatch()
+    {
+        return _wasFishCaught ? true : false;
+    }
+
     void HandleReel()
     {
         Rigidbody hookedFishRB = null;
@@ -207,18 +204,22 @@ public class PlayerFish : MonoBehaviour
             Vector3 reelDirection = playerPosition - _bobber.transform.position;
             reelDirection.Normalize();
 
-            _caughtFishGO = _fc.GetHookedFishGO();
+            _hookedFishGO = _fc.GetHookedFishGO();
 
-            if (_caughtFishGO != null)
+            if (_hookedFishGO != null)
             {
-                hookedFishRB = _caughtFishGO.GetComponentInChildren<Rigidbody>();
+                _wasFishCaught = false;
+                hookedFishRB = _hookedFishGO.GetComponentInChildren<Rigidbody>();
                 hookedFishRB.constraints = RigidbodyConstraints.None;
             }
 
             if (DistanceToPlayer() > slowdownDistance)
             {
                 _bobberRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
-                hookedFishRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
+                if (hookedFishRB)
+                {
+                    hookedFishRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
+                }
             }
             else if (
                 DistanceToPlayer() <= slowdownDistance && DistanceToPlayer() > retrieveDistance
@@ -226,12 +227,16 @@ public class PlayerFish : MonoBehaviour
             {
                 // Snap the bobber to the player
                 _bobberRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
-                hookedFishRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
+                if (hookedFishRB)
+                {
+                    hookedFishRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
+                }
             }
             else if (DistanceToPlayer() <= retrieveDistance)
             {
-                // TODO account for attached fish
-                Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+                // This will also destroy the fish.
+                Destroy(GameObject.FindWithTag("Bobber"));
+                _wasFishCaught = true;
             }
         }
     }

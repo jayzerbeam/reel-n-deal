@@ -7,10 +7,11 @@ using UnityEngine.InputSystem;
 public class FishCatching : MonoBehaviour
 {
     PlayerInput _playerInput;
-    public bool isFishCaught = false;
-    private GameObject hookedFishGO;
-    private Rigidbody hookedFishRB;
-    private Rigidbody _rb;
+    bool isFishHooked = false;
+    GameObject hookedFishGO;
+    Rigidbody hookedFishRB;
+    Rigidbody _rb;
+    PlayerFish _pf;
 
     public TextMeshProUGUI talk_to_playerText;
     public float timeToErase = 2f;
@@ -41,15 +42,15 @@ public class FishCatching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isFishCaught)
+        if (isFishHooked)
         {
-            // HandleCatch();
+            HandleCatch();
         }
     }
 
     public GameObject GetHookedFishGO()
     {
-        if (isFishCaught)
+        if (isFishHooked)
         {
             return hookedFishGO;
         }
@@ -63,7 +64,7 @@ public class FishCatching : MonoBehaviour
     {
         // https://docs.unity3d.com/ScriptReference/Collider.OnCollisionEnter.html
         // https://forum.unity.com/threads/add-an-object-as-a-child-of-another-gameobject-into-a-different-scene.1292907/
-        if (!isFishCaught)
+        if (!isFishHooked)
         {
             // check for fish collision
             if (collision.gameObject.CompareTag("Fish"))
@@ -83,7 +84,7 @@ public class FishCatching : MonoBehaviour
 
                 FishAI fishAIscript = collision.gameObject.GetComponent<FishAI>();
                 fishAIscript.enabled = false; // turn off AI when caught
-                isFishCaught = true;
+                isFishHooked = true;
             }
         }
     }
@@ -95,7 +96,6 @@ public class FishCatching : MonoBehaviour
         fishAIscript.aiState = FishAI.AIState.fleeState;
         hookedFishGO.transform.SetParent(null);
         hookedFishGO = null;
-        isFishCaught = false;
     }
 
     // TODO countdown in real time and display to user
@@ -111,52 +111,57 @@ public class FishCatching : MonoBehaviour
     // Must take into account bobber
     void HandleCatch()
     {
-        timeToErase = float.PositiveInfinity;
-        hookedFishRB.constraints = RigidbodyConstraints.None;
+        // TODO set to countdown timer random value
+        timeToErase = 5.0f;
 
         // TODO must display the countdown timer
-        if (randomInputKey != "")
+        talk_to_player(
+            $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\nKeypresses remaining: {keyPressesRemaining}"
+        );
+
+        bool playerIsReelingTrigger =
+            _playerInput.CharacterControls.Reel.ReadValue<float>() >= 0.0f;
+        bool playerIsReelingMouse = Input.GetMouseButton(0);
+
+        if (playerIsReelingMouse || playerIsReelingTrigger)
         {
-            talk_to_player(
-                $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\nKeypresses remaining: {keyPressesRemaining}"
-            );
+            talk_to_player("Player is reeling...");
+            return;
         }
 
-        if (!Input.GetMouseButton(0) && Input.anyKey)
-        // Reeling is okay
-        // if (_playerInput.CharacterControls.Reel.ReadValue<float>() <= 0.0f && Input.anyKey)
+        // TODO i need to wait for player input
+        if (Input.GetKeyDown(randomInputKey))
         {
-            if (Input.GetKeyDown(randomInputKey))
+            string prevInputKey = randomInputKey;
+            randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
+
+            // Ensure the next input is not the same as the previous input
+            while (prevInputKey == randomInputKey)
             {
-                string prevInputKey = randomInputKey;
                 randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
-
-                // Ensure the next input is not the same as the previous input
-                while (prevInputKey == randomInputKey)
-                {
-                    randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
-                }
-                keyPressesRemaining -= 1;
             }
-            else if (!Input.GetKeyDown(randomInputKey))
-            {
-                keyPressesRemaining = 5;
-                timeToErase = 3.0f;
-                Destroy(GameObject.FindGameObjectWithTag("Bobber"));
-                talk_to_player("Oh no! The fish got away...");
-                ReleaseFish();
-            }
+            keyPressesRemaining -= 1;
         }
-        if (keyPressesRemaining == 0)
+        // !!! The problem with this is that it always return false, even when the player is NOT inputting.
+        // So the fish always immediately gets away.
+        else if (!Input.GetKeyDown(randomInputKey))
         {
+            talk_to_player("Oh no! The fish got away...");
             keyPressesRemaining = 5;
-            isFishCaught = false;
-            timeToErase = 3f;
-            talk_to_player("CONGRATS! You caught a fish!");
-            randomInputKey = "";
+            isFishHooked = false;
+            timeToErase = 3.0f;
             Destroy(GameObject.FindGameObjectWithTag("Bobber"));
-            // TODO Actually add to inventory
-            Destroy(hookedFishGO);
+            ReleaseFish();
+        }
+        if (keyPressesRemaining == 0 || _pf.WasReelCatch())
+        {
+            talk_to_player("CONGRATS! You caught a fish!");
+            keyPressesRemaining = 5;
+            isFishHooked = false;
+            timeToErase = 3.0f;
+            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+            // TODO add to inventory
+            // Destroy(hookedFishGO);
         }
     }
 

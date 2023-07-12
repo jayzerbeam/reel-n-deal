@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class FishCatching : MonoBehaviour
 {
+    PlayerInput _playerInput;
     public bool isFishCaught = false;
     private GameObject hookedFishGO;
     private Rigidbody hookedFishRB;
@@ -23,6 +25,7 @@ public class FishCatching : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _playerInput = new PlayerInput();
 
         GameObject textToPlayer = GameObject.Find("textToPlayer");
         // Random array selection found here
@@ -40,7 +43,7 @@ public class FishCatching : MonoBehaviour
     {
         if (isFishCaught)
         {
-            HandleCatch();
+            // HandleCatch();
         }
     }
 
@@ -93,36 +96,44 @@ public class FishCatching : MonoBehaviour
         talk_to_player(countdownSeconds.ToString());
     }
 
+    // Must take into account bobber
     void HandleCatch()
     {
         timeToErase = float.PositiveInfinity;
         hookedFishRB.constraints = RigidbodyConstraints.None;
 
+        // TODO must display the countdown timer
         if (randomInputKey != "")
         {
             talk_to_player(
                 $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\nKeypresses remaining: {keyPressesRemaining}"
             );
-            // TODO must display the countdown timer
         }
-        if (Input.anyKeyDown && Input.GetKeyDown(randomInputKey))
-        {
-            string prevInputKey = randomInputKey;
-            randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
 
-            // Ensure the next input is not the same as the previous input
-            while (prevInputKey == randomInputKey)
-            {
-                randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
-            }
-            keyPressesRemaining -= 1;
-        }
-        else if (Input.anyKeyDown && !Input.GetKeyDown(randomInputKey))
+        if (!Input.GetMouseButton(0) && Input.anyKey)
+        // Reeling is okay
+        // if (_playerInput.CharacterControls.Reel.ReadValue<float>() <= 0.0f && Input.anyKey)
         {
-            keyPressesRemaining = 5;
-            timeToErase = 3.0f;
-            talk_to_player("Oh no! The fish got away...");
-            ReleaseFish();
+            if (Input.GetKeyDown(randomInputKey))
+            {
+                string prevInputKey = randomInputKey;
+                randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
+
+                // Ensure the next input is not the same as the previous input
+                while (prevInputKey == randomInputKey)
+                {
+                    randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
+                }
+                keyPressesRemaining -= 1;
+            }
+            else if (!Input.GetKeyDown(randomInputKey))
+            {
+                keyPressesRemaining = 5;
+                timeToErase = 3.0f;
+                Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+                talk_to_player("Oh no! The fish got away...");
+                ReleaseFish();
+            }
         }
         if (keyPressesRemaining == 0)
         {

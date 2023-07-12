@@ -204,9 +204,16 @@ public class PlayerFish : MonoBehaviour
             Vector3 reelDirection = playerPosition - _bobber.transform.position;
             reelDirection.Normalize();
 
+            if (hookedFishRB != null)
+            {
+                _caughtFish = hookedFishRB.gameObject;
+                hookedFishRB.constraints = RigidbodyConstraints.None;
+            }
+
             if (DistanceToPlayer() > slowdownDistance)
             {
                 _bobberRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
+                hookedFishRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
             }
             else if (
                 DistanceToPlayer() <= slowdownDistance && DistanceToPlayer() > retrieveDistance
@@ -214,6 +221,7 @@ public class PlayerFish : MonoBehaviour
             {
                 // Snap the bobber to the player
                 _bobberRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
+                hookedFishRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
             }
             else if (DistanceToPlayer() <= retrieveDistance)
             {

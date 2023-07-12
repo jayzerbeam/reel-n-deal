@@ -7,7 +7,10 @@ public class BossFishSpawn : MonoBehaviour
     public GameObject bossFish;
     private GameObject fishingRodUpgrade;
 
-    private AudioSource audioPlay; 
+    private AudioSource audioPlay;
+
+    private GameObject BossFishAlert;
+    
 
     private void Start()
     {

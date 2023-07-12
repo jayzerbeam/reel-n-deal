@@ -7,6 +7,8 @@ public class BossFishSpawn : MonoBehaviour
     public GameObject bossFish;
     private GameObject fishingRodUpgrade;
 
+    private AudioSource audioPlay; 
+
     private void Start()
     {
         bossFish = GameObject.Find("BossFish");
@@ -18,6 +20,9 @@ public class BossFishSpawn : MonoBehaviour
         {
             Debug.LogError("Boss Fish not found");
         }
+
+        audioPlay = GetComponent<AudioSource>();
+        audioPlay.playOnAwake = false; 
     }
 
     private void Update()
@@ -25,7 +30,8 @@ public class BossFishSpawn : MonoBehaviour
         if (fishingRodUpgrade == null)
         {
             Renderer renderer = GetComponent<Renderer>();
-            renderer.enabled = true; 
+            renderer.enabled = true;
+            audioPlay.Play();
             enabled = false; 
         }
     }

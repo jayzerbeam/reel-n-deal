@@ -5,7 +5,7 @@ using UnityEngine;
 public class InstructionsOnPlay : MonoBehaviour
 {
     public GameObject openingInstructions;
-    public float showDisplay = 10f; 
+    public float showDisplay = 5f; 
     void Start()
     {
         openingInstructions.SetActive(true);

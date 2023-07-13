@@ -3,7 +3,7 @@ Team Members (Name, email, Canvas account)
 - Cassandra Durkee, cdurkee6@gatech.edu, 
 - Beto Icaza, laip3@gatech.edu
 - Jason Long, jlong326@gatech.edu, jlong326
-- - Grady Sullivan, gsullivan36@gatech.edu, gsullivan36
+- Grady Sullivan, gsullivan36@gatech.edu, gsullivan36
 
 Main Scene: mainGameScene
 
@@ -50,6 +50,9 @@ Grady
 - MainMenuCamera.cs -- rotates camera around island for nice menu background
 - GameStarter.cs -- starts game
 - GameQuitter.cs -- quits game
+- shark_start.wav and shark_loop.wav -- trimmed sound files with Audacity
+- sharkAudioRandomizer.cs -- randomizes pitch and frequency of shark sounds based on player distance
+- SharkAudioManager.cs -- responsible for updating sound source settings and playing sounds to prevent audio overlap
 
 Luis Alberto
 - Level design + game ideation
@@ -153,3 +156,4 @@ https://pixabay.com/sound-effects/search/heavy-metal/
 Fish models: https://assetstore.unity.com/packages/3d/characters/animals/fish/fish-polypack-202232
 Player models: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/stylized-npc-peasant-nolant-252440
 Player animations: https://mixamo.com/ (Links to individual animations are not available)
+Shark audio: https://freesound.org/people/kradziej/sounds/511281/

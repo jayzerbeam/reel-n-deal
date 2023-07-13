@@ -96,7 +96,7 @@ public class FishSpawning : MonoBehaviour
             weight = bounds.size.x * bounds.size.z;
             if (collider.gameObject.CompareTag("Ocean"))
             {
-                weight *= 0.1f; // done so oceans don't get all the spawns
+                weight *= 0.25f; // done so oceans don't get all the spawns
             }
             colliderAreas.Add(weight);
             totalWeight += weight; 
@@ -117,7 +117,6 @@ public class FishSpawning : MonoBehaviour
             }
         }
 
-        //Collider randomWaterCollider = waterColliders[Random.Range(0, waterColliders.Length)]; // pick random body of water
         string waterTag = randomWaterCollider.gameObject.tag; // tag of chosen body of water
         Vector3 spawnPosition = GetRandomPointOnCollider(randomWaterCollider); // random spot on water that meets spawning criteria
         

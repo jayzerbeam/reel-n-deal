@@ -24,6 +24,7 @@ public class FishAI : MonoBehaviour
     private Animator anim;
     private Rigidbody rb;
     private float currentSpeed;
+    private bool _wasRecentlyCaught;
     public bool WasRecentlyCaught
     {
         get { return _wasRecentlyCaught; }

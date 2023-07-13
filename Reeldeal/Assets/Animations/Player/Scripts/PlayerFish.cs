@@ -9,9 +9,10 @@ public class PlayerFish : MonoBehaviour
 {
     PlayerInput _playerInput;
     GameObject _player;
+    playerInventory _playerInventory;
     CharacterController _characterController;
     Animator _animator;
-    FishCatching _fc;
+    FishCatching _fishCatching;
 
     GameObject _bobber;
     Rigidbody _bobberRB;
@@ -22,7 +23,6 @@ public class PlayerFish : MonoBehaviour
 
     bool _isCanceled;
     bool _isCastButtonPressed;
-    bool _wasFishCaught = false;
 
     int _isCastingHash;
     int _isFishingHash;
@@ -42,9 +42,9 @@ public class PlayerFish : MonoBehaviour
     {
         _player = GameObject.FindWithTag("Player");
         _playerInput = new PlayerInput();
+        _playerInventory = _player.GetComponent<playerInventory>();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
-        _fc = new FishCatching();
 
         _isCastingHash = Animator.StringToHash("isCasting");
         _isFishingHash = Animator.StringToHash("isFishing");
@@ -67,7 +67,6 @@ public class PlayerFish : MonoBehaviour
     {
         HandleAnimation();
         HandleCancel();
-        FindBobber();
     }
 
     void FixedUpdate()
@@ -161,6 +160,8 @@ public class PlayerFish : MonoBehaviour
                 this.transform.rotation
             );
 
+            _fishCatching = _bobber.GetComponent<FishCatching>();
+
             if (_bobber != null)
             {
                 _bobberRB = _bobber.GetComponent<Rigidbody>();
@@ -169,11 +170,6 @@ public class PlayerFish : MonoBehaviour
                 _bobberRB.AddForce(castVelocity, ForceMode.Impulse);
             }
         }
-    }
-
-    public bool WasReelCatch()
-    {
-        return _wasFishCaught ? true : false;
     }
 
     void HandleReel()
@@ -204,11 +200,10 @@ public class PlayerFish : MonoBehaviour
             Vector3 reelDirection = playerPosition - _bobber.transform.position;
             reelDirection.Normalize();
 
-            _hookedFishGO = _fc.GetHookedFishGO();
+            _hookedFishGO = _fishCatching.GetHookedFishGO();
 
             if (_hookedFishGO != null)
             {
-                _wasFishCaught = false;
                 hookedFishRB = _hookedFishGO.GetComponentInChildren<Rigidbody>();
                 hookedFishRB.constraints = RigidbodyConstraints.None;
             }
@@ -236,7 +231,7 @@ public class PlayerFish : MonoBehaviour
             {
                 // This will also destroy the fish.
                 Destroy(GameObject.FindWithTag("Bobber"));
-                _wasFishCaught = true;
+                _playerInventory.AddFishedFish("Fish Type, Other");
             }
         }
     }

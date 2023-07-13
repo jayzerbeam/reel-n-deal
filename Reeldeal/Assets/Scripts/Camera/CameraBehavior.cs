@@ -21,8 +21,6 @@ public class CameraBehavior : MonoBehaviour
 
     void GetTarget()
     {
-        // Disabling for now - do not want this to affect the camera on main.
-        // ENABLE FOR BOBBER TRACKER
         _bobber = GameObject.FindWithTag("Bobber");
 
         if (_bobber)
@@ -39,7 +37,10 @@ public class CameraBehavior : MonoBehaviour
 
     void LateUpdate()
     {
-        this.transform.position = _target.TransformPoint(CamOffset);
-        this.transform.LookAt(_target);
+        if (_target)
+        {
+            this.transform.position = _target.TransformPoint(CamOffset);
+            this.transform.LookAt(_target);
+        }
     }
 }

@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 
 public class FishCatching : MonoBehaviour
 {
-    PlayerInput _playerInput;
-    bool isFishHooked = false;
+    GameObject _player;
+    playerInventory _playerInventory;
     GameObject hookedFishGO;
     Rigidbody hookedFishRB;
     Rigidbody _rb;
-    PlayerFish _pf;
+    bool isFishHooked = false;
 
     public TextMeshProUGUI talk_to_playerText;
 
@@ -25,7 +25,8 @@ public class FishCatching : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _playerInput = new PlayerInput();
+        _player = GameObject.FindWithTag("Player");
+        _playerInventory = _player.GetComponent<playerInventory>();
 
         GameObject textToPlayer = GameObject.Find("textToPlayer");
         // Random array selection found here
@@ -71,7 +72,6 @@ public class FishCatching : MonoBehaviour
 
                 if (hookedFishRB != null)
                 {
-                    hookedFishRB.velocity = Vector3.zero;
                     hookedFishRB.constraints = RigidbodyConstraints.FreezeAll;
                 }
 
@@ -87,8 +87,11 @@ public class FishCatching : MonoBehaviour
         FishAI fishAIscript = hookedFishGO.GetComponent<FishAI>();
         fishAIscript.enabled = true;
         fishAIscript.aiState = FishAI.AIState.fleeState;
+        hookedFishRB.constraints = RigidbodyConstraints.None;
+
         hookedFishGO.transform.SetParent(null);
         hookedFishGO = null;
+        hookedFishRB = null;
     }
 
     // TODO countdown in real time and display to user
@@ -109,16 +112,6 @@ public class FishCatching : MonoBehaviour
             $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\nKeypresses remaining: {keyPressesRemaining}"
         );
 
-        // bool playerIsReelingTrigger =
-        //     _playerInput.CharacterControls.Reel.ReadValue<float>() >= 0.0f;
-        // bool playerIsReelingMouse = Input.GetMouseButton(0);
-        //
-        // if (playerIsReelingMouse || playerIsReelingTrigger)
-        // {
-        //     talk_to_player("Player is reeling...");
-        //     return;
-        // }
-
         if (Input.anyKeyDown)
         {
             if (Input.GetKeyDown(randomInputKey))
@@ -138,18 +131,16 @@ public class FishCatching : MonoBehaviour
                 talk_to_player("Oh no! The fish got away...");
                 keyPressesRemaining = 5;
                 isFishHooked = false;
-                Destroy(GameObject.FindGameObjectWithTag("Bobber"));
                 ReleaseFish();
             }
         }
-        if (keyPressesRemaining == 0 || _pf.WasReelCatch())
+        if (keyPressesRemaining == 0)
         {
             talk_to_player("CONGRATS! You caught a fish!");
             keyPressesRemaining = 5;
             isFishHooked = false;
-            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
-            // TODO add to inventory
-            // Destroy(hookedFishGO);
+            Destroy(GameObject.FindWithTag("Bobber"));
+            _playerInventory.AddFishedFish("Fish Type, Other");
         }
     }
 

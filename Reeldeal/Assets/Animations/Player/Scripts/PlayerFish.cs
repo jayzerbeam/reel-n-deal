@@ -49,7 +49,6 @@ public class PlayerFish : MonoBehaviour
         _isCastingHash = Animator.StringToHash("isCasting");
         _isFishingHash = Animator.StringToHash("isFishing");
 
-        // TODO prune these (if possible)
         _playerInput.CharacterControls.Cast.started += OnCast;
         _playerInput.CharacterControls.Cast.canceled += OnCast;
         _playerInput.CharacterControls.Cast.performed += OnCast;
@@ -185,10 +184,8 @@ public class PlayerFish : MonoBehaviour
 
         if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
         {
-            // TODO vary the reelspeed based on how close the bobber is to the player
-            // Must have a high reelspeed, like 15f, for the bobber to overcome steep angles
             float reelSpeed = 15.0f;
-            float minReelSpeed = 1.0f;
+            float snapSpeed = 1.0f;
             float slowdownDistance = 4.0f;
             float retrieveDistance = 1.0f;
 
@@ -221,17 +218,17 @@ public class PlayerFish : MonoBehaviour
             )
             {
                 // Snap the bobber to the player
-                _bobberRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
+                _bobberRB.AddForce(reelDirection * snapSpeed, ForceMode.Impulse);
                 if (hookedFishRB)
                 {
-                    hookedFishRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
+                    hookedFishRB.AddForce(reelDirection * snapSpeed, ForceMode.Impulse);
                 }
             }
             else if (DistanceToPlayer() <= retrieveDistance)
             {
                 // This will also destroy the fish.
-                Destroy(GameObject.FindWithTag("Bobber"));
                 _playerInventory.AddFishedFish("Fish Type, Other");
+                Destroy(GameObject.FindWithTag("Bobber"));
             }
         }
     }

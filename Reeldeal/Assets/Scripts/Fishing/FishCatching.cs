@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class FishCatching : MonoBehaviour
 {
     GameObject _player;
     playerInventory _playerInventory;
+    FishingMessaging _messaging;
     GameObject hookedFishGO;
     Rigidbody hookedFishRB;
     Rigidbody _rb;
     bool isFishHooked = false;
-
-    public TextMeshProUGUI talk_to_playerText;
 
     // HandleCatch Variables
     int keyPressesRemaining = 5;
@@ -27,16 +26,11 @@ public class FishCatching : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _player = GameObject.FindWithTag("Player");
         _playerInventory = _player.GetComponent<playerInventory>();
+        _messaging = _player.GetComponent<FishingMessaging>();
 
-        GameObject textToPlayer = GameObject.Find("textToPlayer");
         // Random array selection found here
         // https://stackoverflow.com/questions/14297853/how-to-get-random-values-from-array-in-c-sharp
         randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
-
-        if (textToPlayer != null)
-        {
-            talk_to_playerText = textToPlayer.GetComponent<TextMeshProUGUI>();
-        }
     }
 
     // Update is called once per frame
@@ -92,35 +86,48 @@ public class FishCatching : MonoBehaviour
 
     private void ReleaseFish()
     {
+        _messaging.DisplayMessage("Oh no! The fish got away...\n\nBetter luck next time!");
+        keyPressesRemaining = 5;
+        isFishHooked = false;
         FishAI fishAIscript = hookedFishGO.GetComponent<FishAI>();
         fishAIscript.enabled = true;
         fishAIscript.aiState = FishAI.AIState.fleeState;
         fishAIscript.WasRecentlyCaught = true;
         hookedFishRB.constraints = RigidbodyConstraints.None;
-
         hookedFishGO.transform.SetParent(null);
         hookedFishGO = null;
         hookedFishRB = null;
     }
 
-    // TODO countdown in real time and display to user
-    void ShowCountdown()
-    {
-        // 3-5 second timer
-        float countdownSeconds = 0.0f;
-        float minSeconds = 3.0f;
-        float maxSeconds = 5.0f;
-        talk_to_player(countdownSeconds.ToString());
-    }
+    float countdownTimer = 15.0f;
+    float minSeconds = 3.0f;
+    float maxSeconds = 5.0f;
 
     // Must take into account bobber
     void HandleCatch()
     {
-        // TODO must display the countdown timer
+        /*
+         * Change timer based on fish difficulty:
+         * easy = 10 seconds
+         * med = 7 seconds
+         * hard = 5 seconds
+         * boss = 3 seconds
+          */
+        countdownTimer -= Time.deltaTime;
+
         // Set the msg disappear to countdown
-        talk_to_player(
-            $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\nKeypresses remaining: {keyPressesRemaining}"
-        );
+        if (countdownTimer >= 0.0f)
+        {
+            // TODO handle externally
+            _messaging.DisplayMessage(
+                $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\n\nKeypresses remaining: {keyPressesRemaining}\n\nTime left: {countdownTimer}",
+                countdownTimer
+            );
+        }
+        else
+        {
+            ReleaseFish();
+        }
 
         if (Input.anyKeyDown)
         {
@@ -138,35 +145,16 @@ public class FishCatching : MonoBehaviour
             }
             else if (!Input.GetKeyDown(randomInputKey))
             {
-                talk_to_player("Oh no! The fish got away...", 5f);
-                keyPressesRemaining = 5;
-                isFishHooked = false;
                 ReleaseFish();
             }
         }
         if (keyPressesRemaining == 0)
         {
-            // Why isn't this disappearing?
-            talk_to_player("CONGRATS! You caught a fish!", 5f);
+            _messaging.DisplayMessage("CONGRATS!\n\nYou caught a fish!");
             keyPressesRemaining = 5;
             isFishHooked = false;
-            // Destroy(GameObject.FindWithTag("Bobber"));
             _playerInventory.AddFishedFish("Fish Type, Other");
+            Destroy(GameObject.FindWithTag("Bobber"));
         }
-    }
-
-    // Remove or replace later with the actual instantiated function.
-    public void talk_to_player(string talk_to, float timeToErase = 8f)
-    {
-        StartCoroutine(talk_to_playerWritethenEraseText(talk_to, timeToErase));
-    }
-
-    private IEnumerator talk_to_playerWritethenEraseText(string text, float timeToErase)
-    {
-        talk_to_playerText.text = text;
-
-        yield return new WaitForSeconds(timeToErase);
-
-        talk_to_playerText.text = "";
     }
 }

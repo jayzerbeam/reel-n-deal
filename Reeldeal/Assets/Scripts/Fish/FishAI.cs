@@ -137,6 +137,17 @@ public class FishAI : MonoBehaviour
                     }
                 }
 
+                // also be agressive is player is simply too close
+                GameObject playerObject = GameObject.FindWithTag("Player");
+                if (playerObject != null)
+                {
+                    float playerDistance = Vector3.Distance(transform.position, playerObject.transform.position);
+                    if (playerDistance < 16 && fishMultiTag.HasTag("Agressive"))
+                    {
+                        StartCoroutine(PreAggroTurn(playerObject)); // smooth turn towards player before Ai state
+                    }
+                }
+
                 break;
 
             case AIState.hungryState:
@@ -234,5 +245,21 @@ public class FishAI : MonoBehaviour
             newPosition = new Vector3(newPosition.x, yValue, newPosition.z);
         transform.position = newPosition;
     }
+
+    private IEnumerator PreAggroTurn(GameObject player)
+    {
+        float turnProgress = 0f; // percentage complete
+        Quaternion startRotation = transform.rotation;
+        Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+
+        while (turnProgress < 1f)
+        {
+            turnProgress += rotationSpeed / 10f * Time.deltaTime; // Accumulate turn progress based on rotation speed
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, turnProgress); // https://docs.unity3d.com/ScriptReference/Quaternion.Slerp.html
+            yield return null; // https://www.javatpoint.com/unity-coroutines#:~:text=Here%2C%20the%20yield%20is%20a,continue%20on%20the%20next%20frame.&text=yield%20return%20null%20%2D%20This%20will,called%2C%20on%20the%20next%20frame.
+        }
+        aiState = AIState.aggressiveState; // transition state after turn completed
+    }
+
 
 }

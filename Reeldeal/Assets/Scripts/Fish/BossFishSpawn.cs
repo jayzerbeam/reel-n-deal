@@ -8,9 +8,11 @@ public class BossFishSpawn : MonoBehaviour
     private GameObject fishingRodUpgrade;
 
     private AudioSource audioPlay;
+    private bool hasPlayedAudio = false; 
 
     private GameObject bossFishAlert;
-    private float timer = 3f; 
+    private float timer = 3f;
+    private bool isRunning = false;
 
     private void Start()
     {
@@ -18,6 +20,7 @@ public class BossFishSpawn : MonoBehaviour
         fishingRodUpgrade = GameObject.FindGameObjectWithTag("FishingRodUpgrade");
         Renderer renderer = GetComponent<Renderer>();
         renderer.enabled = false;
+
 
         if (bossFish == null)
         {
@@ -33,15 +36,27 @@ public class BossFishSpawn : MonoBehaviour
 
     private void Update()
     {
-        if (fishingRodUpgrade == null)
+        if (fishingRodUpgrade == null && !isRunning)
         {
             Renderer renderer = GetComponent<Renderer>();
             renderer.enabled = true;
-            audioPlay.Play();
-            bossFishAlert.SetActive(true);
-            StartCoroutine(guiAppear());
-   
-           enabled = false; 
+
+            if (!hasPlayedAudio)
+            {
+                audioPlay.Play();
+                hasPlayedAudio = true;
+                bossFishAlert.SetActive(true);
+                StartCoroutine(guiAppear());
+                
+            }
+
+            isRunning = true;
+
+
+
+            enabled = false;
+
+            Debug.Log("Playing");
         }
 
     }

@@ -137,11 +137,27 @@ public class PlayerMove : MonoBehaviour
         }
         else if (_isRunPressed)
         {
-            _characterController.Move(moveDirection.normalized * _runSpeed * Time.deltaTime);
+            if (GameObject.Find("Boots") != null)
+            {
+                _characterController.Move(moveDirection.normalized * _runSpeed * Time.deltaTime);
+            }
+            else
+            {
+                _characterController.Move(moveDirection.normalized * (_runSpeed * 2) * Time.deltaTime);
+            }
+
+
         }
         else
         {
-            _characterController.Move(moveDirection.normalized * _walkSpeed * Time.deltaTime);
+            if (GameObject.Find("Boots") != null)
+            {
+                _characterController.Move(moveDirection.normalized * _walkSpeed * Time.deltaTime);
+            }
+            else
+            {
+                _characterController.Move(moveDirection.normalized * (_walkSpeed * 2) * Time.deltaTime);
+            }
         }
     }
 

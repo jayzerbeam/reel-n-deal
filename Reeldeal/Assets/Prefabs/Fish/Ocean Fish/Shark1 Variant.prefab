@@ -16,12 +16,12 @@ PrefabInstance:
         type: 3}
       propertyPath: loopSound
       value: 
-      objectReference: {fileID: 5825339117251818718}
+      objectReference: {fileID: 0}
     - target: {fileID: 519054923478010246, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
         type: 3}
       propertyPath: startSound
       value: 
-      objectReference: {fileID: 239228547888242190}
+      objectReference: {fileID: 0}
     - target: {fileID: 3525747364468869944, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
         type: 3}
       propertyPath: m_PlayOnAwake
@@ -115,18 +115,6 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4, type: 3}
---- !u!82 &239228547888242190 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: -9188339063902835390, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 229014345319396172}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &5825339117251818718 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6051250501935187858, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 229014345319396172}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6151169042313680969 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6228699227254926085, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
@@ -163,6 +151,7 @@ MonoBehaviour:
   fishTags:
   - Ocean
   - Agressive
+  - Hard
   fishMaterials:
   - fishMaterial: {fileID: 2100000, guid: 847f517cdf7e7714e8cda2ef238706fe, type: 2}
     weight: 35

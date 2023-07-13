@@ -10,8 +10,7 @@ public class BossFishSpawn : MonoBehaviour
     private AudioSource audioPlay;
 
     private GameObject bossFishAlert;
-    private float displayTime;
-    private float timer; 
+    private float timer = 3f; 
 
     private void Start()
     {
@@ -40,17 +39,16 @@ public class BossFishSpawn : MonoBehaviour
             renderer.enabled = true;
             audioPlay.Play();
             bossFishAlert.SetActive(true);
-            timer = displayTime;
-            enabled = false; 
+            StartCoroutine(guiAppear());
+   
+           enabled = false; 
         }
 
-        if (timer > 0f)
-        {
-            displayTime -= Time.deltaTime;
-            if (displayTime <= 0f)
-            {
-                bossFishAlert.SetActive(false);
-            }
-        }
+    }
+
+    IEnumerator guiAppear()
+    {
+        yield return new WaitForSeconds(timer);
+        bossFishAlert.SetActive(false);
     }
 }

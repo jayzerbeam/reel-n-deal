@@ -50,6 +50,7 @@ public class PlayerMove : MonoBehaviour
         // Run input
         _playerInput.CharacterControls.Run.performed += OnRun;
         _playerInput.CharacterControls.Run.canceled += OnRun;
+
     }
 
     void OnEnable()

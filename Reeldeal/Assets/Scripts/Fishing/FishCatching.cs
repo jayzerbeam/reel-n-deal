@@ -63,21 +63,29 @@ public class FishCatching : MonoBehaviour
             // check for fish collision
             if (collision.gameObject.CompareTag("Fish"))
             {
-                // Freeze the bobber
-                _rb.constraints = RigidbodyConstraints.FreezeAll;
-                collision.transform.SetParent(transform);
-
                 hookedFishGO = collision.gameObject;
                 hookedFishRB = hookedFishGO.GetComponent<Rigidbody>();
+                FishAI fishAIscript = hookedFishGO.GetComponent<FishAI>();
 
-                if (hookedFishRB != null)
+                if (!fishAIscript.WasRecentlyCaught)
                 {
-                    hookedFishRB.constraints = RigidbodyConstraints.FreezeAll;
-                }
+                    // Freeze the bobber
+                    _rb.constraints = RigidbodyConstraints.FreezeAll;
+                    collision.transform.SetParent(transform);
 
-                FishAI fishAIscript = collision.gameObject.GetComponent<FishAI>();
-                fishAIscript.enabled = false; // turn off AI when caught
-                isFishHooked = true;
+                    if (hookedFishRB != null)
+                    {
+                        hookedFishRB.constraints = RigidbodyConstraints.FreezeAll;
+                    }
+                    fishAIscript.enabled = false; // turn off AI when caught
+                    isFishHooked = true;
+                }
+                else
+                {
+                    hookedFishGO = null;
+                    hookedFishRB = null;
+                    fishAIscript = null;
+                }
             }
         }
     }
@@ -87,6 +95,7 @@ public class FishCatching : MonoBehaviour
         FishAI fishAIscript = hookedFishGO.GetComponent<FishAI>();
         fishAIscript.enabled = true;
         fishAIscript.aiState = FishAI.AIState.fleeState;
+        fishAIscript.WasRecentlyCaught = true;
         hookedFishRB.constraints = RigidbodyConstraints.None;
 
         hookedFishGO.transform.SetParent(null);
@@ -108,6 +117,7 @@ public class FishCatching : MonoBehaviour
     void HandleCatch()
     {
         // TODO must display the countdown timer
+        // Set the msg disappear to countdown
         talk_to_player(
             $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\nKeypresses remaining: {keyPressesRemaining}"
         );
@@ -128,7 +138,7 @@ public class FishCatching : MonoBehaviour
             }
             else if (!Input.GetKeyDown(randomInputKey))
             {
-                talk_to_player("Oh no! The fish got away...");
+                talk_to_player("Oh no! The fish got away...", 5f);
                 keyPressesRemaining = 5;
                 isFishHooked = false;
                 ReleaseFish();
@@ -136,21 +146,22 @@ public class FishCatching : MonoBehaviour
         }
         if (keyPressesRemaining == 0)
         {
-            talk_to_player("CONGRATS! You caught a fish!");
+            // Why isn't this disappearing?
+            talk_to_player("CONGRATS! You caught a fish!", 5f);
             keyPressesRemaining = 5;
             isFishHooked = false;
-            Destroy(GameObject.FindWithTag("Bobber"));
+            // Destroy(GameObject.FindWithTag("Bobber"));
             _playerInventory.AddFishedFish("Fish Type, Other");
         }
     }
 
     // Remove or replace later with the actual instantiated function.
-    public void talk_to_player(string talk_to)
+    public void talk_to_player(string talk_to, float timeToErase = 8f)
     {
-        StartCoroutine(talk_to_playerWritethenEraseText(talk_to));
+        StartCoroutine(talk_to_playerWritethenEraseText(talk_to, timeToErase));
     }
 
-    private IEnumerator talk_to_playerWritethenEraseText(string text, float timeToErase = 5f)
+    private IEnumerator talk_to_playerWritethenEraseText(string text, float timeToErase)
     {
         talk_to_playerText.text = text;
 

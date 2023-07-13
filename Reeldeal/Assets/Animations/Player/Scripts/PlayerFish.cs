@@ -7,17 +7,19 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerFish : MonoBehaviour
 {
-    // private string msg;
-
     PlayerInput _playerInput;
     GameObject _player;
+    playerInventory _playerInventory;
     CharacterController _characterController;
     Animator _animator;
+    FishCatching _fishCatching;
+
     GameObject _bobber;
     Rigidbody _bobberRB;
-    GameObject _caughtFish;
 
-    public GameObject bobber;
+    GameObject _hookedFishGO;
+
+    public GameObject bobberPrefab;
 
     bool _isCanceled;
     bool _isCastButtonPressed;
@@ -40,6 +42,7 @@ public class PlayerFish : MonoBehaviour
     {
         _player = GameObject.FindWithTag("Player");
         _playerInput = new PlayerInput();
+        _playerInventory = _player.GetComponent<playerInventory>();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
 
@@ -64,7 +67,6 @@ public class PlayerFish : MonoBehaviour
     {
         HandleAnimation();
         HandleCancel();
-        FindBobber();
     }
 
     void FixedUpdate()
@@ -97,11 +99,7 @@ public class PlayerFish : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bobber"))
         {
-            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
-            if (_caughtFish)
-            {
-                Destroy(_caughtFish);
-            }
+            Destroy(GameObject.FindWithTag("Bobber"));
         }
     }
 
@@ -147,19 +145,22 @@ public class PlayerFish : MonoBehaviour
     {
         if (_isCanceled)
         {
-            Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+            Destroy(GameObject.FindWithTag("Bobber"));
         }
     }
 
+    // TODO add variable cast force on hold.
     void HandleCast()
     {
         if (_isCastButtonPressed && !FindBobber() && _characterController.isGrounded)
         {
             _bobber = Instantiate(
-                bobber,
+                bobberPrefab,
                 this.transform.position + new Vector3(0f, _castHeight, 0f),
                 this.transform.rotation
             );
+
+            _fishCatching = _bobber.GetComponent<FishCatching>();
 
             if (_bobber != null)
             {
@@ -180,38 +181,57 @@ public class PlayerFish : MonoBehaviour
             _bobber = GameObject.FindWithTag("Bobber");
             _bobberRB = _bobber.GetComponent<Rigidbody>();
             _bobberRB.sleepThreshold = 1f;
-            hookedFishRB = _bobber.GetComponentInChildren<Rigidbody>();
         }
 
         if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
         {
+            // TODO vary the reelspeed based on how close the bobber is to the player
+            // Must have a high reelspeed, like 15f, for the bobber to overcome steep angles
             float reelSpeed = 15.0f;
             float minReelSpeed = 1.0f;
             float slowdownDistance = 4.0f;
             float retrieveDistance = 1.0f;
 
             _bobberRB.constraints = RigidbodyConstraints.None;
-            // Largely prevents the bobber from rolling away
+            // Prevents the bobber from rolling away
             _bobberRB.constraints = RigidbodyConstraints.FreezeRotation;
 
             Vector3 playerPosition = this.transform.position;
             Vector3 reelDirection = playerPosition - _bobber.transform.position;
             reelDirection.Normalize();
 
+            _hookedFishGO = _fishCatching.GetHookedFishGO();
+
+            if (_hookedFishGO != null)
+            {
+                hookedFishRB = _hookedFishGO.GetComponentInChildren<Rigidbody>();
+                hookedFishRB.constraints = RigidbodyConstraints.None;
+            }
+
             if (DistanceToPlayer() > slowdownDistance)
             {
                 _bobberRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
+                if (hookedFishRB)
+                {
+                    hookedFishRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
+                }
             }
             else if (
                 DistanceToPlayer() <= slowdownDistance && DistanceToPlayer() > retrieveDistance
             )
             {
+                // Snap the bobber to the player
                 _bobberRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
+                if (hookedFishRB)
+                {
+                    hookedFishRB.AddForce(reelDirection * minReelSpeed, ForceMode.Impulse);
+                }
             }
             else if (DistanceToPlayer() <= retrieveDistance)
             {
-                // TODO account for attached fish
-                Destroy(GameObject.FindGameObjectWithTag("Bobber"));
+                // This will also destroy the fish.
+                Destroy(GameObject.FindWithTag("Bobber"));
+                _playerInventory.AddFishedFish("Fish Type, Other");
             }
         }
     }

@@ -24,6 +24,12 @@ public class FishAI : MonoBehaviour
     private Animator anim;
     private Rigidbody rb;
     private float currentSpeed;
+    private bool _wasRecentlyCaught;
+    public bool WasRecentlyCaught
+    {
+        get { return _wasRecentlyCaught; }
+        set { _wasRecentlyCaught = value; }
+    }
 
     // waypoints / positioning
     private GameObject[] waypoints;
@@ -202,6 +208,10 @@ public class FishAI : MonoBehaviour
                 {
                     fleeing = false;
                     aiState = AIState.idleState;
+                    if (_wasRecentlyCaught)
+                    {
+                        _wasRecentlyCaught = false;
+                    }
                 }
                 else
                 {
@@ -260,6 +270,4 @@ public class FishAI : MonoBehaviour
         }
         aiState = AIState.aggressiveState; // transition state after turn completed
     }
-
-
 }

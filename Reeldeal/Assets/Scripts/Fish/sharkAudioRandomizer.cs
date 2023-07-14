@@ -16,7 +16,9 @@ public class sharkAudioRandomizer : MonoBehaviour
     void Start()
     {
         frequency = 10;
-        SharkAudioManager.PlayStartSound(transform.position, 1f);
+        float playerDistance = Vector3.Distance(transform.position, player.transform.position);
+        if (playerDistance < 60)
+            SharkAudioManager.PlayStartSound(transform.position, 1f);
         
         // get player gameObject
         player = GameObject.FindWithTag("Player");

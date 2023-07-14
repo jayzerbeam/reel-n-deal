@@ -35,7 +35,7 @@ public class FishSpawning : MonoBehaviour
     void Start()
     {
         playerTransform = transform;
-        spawnTimer = 0f;
+        spawnTimer = 5f;
 
         //add tags to fish prefabs
         foreach (FishPrefabInfo fishPrefabInfo in fishPrefabs)

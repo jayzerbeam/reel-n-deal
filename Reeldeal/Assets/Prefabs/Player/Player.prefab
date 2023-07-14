@@ -1244,6 +1244,7 @@ GameObject:
   - component: {fileID: 6852037400769901638}
   - component: {fileID: 1122130438}
   - component: {fileID: 7635539927104353454}
+  - component: {fileID: 798370468}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1297,7 +1298,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.4
-  m_SlopeLimit: 35
+  m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
@@ -1420,7 +1421,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6483754695257692263}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca26f1d28706ece42abdc4368c239fef, type: 3}
   m_Name: 
@@ -1432,7 +1433,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6483754695257692263}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d5ee6fe564110d4b8d990ef8ade2eea, type: 3}
   m_Name: 
@@ -1445,7 +1446,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6483754695257692263}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa5ffbd8dd7466b45a71b6afb8ccd1e7, type: 3}
   m_Name: 
@@ -1460,7 +1461,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6483754695257692263}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e46475134e9a32438b5396cb5a630ad, type: 3}
   m_Name: 
@@ -1509,10 +1510,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   maxSpawnDistance: 128
-  minSpawnDistance: 24
+  minSpawnDistance: 10
   spawnAttempts: 30
-  spawnInterval: 2
-  maxFish: 30
+  spawnInterval: 0.5
+  maxFish: 60
 --- !u!114 &7635539927104353454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1525,10 +1526,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007446e8aeff8dccaa3ff2d3f37d05ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bobber: {fileID: 2886670933728575070, guid: 135aeada52e85c64c8f5493b85d529ad, type: 3}
+  bobberPrefab: {fileID: 2886670933728575070, guid: 135aeada52e85c64c8f5493b85d529ad,
+    type: 3}
   _castSpeed: 20
   _castHeight: 2.5
-  _bobberGravity: -10
+--- !u!114 &798370468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483754695257692263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56349fc6ba0e05d2a19fab5e4f6170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FishingMessageBox: {fileID: 0}
+  FishingMessageBoxBackground: {fileID: 0}
 --- !u!1 &6507593493205178434
 GameObject:
   m_ObjectHideFlags: 0

@@ -173,7 +173,9 @@ public class FishCatching : MonoBehaviour
             _wasFishCaught = true;
             _messaging.StopMessage();
             _messaging.DisplayMessage("CONGRATS!\n\nYou caught a fish!");
-            _playerInventory.AddFishedFish("Fish Type, Other");
+            _playerInventory.AddFishedFish(
+                "fish name, fish type, fish location, fish color, fish size, fish sex, fish age, fish time caught"
+            );
             Destroy(GameObject.FindWithTag("Bobber"));
         }
     }

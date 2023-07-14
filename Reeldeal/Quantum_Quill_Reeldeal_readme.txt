@@ -186,3 +186,4 @@ Fish models: https://assetstore.unity.com/packages/3d/characters/animals/fish/fi
 Player models: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/stylized-npc-peasant-nolant-252440
 Player animations: https://mixamo.com/ (Links to individual animations are not available)
 Shark audio: https://freesound.org/people/kradziej/sounds/511281/
+Reeling audio: https://freesound.org/people/mike%20campbell/sounds/34968/	Sampling Plus 1.0 License: https://creativecommons.org/licenses/sampling+/1.0/

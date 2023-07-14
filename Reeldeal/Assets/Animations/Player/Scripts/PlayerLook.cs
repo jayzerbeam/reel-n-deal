@@ -9,8 +9,8 @@ public class PlayerLook : MonoBehaviour
 
     // Can modify in Unity
     [SerializeField]
-    float _rotationSpeed = 80f;
-    float _rotate;
+    float _rotationSpeed = 2.5f;
+    float _inputX;
 
     void Awake()
     {
@@ -35,26 +35,20 @@ public class PlayerLook : MonoBehaviour
 
     void OnLook(InputAction.CallbackContext context)
     {
-        _rotate = context.ReadValue<Vector2>().x;
+        _inputX = context.ReadValue<Vector2>().x;
     }
 
     void HandleLook()
     {
         bool isFishing = GameObject.FindWithTag("Bobber");
-
         if (isFishing)
         {
             return;
         }
-        else if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0f)
-        {
-            {
-                _rotationSpeed = 5f;
-            }
-        }
-        else
-        {
-            transform.Rotate(Vector3.up * _rotate * _rotationSpeed * Time.deltaTime);
-        }
+        // https://discussions.unity.com/t/how-to-rotate-gameobject-with-mouse-using-new-inputsystem/246683
+        Vector2 mouseDelta = Mouse.current.delta.ReadValue();
+        float rotationX = _inputX * _rotationSpeed * Time.deltaTime;
+
+        transform.Rotate(Vector3.up * rotationX);
     }
 }

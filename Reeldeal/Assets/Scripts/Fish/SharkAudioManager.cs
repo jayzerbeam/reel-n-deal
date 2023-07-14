@@ -21,21 +21,27 @@ public class SharkAudioManager : MonoBehaviour
 
     public static void PlayStartSound(Vector3 position, float pitch)
     {
-        if (!audioManager.startSound.isPlaying && !audioManager.loopSound.isPlaying)
+        if (audioManager)
         {
-            audioManager.startSound.transform.position = position;
-            audioManager.startSound.pitch = pitch;
-            audioManager.startSound.Play();
+            if (!audioManager.startSound.isPlaying && !audioManager.loopSound.isPlaying)
+            {
+                audioManager.startSound.transform.position = position;
+                audioManager.startSound.pitch = pitch;
+                audioManager.startSound.Play();
+            }
         }
     }
 
     public static void PlayLoopSound(Vector3 position, float pitch)
     {
-        if (!audioManager.startSound.isPlaying && !audioManager.loopSound.isPlaying)
+        if (audioManager)
         {
-            audioManager.loopSound.transform.position = position;
-            audioManager.loopSound.pitch = pitch;
-            audioManager.loopSound.Play();
+            if (!audioManager.startSound.isPlaying && !audioManager.loopSound.isPlaying)
+            {
+                audioManager.loopSound.transform.position = position;
+                audioManager.loopSound.pitch = pitch;
+                audioManager.loopSound.Play();
+            }
         }
     }
 }

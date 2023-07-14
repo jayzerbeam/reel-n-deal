@@ -10,11 +10,7 @@ public class PlayerMove : MonoBehaviour
     Rigidbody _rb;
     CharacterController _characterController;
     Animator _animator;
-
     Vector2 _inputValues;
-
-    Vector3 currMovement;
-    Vector3 currRunMovement;
 
     int _isWalkingHash;
     int _isRunningHash;
@@ -22,14 +18,29 @@ public class PlayerMove : MonoBehaviour
     int _velocityXHash;
 
     bool _isMovementPressed;
+    bool _isRotationPressed;
     bool _isRunPressed;
     bool _isMovementFrozen;
-    bool _isWalking;
-    bool _isRunning;
-    bool _isFishing;
 
-    float _runSpeed = 8.0f;
-    float _walkSpeed = 2.8f;
+    bool _isWalkingAnim;
+    bool _isRunningAnim;
+    bool _isFishingAnim;
+
+    // TODO create base movement & rotation & multiply instead of multiple vars
+    [SerializeField]
+    float _walkSpeed = 2.0f;
+
+    [SerializeField]
+    float _stillRotationSpeed = 60f;
+
+    [SerializeField]
+    float _walkRotationSpeed = 160f;
+
+    [SerializeField]
+    float _runSpeed = 6.0f;
+
+    [SerializeField]
+    float _runRotationSpeed = 240f;
 
     void Awake()
     {
@@ -47,10 +58,10 @@ public class PlayerMove : MonoBehaviour
         _playerInput.CharacterControls.Move.started += OnMovementInput;
         _playerInput.CharacterControls.Move.canceled += OnMovementInput;
         _playerInput.CharacterControls.Move.performed += OnMovementInput;
+
         // Run input
         _playerInput.CharacterControls.Run.performed += OnRun;
         _playerInput.CharacterControls.Run.canceled += OnRun;
-
     }
 
     void OnEnable()
@@ -65,12 +76,16 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        _isWalking = _animator.GetBool(_isWalkingHash);
-        _isRunning = _animator.GetBool(_isRunningHash);
-        _isFishing = GameObject.FindWithTag("Bobber");
+        _isWalkingAnim = _animator.GetBool(_isWalkingHash);
+        _isRunningAnim = _animator.GetBool(_isRunningHash);
+        _isFishingAnim = GameObject.FindWithTag("Bobber");
 
         HandleAnimation();
         FreezeIfFishing();
+    }
+
+    void FixedUpdate()
+    {
         HandleMove();
     }
 
@@ -82,22 +97,14 @@ public class PlayerMove : MonoBehaviour
     void OnMovementInput(InputAction.CallbackContext context)
     {
         _inputValues = context.ReadValue<Vector2>();
-
-        // Walk input
-        currMovement.x = _inputValues.x * _walkSpeed;
-        currMovement.z = _inputValues.y * _walkSpeed;
-
-        // Run Input
-        currRunMovement.x = _inputValues.x * _runSpeed;
-        currRunMovement.z = _inputValues.y * _runSpeed;
-
-        _isMovementPressed = _inputValues.x != 0 || _inputValues.y != 0;
+        _isMovementPressed = _inputValues.y != 0;
+        _isRotationPressed = _inputValues.x != 0;
     }
 
     void HandleAnimation()
     {
         // Run!
-        if (!_isFishing)
+        if (!_isFishingAnim)
         {
             if (_isMovementPressed && _isRunPressed)
             {
@@ -108,7 +115,10 @@ public class PlayerMove : MonoBehaviour
                 _animator.SetFloat(_velocityXHash, _inputValues.x * runMultiplier);
             }
             // Walk.
-            else if (_isMovementPressed && !_isRunPressed)
+            else if (
+                (_isMovementPressed && !_isRunPressed)
+                || (_isRotationPressed && !_isMovementPressed && !_isRunPressed)
+            )
             {
                 _animator.SetBool(_isWalkingHash, true);
                 _animator.SetBool(_isRunningHash, false);
@@ -116,7 +126,7 @@ public class PlayerMove : MonoBehaviour
                 _animator.SetFloat(_velocityXHash, _inputValues.x);
             }
             // Idle.
-            else if (!_isMovementPressed && _isWalking || !_isMovementPressed && _isRunning)
+            else if (!_isMovementPressed && _isWalkingAnim || !_isMovementPressed && _isRunningAnim)
             {
                 float resetMultiplier = 0.0f;
                 _animator.SetBool(_isWalkingHash, false);
@@ -129,41 +139,38 @@ public class PlayerMove : MonoBehaviour
 
     void HandleMove()
     {
-        Vector3 moveDirection = transform.TransformDirection(currMovement);
+        Vector3 baseRotation = Vector3.up * _inputValues.x * Time.fixedDeltaTime;
+        Vector3 movement = transform.forward * _inputValues.y * _walkSpeed * Time.deltaTime;
 
         if (_isMovementFrozen)
         {
             return;
         }
-        else if (_isRunPressed)
+        if (_isMovementPressed)
         {
-            if (GameObject.Find("Boots") != null)
+            if (_isRunPressed)
             {
-                _characterController.Move(moveDirection.normalized * _runSpeed * Time.deltaTime);
+                Quaternion angleRot = Quaternion.Euler(baseRotation * _runRotationSpeed);
+                _characterController.Move(movement * _runSpeed);
+                transform.rotation *= angleRot;
             }
             else
             {
-                _characterController.Move(moveDirection.normalized * (_runSpeed * 2) * Time.deltaTime);
+                Quaternion angleRot = Quaternion.Euler(baseRotation * _walkRotationSpeed);
+                _characterController.Move(movement * _walkSpeed);
+                transform.rotation *= angleRot;
             }
-
-
         }
-        else
+        else if (!_isMovementPressed && _isRotationPressed)
         {
-            if (GameObject.Find("Boots") != null)
-            {
-                _characterController.Move(moveDirection.normalized * _walkSpeed * Time.deltaTime);
-            }
-            else
-            {
-                _characterController.Move(moveDirection.normalized * (_walkSpeed * 2) * Time.deltaTime);
-            }
+            Quaternion angleRot = Quaternion.Euler(baseRotation * _stillRotationSpeed);
+            transform.rotation *= angleRot;
         }
     }
 
     void FreezeIfFishing()
     {
-        if (_isFishing)
+        if (_isFishingAnim)
         {
             _isMovementFrozen = true;
             _rb.isKinematic = true;

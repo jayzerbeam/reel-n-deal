@@ -207,28 +207,22 @@ public class PlayerFish : MonoBehaviour
 
             if (DistanceToPlayer() > slowdownDistance)
             {
-                _bobberRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
-                if (hookedFishRB)
+                if (!hookedFishRB)
                 {
-                    hookedFishRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
+                    _bobberRB.AddForce(reelDirection * _reelSpeed, ForceMode.Force);
                 }
             }
             else if (
                 DistanceToPlayer() <= slowdownDistance && DistanceToPlayer() > retrieveDistance
             )
             {
-                // Snap the bobber to the player
-                _bobberRB.AddForce(reelDirection * snapSpeed, ForceMode.Impulse);
-                if (hookedFishRB)
+                if (!hookedFishRB)
                 {
-                    hookedFishRB.AddForce(reelDirection * snapSpeed, ForceMode.Impulse);
+                    _bobberRB.AddForce(reelDirection * _snapSpeed, ForceMode.Impulse);
                 }
             }
             else if (DistanceToPlayer() <= retrieveDistance)
             {
-                _playerInventory.AddFishedFish(
-                    "fish name, fish type, fish location, fish color, fish size, fish sex, fish age, fish time caught"
-                );
                 Destroy(GameObject.FindWithTag("Bobber"));
             }
         }

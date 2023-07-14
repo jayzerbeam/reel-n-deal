@@ -7,18 +7,13 @@ public class playerDeath : MonoBehaviour
 {
     private float waterTime;
     private bool isInWater = false;
-    private Rigidbody[] ragdollRigidBody;
-    private CharacterController charController;
     private Animator animator;
-    private bool isRagdoll = false;
+
+    public bool isDying;
 
     private void Awake()
     {
-        ragdollRigidBody = GetComponentsInChildren<Rigidbody>();
-        charController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        charController.enabled = true; 
-        DisableRagdoll();
     }
 
     private void Update()
@@ -26,17 +21,23 @@ public class playerDeath : MonoBehaviour
         if (isInWater)
         {
             waterTime += Time.deltaTime;
-            if (waterTime >= 3f && !isRagdoll)
+            if (waterTime >= 3f)
             {
-                EnableRagdoll();
-                Invoke("LoadMainMenu", 3f);
+                animator.SetTrigger("isDying");
+                Invoke("LoadMainMenu", 8f);
             }
         }
     }
 
     private void OnTriggerEnter(Collider c)
     {
-        if (c.CompareTag("Lake") || c.CompareTag("Waterfall") || c.CompareTag("River") || c.CompareTag("Spring") || c.CompareTag("Ocean"))
+        if (
+            c.CompareTag("Lake")
+            || c.CompareTag("Waterfall")
+            || c.CompareTag("River")
+            || c.CompareTag("Spring")
+            || c.CompareTag("Ocean")
+        )
         {
             isInWater = true;
         }
@@ -44,7 +45,13 @@ public class playerDeath : MonoBehaviour
 
     private void OnTriggerExit(Collider c)
     {
-        if (c.CompareTag("Lake") || c.CompareTag("Waterfall") || c.CompareTag("River") || c.CompareTag("Spring") || c.CompareTag("Ocean"))
+        if (
+            c.CompareTag("Lake")
+            || c.CompareTag("Waterfall")
+            || c.CompareTag("River")
+            || c.CompareTag("Spring")
+            || c.CompareTag("Ocean")
+        )
         {
             isInWater = false;
             waterTime = 0f;
@@ -56,26 +63,11 @@ public class playerDeath : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    private void DisableRagdoll()
+    private void isDead()
     {
-        foreach (var rb in ragdollRigidBody)
+        if (isDying)
         {
-            rb.isKinematic = true;
+            animator.SetTrigger("isDying");
         }
-    }
-
-    private void EnableRagdoll()
-    {
-        isRagdoll = true;
-
-
-        charController.enabled = false;
-
-        foreach (var rb in ragdollRigidBody)
-        {
-            rb.isKinematic = false;
-        }
-
-        animator.enabled = false;
     }
 }

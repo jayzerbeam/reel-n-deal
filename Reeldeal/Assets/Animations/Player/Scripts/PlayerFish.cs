@@ -227,7 +227,7 @@ public class PlayerFish : MonoBehaviour
             else if (DistanceToPlayer() <= retrieveDistance)
             {
                 // This will also destroy the fish.
-                _playerInventory.AddFishedFish("Fish Type, Other");
+                // _playerInventory.AddFishedFish("Fish Type, Other");
                 Destroy(GameObject.FindWithTag("Bobber"));
             }
         }

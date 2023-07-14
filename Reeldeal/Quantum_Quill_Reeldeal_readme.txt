@@ -3,7 +3,7 @@ Team Members (Name, email, Canvas account)
 - Cassandra Durkee, cdurkee6@gatech.edu, 
 - Beto Icaza, laip3@gatech.edu
 - Jason Long, jlong326@gatech.edu, jlong326
-- - Grady Sullivan, gsullivan36@gatech.edu, gsullivan36
+- Grady Sullivan, gsullivan36@gatech.edu, gsullivan36
 
 Main Scene: mainGameScene
 
@@ -50,6 +50,9 @@ Grady
 - MainMenuCamera.cs -- rotates camera around island for nice menu background
 - GameStarter.cs -- starts game
 - GameQuitter.cs -- quits game
+- shark_start.wav and shark_loop.wav -- trimmed sound files with Audacity
+- sharkAudioRandomizer.cs -- randomizes pitch and frequency of shark sounds based on player distance
+- SharkAudioManager.cs -- responsible for updating sound source settings and playing sounds to prevent audio overlap
 
 Luis Alberto
 - Level design + game ideation
@@ -90,13 +93,6 @@ Luis Alberto
 - Added a struct to store details of fishes caught
 	- playerInventory
 
-Sources:
-
-- Shading: https://www.youtube.com/watch?v=qH4XQaZhihw, https://www.youtube.com/watch?v=78WCzTVmc28, https://www.youtube.com/watch?v=cq2CoHVDxSQ
-- Textures: https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
-- Scripting: https://stackoverflow.com/, https://www.youtube.com/watch?v=UCwwn2q4Vys, https://docs.unity3d.com/
-
-
 Jason Long
 - Player movement 
   - PlayerMove.cs
@@ -117,14 +113,6 @@ Jason Long
   - Fish4Rigged / Fish4Swim
   - SharkRigged / SharkSwim
 
-Sources:
-
-- Fish models: https://assetstore.unity.com/packages/3d/characters/animals/fish/fish-polypack-202232
-- Player models: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/stylized-npc-peasant-nolant-252440
-- Player animations: https://mixamo.com/ 
-  - Links to individual animations are not available
-
-
 Cassandra Durkee
  - Added marketplace items tables, TNT, boots, boats, fishing rods, villagers 
    - Assets/Prefabs/Marketplace/FishingRodUpgrade
@@ -140,10 +128,11 @@ Cassandra Durkee
    - Assets/Prefabs/Marketplace/Villager_cassye_1
    - Assets/Prefabs/Marketplace/Villager_cassye_2
    - Assets/Prefabs/Marketplace/Villager_cassye_3
- - Added GUI to show which items have been purchased at marketplace by pressing "G" with scripts
+ - Added GUI to show which items have been purchased at marketplace by pressing "I" with scripts
    - Assets/Prefabs/Marketplace/UICanvas
    - Assets/Prefabs/Marketplace/InventoryGUI
    - Assets/Prefabs/Marketplace/Inventory
+   - Assets/Scripts/Marketplace/Inventory.cs 
   -Added GUIs for each marketplace item, to show item description and option to purchase by pressing a button
    - Assets/Scripts/Marketplace/MarketplaceItems.cs
    - Assets/Scripts/Marketplace/Collectables.cs
@@ -151,11 +140,50 @@ Cassandra Durkee
    - Assets/Scripts/player/PlayerDeath.cs
  - Added script that renders the boss fish invisible until the marketplace item FishingRodUpgrade is purchased 
    - Assets/Scripts/Fish/BossFishSpawn.cs 
- - Add music to main scene 
-   - Assets/Scripts/Menu/sad_main_menu
+ - Add music to MainMenu scene 
+   - (May have been updated to new music, and code in script removed) - was originally part of Assets/Scripts/Menu/goToMainMenu.cs
+ - Add sound and text alert when boss fish spawns
+   - Assets/Scripts/Fish/BossfishSpawn.cs
+   - Assets/Sounds/Fish/bossfishboom.mp3
+ - Add music that gets louder as player approaches boss fish
+   - Assets/Fish/Scripts/BossFishAudio.cs
+   - Assets/Sounds/Fish/seashantybossfish.mp3  ********** move mp3? 
+ - Add functionality for player to increase speed 2x after purchasing boots 
+   - added in Assets/Animations/Player/Scripts/PlayerMove.cs in HandleMove() 
+ - Add script to have player have die and respawn animations 
+  - Assets/Scripts/Player/playerDeath.cs 
+ - Add Marketplace ambient noise that gets louder as player gets closer to marketplace
+  - Assets/Scripts/Marketplace/MarketplaceAudio.cs 
+  - Assets/Scripts/Marketplace/marketplaceAudio.mp3 ********** move mp3?
+ - Add villager greetings 
+  - Assets/Scripts/Marketplace/villager1greeting.mp3    ********** move mp3?
+  - Assets/Scripts/Marketplace/villager2greeting.mp3    ********** move mp3?
+  - Assets/Scripts/Marketplace/villager3greeting.mp3    ********** move mp3?
+  - Assets/Scripts/Marketplace/Villager1Approach.cs
+  - Assets/Scripts/Marketplace/Villager2Approach.cs
+  - Assets/Scripts/Marketplace/Villager3Approach.cs
+ - Add instructions for game 
+  - Assets/Scripts/Instructions/InstructionsOnPlay.cs
+  - Assets/Scripts/Instructions/InstructionsPanel.cs
+ - 
    
-   sources:
-   https://assetstore.unity.com/packages/3d/vehicles/sea/boats-polypack-189866
-   https://assetstore.unity.com/packages/3d/props/furniture/folding-table-and-chair-pbr-111726
-   https://assetstore.unity.com/packages/3d/props/clothing/female-ankle-boots-photoscanned-159578 
-   https://pixabay.com/sound-effects/search/heavy-metal/
+
+Sources:
+
+Game Menu Music: Chunky Monkey - https://assetstore.unity.com/packages/audio/music/free-music-tracks-for-games-156413
+Shading: https://www.youtube.com/watch?v=qH4XQaZhihw, https://www.youtube.com/watch?v=78WCzTVmc28, https://www.youtube.com/watch?v=cq2CoHVDxSQ
+Textures: https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
+Scripting: https://stackoverflow.com/, https://www.youtube.com/watch?v=UCwwn2q4Vys, https://docs.unity3d.com/
+Marketplace Items: https://assetstore.unity.com/packages/3d/vehicles/sea/boats-polypack-189866
+Marketplace Tables: https://assetstore.unity.com/packages/3d/props/furniture/folding-table-and-chair-pbr-111726
+Marketplace Boots: https://assetstore.unity.com/packages/3d/props/clothing/female-ankle-boots-photoscanned-159578 
+Boss Fish Audio: https://www.free-stock-music.com/alexander-nakarada-the-worlds-most-epic-sea-shanty.html
+Boss Fish Spawn Music: https://pixabay.com/sound-effects/search/boom/
+Marketplace Vendor Greetings: https://pixabay.com/sound-effects/search/hello/
+Trading Sound Effects: https://mixkit.co/free-sound-effects/
+Ambiant Marketplace Items: https://pixabay.com/sound-effects/search/fish-market/
+Fish models: https://assetstore.unity.com/packages/3d/characters/animals/fish/fish-polypack-202232
+Player models: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/stylized-npc-peasant-nolant-252440
+Player animations: https://mixamo.com/ (Links to individual animations are not available)
+Shark audio: https://freesound.org/people/kradziej/sounds/511281/
+Reeling audio: https://freesound.org/people/mike%20campbell/sounds/34968/	Sampling Plus 1.0 License: https://creativecommons.org/licenses/sampling+/1.0/

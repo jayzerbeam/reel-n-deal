@@ -40,10 +40,21 @@ public class PlayerLook : MonoBehaviour
 
     void HandleLook()
     {
-        if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0f)
+        bool isFishing = GameObject.FindWithTag("Bobber");
+
+        if (isFishing)
         {
-            _rotationSpeed = 5f;
+            return;
         }
-        transform.Rotate(Vector3.up * _rotate * _rotationSpeed * Time.deltaTime);
+        else if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0f)
+        {
+            {
+                _rotationSpeed = 5f;
+            }
+        }
+        else
+        {
+            transform.Rotate(Vector3.up * _rotate * _rotationSpeed * Time.deltaTime);
+        }
     }
 }

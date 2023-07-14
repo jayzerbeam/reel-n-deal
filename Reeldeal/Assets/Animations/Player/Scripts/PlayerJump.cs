@@ -12,6 +12,8 @@ public class PlayerJump : MonoBehaviour
     Vector3 _characterVelocity;
     int _isJumpingHash;
     bool _isJumpButtonPressed;
+    bool _isJumping;
+    bool _isFishing;
 
     // Can edit in Unity
     [SerializeField]
@@ -34,6 +36,9 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        _isJumping = _animator.GetBool(_isJumpingHash);
+        _isFishing = GameObject.FindWithTag("Bobber");
+
         HandleAnimation();
     }
 
@@ -60,15 +65,16 @@ public class PlayerJump : MonoBehaviour
 
     void HandleAnimation()
     {
-        bool isJumping = _animator.GetBool(_isJumpingHash);
-
-        if (_isJumpButtonPressed && !isJumping)
+        if (!_isFishing)
         {
-            _animator.SetBool(_isJumpingHash, true);
-        }
-        else if (!_isJumpButtonPressed && isJumping)
-        {
-            _animator.SetBool(_isJumpingHash, false);
+            if (_isJumpButtonPressed && !_isJumping)
+            {
+                _animator.SetBool(_isJumpingHash, true);
+            }
+            else if (!_isJumpButtonPressed && _isJumping)
+            {
+                _animator.SetBool(_isJumpingHash, false);
+            }
         }
     }
 
@@ -86,7 +92,8 @@ public class PlayerJump : MonoBehaviour
 
     void HandleJump()
     {
-        if (_isJumpButtonPressed && _characterController.isGrounded)
+        bool isFishing = GameObject.FindWithTag("Bobber");
+        if (_isJumpButtonPressed && _characterController.isGrounded && !isFishing)
         {
             _characterVelocity.y += Mathf.Sqrt(_jumpHeight * -2.0f * _gravity);
             _isJumpButtonPressed = false;

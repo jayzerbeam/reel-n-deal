@@ -24,6 +24,12 @@ public class FishAI : MonoBehaviour
     private Animator anim;
     private Rigidbody rb;
     private float currentSpeed;
+    private bool _wasRecentlyCaught;
+    public bool WasRecentlyCaught
+    {
+        get { return _wasRecentlyCaught; }
+        set { _wasRecentlyCaught = value; }
+    }
 
     // waypoints / positioning
     private GameObject[] waypoints;
@@ -128,14 +134,23 @@ public class FishAI : MonoBehaviour
                     {
                         if (hit.collider.CompareTag("Player") && fishMultiTag.HasTag("Fleeable"))
                         {
-                            Debug.Log("Enter Flee");
                             aiState = AIState.fleeState;
                         }
                         else if (hit.collider.CompareTag("Player") && fishMultiTag.HasTag("Agressive"))
                         {
-                            Debug.Log("Enter Agressive");
                             aiState = AIState.aggressiveState;
                         }
+                    }
+                }
+
+                // also be agressive is player is simply too close
+                GameObject playerObject = GameObject.FindWithTag("Player");
+                if (playerObject != null)
+                {
+                    float playerDistance = Vector3.Distance(transform.position, playerObject.transform.position);
+                    if (playerDistance < 16 && fishMultiTag.HasTag("Agressive"))
+                    {
+                        StartCoroutine(PreAggroTurn(playerObject)); // smooth turn towards player before Ai state
                     }
                 }
 
@@ -193,6 +208,10 @@ public class FishAI : MonoBehaviour
                 {
                     fleeing = false;
                     aiState = AIState.idleState;
+                    if (_wasRecentlyCaught)
+                    {
+                        _wasRecentlyCaught = false;
+                    }
                 }
                 else
                 {
@@ -222,15 +241,33 @@ public class FishAI : MonoBehaviour
         float remainingDistance = Vector3.Distance(transform.position, destination);
 
         // set rotation and speed
-        rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, Quaternion.Euler(0f, rotation.eulerAngles.y, 0f), rotationSpeed * Time.deltaTime)); // only update y rotation (spinning)
+        if (aiState != AIState.hungryState)
+            rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, Quaternion.Euler(0f, rotation.eulerAngles.y, 0f), rotationSpeed * Time.deltaTime)); // only update y rotation (spinning)
+        else
+            rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, Quaternion.Euler(rotation.eulerAngles.x, rotation.eulerAngles.y, 0f), rotationSpeed * Time.deltaTime));
         float adjustedSpeed = Mathf.Lerp(0f, fishSpeed, remainingDistance / 0.5f);
         currentSpeed = Mathf.Lerp(currentSpeed, adjustedSpeed, Time.deltaTime);
         rb.velocity = this.transform.forward * currentSpeed;
 
         // keep at correct y-level
         Vector3 newPosition = transform.position;
-        newPosition = new Vector3(newPosition.x, yValue, newPosition.z);
+        if (aiState != AIState.hungryState)
+            newPosition = new Vector3(newPosition.x, yValue, newPosition.z);
         transform.position = newPosition;
     }
 
+    private IEnumerator PreAggroTurn(GameObject player)
+    {
+        float turnProgress = 0f; // percentage complete
+        Quaternion startRotation = transform.rotation;
+        Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+
+        while (turnProgress < 1f)
+        {
+            turnProgress += rotationSpeed / 10f * Time.deltaTime; // Accumulate turn progress based on rotation speed
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, turnProgress); // https://docs.unity3d.com/ScriptReference/Quaternion.Slerp.html
+            yield return null; // https://www.javatpoint.com/unity-coroutines#:~:text=Here%2C%20the%20yield%20is%20a,continue%20on%20the%20next%20frame.&text=yield%20return%20null%20%2D%20This%20will,called%2C%20on%20the%20next%20frame.
+        }
+        aiState = AIState.aggressiveState; // transition state after turn completed
+    }
 }

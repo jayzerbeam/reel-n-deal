@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     PlayerInput _playerInput;
+    Rigidbody _rb;
     CharacterController _characterController;
     Animator _animator;
 
@@ -22,6 +23,10 @@ public class PlayerMove : MonoBehaviour
 
     bool _isMovementPressed;
     bool _isRunPressed;
+    bool _isMovementFrozen;
+    bool _isWalking;
+    bool _isRunning;
+    bool _isFishing;
 
     float _runSpeed = 8.0f;
     float _walkSpeed = 2.8f;
@@ -30,6 +35,7 @@ public class PlayerMove : MonoBehaviour
     {
         _playerInput = new PlayerInput();
         _characterController = GetComponent<CharacterController>();
+        _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
 
         _isWalkingHash = Animator.StringToHash("isWalking");
@@ -44,6 +50,7 @@ public class PlayerMove : MonoBehaviour
         // Run input
         _playerInput.CharacterControls.Run.performed += OnRun;
         _playerInput.CharacterControls.Run.canceled += OnRun;
+
     }
 
     void OnEnable()
@@ -58,7 +65,12 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        _isWalking = _animator.GetBool(_isWalkingHash);
+        _isRunning = _animator.GetBool(_isRunningHash);
+        _isFishing = GameObject.FindWithTag("Bobber");
+
         HandleAnimation();
+        FreezeIfFishing();
         HandleMove();
     }
 
@@ -84,34 +96,34 @@ public class PlayerMove : MonoBehaviour
 
     void HandleAnimation()
     {
-        bool isWalking = _animator.GetBool(_isWalkingHash);
-        bool isRunning = _animator.GetBool(_isRunningHash);
-
         // Run!
-        if (_isMovementPressed && _isRunPressed)
+        if (!_isFishing)
         {
-            float runMultiplier = 2.0f;
-            _animator.SetBool(_isRunningHash, true);
-            _animator.SetBool(_isWalkingHash, false);
-            _animator.SetFloat(_velocityZHash, _inputValues.y * runMultiplier);
-            _animator.SetFloat(_velocityXHash, _inputValues.x * runMultiplier);
-        }
-        // Walk.
-        else if (_isMovementPressed && !_isRunPressed)
-        {
-            _animator.SetBool(_isWalkingHash, true);
-            _animator.SetBool(_isRunningHash, false);
-            _animator.SetFloat(_velocityZHash, _inputValues.y);
-            _animator.SetFloat(_velocityXHash, _inputValues.x);
-        }
-        // Idle.
-        else if (!_isMovementPressed && isWalking || !_isMovementPressed && isRunning)
-        {
-            float resetMultiplier = 0.0f;
-            _animator.SetBool(_isWalkingHash, false);
-            _animator.SetBool(_isRunningHash, false);
-            _animator.SetFloat(_velocityZHash, resetMultiplier);
-            _animator.SetFloat(_velocityXHash, resetMultiplier);
+            if (_isMovementPressed && _isRunPressed)
+            {
+                float runMultiplier = 2.0f;
+                _animator.SetBool(_isRunningHash, true);
+                _animator.SetBool(_isWalkingHash, false);
+                _animator.SetFloat(_velocityZHash, _inputValues.y * runMultiplier);
+                _animator.SetFloat(_velocityXHash, _inputValues.x * runMultiplier);
+            }
+            // Walk.
+            else if (_isMovementPressed && !_isRunPressed)
+            {
+                _animator.SetBool(_isWalkingHash, true);
+                _animator.SetBool(_isRunningHash, false);
+                _animator.SetFloat(_velocityZHash, _inputValues.y);
+                _animator.SetFloat(_velocityXHash, _inputValues.x);
+            }
+            // Idle.
+            else if (!_isMovementPressed && _isWalking || !_isMovementPressed && _isRunning)
+            {
+                float resetMultiplier = 0.0f;
+                _animator.SetBool(_isWalkingHash, false);
+                _animator.SetBool(_isRunningHash, false);
+                _animator.SetFloat(_velocityZHash, resetMultiplier);
+                _animator.SetFloat(_velocityXHash, resetMultiplier);
+            }
         }
     }
 
@@ -119,13 +131,47 @@ public class PlayerMove : MonoBehaviour
     {
         Vector3 moveDirection = transform.TransformDirection(currMovement);
 
-        if (_isRunPressed)
+        if (_isMovementFrozen)
         {
-            _characterController.Move(moveDirection.normalized * _runSpeed * Time.deltaTime);
+            return;
+        }
+        else if (_isRunPressed)
+        {
+            if (GameObject.Find("Boots") != null)
+            {
+                _characterController.Move(moveDirection.normalized * _runSpeed * Time.deltaTime);
+            }
+            else
+            {
+                _characterController.Move(moveDirection.normalized * (_runSpeed * 2) * Time.deltaTime);
+            }
+
+
         }
         else
         {
-            _characterController.Move(moveDirection.normalized * _walkSpeed * Time.deltaTime);
+            if (GameObject.Find("Boots") != null)
+            {
+                _characterController.Move(moveDirection.normalized * _walkSpeed * Time.deltaTime);
+            }
+            else
+            {
+                _characterController.Move(moveDirection.normalized * (_walkSpeed * 2) * Time.deltaTime);
+            }
+        }
+    }
+
+    void FreezeIfFishing()
+    {
+        if (_isFishing)
+        {
+            _isMovementFrozen = true;
+            _rb.isKinematic = true;
+        }
+        else
+        {
+            _isMovementFrozen = false;
+            _rb.isKinematic = false;
         }
     }
 }

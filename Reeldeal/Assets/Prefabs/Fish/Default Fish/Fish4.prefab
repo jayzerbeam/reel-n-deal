@@ -308,7 +308,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -330,4 +330,10 @@ MonoBehaviour:
   hungrySpeed: 1
   aggressiveSpeed: 1.25
   rotationSpeed: 10
+  fleeSpeed: 8
+  rayCount: 5
+  rayLength: 40
+  sightHeight: 2
+  rayColor: {r: 1, g: 0, b: 0, a: 1}
+  fleeTimer: 0
   aiState: 0

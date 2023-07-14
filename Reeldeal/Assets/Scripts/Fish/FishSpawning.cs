@@ -96,7 +96,7 @@ public class FishSpawning : MonoBehaviour
             weight = bounds.size.x * bounds.size.z;
             if (collider.gameObject.CompareTag("Ocean"))
             {
-                weight *= 0.1f; // done so oceans don't get all the spawns
+                weight *= 0.25f; // done so oceans don't get all the spawns
             }
             colliderAreas.Add(weight);
             totalWeight += weight; 
@@ -117,7 +117,6 @@ public class FishSpawning : MonoBehaviour
             }
         }
 
-        //Collider randomWaterCollider = waterColliders[Random.Range(0, waterColliders.Length)]; // pick random body of water
         string waterTag = randomWaterCollider.gameObject.tag; // tag of chosen body of water
         Vector3 spawnPosition = GetRandomPointOnCollider(randomWaterCollider); // random spot on water that meets spawning criteria
         
@@ -135,8 +134,8 @@ public class FishSpawning : MonoBehaviour
 
         // move fish into water
         Renderer FishRenderer = fish.GetComponent<Renderer>();
-        fish.transform.position = new Vector3(fish.transform.position.x, randomWaterCollider.bounds.max.y - FishRenderer.bounds.size.y / 2, fish.transform.position.z) ; // half body in water
-
+        fish.transform.position = new Vector3(fish.transform.position.x, randomWaterCollider.bounds.max.y - FishRenderer.bounds.size.y / 2, fish.transform.position.z); // half body in water
+        spawnPosition = new Vector3(fish.transform.position.x, randomWaterCollider.bounds.max.y - FishRenderer.bounds.size.y / 2, fish.transform.position.z);
 
         // all for debugging
         FishMultiTag fishMultiTag = fish.GetComponent<FishMultiTag>();

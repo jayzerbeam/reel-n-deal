@@ -13,6 +13,7 @@ public class MarketplaceItems : MonoBehaviour
     private GameObject triggeredObject;
     public Inventory inventory;
 
+
     public void Start()
     {
         Transform findChild = GameObject.Find("UICanvas").transform;
@@ -24,6 +25,7 @@ public class MarketplaceItems : MonoBehaviour
         WoodBoatGUI = findChild.Find("WoodBoatGUI").gameObject;
 
         inventory = GameObject.Find("InventoryGUI").GetComponent<Inventory>();
+
     }
 
     private void OnTriggerEnter(Collider c)

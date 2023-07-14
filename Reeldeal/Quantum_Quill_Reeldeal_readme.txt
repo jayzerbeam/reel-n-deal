@@ -185,5 +185,9 @@ Ambiant Marketplace Items: https://pixabay.com/sound-effects/search/fish-market/
 Fish models: https://assetstore.unity.com/packages/3d/characters/animals/fish/fish-polypack-202232
 Player models: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/stylized-npc-peasant-nolant-252440
 Player animations: https://mixamo.com/ (Links to individual animations are not available)
-Shark audio: https://freesound.org/people/kradziej/sounds/511281/
-Reeling audio: https://freesound.org/people/mike%20campbell/sounds/34968/	Sampling Plus 1.0 License: https://creativecommons.org/licenses/sampling+/1.0/
+Shark audio: https://freesound.org/people/kradziej/sounds/511281/		CC0 1.0 License: https://creativecommons.org/publicdomain/zero/1.0/
+Reeling audio (rod_reel.wav): https://freesound.org/people/mike%20campbell/sounds/34968/	Sampling Plus 1.0 License: https://creativecommons.org/licenses/sampling+/1.0/
+Casting audio (rod_cast.wav): https://freesound.org/people/TyroneW/sounds/326381/		Attribution-NonCommercial 3.0 Licesnse: https://creativecommons.org/licenses/by-nc/3.0/
+Fishing capture sound audio (catch_success.wav): https://freesound.org/people/LaurenPonder/sounds/639432/	CC0 1.0 License: https://creativecommons.org/publicdomain/zero/1.0/
+Fishing escape sound audio (escape.wav): https://freesound.org/people/caitlynbananas/sounds/563592/		CC0 1.0 License: https://creativecommons.org/publicdomain/zero/1.0/	
+Fishing Lodges: https://assetstore.unity.com/packages/3d/environments/low-poly-fishing-lodges-4555

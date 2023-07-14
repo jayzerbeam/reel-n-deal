@@ -838,26 +838,6 @@ Transform:
   m_Father: {fileID: 2075240812}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &798370454 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6483754695257692263, guid: 303e4658defaa73c7bac6ab02a91e0bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1480159737}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &798370468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798370454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d56349fc6ba0e05d2a19fab5e4f6170d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FishingMessageBox: {fileID: 1539974086}
-  FishingMessageBoxBackground: {fileID: 575047193}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,27 +1597,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
-      propertyPath: maxFish
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
-      propertyPath: spawnInterval
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
-      propertyPath: minSpawnDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2063810464150162670, guid: 303e4658defaa73c7bac6ab02a91e0bc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 798370468, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
+      propertyPath: FishingMessageBox
+      value: 
+      objectReference: {fileID: 1539974086}
+    - target: {fileID: 798370468, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
+      propertyPath: FishingMessageBoxBackground
+      value: 
+      objectReference: {fileID: 575047193}
     - target: {fileID: 5958609917625189085, guid: 303e4658defaa73c7bac6ab02a91e0bc,
         type: 3}
       propertyPath: m_RootOrder
@@ -1693,20 +1660,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6141649143267876802, guid: 303e4658defaa73c7bac6ab02a91e0bc,
-        type: 3}
-      propertyPath: m_SlopeLimit
-      value: 45
-      objectReference: {fileID: 0}
     - target: {fileID: 6483754695257692263, guid: 303e4658defaa73c7bac6ab02a91e0bc,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6852037400769901638, guid: 303e4658defaa73c7bac6ab02a91e0bc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6852037400769901638, guid: 303e4658defaa73c7bac6ab02a91e0bc,
         type: 3}
@@ -1718,17 +1675,6 @@ PrefabInstance:
       propertyPath: debugFishList
       value: 
       objectReference: {fileID: 1038720684}
-    - target: {fileID: 7635539927104353454, guid: 303e4658defaa73c7bac6ab02a91e0bc,
-        type: 3}
-      propertyPath: bobberPrefab
-      value: 
-      objectReference: {fileID: 2886670933728575070, guid: 135aeada52e85c64c8f5493b85d529ad,
-        type: 3}
-    - target: {fileID: 8711655847203499706, guid: 303e4658defaa73c7bac6ab02a91e0bc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
 --- !u!1 &1495814145

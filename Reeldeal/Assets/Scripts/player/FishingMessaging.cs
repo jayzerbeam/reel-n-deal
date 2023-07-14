@@ -14,6 +14,13 @@ public class FishingMessaging : MonoBehaviour
         StartCoroutine(DisplayThenErase(message, timeToErase));
     }
 
+    public void StopMessage()
+    {
+        StopAllCoroutines();
+        FishingMessageBoxBackground.enabled = false;
+        FishingMessageBox.text = "";
+    }
+
     private IEnumerator DisplayThenErase(string message, float timeToErase)
     {
         FishingMessageBoxBackground.enabled = true;

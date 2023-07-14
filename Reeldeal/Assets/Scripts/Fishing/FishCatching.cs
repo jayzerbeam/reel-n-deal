@@ -12,15 +12,18 @@ public class FishCatching : MonoBehaviour
     GameObject hookedFishGO;
     Rigidbody hookedFishRB;
     Rigidbody _rb;
-    bool isFishHooked = false;
+    FishAI fishAIscript;
+    FishMultiTag _fishMultiTag;
+    bool _isFishHooked = false;
+    bool _didFishEscape = false;
+    bool _wasFishCaught = false;
+    float countdownTimer = 10.0f;
 
-    // HandleCatch Variables
     int keyPressesRemaining = 5;
     string[] inputKeys = { "w", "a", "s", "d", "q", "e" };
     System.Random random = new System.Random();
     string randomInputKey = "";
 
-    // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -28,57 +31,56 @@ public class FishCatching : MonoBehaviour
         _playerInventory = _player.GetComponent<playerInventory>();
         _messaging = _player.GetComponent<FishingMessaging>();
 
-        // Random array selection found here
         // https://stackoverflow.com/questions/14297853/how-to-get-random-values-from-array-in-c-sharp
         randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (isFishHooked)
+        if (_isFishHooked)
         {
             HandleCatch();
+            HandleCountdown();
+        }
+        if (_didFishEscape)
+        {
+            ReleaseFish();
         }
     }
 
-    // Used in PlayerFish.cs
     public GameObject GetHookedFishGO()
     {
-        return isFishHooked ? hookedFishGO : null;
+        return _isFishHooked ? hookedFishGO : null;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         // https://docs.unity3d.com/ScriptReference/Collider.OnCollisionEnter.html
         // https://forum.unity.com/threads/add-an-object-as-a-child-of-another-gameobject-into-a-different-scene.1292907/
-        if (!isFishHooked)
+        if (!_isFishHooked)
         {
-            // check for fish collision
             if (collision.gameObject.CompareTag("Fish"))
             {
                 hookedFishGO = collision.gameObject;
                 hookedFishRB = hookedFishGO.GetComponent<Rigidbody>();
-                FishAI fishAIscript = hookedFishGO.GetComponent<FishAI>();
+                _fishMultiTag = hookedFishGO.GetComponent<FishMultiTag>();
+                fishAIscript = hookedFishGO.GetComponent<FishAI>();
 
+                // 5 Second cooldown
                 if (!fishAIscript.WasRecentlyCaught)
                 {
-                    // Freeze the bobber
                     _rb.constraints = RigidbodyConstraints.FreezeAll;
                     collision.transform.SetParent(transform);
+                    SetCountdownTimer();
 
                     if (hookedFishRB != null)
                     {
                         hookedFishRB.constraints = RigidbodyConstraints.FreezeAll;
                     }
                     fishAIscript.enabled = false; // turn off AI when caught
-                    isFishHooked = true;
-                }
-                else
-                {
-                    hookedFishGO = null;
-                    hookedFishRB = null;
-                    fishAIscript = null;
+                    _isFishHooked = true;
+                    _didFishEscape = false;
+                    _wasFishCaught = false;
                 }
             }
         }
@@ -86,49 +88,62 @@ public class FishCatching : MonoBehaviour
 
     private void ReleaseFish()
     {
-        _messaging.DisplayMessage("Oh no! The fish got away...\n\nBetter luck next time!");
+        SetCountdownTimer(); // Will reset to 10f
         keyPressesRemaining = 5;
-        isFishHooked = false;
-        FishAI fishAIscript = hookedFishGO.GetComponent<FishAI>();
         fishAIscript.enabled = true;
         fishAIscript.aiState = FishAI.AIState.fleeState;
         fishAIscript.WasRecentlyCaught = true;
         hookedFishRB.constraints = RigidbodyConstraints.None;
         hookedFishGO.transform.SetParent(null);
-        hookedFishGO = null;
-        hookedFishRB = null;
+        Destroy(GameObject.FindWithTag("Bobber"));
     }
 
-    float countdownTimer = 15.0f;
-    float minSeconds = 3.0f;
-    float maxSeconds = 5.0f;
-
-    // Must take into account bobber
-    void HandleCatch()
+    void SetCountdownTimer()
     {
-        /*
-         * Change timer based on fish difficulty:
-         * easy = 10 seconds
-         * med = 7 seconds
-         * hard = 5 seconds
-         * boss = 3 seconds
-          */
+        if (_fishMultiTag.HasTag("Easy"))
+        {
+            countdownTimer = 10.0f;
+        }
+        else if (_fishMultiTag.HasTag("Medium"))
+        {
+            countdownTimer = 7.5f;
+        }
+        else if (_fishMultiTag.HasTag("Hard"))
+        {
+            countdownTimer = 5.0f;
+        }
+        else if (_fishMultiTag.HasTag("Boss"))
+        {
+            countdownTimer = 3.5f;
+        }
+        else
+        {
+            countdownTimer = 10f;
+        }
+    }
+
+    void HandleCountdown()
+    {
         countdownTimer -= Time.deltaTime;
 
-        // Set the msg disappear to countdown
-        if (countdownTimer >= 0.0f)
+        if (countdownTimer > 0.0f && !_didFishEscape && !_wasFishCaught)
         {
-            // TODO handle externally
             _messaging.DisplayMessage(
                 $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\n\nKeypresses remaining: {keyPressesRemaining}\n\nTime left: {countdownTimer}",
                 countdownTimer
             );
         }
-        else
+        else if (countdownTimer <= 0.0f && !_didFishEscape && !_wasFishCaught)
         {
-            ReleaseFish();
+            _messaging.StopMessage();
+            _messaging.DisplayMessage("Oh no! The fish got away...\n\nBetter luck next time!");
+            _didFishEscape = true;
+            _wasFishCaught = false;
         }
+    }
 
+    void HandleCatch()
+    {
         if (Input.anyKeyDown)
         {
             if (Input.GetKeyDown(randomInputKey))
@@ -145,14 +160,19 @@ public class FishCatching : MonoBehaviour
             }
             else if (!Input.GetKeyDown(randomInputKey))
             {
-                ReleaseFish();
+                _messaging.StopMessage();
+                _messaging.DisplayMessage("Oh no! The fish got away...\n\nBetter luck next time!");
+                _didFishEscape = true;
+                _wasFishCaught = false;
             }
         }
+
         if (keyPressesRemaining == 0)
         {
+            _didFishEscape = false;
+            _wasFishCaught = true;
+            _messaging.StopMessage();
             _messaging.DisplayMessage("CONGRATS!\n\nYou caught a fish!");
-            keyPressesRemaining = 5;
-            isFishHooked = false;
             _playerInventory.AddFishedFish("Fish Type, Other");
             Destroy(GameObject.FindWithTag("Bobber"));
         }

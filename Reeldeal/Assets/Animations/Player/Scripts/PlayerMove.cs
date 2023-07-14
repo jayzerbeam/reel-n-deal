@@ -26,7 +26,6 @@ public class PlayerMove : MonoBehaviour
     bool _isRunningAnim;
     bool _isFishingAnim;
 
-    // TODO create base movement & rotation & multiply instead of multiple vars
     [SerializeField]
     float _walkSpeed = 2.0f;
 
@@ -137,9 +136,16 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    Quaternion GetRotationAngle(float rotationSpeed)
+    {
+        // Learning C# by Developing Games With Unity
+        // Ch. 7, Subsection: "Rigidbody Components in Motion"
+        // Author: Harrison Ferrone
+        return Quaternion.Euler(Vector3.up * _inputValues.x * Time.fixedDeltaTime * rotationSpeed);
+    }
+
     void HandleMove()
     {
-        Vector3 baseRotation = Vector3.up * _inputValues.x * Time.fixedDeltaTime;
         Vector3 movement = transform.forward * _inputValues.y * _walkSpeed * Time.deltaTime;
 
         if (_isMovementFrozen)
@@ -150,21 +156,18 @@ public class PlayerMove : MonoBehaviour
         {
             if (_isRunPressed)
             {
-                Quaternion angleRot = Quaternion.Euler(baseRotation * _runRotationSpeed);
                 _characterController.Move(movement * _runSpeed);
-                transform.rotation *= angleRot;
+                transform.rotation *= GetRotationAngle(_runRotationSpeed);
             }
             else
             {
-                Quaternion angleRot = Quaternion.Euler(baseRotation * _walkRotationSpeed);
                 _characterController.Move(movement * _walkSpeed);
-                transform.rotation *= angleRot;
+                transform.rotation *= GetRotationAngle(_walkRotationSpeed);
             }
         }
         else if (!_isMovementPressed && _isRotationPressed)
         {
-            Quaternion angleRot = Quaternion.Euler(baseRotation * _stillRotationSpeed);
-            transform.rotation *= angleRot;
+            transform.rotation *= GetRotationAngle(_stillRotationSpeed);
         }
     }
 

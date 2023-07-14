@@ -64,15 +64,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""e7ea7856-7c78-464b-9eb1-23c298d493ab"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Reel"",
                     ""type"": ""Value"",
                     ""id"": ""90d26ec9-b5e3-4dbd-88d2-54da3dababec"",
@@ -237,28 +228,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e5cc24d7-1ef0-4d96-9189-cdded879acfe"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""75ca3feb-6d38-4526-bdb1-553499d6fc20"",
-                    ""path"": ""<Pointer>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""571a65b7-05c3-4e31-b662-3c4157aa42ad"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
@@ -272,6 +241,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""b3a70ad7-5901-4dba-93ef-f4d11bd815c7"",
                     ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc033b13-8db0-4350-ab9d-44107d265be3"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -312,7 +292,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_CharacterControls_Run = m_CharacterControls.FindAction("Run", throwIfNotFound: true);
         m_CharacterControls_Cast = m_CharacterControls.FindAction("Cast", throwIfNotFound: true);
         m_CharacterControls_Jump = m_CharacterControls.FindAction("Jump", throwIfNotFound: true);
-        m_CharacterControls_Look = m_CharacterControls.FindAction("Look", throwIfNotFound: true);
         m_CharacterControls_Reel = m_CharacterControls.FindAction("Reel", throwIfNotFound: true);
         m_CharacterControls_Cancel = m_CharacterControls.FindAction("Cancel", throwIfNotFound: true);
     }
@@ -380,7 +359,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterControls_Run;
     private readonly InputAction m_CharacterControls_Cast;
     private readonly InputAction m_CharacterControls_Jump;
-    private readonly InputAction m_CharacterControls_Look;
     private readonly InputAction m_CharacterControls_Reel;
     private readonly InputAction m_CharacterControls_Cancel;
     public struct CharacterControlsActions
@@ -391,7 +369,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_CharacterControls_Run;
         public InputAction @Cast => m_Wrapper.m_CharacterControls_Cast;
         public InputAction @Jump => m_Wrapper.m_CharacterControls_Jump;
-        public InputAction @Look => m_Wrapper.m_CharacterControls_Look;
         public InputAction @Reel => m_Wrapper.m_CharacterControls_Reel;
         public InputAction @Cancel => m_Wrapper.m_CharacterControls_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
@@ -415,9 +392,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Look.started += instance.OnLook;
-            @Look.performed += instance.OnLook;
-            @Look.canceled += instance.OnLook;
             @Reel.started += instance.OnReel;
             @Reel.performed += instance.OnReel;
             @Reel.canceled += instance.OnReel;
@@ -440,9 +414,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
             @Reel.started -= instance.OnReel;
             @Reel.performed -= instance.OnReel;
             @Reel.canceled -= instance.OnReel;
@@ -472,7 +443,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnCast(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
         void OnReel(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
     }

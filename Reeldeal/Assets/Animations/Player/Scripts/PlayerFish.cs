@@ -117,7 +117,6 @@ public class PlayerFish : MonoBehaviour
         _isCastingAnim = _animator.GetBool(_isCastingHash);
         _isFishingAnim = _animator.GetBool(_isFishingHash);
 
-        //Cast
         if (_isCastButtonPressed && !_isCastingAnim && !FindBobber())
         {
             _animator.SetBool(_isCastingHash, true);
@@ -145,6 +144,8 @@ public class PlayerFish : MonoBehaviour
         if (_isCanceled)
         {
             Destroy(GameObject.FindWithTag("Bobber"));
+            _animator.SetBool(_isCastingHash, false);
+            _animator.SetBool(_isFishingHash, false);
         }
     }
 
@@ -179,7 +180,6 @@ public class PlayerFish : MonoBehaviour
         {
             _bobber = GameObject.FindWithTag("Bobber");
             _bobberRB = _bobber.GetComponent<Rigidbody>();
-            _bobberRB.sleepThreshold = 1f;
         }
 
         if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
@@ -209,7 +209,7 @@ public class PlayerFish : MonoBehaviour
             {
                 if (!hookedFishRB)
                 {
-                    _bobberRB.AddForce(reelDirection * _reelSpeed, ForceMode.Force);
+                    _bobberRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
                 }
             }
             else if (
@@ -218,13 +218,17 @@ public class PlayerFish : MonoBehaviour
             {
                 if (!hookedFishRB)
                 {
-                    _bobberRB.AddForce(reelDirection * _snapSpeed, ForceMode.Impulse);
+                    _bobberRB.AddForce(reelDirection * snapSpeed, ForceMode.Impulse);
                 }
             }
             else if (DistanceToPlayer() <= retrieveDistance)
             {
                 Destroy(GameObject.FindWithTag("Bobber"));
             }
+        }
+        else if (_bobber && _reelForce <= 0.0f && !_isCastingAnim)
+        {
+            _bobberRB.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 }

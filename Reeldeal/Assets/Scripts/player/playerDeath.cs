@@ -9,7 +9,7 @@ public class playerDeath : MonoBehaviour
     private bool isInWater = false;
     private Animator animator;
 
-    public bool isDying; 
+    public bool isDying;
 
     private void Awake()
     {
@@ -31,7 +31,13 @@ public class playerDeath : MonoBehaviour
 
     private void OnTriggerEnter(Collider c)
     {
-        if (c.CompareTag("Lake") || c.CompareTag("Waterfall") || c.CompareTag("River") || c.CompareTag("Spring") || c.CompareTag("Ocean"))
+        if (
+            c.CompareTag("Lake")
+            || c.CompareTag("Waterfall")
+            || c.CompareTag("River")
+            || c.CompareTag("Spring")
+            || c.CompareTag("Ocean")
+        )
         {
             isInWater = true;
         }
@@ -39,7 +45,13 @@ public class playerDeath : MonoBehaviour
 
     private void OnTriggerExit(Collider c)
     {
-        if (c.CompareTag("Lake") || c.CompareTag("Waterfall") || c.CompareTag("River") || c.CompareTag("Spring") || c.CompareTag("Ocean"))
+        if (
+            c.CompareTag("Lake")
+            || c.CompareTag("Waterfall")
+            || c.CompareTag("River")
+            || c.CompareTag("Spring")
+            || c.CompareTag("Ocean")
+        )
         {
             isInWater = false;
             waterTime = 0f;
@@ -53,11 +65,9 @@ public class playerDeath : MonoBehaviour
 
     private void isDead()
     {
-        if(isDying)
+        if (isDying)
         {
-            animator.SetTrigger("isDying"); 
+            animator.SetTrigger("isDying");
         }
     }
-
-
 }

@@ -147,6 +147,8 @@ public class PlayerMove : MonoBehaviour
     void HandleMove()
     {
         Vector3 movement = transform.forward * _inputValues.y * _walkSpeed * Time.deltaTime;
+        bool playerDoesNotHaveBoots = GameObject.Find("Boots");
+        float bootSpeedMultiplier = 2.0f;
 
         if (_isMovementFrozen)
         {
@@ -156,12 +158,26 @@ public class PlayerMove : MonoBehaviour
         {
             if (_isRunPressed)
             {
-                _characterController.Move(movement * _runSpeed);
+                if (playerDoesNotHaveBoots)
+                {
+                    _characterController.Move(movement * _runSpeed);
+                }
+                else
+                {
+                    _characterController.Move(movement * _runSpeed * bootSpeedMultiplier);
+                }
                 transform.rotation *= GetRotationAngle(_runRotationSpeed);
             }
             else
             {
-                _characterController.Move(movement * _walkSpeed);
+                if (playerDoesNotHaveBoots)
+                {
+                    _characterController.Move(movement * _walkSpeed);
+                }
+                else
+                {
+                    _characterController.Move(movement * _walkSpeed * bootSpeedMultiplier);
+                }
                 transform.rotation *= GetRotationAngle(_walkRotationSpeed);
             }
         }

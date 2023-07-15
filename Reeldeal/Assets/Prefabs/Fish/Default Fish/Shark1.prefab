@@ -817,9 +817,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleSpeed: 0.5
-  hungrySpeed: 1
-  aggressiveSpeed: 1.5
-  rotationSpeed: 10
+  hungrySpeed: 2
+  aggressiveSpeed: 2
+  rotationSpeed: 20
   fleeSpeed: 4
   rayCount: 5
   rayLength: 40

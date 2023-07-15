@@ -7,7 +7,7 @@ using TMPro;
 public class FishCatching : MonoBehaviour
 {
     GameObject _player;
-    playerInventory _playerInventory;
+    hud_gui_controller _inventoryController;
     FishingMessaging _messaging;
     GameObject hookedFishGO;
     Rigidbody hookedFishRB;
@@ -28,8 +28,9 @@ public class FishCatching : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _player = GameObject.FindWithTag("Player");
-        _playerInventory = _player.GetComponent<playerInventory>();
+        _inventoryController = new hud_gui_controller();
         _messaging = _player.GetComponent<FishingMessaging>();
+        _inventoryController = FindObjectOfType<hud_gui_controller>();
 
         // https://stackoverflow.com/questions/14297853/how-to-get-random-values-from-array-in-c-sharp
         randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
@@ -102,19 +103,19 @@ public class FishCatching : MonoBehaviour
     {
         if (_fishMultiTag.HasTag("Easy"))
         {
-            countdownTimer = 10.0f;
+            countdownTimer = 10.0f * 2.0f;
         }
         else if (_fishMultiTag.HasTag("Medium"))
         {
-            countdownTimer = 7.5f;
+            countdownTimer = 7.5f * 2.0f;
         }
         else if (_fishMultiTag.HasTag("Hard"))
         {
-            countdownTimer = 5.0f;
+            countdownTimer = 5.0f * 2.0f;
         }
         else if (_fishMultiTag.HasTag("Boss"))
         {
-            countdownTimer = 3.5f;
+            countdownTimer = 3.5f * 2.0f;
         }
         else
         {
@@ -169,13 +170,14 @@ public class FishCatching : MonoBehaviour
 
         if (keyPressesRemaining == 0)
         {
+            // TODO remove later for actual fish types
+            string[] fishes = { "blue", "pink", "orange" };
+            string randomFish = fishes[random.Next(0, fishes.Length)];
             _didFishEscape = false;
             _wasFishCaught = true;
             _messaging.StopMessage();
             _messaging.DisplayMessage("CONGRATS!\n\nYou caught a fish!");
-            _playerInventory.AddFishedFish(
-                "fish name, fish type, fish location, fish color, fish size, fish sex, fish age, fish time caught"
-            );
+            _inventoryController.AddItemToInv(randomFish, 1);
             Destroy(GameObject.FindWithTag("Bobber"));
         }
     }

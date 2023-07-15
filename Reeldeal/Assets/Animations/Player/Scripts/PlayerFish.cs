@@ -33,6 +33,9 @@ public class PlayerFish : MonoBehaviour
     float _reelForce = 0.0f;
 
     [SerializeField]
+    float _castCountdown = 2.0f;
+
+    [SerializeField]
     float _castSpeed = 20f;
 
     [SerializeField]
@@ -137,8 +140,6 @@ public class PlayerFish : MonoBehaviour
         return (_player.transform.position - _bobber.transform.position).magnitude;
     }
 
-    // TODO this should not cancel when the player is casting; only when "fishing"
-    // Could allow for early animation ending
     void HandleCancel()
     {
         if (_isCanceled)
@@ -154,6 +155,7 @@ public class PlayerFish : MonoBehaviour
     {
         if (_isCastButtonPressed && !FindBobber() && _characterController.isGrounded)
         {
+            _castCountdown = 2.0f;
             _bobber = Instantiate(
                 bobberPrefab,
                 this.transform.position + new Vector3(0f, _castHeight, 0f),
@@ -174,7 +176,12 @@ public class PlayerFish : MonoBehaviour
 
     void HandleReel()
     {
+        _castCountdown -= Time.deltaTime;
         Rigidbody hookedFishRB = null;
+        float reelSpeed = 15.0f;
+        float snapSpeed = 1.0f;
+        float slowdownDistance = 4.0f;
+        float retrieveDistance = 1.0f;
 
         if (FindBobber())
         {
@@ -184,11 +191,6 @@ public class PlayerFish : MonoBehaviour
 
         if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
         {
-            float reelSpeed = 15.0f;
-            float snapSpeed = 1.0f;
-            float slowdownDistance = 4.0f;
-            float retrieveDistance = 1.0f;
-
             _bobberRB.constraints = RigidbodyConstraints.None;
             // Prevents the bobber from rolling away
             _bobberRB.constraints = RigidbodyConstraints.FreezeRotation;
@@ -226,9 +228,11 @@ public class PlayerFish : MonoBehaviour
                 Destroy(GameObject.FindWithTag("Bobber"));
             }
         }
-        else if (_bobber && _reelForce <= 0.0f && !_isCastingAnim)
+        // Bobber should only stop mid-reel after the cast has completed
+        else if (_bobber && _reelForce <= 0.0f && _castCountdown <= 0.0f && _isFishingAnim)
         {
-            _bobberRB.constraints = RigidbodyConstraints.FreezeAll;
+            Vector3 opposingForce = -_bobberRB.velocity * reelSpeed / 10;
+            _bobberRB.AddForce(opposingForce, ForceMode.Acceleration);
         }
     }
 }

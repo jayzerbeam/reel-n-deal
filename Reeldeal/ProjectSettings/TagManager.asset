@@ -18,6 +18,7 @@ TagManager:
   - TNT
   - FishingRodStandard
   - FishingRodUpgrade
+  - HUD_Inventory
   layers:
   - Default
   - TransparentFX

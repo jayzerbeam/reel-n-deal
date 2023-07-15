@@ -24,7 +24,7 @@ public class villagerTrading : MonoBehaviour
     private void Update()
     {
         // Check if "Fire2" was pressed
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Trade1"))
         {
             // Check if the player is within trading radius
             if (Vector3.Distance(transform.position, player.transform.position) <= radiusToTrade)

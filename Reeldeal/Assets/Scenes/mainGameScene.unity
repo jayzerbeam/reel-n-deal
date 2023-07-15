@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1470247, g: 0.36394262, b: 0.5799059, a: 1}
+  m_IndirectSpecularColor: {r: 0.14686076, g: 0.36449513, b: 0.5798105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2341,16 +2341,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'To move forward, press "W"
-
-    To move backwards, press "S"
-
-    To move
-    left, press "A"
-
-    To move right, press "D"
-
-    To cast the reel, press "Q"'
+  m_text: "Forward: \"W\"\nBackward: \"S\"\nRotate left: \"A\"\nRotate right: \"D\"\nCast:
+    \"F\"\nReel: \"R\"\nCancel cast: \"C\" \nJump: Spacebar\nRun: Shift"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8816,6 +8808,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bcdaf9f269679443a20d8a86517036c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minAmount: 1
+  maxAmount: 5
 --- !u!135 &1994672284
 SphereCollider:
   m_ObjectHideFlags: 0

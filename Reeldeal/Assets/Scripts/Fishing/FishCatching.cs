@@ -103,19 +103,19 @@ public class FishCatching : MonoBehaviour
     {
         if (_fishMultiTag.HasTag("Easy"))
         {
-            countdownTimer = 10.0f;
+            countdownTimer = 10.0f * 2.0f;
         }
         else if (_fishMultiTag.HasTag("Medium"))
         {
-            countdownTimer = 7.5f;
+            countdownTimer = 7.5f * 2.0f;
         }
         else if (_fishMultiTag.HasTag("Hard"))
         {
-            countdownTimer = 5.0f;
+            countdownTimer = 5.0f * 2.0f;
         }
         else if (_fishMultiTag.HasTag("Boss"))
         {
-            countdownTimer = 3.5f;
+            countdownTimer = 3.5f * 2.0f;
         }
         else
         {

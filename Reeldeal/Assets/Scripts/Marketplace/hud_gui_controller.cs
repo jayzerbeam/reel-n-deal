@@ -32,7 +32,6 @@ public class hud_gui_controller : MonoBehaviour
             isInventoryVisible = !isInventoryVisible;
             UpdateHUDInventoryGUI();
         }
-
     }
 
     public void AddItemToInv(string item_type, int item_amount)
@@ -109,6 +108,39 @@ public class hud_gui_controller : MonoBehaviour
         orange_fish_disp.text = orange_fish_Count.ToString();
 
 
+    }
+
+    // Function to check if the player has a certain amount of a certain type of fish
+    public bool HasFish(string fishType, int amount)
+    {
+        // Check if the player has any fish of this type
+        switch (fishType)
+        {
+            case "blue":
+                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + blue_fish_Count);
+                if (blue_fish_Count >= amount)
+                {
+                    return true;
+                }
+                return false;
+            case "pink":
+                Debug.Log("Player has " + amount + " pink fish(es). Total pink fishes: " + blue_fish_Count);
+                if (blue_fish_Count >= amount)
+                {
+                    return true;
+                }
+                return false;
+            case "orange":
+                Debug.Log("Player has " + amount + " orange fish(es). Total orange fishes: " + blue_fish_Count);
+                if (blue_fish_Count >= amount)
+                {
+                    return true;
+                }
+                return false;
+            default:
+                Debug.Log("Invalid item type: " + fishType);
+                return false; 
+        }
     }
 
 

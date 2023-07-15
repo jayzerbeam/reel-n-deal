@@ -9,7 +9,7 @@ public class BobberBehavior : MonoBehaviour
 
     [SerializeField]
     float _gravity = -9.81f;
-    float _groundedGravity = 0.05f;
+    //float _groundedGravity = 0.05f;
 
     private bool _isInWater = false;
 

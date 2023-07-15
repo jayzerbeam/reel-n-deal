@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 307306196101000532}
   - component: {fileID: 307306196101000533}
   - component: {fileID: 307306196101000530}
+  - component: {fileID: 4765949941691798450}
   m_Layer: 0
   m_Name: Found Coin
   m_TagString: Untagged
@@ -112,3 +113,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minAmount: 1
   maxAmount: 5
+--- !u!111 &4765949941691798450
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307306196101000528}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2a9567ff9958ab64cb91caee5606eb77, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2a9567ff9958ab64cb91caee5606eb77, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

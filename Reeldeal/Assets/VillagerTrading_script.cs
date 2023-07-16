@@ -166,7 +166,7 @@ public class VillagerTrading_script : MonoBehaviour
         inventoryController.RemoveItemToInv(fish_type, (int)fish_slider.value);
         inventoryController.AddItemToInv("coin", trade_amount); 
         // debugging code randomly give player 1 coin
-        Debug.Log("Trade made " + trade_amount.ToString() + " coins given " + fish_slider.value.ToString() + "fish of type " + fish_type.ToString() + " taken.");
+        Debug.Log("Trade made " + trade_amount.ToString() + " coins given " + fish_slider.value.ToString() + " fish of type " + fish_type.ToString() + " taken.");
 
         // Hide the trading GUI
         canvas.SetActive(false);

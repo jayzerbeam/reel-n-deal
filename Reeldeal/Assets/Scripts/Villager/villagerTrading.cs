@@ -9,10 +9,10 @@ public class villagerTrading : MonoBehaviour
     public GameObject player;
     private playerInventory playerInventory;
     private string[] greetings = { "Hello!", "Hi!", "Hey!", "Greetings!", "Good to see you!" };
-    private string[] fishTypes = { "Fish Type 1", "Fish Type 2", "Fish Type 3" };
+    private string[] fishTypes = { "blue", "pink", "orange" };
     public float radiusToTrade = 2.5f; // Set this to whatever radius you want
     public TextMeshProUGUI talk_to_playerText;
-    public float timeToErase = 5f;
+    public float timeToErase = 10f;
     private string msg;
 
     void Start()
@@ -40,7 +40,7 @@ public class villagerTrading : MonoBehaviour
 
                 // Print the greeting and request
                 //Debug.Log(greeting + " I want " + numFish + " of " + fishType + ".");
-                msg = greeting.ToString() + " I want " + numFish.ToString() + " of " + fishType.ToString() + ".";
+                msg = greeting.ToString() + " I want " + numFish.ToString() + " " + fishType.ToString() + " fish.";
                 Debug.Log(msg);
                 talk_to_player(msg);
 
@@ -57,7 +57,7 @@ public class villagerTrading : MonoBehaviour
                 }
                 else
                 {
-                    msg = "You don't have enough " + fishType.ToString() + ".";
+                    msg = "You don't have enough " + fishType.ToString() + " fish.";
                     Debug.Log(msg);
                     talk_to_player(msg);
                     if (Random.value < 0.9f)

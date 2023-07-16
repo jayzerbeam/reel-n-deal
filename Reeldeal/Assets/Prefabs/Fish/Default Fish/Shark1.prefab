@@ -817,14 +817,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleSpeed: 0.5
-  hungrySpeed: 2
+  hungrySpeed: 4
   aggressiveSpeed: 2
-  rotationSpeed: 20
+  rotationSpeed: 10
   fleeSpeed: 4
   rayCount: 5
   rayLength: 40
+  landRayLength: 3.25
   sightHeight: 2
   rayColor: {r: 1, g: 0, b: 0, a: 1}
+  landCollision: 0
   fleeTimer: 0
   aiState: 0
 --- !u!114 &519054923478010246

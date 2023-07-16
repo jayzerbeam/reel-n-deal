@@ -16,6 +16,7 @@ public class FishAI : MonoBehaviour
     // fish "sight"
     public int rayCount = 5;
     public float rayLength = 40f;
+    public float landRayLength = 10f; // how close to land fish can go
     public float sightHeight = 2f; // how high to make fish "see"
     public Color rayColor = Color.red;
 
@@ -24,6 +25,8 @@ public class FishAI : MonoBehaviour
     private Animator anim;
     private Rigidbody rb;
     private float currentSpeed;
+    private float lastNearLand; // time since ray last collided with land
+    public bool landCollision = false;
     private bool _wasRecentlyCaught;
     public bool WasRecentlyCaught
     {
@@ -70,6 +73,7 @@ public class FishAI : MonoBehaviour
         FishPrefabInitializer fishPrefabInitializer = GetComponent<FishPrefabInitializer>();
         waypoints = fishPrefabInitializer.waypoints;
         currWaypointIndex = 0;
+        lastNearLand = Time.time;
     }
 
     private void Update()
@@ -122,7 +126,7 @@ public class FishAI : MonoBehaviour
                     }
                 }
 
-                // set rays facing fish's direction
+                // flee / aggro rays
                 float spacing = sightHeight;
                 for (int i = 0; i < rayCount; i++)
                 {
@@ -143,7 +147,20 @@ public class FishAI : MonoBehaviour
                     }
                 }
 
-                // also be agressive is player is simply too close
+                // land collision ray
+                Ray landRay = new Ray(transform.position, transform.forward);
+                Debug.DrawRay(landRay.origin, landRay.direction * landRayLength, Color.green);
+                RaycastHit[] landHits = Physics.RaycastAll(landRay, landRayLength);
+                foreach (RaycastHit hit in landHits)
+                {
+                    if (hit.collider.CompareTag("Ground") && Time.time - lastNearLand > 5f) // change to new waypoint if it spawned partially in land
+                    {
+                        currWaypointIndex = Random.Range(0, waypoints.Length);
+                        lastNearLand = Time.time;
+                    }
+                }
+
+                // also be agressive is player is simply too close (sharks only)
                 GameObject playerObject = GameObject.FindWithTag("Player");
                 if (playerObject != null)
                 {
@@ -158,6 +175,7 @@ public class FishAI : MonoBehaviour
 
             case AIState.hungryState:
                 bobber = GameObject.FindWithTag("Bobber");
+                rotationSpeed *= 4; // makes it easier for fish to turn towards bobber when nearby
 
                 if (bobber == null) // if bobber gets deleted
                 {
@@ -169,6 +187,7 @@ public class FishAI : MonoBehaviour
                     bobberDistance = Vector3.Distance(transform.position, bobber.transform.position);
                     if (bobberDistance > bobberMechanics.radius) // if bobber is too far away
                     {
+                        rotationSpeed /= 4; // revert to orginal rotation to be smoother in idle
                         aiState = AIState.idleState;
                     }
                 }
@@ -181,15 +200,52 @@ public class FishAI : MonoBehaviour
                 break;
 
             case AIState.aggressiveState:
-                
+
+                // land collision check
+                Collider[] groundColliders = Physics.OverlapSphere(transform.position, transform.localScale.magnitude * 0.9f);
+                foreach (Collider collider in groundColliders)
+                {
+                    if (collider.CompareTag("Ground") && Time.time - lastNearLand > 5f)
+                    {
+                        landCollision = true;
+                        Debug.Log("Collision");
+                        lastNearLand = Time.time;
+                        break;
+                    }
+                }
+                if (landCollision)
+                {
+                    Debug.Log("COLLIDED");
+                    rb.velocity = Vector3.zero;
+                }
+
                 GameObject player = GameObject.FindWithTag("Player");
-                if (player != null)
+                float playerDist = Vector3.Distance(transform.position, player.transform.position);
+                if (player != null && !landCollision)
                 {
                     UpdateTravel(player.transform.position, aggressiveSpeed);
                 }
-                else
+                else if (landCollision && playerDist > 16f) // return to idle state if shark has collided and player if far enough away
                 {
                     aiState = AIState.idleState;
+                }
+                else if (landCollision) // prevents shark from glitchy collisions into shore
+                {
+                    rb.velocity = Vector3.zero;
+                }
+                else if (player == null)
+                {
+                    landCollision = false;
+                    aiState = AIState.idleState;
+                }
+
+                if (!InWater()) // ensures fish don't fly out of water during hungry state + fish collision
+                {
+                    Vector3 updatedPosition = transform.position;
+                    float newY = GetWaterHeight();
+                    updatedPosition.y = newY;
+                    yValue = newY;
+                    transform.position = updatedPosition;
                 }
 
                 break;
@@ -226,7 +282,6 @@ public class FishAI : MonoBehaviour
                 }
                 break;
 
-
             default:
                 break;
 
@@ -248,6 +303,16 @@ public class FishAI : MonoBehaviour
         float adjustedSpeed = Mathf.Lerp(0f, fishSpeed, remainingDistance / 0.5f);
         currentSpeed = Mathf.Lerp(currentSpeed, adjustedSpeed, Time.deltaTime);
         rb.velocity = this.transform.forward * currentSpeed;
+        
+        if (!InWater()) // ensures fish don't fly out of water during hungry state + fish collision
+        {
+            Vector3 updatedPosition = transform.position;
+            float newY = GetWaterHeight();
+            updatedPosition.y = newY;
+            yValue = newY;
+            transform.position = updatedPosition;
+        }
+
 
         // keep at correct y-level
         Vector3 newPosition = transform.position;
@@ -269,5 +334,37 @@ public class FishAI : MonoBehaviour
             yield return null; // https://www.javatpoint.com/unity-coroutines#:~:text=Here%2C%20the%20yield%20is%20a,continue%20on%20the%20next%20frame.&text=yield%20return%20null%20%2D%20This%20will,called%2C%20on%20the%20next%20frame.
         }
         aiState = AIState.aggressiveState; // transition state after turn completed
+    }
+
+    private bool InWater()
+    {
+        int waterLayer = LayerMask.NameToLayer("Water");
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.25f);
+        foreach(Collider collider in colliders)
+        {
+            if (collider.gameObject.layer == waterLayer)
+                return true; // fish in water
+        }
+        return false; // fish not in water
+    }
+
+    private float GetWaterHeight()
+    {
+        int waterLayer = LayerMask.NameToLayer("Water");
+        float maxWaterHeight = 0f; // default value
+        
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 5f);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.layer == waterLayer)
+            {
+                float waterHeight = collider.gameObject.transform.position.y;
+                if (waterHeight > maxWaterHeight) // choose highest point if multiple exist
+                    maxWaterHeight = waterHeight;
+            }
+        }
+
+        return maxWaterHeight;
     }
 }

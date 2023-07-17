@@ -13,6 +13,9 @@ public class MarketplaceItems : MonoBehaviour
     private GameObject triggeredObject;
     public Inventory inventory;
 
+    public GameObject buuts_disp;
+    public GameObject goldrod_disp;
+
 
     public void Start()
     {
@@ -105,6 +108,7 @@ public class MarketplaceItems : MonoBehaviour
         {
             RodUpgradeGUI.SetActive(false);
             inventory.AddItem("FishingRodUpgrade", false);
+            goldrod_disp.SetActive(true);
             Destroy(triggeredObject);
             triggeredObject = null;
         }
@@ -122,6 +126,7 @@ public class MarketplaceItems : MonoBehaviour
         {
             BootsGUI.SetActive(false);
             inventory.AddItem("Boots", false);
+            buuts_disp.SetActive(true);
             Destroy(triggeredObject);
             triggeredObject = null;
         }

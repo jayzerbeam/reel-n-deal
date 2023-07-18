@@ -1243,6 +1243,7 @@ GameObject:
   - component: {fileID: 6852037400769901638}
   - component: {fileID: 1122130438}
   - component: {fileID: 7635539927104353454}
+  - component: {fileID: 6887098017651368848}
   - component: {fileID: 798370468}
   m_Layer: 0
   m_Name: Player
@@ -1417,6 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca26f1d28706ece42abdc4368c239fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDying: 0
 --- !u!114 &2063810464150162670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,8 +1521,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bobberPrefab: {fileID: 2886670933728575070, guid: 135aeada52e85c64c8f5493b85d529ad,
     type: 3}
+  _castCountdown: 2
   _castSpeed: 20
   _castHeight: 2.5
+--- !u!114 &6887098017651368848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483754695257692263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a16db666ae3cbe4aaccd901413b6294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: {fileID: 0}
+  originalVolumeProfile: {fileID: 11400000, guid: a3e158bf0de7c2941a2d012d54355d55,
+    type: 2}
+  waterVolumeProfile: {fileID: 11400000, guid: 658e7f1c009a0e24e85093d75ac4b290, type: 2}
+  transitionDuration: 1
+  drowned: 0
 --- !u!114 &798370468
 MonoBehaviour:
   m_ObjectHideFlags: 0

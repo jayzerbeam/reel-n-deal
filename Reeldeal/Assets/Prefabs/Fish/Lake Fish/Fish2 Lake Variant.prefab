@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: -2947617968979830437, guid: 04f06b345e2297745b5b7981daed12ad,
         type: 3}
       propertyPath: hungrySpeed
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3940581000686889306, guid: 04f06b345e2297745b5b7981daed12ad,
         type: 3}

@@ -5353,6 +5353,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
       propertyPath: spawnAttempts
       value: 10
       objectReference: {fileID: 0}
@@ -5550,7 +5554,7 @@ Transform:
   - {fileID: 1360977482}
   - {fileID: 1546801962}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &994016632 stripped
 Transform:
@@ -12299,7 +12303,7 @@ PrefabInstance:
     - target: {fileID: 6332479951485993367, guid: 004de6a27ddc86f4fa9b6a80c9b8a68d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 53.03
+      value: 52.96
       objectReference: {fileID: 0}
     - target: {fileID: 6332479951485993367, guid: 004de6a27ddc86f4fa9b6a80c9b8a68d,
         type: 3}
@@ -12309,27 +12313,27 @@ PrefabInstance:
     - target: {fileID: 6332479951485993367, guid: 004de6a27ddc86f4fa9b6a80c9b8a68d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.52637887
+      value: 0.52948457
       objectReference: {fileID: 0}
     - target: {fileID: 6332479951485993367, guid: 004de6a27ddc86f4fa9b6a80c9b8a68d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.5563815
+      value: -0.5534883
       objectReference: {fileID: 0}
     - target: {fileID: 6332479951485993367, guid: 004de6a27ddc86f4fa9b6a80c9b8a68d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.4721497
+      value: -0.46866423
       objectReference: {fileID: 0}
     - target: {fileID: 6332479951485993367, guid: 004de6a27ddc86f4fa9b6a80c9b8a68d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.4363939
+      value: -0.4400576
       objectReference: {fileID: 0}
     - target: {fileID: 6332479951485993367, guid: 004de6a27ddc86f4fa9b6a80c9b8a68d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -93.783
+      value: -93.026
       objectReference: {fileID: 0}
     - target: {fileID: 6332479951485993367, guid: 004de6a27ddc86f4fa9b6a80c9b8a68d,
         type: 3}
@@ -12722,8 +12726,10 @@ MonoBehaviour:
   fleeSpeed: 8
   rayCount: 5
   rayLength: 60
+  landRayLength: 3
   sightHeight: 2
   rayColor: {r: 1, g: 0, b: 0, a: 1}
+  landCollision: 0
   fleeTimer: 0
   aiState: 0
 --- !u!1 &2742598602125487587
@@ -16215,7 +16221,7 @@ PrefabInstance:
     - target: {fileID: 6656420190864697286, guid: 7ed3e0aa3b2c9c44daa68b4e68d2a09b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6656420190864697286, guid: 7ed3e0aa3b2c9c44daa68b4e68d2a09b,
         type: 3}
@@ -17510,7 +17516,7 @@ MonoBehaviour:
   - Persistent
   - Boss
   fishMaterials:
-  - fishMaterial: {fileID: 2100000, guid: 09f01faf72be43d40b096ef610a23bd7, type: 2}
+  - fishMaterial: {fileID: 2100000, guid: 161fbc03d3ebae14aa4e0fb425a7631a, type: 2}
     weight: 1
   minSize: 10
   maxSize: 10

@@ -9,8 +9,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4207220409504934134, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
         type: 3}
+      propertyPath: landRayLength
+      value: 4.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -4207220409504934134, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
+        type: 3}
       propertyPath: aggressiveSpeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 310173617496778876, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 310173619183077713, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 519054923478010246, guid: 8e54ff1d12086e043b1e3e8ac34ae1f4,
         type: 3}

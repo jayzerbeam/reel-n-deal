@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleSpeed: 0.5
-  hungrySpeed: 1.75
+  hungrySpeed: 3.5
   aggressiveSpeed: 1.25
   rotationSpeed: 10
   fleeSpeed: 8

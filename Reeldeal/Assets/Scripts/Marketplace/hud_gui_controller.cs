@@ -17,6 +17,10 @@ public class hud_gui_controller : MonoBehaviour
     public int pink_fish_Count = 0;
     public int orange_fish_Count = 0;
 
+    //public int orange_fish_Count = 0;
+    //public int orange_fish_Count = 0;
+    //public int orange_fish_Count = 0;
+
 
     private void Start()
     {

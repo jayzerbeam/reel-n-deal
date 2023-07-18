@@ -34,13 +34,13 @@ public class sharkAudioRandomizer : MonoBehaviour
             if (r < 0.5)
             {
                 // update pitch, but not frequently enough to cause audio to be skipped
-                if (playerDistance < 10)
+                if (playerDistance < 5)
                     SharkAudioManager.PlayLoopSound(transform.position, 1.3f);
-                else if (playerDistance < 20)
+                else if (playerDistance < 10)
                     SharkAudioManager.PlayLoopSound(transform.position, 1.2f);
-                else if (playerDistance < 40)
+                else if (playerDistance < 20)
                     SharkAudioManager.PlayLoopSound(transform.position, 1.1f);
-                else if (playerDistance < 60)
+                else if (playerDistance < 30)
                     SharkAudioManager.PlayLoopSound(transform.position, 1f);
             }     
         }

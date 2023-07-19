@@ -42,7 +42,7 @@ public class VillagerTrading_script : MonoBehaviour
     {
         //playerInventory = player.GetComponent<playerInventory>();
 
-        fish_price = 0;
+        fish_price = 1;
         // Assign the Button's listener
         //trading_button.onClick.AddListener(TradeFish);
     }

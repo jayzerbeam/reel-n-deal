@@ -23,7 +23,8 @@ public class VillagerTrading_script : MonoBehaviour
     public GameObject fish_blue_image;
     public GameObject fish_pink_image;
     public GameObject fish_orange_image;
-    public Slider fish_slider;
+    public TextMeshProUGUI fish_type_text;
+    //public Slider fish_slider;
     public TextMeshProUGUI fish_amount_text;
     public TextMeshProUGUI fish_price_text;
     public Button trading_button;
@@ -31,11 +32,15 @@ public class VillagerTrading_script : MonoBehaviour
     private int fish_price;
     private string fish_type;
 
+    private int max_buy_amount;
+    private int buy_amount;
+
     private hud_gui_controller inventoryController;
 
     private void Awake()
     {
         inventoryController = FindObjectOfType<hud_gui_controller>();
+        fish_type = fishTypes[Random.Range(0, fishTypes.Length)];
     }
 
     void Start()
@@ -43,6 +48,7 @@ public class VillagerTrading_script : MonoBehaviour
         //playerInventory = player.GetComponent<playerInventory>();
 
         fish_price = 1;
+        fish_type = fishTypes[Random.Range(0, fishTypes.Length)];
         // Assign the Button's listener
         //trading_button.onClick.AddListener(TradeFish);
     }
@@ -60,8 +66,8 @@ public class VillagerTrading_script : MonoBehaviour
                 // Generate a random greeting
                 string greeting = greetings[Random.Range(0, greetings.Length)];
 
-                // Randomly select fish type
-                fish_type = fishTypes[Random.Range(0, fishTypes.Length)];
+                //// Randomly select fish type
+                //fish_type = fishTypes[Random.Range(0, fishTypes.Length)];
 
                 // Randomly assign fish price from 1 to 5
                 fish_price = Random.Range(1, 6);
@@ -103,69 +109,82 @@ public class VillagerTrading_script : MonoBehaviour
                             //fish_blue_image.SetActive(true);
                             //fish_pink_image.SetActive(false);
                             //fish_orange_image.SetActive(false);
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.lake_f_1_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.lake_f_1_count;
+                            max_buy_amount =  inventoryController.lake_f_1_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
                             break;
                         case "lake_f_2":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.lake_f_2_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.lake_f_2_count;
+                            max_buy_amount =  inventoryController.lake_f_2_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
                             break;
                         case "lake_f_3":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.lake_f_3_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.lake_f_3_count;
+                            max_buy_amount =  inventoryController.lake_f_3_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
                             break;
                         case "lake_f_4":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.lake_f_4_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.lake_f_4_count;
+                            max_buy_amount =  inventoryController.lake_f_4_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
                             break;
                         case "ocean_f_1":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.ocean_f_1_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.ocean_f_1_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            max_buy_amount = inventoryController.ocean_f_1_count;
                             break;
                         case "ocean_f_2":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.ocean_f_2_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.ocean_f_2_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString
+                            max_buy_amount =  inventoryController.ocean_f_2_count;
                             break;
                         case "ocean_f_3":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.ocean_f_3_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.ocean_f_3_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            max_buy_amount = inventoryController.ocean_f_3_count;
                             break;
                         case "ocean_f_4":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.ocean_f_4_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.ocean_f_4_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            max_buy_amount =  inventoryController.ocean_f_4_count;
                             break;
                         case "ocean_shark":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.ocean_shark_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.ocean_shark_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            max_buy_amount =  inventoryController.ocean_shark_count;
                             break;
                         case "river_f_1":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.river_f_1_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.river_f_1_count;
+                            max_buy_amount =  inventoryController.river_f_1_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
                             break;
                         case "river_f_2":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.river_f_2_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.river_f_2_count;
+                            max_buy_amount =  inventoryController.river_f_2_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
                             break;
                         case "river_f_3":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.river_f_3_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.river_f_3_count;
+                            max_buy_amount =  inventoryController.river_f_3_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
                             break;
                         case "river_f_4":
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = inventoryController.river_f_4_count;
-                            Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = inventoryController.river_f_4_count;
+                            max_buy_amount =  inventoryController.river_f_4_count;
+                            //Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
                             break;
                         //case "blue":
                         //    fish_blue_image.SetActive(true);
@@ -193,19 +212,23 @@ public class VillagerTrading_script : MonoBehaviour
                         //    break;
                         default:
                             Debug.Log("Invalid item type: " + fish_type.ToString());
-                            fish_slider.minValue = 0;
-                            fish_slider.maxValue = 0;
-                            Debug.Log("Slider max value set to 0");
+                            //fish_slider.minValue = 0;
+                            //fish_slider.maxValue = 0;
+                            //Debug.Log("Slider max value set to 0");
                             break;
                     }
 
-                    // Update fish_amount_text
-                    fish_amount_text.text = fish_slider.value.ToString();
+                    //// Update fish_amount_text
+                    //fish_amount_text.text = fish_slider.value.ToString();
 
-                    // Update fish_price_text
-                    fish_price_text.text = (fish_slider.value * fish_price).ToString();
+                    //// Update fish_price_text
+                    //fish_price_text.text = (fish_slider.value * fish_price).ToString();
 
 
+                    buy_amount = Random.Range(1, max_buy_amount);
+                    fish_type_text.text = fish_type.ToString(); 
+                    fish_amount_text.text = buy_amount.ToString();
+                    fish_price_text.text = (buy_amount * fish_price).ToString();
 
                     //// Remove the fish from the player's inventory
                     //playerInventory.RemoveFish(fishType, numFish);
@@ -235,21 +258,24 @@ public class VillagerTrading_script : MonoBehaviour
 
     public void OnSliderChanged()
     {
-        // Update fish_amount_text
-        fish_amount_text.text = fish_slider.value.ToString();
+        //// Update fish_amount_text
+        //fish_amount_text.text = fish_slider.value.ToString();
 
-        // Update fish_price_text
-        fish_price_text.text = (fish_slider.value * fish_price).ToString();
+        //// Update fish_price_text
+        //fish_price_text.text = (fish_slider.value * fish_price).ToString();
     }
 
     public void TradeFish()
-    {   
+    {
         // Trade fishes for coins
-        int trade_amount = (int)fish_slider.value * fish_price;
-        inventoryController.RemoveItemToInv(fish_type, (int)fish_slider.value);
-        inventoryController.AddItemToInv("coin", trade_amount); 
+        // int trade_amount = (int)fish_slider.value * fish_price;
+        int trade_amount = buy_amount * fish_price;
+        inventoryController.RemoveItemToInv(fish_type, buy_amount);
+        // inventoryController.RemoveItemToInv(fish_type, (int)fish_slider.value);
+        inventoryController.AddItemToInv("coin", trade_amount);
         // debugging code randomly give player 1 coin
-        Debug.Log("Trade made " + trade_amount.ToString() + " coins given " + fish_slider.value.ToString() + " fish of type " + fish_type.ToString() + " taken.");
+        // Debug.Log("Trade made " + trade_amount.ToString() + " coins given " + fish_slider.value.ToString() + " fish of type " + fish_type.ToString() + " taken.");
+        Debug.Log("Trade made " + trade_amount.ToString() + " coins given, " + buy_amount.ToString() + " fish of type: " + fish_type.ToString() + " taken.");
 
         // Hide the trading GUI
         canvas.SetActive(false);

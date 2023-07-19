@@ -788,6 +788,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4771927669525687604}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &575047193 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4771927670024383277, guid: 409c794377c0293779317ef9f98e977b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4771927669525687604}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &731190186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,6 +1160,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1198202844 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4771927668791021298, guid: 409c794377c0293779317ef9f98e977b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4771927669525687604}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1272484388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,6 +1354,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 798370468, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
+      propertyPath: FishingMessageBox
+      value: 
+      objectReference: {fileID: 1198202844}
+    - target: {fileID: 798370468, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
+      propertyPath: FishingMessageBoxBackground
+      value: 
+      objectReference: {fileID: 575047193}
     - target: {fileID: 5958609917625189085, guid: 303e4658defaa73c7bac6ab02a91e0bc,
         type: 3}
       propertyPath: m_RootOrder
@@ -2070,13 +2102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7534cbc66262dc44fabcb210f9ff9866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: {fileID: 832575518}
-  originalVolumeProfile: {fileID: 11400000, guid: a3e158bf0de7c2941a2d012d54355d55,
-    type: 2}
-  waterVolumeProfile: {fileID: 11400000, guid: 658e7f1c009a0e24e85093d75ac4b290, type: 2}
-  transitionDuration: 1
-  newWeight: 0
-  transition: 
 --- !u!1 &1868707242
 GameObject:
   m_ObjectHideFlags: 0

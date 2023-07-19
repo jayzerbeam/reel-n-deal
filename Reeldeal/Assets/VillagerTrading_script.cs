@@ -232,12 +232,15 @@ public class VillagerTrading_script : MonoBehaviour
                     //fish_price_text.text = (fish_slider.value * fish_price).ToString();
 
 
-                    buy_amount = Random.Range(1, max_pos_buy_amount);
-                    buy_amount = Mathf.Min(max_buy_amount, buy_amount);
+                    //buy_amount = Random.Range(1, max_pos_buy_amount);
+                    //buy_amount = Mathf.Min(max_buy_amount, buy_amount);
+                    //buy_amount = Random.Range(1, buy_amount + 1);
+                    buy_amount = Mathf.Min(max_buy_amount, max_pos_buy_amount);
                     buy_amount = Random.Range(1, buy_amount + 1);
                     fish_type_text.text = fish_type.ToString(); 
                     fish_amount_text.text = buy_amount.ToString();
                     fish_price_text.text = (buy_amount * fish_price).ToString();
+
 
                     //// Remove the fish from the player's inventory
                     //playerInventory.RemoveFish(fishType, numFish);

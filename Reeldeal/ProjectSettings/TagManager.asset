@@ -19,6 +19,7 @@ TagManager:
   - FishingRodStandard
   - FishingRodUpgrade
   - HUD_Inventory
+  - Villager
   layers:
   - Default
   - TransparentFX

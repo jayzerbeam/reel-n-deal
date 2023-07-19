@@ -53,7 +53,7 @@ public class VillagerTrading_script : MonoBehaviour
         fish_type = fishTypes[Random.Range(0, fishTypes.Length)];
         max_buy_amount = Mathf.Max(max_buy_amount, 1);
         // Assign the Button's listener
-        //trading_button.onClick.AddListener(TradeFish);
+        trading_button.onClick.AddListener(TradeFish);
     }
 
     // Update is called once per frame

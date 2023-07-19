@@ -103,19 +103,19 @@ public class FishCatching : MonoBehaviour
     {
         if (_fishMultiTag.HasTag("Easy"))
         {
-            countdownTimer = 10.0f * 2.0f;
+            countdownTimer = 20.0f;
         }
         else if (_fishMultiTag.HasTag("Medium"))
         {
-            countdownTimer = 7.5f * 2.0f;
+            countdownTimer = 15.0f;
         }
         else if (_fishMultiTag.HasTag("Hard"))
         {
-            countdownTimer = 5.0f * 2.0f;
+            countdownTimer = 10.0f;
         }
         else if (_fishMultiTag.HasTag("Boss"))
         {
-            countdownTimer = 3.5f * 2.0f;
+            countdownTimer = 7.0f;
         }
         else
         {
@@ -130,14 +130,14 @@ public class FishCatching : MonoBehaviour
         if (countdownTimer > 0.0f && !_didFishEscape && !_wasFishCaught)
         {
             _messaging.DisplayMessage(
-                $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\n\nKeypresses remaining: {keyPressesRemaining}\n\nTime left: {countdownTimer}",
+                $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\n\nTime left: {countdownTimer}",
                 countdownTimer
             );
         }
         else if (countdownTimer <= 0.0f && !_didFishEscape && !_wasFishCaught)
         {
             _messaging.StopMessage();
-            _messaging.DisplayMessage("Oh no! The fish got away...\n\nBetter luck next time!");
+            _messaging.DisplayMessage("The fish got away...\n\nBetter luck next time!");
             _didFishEscape = true;
             _wasFishCaught = false;
         }
@@ -162,7 +162,7 @@ public class FishCatching : MonoBehaviour
             else if (!Input.GetKeyDown(randomInputKey))
             {
                 _messaging.StopMessage();
-                _messaging.DisplayMessage("Oh no! The fish got away...\n\nBetter luck next time!");
+                _messaging.DisplayMessage("The fish got away...\n\nBetter luck next time!");
                 _didFishEscape = true;
                 _wasFishCaught = false;
             }
@@ -176,7 +176,7 @@ public class FishCatching : MonoBehaviour
             _didFishEscape = false;
             _wasFishCaught = true;
             _messaging.StopMessage();
-            _messaging.DisplayMessage("CONGRATS!\n\nYou caught a fish!");
+            _messaging.DisplayMessage("You caught a fish!");
             _inventoryController.AddItemToInv(randomFish, 1);
             Destroy(GameObject.FindWithTag("Bobber"));
         }

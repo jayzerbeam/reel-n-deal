@@ -30,8 +30,6 @@ public class PlayerFish : MonoBehaviour
     bool _isCastingAnim;
     bool _isFishingAnim;
 
-    float _reelForce = 0.0f;
-
     [SerializeField]
     float _castCountdown = 2.0f;
 
@@ -56,9 +54,9 @@ public class PlayerFish : MonoBehaviour
         _playerInput.CharacterControls.Cast.canceled += OnCast;
         _playerInput.CharacterControls.Cast.performed += OnCast;
 
-        _playerInput.CharacterControls.Reel.started += OnReel;
-        _playerInput.CharacterControls.Reel.canceled += OnReel;
-        _playerInput.CharacterControls.Reel.performed += OnReel;
+        // _playerInput.CharacterControls.Reel.started += OnReel;
+        // _playerInput.CharacterControls.Reel.canceled += OnReel;
+        // _playerInput.CharacterControls.Reel.performed += OnReel;
 
         _playerInput.CharacterControls.Cancel.started += OnCancel;
         _playerInput.CharacterControls.Cancel.canceled += OnCancel;
@@ -74,7 +72,6 @@ public class PlayerFish : MonoBehaviour
     void FixedUpdate()
     {
         HandleCast();
-        HandleReel();
     }
 
     void OnEnable()
@@ -103,11 +100,6 @@ public class PlayerFish : MonoBehaviour
         {
             Destroy(GameObject.FindWithTag("Bobber"));
         }
-    }
-
-    void OnReel(InputAction.CallbackContext context)
-    {
-        _reelForce = context.ReadValue<float>();
     }
 
     bool FindBobber()
@@ -171,68 +163,6 @@ public class PlayerFish : MonoBehaviour
                 Vector3 castVelocity = castDirection * _castSpeed;
                 _bobberRB.AddForce(castVelocity, ForceMode.Impulse);
             }
-        }
-    }
-
-    void HandleReel()
-    {
-        _castCountdown -= Time.deltaTime;
-        Rigidbody hookedFishRB = null;
-        float reelSpeed = 15.0f;
-        float snapSpeed = 1.0f;
-        float slowdownDistance = 4.0f;
-        float retrieveDistance = 1.0f;
-
-        if (FindBobber())
-        {
-            _bobber = GameObject.FindWithTag("Bobber");
-            _bobberRB = _bobber.GetComponent<Rigidbody>();
-        }
-
-        if (_reelForce > 0.0f && _bobber && !_isCastingAnim)
-        {
-            _bobberRB.constraints = RigidbodyConstraints.None;
-            // Prevents the bobber from rolling away
-            _bobberRB.constraints = RigidbodyConstraints.FreezeRotation;
-
-            Vector3 playerPosition = this.transform.position;
-            Vector3 reelDirection = playerPosition - _bobber.transform.position;
-            reelDirection.Normalize();
-
-            _hookedFishGO = _fishCatching.GetHookedFishGO();
-
-            if (_hookedFishGO != null)
-            {
-                hookedFishRB = _hookedFishGO.GetComponentInChildren<Rigidbody>();
-                hookedFishRB.constraints = RigidbodyConstraints.None;
-            }
-
-            if (DistanceToPlayer() > slowdownDistance)
-            {
-                if (!hookedFishRB)
-                {
-                    _bobberRB.AddForce(reelDirection * reelSpeed, ForceMode.Force);
-                }
-            }
-            else if (
-                DistanceToPlayer() <= slowdownDistance && DistanceToPlayer() > retrieveDistance
-            )
-            {
-                if (!hookedFishRB)
-                {
-                    _bobberRB.AddForce(reelDirection * snapSpeed, ForceMode.Impulse);
-                }
-            }
-            else if (DistanceToPlayer() <= retrieveDistance)
-            {
-                Destroy(GameObject.FindWithTag("Bobber"));
-            }
-        }
-        // Bobber should only stop mid-reel after the cast has completed
-        else if (_bobber && _reelForce <= 0.0f && _castCountdown <= 0.0f && _isFishingAnim)
-        {
-            Vector3 opposingForce = -_bobberRB.velocity * reelSpeed / 10;
-            _bobberRB.AddForce(opposingForce, ForceMode.Acceleration);
         }
     }
 }

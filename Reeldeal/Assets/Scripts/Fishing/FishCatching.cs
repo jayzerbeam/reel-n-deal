@@ -130,7 +130,7 @@ public class FishCatching : MonoBehaviour
         if (countdownTimer > 0.0f && !_didFishEscape && !_wasFishCaught)
         {
             _messaging.DisplayMessage(
-                $"You hooked a fish!\n\nPress {randomInputKey.ToUpper()}!\n\nTime left: {countdownTimer}",
+                $"You hooked a fish!\n\nPress {randomInputKey}!\n\nTime left: {countdownTimer}",
                 countdownTimer
             );
         }

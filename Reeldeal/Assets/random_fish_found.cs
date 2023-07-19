@@ -8,7 +8,7 @@ public class random_fish_found : MonoBehaviour
     public int minAmount = 1;
     public int maxAmount = 5;
 
-    private string[] fishTypes = { "blue", "pink", "orange" };
+    private string[] fishTypes = { "lake_f_1", "lake_f_2", "lake_f_3", "lake_f_4", "ocean_f_1", "ocean_f_2", "ocean_f_3", "ocean_f_4", "ocean_shark", "river_f_1", "river_f_2", "river_f_3", "river_f_4" };
 
     private string fish_type = "blue";
 
@@ -38,9 +38,14 @@ public class random_fish_found : MonoBehaviour
         {
             int minAmount = Random.Range(1, 9);
             int maxAmount = Random.Range(10, 26);
-            fish_type = fishTypes[Random.Range(0, fishTypes.Length)];
-            int randomAmount = Random.Range(minAmount, maxAmount + 1);
-            inventoryController.AddItemToInv(fish_type, randomAmount);
+            int fishes = Random.Range(3, 13);
+            for (int i = 0; i < fishes; i++)
+            {
+                fish_type = fishTypes[Random.Range(0, fishTypes.Length)];
+                int randomAmount = Random.Range(minAmount, maxAmount + 1);
+                inventoryController.AddItemToInv(fish_type, randomAmount);
+            }
+                
 
             Destroy(gameObject);
         }

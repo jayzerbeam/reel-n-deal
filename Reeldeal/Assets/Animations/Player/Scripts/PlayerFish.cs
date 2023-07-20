@@ -14,6 +14,8 @@ public class PlayerFish : MonoBehaviour
     Animator _animator;
     FishCatching _fishCatching;
 
+    AudioSource _reelSound;
+
     GameObject _bobber;
     Rigidbody _bobberRB;
 
@@ -46,6 +48,7 @@ public class PlayerFish : MonoBehaviour
         _playerInventory = _player.GetComponent<playerInventory>();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
+        _reelSound = GetComponent<AudioSource>();
 
         _isCastingHash = Animator.StringToHash("isCasting");
         _isFishingHash = Animator.StringToHash("isFishing");
@@ -53,10 +56,6 @@ public class PlayerFish : MonoBehaviour
         _playerInput.CharacterControls.Cast.started += OnCast;
         _playerInput.CharacterControls.Cast.canceled += OnCast;
         _playerInput.CharacterControls.Cast.performed += OnCast;
-
-        // _playerInput.CharacterControls.Reel.started += OnReel;
-        // _playerInput.CharacterControls.Reel.canceled += OnReel;
-        // _playerInput.CharacterControls.Reel.performed += OnReel;
 
         _playerInput.CharacterControls.Cancel.started += OnCancel;
         _playerInput.CharacterControls.Cancel.canceled += OnCancel;
@@ -116,6 +115,7 @@ public class PlayerFish : MonoBehaviour
         {
             _animator.SetBool(_isCastingHash, true);
             _animator.SetBool(_isFishingHash, true);
+            _reelSound.Play();
         }
         if (!_isCastButtonPressed && _isCastingAnim)
         {
@@ -142,7 +142,6 @@ public class PlayerFish : MonoBehaviour
         }
     }
 
-    // TODO add variable cast force on hold.
     void HandleCast()
     {
         if (_isCastButtonPressed && !FindBobber() && _characterController.isGrounded)

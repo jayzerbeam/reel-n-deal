@@ -24,6 +24,8 @@ public class FishCatching : MonoBehaviour
     System.Random random = new System.Random();
     string randomInputKey = "";
 
+    FishCatchingAudioManager _fishCatchingAudioManager;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -31,6 +33,7 @@ public class FishCatching : MonoBehaviour
         _inventoryController = new hud_gui_controller();
         _messaging = _player.GetComponent<FishingMessaging>();
         _inventoryController = FindObjectOfType<hud_gui_controller>();
+        _fishCatchingAudioManager = GameObject.FindWithTag("FishingAudioManager");
 
         // https://stackoverflow.com/questions/14297853/how-to-get-random-values-from-array-in-c-sharp
         randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
@@ -46,6 +49,10 @@ public class FishCatching : MonoBehaviour
         if (_didFishEscape)
         {
             ReleaseFish();
+        }
+        else if (_wasFishCaught)
+        {
+            _fishCatchingAudioManager.CaughtFishBell.Play();
         }
     }
 
@@ -97,6 +104,7 @@ public class FishCatching : MonoBehaviour
         hookedFishRB.constraints = RigidbodyConstraints.None;
         hookedFishGO.transform.SetParent(null);
         Destroy(GameObject.FindWithTag("Bobber"));
+        // _escapeSound.Play();
     }
 
     void SetCountdownTimer()
@@ -177,7 +185,7 @@ public class FishCatching : MonoBehaviour
             _wasFishCaught = true;
             _messaging.StopMessage();
             _messaging.DisplayMessage("You caught a fish!");
-            _inventoryController.AddItemToInv(randomFish, 1);
+            // _inventoryController.AddItemToInv(randomFish, 1);
             Destroy(GameObject.FindWithTag("Bobber"));
         }
     }

@@ -1240,7 +1240,6 @@ GameObject:
   - component: {fileID: 6141649143267876812}
   - component: {fileID: 8711655847203499706}
   - component: {fileID: 2063810464150162670}
-  - component: {fileID: 6852037400769901638}
   - component: {fileID: 1122130438}
   - component: {fileID: 7635539927104353454}
   - component: {fileID: 6887098017651368848}
@@ -1432,21 +1431,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnRange: 128
---- !u!114 &6852037400769901638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6483754695257692263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa5ffbd8dd7466b45a71b6afb8ccd1e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  money: 0
-  moneyText: {fileID: 0}
-  debugFishList: {fileID: 0}
 --- !u!114 &1122130438
 MonoBehaviour:
   m_ObjectHideFlags: 0

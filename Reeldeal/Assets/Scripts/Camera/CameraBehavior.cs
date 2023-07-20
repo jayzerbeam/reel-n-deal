@@ -21,7 +21,7 @@ public class CameraBehavior : MonoBehaviour
 
     void GetTarget()
     {
-        // _bobber = GameObject.FindWithTag("Bobber");
+        _bobber = GameObject.FindWithTag("Bobber");
 
         if (_bobber)
         {

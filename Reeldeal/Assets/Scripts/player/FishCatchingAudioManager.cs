@@ -9,6 +9,7 @@ public class FishCatchingAudioManager : MonoBehaviour
     AudioSource _rod_reel;
     AudioSource _caught_fish_bell;
     AudioSource _escape;
+    AudioSource _bobber_splash;
 
     public AudioSource KeypressFailure
     {
@@ -35,6 +36,11 @@ public class FishCatchingAudioManager : MonoBehaviour
         get { return _escape; }
         set { _escape = value; }
     }
+    public AudioSource BobberSplash
+    {
+        get { return _bobber_splash; }
+        set { _bobber_splash = value; }
+    }
 
     void Start()
     {
@@ -43,5 +49,6 @@ public class FishCatchingAudioManager : MonoBehaviour
         RodReel = GetComponents<AudioSource>()[2];
         CaughtFishBell = GetComponents<AudioSource>()[3];
         Escape = GetComponents<AudioSource>()[4];
+        BobberSplash = GetComponents<AudioSource>()[5];
     }
 }

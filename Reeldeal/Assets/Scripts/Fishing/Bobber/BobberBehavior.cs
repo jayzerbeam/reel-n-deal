@@ -5,17 +5,20 @@ using UnityEngine;
 public class BobberBehavior : MonoBehaviour
 {
     Rigidbody _rb;
+    GameObject _player;
     string[] _tags = { "Ground", "River", "Lake", "Ocean", "Spring" };
 
-    [SerializeField]
     float _gravity = -9.81f;
-    //float _groundedGravity = 0.05f;
+
+    AudioSource _bobberSplash;
 
     private bool _isInWater = false;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _player = GameObject.FindWithTag("Player");
+        _bobberSplash = _player.GetComponents<AudioSource>()[5];
     }
 
     // Modified from here:
@@ -72,6 +75,14 @@ public class BobberBehavior : MonoBehaviour
             {
                 FreezeBobber();
                 _isInWater = true;
+                if (_bobberSplash != null)
+                {
+                    _bobberSplash.Play();
+                }
+                else
+                {
+                    Debug.Log("no sound");
+                }
             }
         }
     }

@@ -14,6 +14,7 @@ public class FishCatching : MonoBehaviour
     Rigidbody _rb;
     FishAI fishAIscript;
     FishMultiTag _fishMultiTag;
+
     bool _isFishHooked = false;
     bool _didFishEscape = false;
     bool _wasFishCaught = false;
@@ -24,7 +25,10 @@ public class FishCatching : MonoBehaviour
     System.Random random = new System.Random();
     string randomInputKey = "";
 
-    FishCatchingAudioManager _fishCatchingAudioManager;
+    AudioSource _keypressFailure;
+    AudioSource _keypressSuccess;
+    AudioSource _caughtFishBell;
+    AudioSource _escape;
 
     void Start()
     {
@@ -33,7 +37,10 @@ public class FishCatching : MonoBehaviour
         _inventoryController = new hud_gui_controller();
         _messaging = _player.GetComponent<FishingMessaging>();
         _inventoryController = FindObjectOfType<hud_gui_controller>();
-        _fishCatchingAudioManager = GameObject.FindWithTag("FishingAudioManager");
+        _keypressFailure = _player.GetComponents<AudioSource>()[0];
+        _keypressSuccess = _player.GetComponents<AudioSource>()[1];
+        _caughtFishBell = _player.GetComponents<AudioSource>()[3];
+        _escape = _player.GetComponents<AudioSource>()[4];
 
         // https://stackoverflow.com/questions/14297853/how-to-get-random-values-from-array-in-c-sharp
         randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
@@ -52,7 +59,7 @@ public class FishCatching : MonoBehaviour
         }
         else if (_wasFishCaught)
         {
-            _fishCatchingAudioManager.CaughtFishBell.Play();
+            _caughtFishBell.Play();
         }
     }
 
@@ -104,7 +111,7 @@ public class FishCatching : MonoBehaviour
         hookedFishRB.constraints = RigidbodyConstraints.None;
         hookedFishGO.transform.SetParent(null);
         Destroy(GameObject.FindWithTag("Bobber"));
-        // _escapeSound.Play();
+        _escape.Play();
     }
 
     void SetCountdownTimer()
@@ -166,9 +173,11 @@ public class FishCatching : MonoBehaviour
                     randomInputKey = inputKeys[random.Next(0, inputKeys.Length)];
                 }
                 keyPressesRemaining -= 1;
+                _keypressSuccess.Play();
             }
             else if (!Input.GetKeyDown(randomInputKey))
             {
+                _keypressFailure.Play();
                 _messaging.StopMessage();
                 _messaging.DisplayMessage("The fish got away...\n\nBetter luck next time!");
                 _didFishEscape = true;
@@ -178,14 +187,11 @@ public class FishCatching : MonoBehaviour
 
         if (keyPressesRemaining == 0)
         {
-            // TODO remove later for actual fish types
-            string[] fishes = { "blue", "pink", "orange" };
-            string randomFish = fishes[random.Next(0, fishes.Length)];
+            // TODO add fish to inventory
             _didFishEscape = false;
             _wasFishCaught = true;
             _messaging.StopMessage();
             _messaging.DisplayMessage("You caught a fish!");
-            // _inventoryController.AddItemToInv(randomFish, 1);
             Destroy(GameObject.FindWithTag("Bobber"));
         }
     }

@@ -14,7 +14,7 @@ public class PlayerFish : MonoBehaviour
     Animator _animator;
     FishCatching _fishCatching;
 
-    AudioSource _reelSound;
+    AudioSource _rodReel;
 
     GameObject _bobber;
     Rigidbody _bobberRB;
@@ -48,7 +48,7 @@ public class PlayerFish : MonoBehaviour
         _playerInventory = _player.GetComponent<playerInventory>();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
-        _reelSound = GetComponent<AudioSource>();
+        _rodReel = _player.GetComponents<AudioSource>()[2];
 
         _isCastingHash = Animator.StringToHash("isCasting");
         _isFishingHash = Animator.StringToHash("isFishing");
@@ -115,7 +115,7 @@ public class PlayerFish : MonoBehaviour
         {
             _animator.SetBool(_isCastingHash, true);
             _animator.SetBool(_isFishingHash, true);
-            _reelSound.Play();
+            _rodReel.Play();
         }
         if (!_isCastButtonPressed && _isCastingAnim)
         {

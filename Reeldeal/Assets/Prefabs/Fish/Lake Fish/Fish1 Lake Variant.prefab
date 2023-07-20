@@ -22,6 +22,11 @@ PrefabInstance:
       propertyPath: fishTags.Array.data[1]
       value: Passive
       objectReference: {fileID: 0}
+    - target: {fileID: 6829952214261289393, guid: 48baf7c3c42874b4fb18a9085ec97abd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7143569361832251375, guid: 48baf7c3c42874b4fb18a9085ec97abd,
         type: 3}
       propertyPath: m_RootOrder

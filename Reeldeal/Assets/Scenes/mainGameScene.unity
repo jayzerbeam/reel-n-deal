@@ -10301,13 +10301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7534cbc66262dc44fabcb210f9ff9866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: {fileID: 832575518}
-  originalVolumeProfile: {fileID: 11400000, guid: a3e158bf0de7c2941a2d012d54355d55,
-    type: 2}
-  waterVolumeProfile: {fileID: 11400000, guid: 658e7f1c009a0e24e85093d75ac4b290, type: 2}
-  transitionDuration: 1
-  newWeight: 0
-  transition: 
 --- !u!1 &1859694818
 GameObject:
   m_ObjectHideFlags: 0

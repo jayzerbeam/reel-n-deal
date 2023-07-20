@@ -193,3 +193,5 @@ Fishing escape sound audio (escape.wav): https://freesound.org/people/caitlynban
 Fishing Lodges: https://assetstore.unity.com/packages/3d/environments/low-poly-fishing-lodges-4555
 Village Well: https://assetstore.unity.com/packages/3d/environments/old-water-well-138903
 Crates:https://assetstore.unity.com/packages/3d/props/furniture/cartoon-wooden-box-242926
+Food Sprite: https://assetstore.unity.com/packages/2d/environments/free-pixel-food-113523 License: https://unity.com/legal/as-terms
+Scared Emoji Sprite: https://assetstore.unity.com/packages/2d/gui/icons/free-emojis-pixel-art-231243 License: https://unity.com/legal/as-terms

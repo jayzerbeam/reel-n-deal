@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossFishSpawn : MonoBehaviour
 {
     public GameObject bossFish;
-    private GameObject fishingRodUpgrade;
+    private bool player_has_rod_upgrade;
 
     private AudioSource audioPlay;
     private bool hasPlayedAudio = false; 
@@ -14,10 +14,13 @@ public class BossFishSpawn : MonoBehaviour
     private float timer = 3f;
     private bool isRunning = false;
 
+    private hud_gui_controller inventoryController;
+
+
     private void Start()
     {
-        bossFish = GameObject.Find("BossFish");
-        fishingRodUpgrade = GameObject.FindGameObjectWithTag("FishingRodUpgrade");
+        inventoryController = FindObjectOfType<hud_gui_controller>();
+        player_has_rod_upgrade = inventoryController.has_rod_upgrade;
         Renderer renderer = GetComponent<Renderer>();
         renderer.enabled = false;
 
@@ -36,7 +39,7 @@ public class BossFishSpawn : MonoBehaviour
 
     private void Update()
     {
-        if (fishingRodUpgrade == null && !isRunning)
+        if (player_has_rod_upgrade == false && !isRunning)
         {
             Renderer renderer = GetComponent<Renderer>();
             renderer.enabled = true;

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -40,11 +41,22 @@ public class hud_gui_controller : MonoBehaviour
     public int river_f_4_count = 0;
 
 
+    public GameObject boots_image;
+    public GameObject rod_image;
+    public GameObject bobber_image;
+    public bool has_boots = false;
+    public bool has_rod_upgrade = false;
+    public int bobber = 0;
+
+
 
     private void Start()
     {
 
         isInventoryVisible = false;
+        boots_image.SetActive(false);
+        rod_image.SetActive(false);
+        bobber_image.SetActive(false);
         inventoryHUD.SetActive(false);
     }
 
@@ -241,98 +253,105 @@ public class hud_gui_controller : MonoBehaviour
         river_f_4_disp.text = river_f_4_count.ToString();
     }
 
-    // Function to check if the player has a certain amount of a certain type of fish
+    // Function to check if the Player has at least a certain amount of a certain type of fish
     public bool HasFish(string fishType, int amount)
     {
-        // Check if the player has any fish of this type
+        // Check if the Player has at least any fish of this type
         switch (fishType)
         {
+            case "coin":
+                Debug.Log("Does Player have at least " + amount + " coin(s). Total coins: " + coin_Count);
+                if (coin_Count >= amount)
+                {
+                    return true;
+                }
+                return false;
             case "lake_f_1":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + lake_f_1_count);
+                Debug.Log("Does Player have at least " + amount + " lake_f_1_count fish(es). Total blue fishes: " + lake_f_1_count);
                 if (lake_f_1_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "lake_f_2":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + lake_f_2_count);
+                Debug.Log("Does Player have at least " + amount + " lake_f_2_count fish(es). Total blue fishes: " + lake_f_2_count);
                 if (lake_f_2_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "lake_f_3":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + lake_f_3_count);
+                Debug.Log("Does Player have at least " + amount + " lake_f_3_count fish(es). Total blue fishes: " + lake_f_3_count);
                 if (lake_f_3_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "lake_f_4":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + lake_f_4_count);
+                Debug.Log("Does Player have at least " + amount + " lake_f_4_count fish(es). Total blue fishes: " + lake_f_4_count);
                 if (lake_f_4_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "ocean_f_1":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + ocean_f_1_count);
+                Debug.Log("Does Player have at least " + amount + " ocean_f_1_count fish(es). Total blue fishes: " + ocean_f_1_count);
                 if (ocean_f_1_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "ocean_f_2":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + ocean_f_2_count);
+                Debug.Log("Does Player have at least " + amount + " ocean_f_2_count fish(es). Total blue fishes: " + ocean_f_2_count);
                 if (ocean_f_2_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "ocean_f_3":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + ocean_f_3_count);
+                Debug.Log("Does Player have at least " + amount + " ocean_f_3_count fish(es). Total blue fishes: " + ocean_f_3_count);
                 if (ocean_f_3_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "ocean_f_4":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + ocean_f_4_count);
+                Debug.Log("Does Player have at least " + amount + " ocean_f_4_count fish(es). Total blue fishes: " + ocean_f_4_count);
                 if (ocean_f_4_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "ocean_shark":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + ocean_shark_count);
+                Debug.Log("Does Player have at least " + amount + " ocean_shark_count fish(es). Total blue fishes: " + ocean_shark_count);
                 if (ocean_shark_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "river_f_1":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + river_f_1_count);
+                Debug.Log("Does Player have at least " + amount + " river_f_1_count fish(es). Total blue fishes: " + river_f_1_count);
                 if (river_f_1_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "river_f_2":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + river_f_2_count);
+                Debug.Log("Does Player have at least " + amount + " river_f_2_count fish(es). Total blue fishes: " + river_f_2_count);
                 if (river_f_2_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "river_f_3":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + river_f_3_count);
+                Debug.Log("Does Player have at least " + amount + " river_f_3_count fish(es). Total blue fishes: " + river_f_3_count);
                 if (river_f_3_count >= amount)
                 {
                     return true;
                 }
                 return false;
             case "river_f_4":
-                Debug.Log("Player has " + amount + " blue fish(es). Total blue fishes: " + river_f_4_count);
+                Debug.Log("Does Player have at least " + amount + " river_f_4_count fish(es). Total blue fishes: " + river_f_4_count);
                 if (river_f_4_count >= amount)
                 {
                     return true;
@@ -353,13 +372,36 @@ public class hud_gui_controller : MonoBehaviour
         {
             inventoryHUD.SetActive(isInventoryVisible);
             Debug.Log("Inventory Opened");
-
-            
         }
         else
         {
             inventoryHUD.SetActive(isInventoryVisible);
             Debug.Log("Inventory Closed");
+        }
+    }
+
+    public void AddItemToInventory(string item_type, int bobber_type = 0)
+    {
+        switch (item_type)
+        {
+            case "boots":
+                Debug.Log("Added boots");
+                has_boots = true;
+                boots_image.SetActive(true);
+                break;
+            case "rod_upgrade":
+                Debug.Log("Added rod upgrade");
+                has_boots = true;
+                rod_image.SetActive(true);
+                break;
+            case "bobber":
+                Debug.Log("Added bobber");
+                bobber = bobber_type;
+                bobber_image.SetActive(true);
+                break;
+            default:
+                Debug.Log("Tried to add an invalid item type: " + item_type);
+                break;
         }
     }
 }

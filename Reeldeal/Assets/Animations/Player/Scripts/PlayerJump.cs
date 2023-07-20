@@ -101,4 +101,9 @@ public class PlayerJump : MonoBehaviour
 
         _characterController.Move(_characterVelocity * Time.deltaTime);
     }
+
+    public void increaseJumpHeight(float multiplier)
+    {
+        _jumpHeight *= multiplier;
+    }
 }

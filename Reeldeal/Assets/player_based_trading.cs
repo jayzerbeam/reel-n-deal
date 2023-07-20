@@ -13,7 +13,7 @@ public class player_based_trading : MonoBehaviour
     private hud_gui_controller inventoryController; 
 
     private villager_Trades nearestVillager;
-    public villager_Trades tradingVillager;
+    private villager_Trades tradingVillager;
 
 
 

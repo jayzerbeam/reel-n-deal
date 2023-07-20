@@ -47,7 +47,11 @@ public class hud_gui_controller : MonoBehaviour
     public bool has_boots = false;
     public bool has_rod_upgrade = false;
     public int bobber = 0;
-
+    
+    private PlayerMove player_move_script;
+    private PlayerJump player_jump_script;
+    public float walk_multiplier = 1.75f;
+    public float jump_multiplier = 1.5f;
 
 
     private void Start()
@@ -58,6 +62,8 @@ public class hud_gui_controller : MonoBehaviour
         rod_image.SetActive(false);
         bobber_image.SetActive(false);
         inventoryHUD.SetActive(false);
+        player_move_script = FindObjectOfType<PlayerMove>();
+        player_jump_script = FindObjectOfType<PlayerJump>();
     }
 
     private void Update()
@@ -388,6 +394,8 @@ public class hud_gui_controller : MonoBehaviour
                 Debug.Log("Added boots");
                 has_boots = true;
                 boots_image.SetActive(true);
+                player_move_script.increaseWalkSpeed(walk_multiplier);
+                player_jump_script.increaseJumpHeight(jump_multiplier);
                 break;
             case "rod_upgrade":
                 Debug.Log("Added rod upgrade");

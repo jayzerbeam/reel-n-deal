@@ -187,6 +187,11 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    public void increaseWalkSpeed(float multiplier)
+    {
+        _walkSpeed *= multiplier;
+    }
+
     void FreezeIfFishing()
     {
         if (_isFishingAnim)

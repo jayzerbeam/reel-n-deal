@@ -175,7 +175,7 @@ public class FishAI : MonoBehaviour
 
             case AIState.hungryState:
                 bobber = GameObject.FindWithTag("Bobber");
-                rotationSpeed *= 4; // makes it easier for fish to turn towards bobber when nearby
+                rotationSpeed = 40; // makes it easier for fish to turn towards bobber when nearby
 
                 if (bobber == null) // if bobber gets deleted
                 {
@@ -195,6 +195,16 @@ public class FishAI : MonoBehaviour
                 if (bobber != null)
                 {
                     UpdateTravel(bobber.transform.position, hungrySpeed);
+                }
+
+                if (!InWater()) // ensures fish don't fly out of water
+                {
+                    Debug.Log("Adjustment");
+                    Vector3 updatedPositionhungry = transform.position;
+                    float newYhungry = GetWaterHeight();
+                    updatedPositionhungry.y = newYhungry;
+                    yValue = newYhungry;
+                    transform.position = updatedPositionhungry;
                 }
 
                 break;
@@ -239,7 +249,7 @@ public class FishAI : MonoBehaviour
                     aiState = AIState.idleState;
                 }
 
-                if (!InWater()) // ensures fish don't fly out of water during hungry state + fish collision
+                if (!InWater()) // ensures fish don't fly out of water
                 {
                     Vector3 updatedPosition = transform.position;
                     float newY = GetWaterHeight();
@@ -312,7 +322,6 @@ public class FishAI : MonoBehaviour
             yValue = newY;
             transform.position = updatedPosition;
         }
-
 
         // keep at correct y-level
         Vector3 newPosition = transform.position;

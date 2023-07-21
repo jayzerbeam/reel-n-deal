@@ -126,6 +126,7 @@ MonoBehaviour:
   - River
   - Passive
   - Easy
+  - ocean_f4
   fishMaterials:
   - fishMaterial: {fileID: 2100000, guid: 847f517cdf7e7714e8cda2ef238706fe, type: 2}
     weight: 40

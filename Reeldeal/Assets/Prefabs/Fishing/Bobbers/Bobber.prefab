@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7f5a18dba89d42e408097b246b044f11, type: 2}
+  - {fileID: 2100000, guid: 09f01faf72be43d40b096ef610a23bd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,7 +144,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fe606f5710faeb44585ee264317bd170, type: 2}
+  - {fileID: 2100000, guid: aef4a0120b8e18c469ae4af661de819c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -234,9 +234,9 @@ MonoBehaviour:
   bobberTags:
   - a
   bobberMaterials:
+  - {fileID: 2100000, guid: 09f01faf72be43d40b096ef610a23bd7, type: 2}
   - {fileID: 2100000, guid: 7f5a18dba89d42e408097b246b044f11, type: 2}
-  - {fileID: 2100000, guid: fe606f5710faeb44585ee264317bd170, type: 2}
-  - {fileID: 2100000, guid: fe606f5710faeb44585ee264317bd170, type: 2}
+  - {fileID: 2100000, guid: aef4a0120b8e18c469ae4af661de819c, type: 2}
   attractiveBobberInfo:
   - radius: 50
     fishPrefab: {fileID: 1364396136748257496, guid: 4a6ef7d93e2d26349b17037f56616f2a,
@@ -334,7 +334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328f42d41a3f0bc778e679c50df81de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravity: -9.81
 --- !u!135 &1553712967419745940
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -409,7 +408,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fe606f5710faeb44585ee264317bd170, type: 2}
+  - {fileID: 2100000, guid: 7f5a18dba89d42e408097b246b044f11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -58,7 +58,7 @@ public class FishCatching : MonoBehaviour
             {
                 bobberInitializer.attractiveBobberInfo[i].radius = 0f;
             }
-            
+
             HandleCatch();
             HandleCountdown();
         }
@@ -196,12 +196,43 @@ public class FishCatching : MonoBehaviour
 
         if (keyPressesRemaining == 0)
         {
-            // TODO add fish to inventory
             _didFishEscape = false;
             _wasFishCaught = true;
             _messaging.StopMessage();
             _messaging.DisplayMessage("You caught a fish!");
+            _inventoryController.AddItemToInv(GetFishTypeByTag(), 1);
             Destroy(GameObject.FindWithTag("Bobber"));
         }
+    }
+
+    string GetFishTypeByTag()
+    {
+        string fishTypeTag = "";
+        string[] fishTypes =
+        {
+            "lake_f_1",
+            "lake_f_2",
+            "lake_f_3",
+            "lake_f_4",
+            "ocean_f_1",
+            "ocean_f_2",
+            "ocean_f_3",
+            "ocean_f_4",
+            "ocean_shark",
+            "river_f_1",
+            "river_f_2",
+            "river_f_3",
+            "river_f_4"
+        };
+
+        foreach (string fishType in fishTypes)
+        {
+            if (_fishMultiTag.HasTag(fishType))
+            {
+                fishTypeTag = fishType;
+            }
+        }
+
+        return fishTypeTag;
     }
 }

@@ -59,7 +59,7 @@ public class BossFishSpawn : MonoBehaviour
 
             enabled = false;
 
-            Debug.Log("Playing");
+            //Debug.Log("Playing");
         }
 
     }

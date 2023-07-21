@@ -52,6 +52,7 @@ public class CameraBehavior : MonoBehaviour
         // Camera is on non-fishing player
         else
         {
+            _target = _player.transform;
             camPosition = new Vector3(0f, 3f, -5f);
         }
         this.transform.position = _target.TransformPoint(camPosition);

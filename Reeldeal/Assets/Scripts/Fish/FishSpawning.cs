@@ -127,6 +127,8 @@ public class FishSpawning : MonoBehaviour
         }
 
         // pick prefab based on tags
+        if (waterTag == "Untagged")
+            return;
         GameObject fishPrefab = GetRandomFishPrefab(waterTag);
 
         // create fish (docs.unity3d.com/ScriptReference/Object.Instantiate.html)
@@ -228,7 +230,7 @@ public class FishSpawning : MonoBehaviour
             foreach (PotentialFishPrefabs fishPrefabWeight in potentialFishPrefabs)
             {
                 cumulativeWeight += fishPrefabWeight.weight;
-
+                
                 if (threshold <= cumulativeWeight)
                 {
                     return fishPrefabWeight.prefab;
@@ -236,7 +238,7 @@ public class FishSpawning : MonoBehaviour
             }
         }
         //Debug.Log("Prefab error");
-        return null;
+        return potentialFishPrefabs[0].prefab;
     }
 
 }

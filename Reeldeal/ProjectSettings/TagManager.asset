@@ -20,6 +20,7 @@ TagManager:
   - FishingRodUpgrade
   - HUD_Inventory
   - Villager
+  - UsedBobber
   layers:
   - Default
   - TransparentFX

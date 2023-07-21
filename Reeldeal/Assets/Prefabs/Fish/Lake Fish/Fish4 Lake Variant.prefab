@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9109587391117116718, guid: 7f8191b07fdc8d5409fc58c466106ad8,
+        type: 3}
+      propertyPath: hungrySpeed
+      value: 2.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5460553256655804579, guid: 7f8191b07fdc8d5409fc58c466106ad8,
         type: 3}
       propertyPath: fishTags.Array.size

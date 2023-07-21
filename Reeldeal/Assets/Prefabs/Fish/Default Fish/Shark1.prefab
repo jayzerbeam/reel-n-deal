@@ -919,7 +919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleSpeed: 0.5
-  hungrySpeed: 4
+  hungrySpeed: 2
   aggressiveSpeed: 2
   rotationSpeed: 10
   fleeSpeed: 4

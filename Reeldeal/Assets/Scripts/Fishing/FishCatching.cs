@@ -30,6 +30,8 @@ public class FishCatching : MonoBehaviour
     AudioSource _caughtFishBell;
     AudioSource _escape;
 
+    private BobberPrefabInitializer.AttractiveBobberInfo bobberMechanics;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -50,6 +52,13 @@ public class FishCatching : MonoBehaviour
     {
         if (_isFishHooked)
         {
+            // set bobber distance to zero to stop odd fish collisions
+            BobberPrefabInitializer bobberInitializer = GetComponent<BobberPrefabInitializer>();
+            for (int i = 0; i < bobberInitializer.attractiveBobberInfo.Count; i++)
+            {
+                bobberInitializer.attractiveBobberInfo[i].radius = 0f;
+            }
+            
             HandleCatch();
             HandleCountdown();
         }

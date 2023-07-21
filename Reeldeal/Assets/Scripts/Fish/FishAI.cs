@@ -194,7 +194,7 @@ public class FishAI : MonoBehaviour
 
                 if (bobber != null)
                 {
-                    UpdateTravel(bobber.transform.position, idleSpeed);
+                    UpdateTravel(bobber.transform.position, hungrySpeed);
                 }
 
                 break;
@@ -329,7 +329,7 @@ public class FishAI : MonoBehaviour
 
         while (turnProgress < 1f)
         {
-            turnProgress += rotationSpeed / 10f * Time.deltaTime; // Accumulate turn progress based on rotation speed
+            turnProgress += rotationSpeed / 10f * Time.deltaTime;
             transform.rotation = Quaternion.Slerp(startRotation, targetRotation, turnProgress); // https://docs.unity3d.com/ScriptReference/Quaternion.Slerp.html
             yield return null; // https://www.javatpoint.com/unity-coroutines#:~:text=Here%2C%20the%20yield%20is%20a,continue%20on%20the%20next%20frame.&text=yield%20return%20null%20%2D%20This%20will,called%2C%20on%20the%20next%20frame.
         }

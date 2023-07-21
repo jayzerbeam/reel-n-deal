@@ -48,11 +48,9 @@ public class FishSpriteIndicator : MonoBehaviour
         float distance = Vector3.Distance(cameraTransform.position, transform.position);
         float scale;
         if (n == 0)
-            scale = distance / 10f * 0.2f;
+            scale = distance / 10f * 0.4f;
         else
             scale = distance / 10f;
         transform.localScale = new Vector3(scale, scale, scale);
-
-
     }
 }

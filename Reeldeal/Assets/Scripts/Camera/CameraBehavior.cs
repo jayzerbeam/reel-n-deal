@@ -4,43 +4,58 @@ using UnityEngine;
 
 public class CameraBehavior : MonoBehaviour
 {
-    public Vector3 CamOffset = new Vector3(0f, 3f, -5f);
-    private Transform _target;
-    private GameObject _player;
-    private GameObject _bobber;
+    Vector3 camPosition = new Vector3(0f, 3f, -5f);
+    Transform _target;
+    GameObject _player;
+    GameObject _bobber;
 
     void Start()
     {
         _player = GameObject.FindWithTag("Player");
+        _target = _player.transform;
     }
 
     void Update()
     {
-        GetTarget();
+        _bobber = GameObject.FindWithTag("Bobber");
+        SetCamPosition();
+        HandleChangeTarget();
     }
 
-    void GetTarget()
+    void HandleChangeTarget()
     {
-        _bobber = GameObject.FindWithTag("Bobber");
-
-        if (_bobber)
+        if (Input.GetKeyUp(KeyCode.V))
         {
-            _target = _bobber.transform;
-            CamOffset = new Vector3(0f, 40f, 35f);
+            if (_bobber != null && _target == _player.transform)
+            {
+                _target = _bobber.transform;
+            }
+            else if (_bobber == null || (_bobber != null && _target == _bobber.transform))
+            {
+                _target = _player.transform;
+            }
         }
+    }
+
+    void SetCamPosition()
+    {
+        // Camera is on bobber
+        if (_bobber != null && _target == _bobber.transform)
+        {
+            camPosition = new Vector3(0f, 20f, -10f);
+        }
+        // Camera is on fishing player
+        else if (_bobber != null && _target == _player.transform)
+        {
+            camPosition = new Vector3(0f, 6f, -5f);
+        }
+        // Camera is on non-fishing player
         else
         {
             _target = _player.transform;
-            CamOffset = new Vector3(0f, 3, -5f);
+            camPosition = new Vector3(0f, 3f, -5f);
         }
-    }
-
-    void LateUpdate()
-    {
-        if (_target)
-        {
-            this.transform.position = _target.TransformPoint(CamOffset);
-            this.transform.LookAt(_target);
-        }
+        this.transform.position = _target.TransformPoint(camPosition);
+        this.transform.LookAt(_target);
     }
 }

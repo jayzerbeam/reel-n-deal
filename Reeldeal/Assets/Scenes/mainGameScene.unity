@@ -2696,46 +2696,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 978062761}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &322393142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322393127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 580a13e3160cf454d80743e040734f31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tradeMenu: {fileID: 2129700674}
-  tradeButton: {fileID: 834657934}
-  closeButton: {fileID: 1527240175}
-  tradeDistance: 5
-  fish_type_text: {fileID: 995967955}
-  fish_slider: {fileID: 310162805}
-  fish_amount_text: {fileID: 1776964384}
-  fish_price_text: {fileID: 127456343}
-  trading_fish_price: 0
---- !u!114 &322393156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322393127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef017c2f4d955e41bfcac9354d9ed02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  marketplaceMenu: {fileID: 382324942}
-  buyButton: {fileID: 879842988}
-  closeButton: {fileID: 344862980}
-  tradeDistance: 2.5
-  item_type_text: {fileID: 1181912533}
-  item_price_text: {fileID: 338424769}
-  market_item_price: 0
 --- !u!1 &325869414
 GameObject:
   m_ObjectHideFlags: 0
@@ -5318,6 +5278,8 @@ MonoBehaviour:
   has_boots: 0
   has_rod_upgrade: 0
   bobber: 0
+  walk_multiplier: 1.75
+  jump_multiplier: 1.5
 --- !u!1 &599177980
 GameObject:
   m_ObjectHideFlags: 0
@@ -9142,6 +9104,66 @@ PrefabInstance:
       propertyPath: talk_to_playerText
       value: 
       objectReference: {fileID: 1148187574}
+    - target: {fileID: 2974429082860175369, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: tradeMenu
+      value: 
+      objectReference: {fileID: 2129700674}
+    - target: {fileID: 2974429082860175369, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: closeButton
+      value: 
+      objectReference: {fileID: 1527240175}
+    - target: {fileID: 2974429082860175369, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: fish_slider
+      value: 
+      objectReference: {fileID: 310162805}
+    - target: {fileID: 2974429082860175369, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: tradeButton
+      value: 
+      objectReference: {fileID: 834657934}
+    - target: {fileID: 2974429082860175369, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: fish_type_text
+      value: 
+      objectReference: {fileID: 995967955}
+    - target: {fileID: 2974429082860175369, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: fish_price_text
+      value: 
+      objectReference: {fileID: 127456343}
+    - target: {fileID: 2974429082860175369, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: fish_amount_text
+      value: 
+      objectReference: {fileID: 1776964384}
+    - target: {fileID: 3285272887295833646, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: buyButton
+      value: 
+      objectReference: {fileID: 879842988}
+    - target: {fileID: 3285272887295833646, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: closeButton
+      value: 
+      objectReference: {fileID: 344862980}
+    - target: {fileID: 3285272887295833646, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: item_type_text
+      value: 
+      objectReference: {fileID: 1181912533}
+    - target: {fileID: 3285272887295833646, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: item_price_text
+      value: 
+      objectReference: {fileID: 338424769}
+    - target: {fileID: 3285272887295833646, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: marketplaceMenu
+      value: 
+      objectReference: {fileID: 382324942}
     - target: {fileID: 5958609917625189085, guid: 303e4658defaa73c7bac6ab02a91e0bc,
         type: 3}
       propertyPath: m_RootOrder

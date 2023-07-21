@@ -1250,8 +1250,8 @@ GameObject:
   - component: {fileID: 322393159}
   - component: {fileID: 322393158}
   - component: {fileID: 322393157}
-  - component: {fileID: 322393142}
-  - component: {fileID: 322393156}
+  - component: {fileID: 2974429082860175369}
+  - component: {fileID: 3285272887295833646}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2124,7 +2124,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &322393142
+--- !u!114 &2974429082860175369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2145,7 +2145,7 @@ MonoBehaviour:
   fish_amount_text: {fileID: 0}
   fish_price_text: {fileID: 0}
   trading_fish_price: 0
---- !u!114 &322393156
+--- !u!114 &3285272887295833646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

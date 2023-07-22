@@ -36,7 +36,7 @@ public class FishAI : MonoBehaviour
 
     // waypoints / positioning
     private GameObject[] waypoints;
-    private int currWaypointIndex;
+    public int currWaypointIndex;
     private float yValue;
 
     // bobber info
@@ -197,16 +197,6 @@ public class FishAI : MonoBehaviour
                     UpdateTravel(bobber.transform.position, hungrySpeed);
                 }
 
-                if (!InWater()) // ensures fish don't fly out of water
-                {
-                    Debug.Log("Adjustment");
-                    Vector3 updatedPositionhungry = transform.position;
-                    float newYhungry = GetWaterHeight();
-                    updatedPositionhungry.y = newYhungry;
-                    yValue = newYhungry;
-                    transform.position = updatedPositionhungry;
-                }
-
                 break;
 
             case AIState.aggressiveState:
@@ -218,14 +208,12 @@ public class FishAI : MonoBehaviour
                     if (collider.CompareTag("Ground") && Time.time - lastNearLand > 5f)
                     {
                         landCollision = true;
-                        Debug.Log("Collision");
                         lastNearLand = Time.time;
                         break;
                     }
                 }
                 if (landCollision)
                 {
-                    Debug.Log("COLLIDED");
                     rb.velocity = Vector3.zero;
                 }
 
@@ -247,15 +235,6 @@ public class FishAI : MonoBehaviour
                 {
                     landCollision = false;
                     aiState = AIState.idleState;
-                }
-
-                if (!InWater()) // ensures fish don't fly out of water
-                {
-                    Vector3 updatedPosition = transform.position;
-                    float newY = GetWaterHeight();
-                    updatedPosition.y = newY;
-                    yValue = newY;
-                    transform.position = updatedPosition;
                 }
 
                 break;
@@ -321,6 +300,7 @@ public class FishAI : MonoBehaviour
             updatedPosition.y = newY;
             yValue = newY;
             transform.position = updatedPosition;
+            Debug.Log("fixed");
         }
 
         // keep at correct y-level
@@ -349,12 +329,13 @@ public class FishAI : MonoBehaviour
     {
         int waterLayer = LayerMask.NameToLayer("Water");
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.25f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.001f);
         foreach(Collider collider in colliders)
         {
             if (collider.gameObject.layer == waterLayer)
                 return true; // fish in water
         }
+        Debug.Log("out of water");
         return false; // fish not in water
     }
 

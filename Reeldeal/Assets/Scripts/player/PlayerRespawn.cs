@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro; 
 
 public class PlayerRespawn : MonoBehaviour
 {
@@ -9,14 +11,19 @@ public class PlayerRespawn : MonoBehaviour
     private CharacterController characterController;
     private Vector3 initialPosition;
     private float timeInWater;
-    private float timeThreshold = 3f;
+    private float timeThreshold = 5f;
     private bool isDyingTriggered = false;
     public GameObject waterAlert;
+    private GameObject waterCountdown;
+    private TextMeshProUGUI countdownText;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         initialPosition = transform.position;
+
+        waterCountdown = waterAlert.transform.Find("Countdown").gameObject;
+        countdownText = waterCountdown.GetComponent<TextMeshProUGUI>();
 
         if (waterAlert != null)
             waterAlert.SetActive(false);
@@ -31,6 +38,16 @@ public class PlayerRespawn : MonoBehaviour
             Debug.Log("Player is underwater!");
             timeInWater += Time.deltaTime;
 
+
+            if (waterAlert != null)
+                waterAlert.SetActive(true);
+
+            if (waterCountdown != null)
+            {
+                countdownText.text = "Time Before Respawn: " + (timeThreshold - timeInWater).ToString("F0");
+            }
+
+
             if (timeInWater >= timeThreshold && !isDyingTriggered)
             {
                 isDyingTriggered = true;
@@ -38,8 +55,7 @@ public class PlayerRespawn : MonoBehaviour
                 Respawn();
             }
 
-            if (waterAlert != null)
-                waterAlert.SetActive(true);
+
         }
 
         else

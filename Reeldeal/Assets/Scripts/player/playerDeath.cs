@@ -17,6 +17,8 @@ public class playerDeath : MonoBehaviour
 
     public bool isDying;
 
+    private PlayerRespawn playerRespawn; 
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -61,7 +63,7 @@ public class playerDeath : MonoBehaviour
     {
 
         //dyingAnimation.SetBool("isDying", true);
-        StartCoroutine(Respawn());  
+        playerRespawn.Respawn(); 
         //SceneManager.LoadScene("MainMenu");
     }
 

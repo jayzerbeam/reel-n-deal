@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    public Transform respawnPoint; // Assign the respawn point GameObject in the Inspector
-    public float respawnYThreshold = 40f; // Respawn if player falls below -10 Y value
+    public Transform respawnPoint; 
+    private float respawnYThreshold = 47f;
 
     private CharacterController characterController;
     private Vector3 initialPosition;
+    private float timeInWater;
+    private float timeThreshold = 3f;
+    private bool isDyingTriggered = false;
 
     private void Start()
     {
@@ -16,20 +19,33 @@ public class PlayerRespawn : MonoBehaviour
 
     private void Update()
     {
-        // Check if the player falls below the respawn Y threshold
         if (transform.position.y < respawnYThreshold)
         {
-            Respawn();
+
+
+            Debug.Log("Player is underwater!");
+            timeInWater += Time.deltaTime;
+
+            if (timeInWater >= timeThreshold && !isDyingTriggered)
+            {
+                isDyingTriggered = true;
+                Debug.Log("Player exceeds underwater time!");
+                Respawn();
+            }
         }
+
+        else
+        {
+            timeInWater = 0f;
+            isDyingTriggered = false;
+        }
+    
     }
 
-    private void Respawn()
+    public void Respawn()
     {
-        // Move the player's position to the respawn point using CharacterController
         characterController.enabled = false;
         transform.position = respawnPoint.position;
         characterController.enabled = true;
-
-        // Reset any other player states or variables as needed
     }
 }

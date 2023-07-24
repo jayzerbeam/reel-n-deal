@@ -17,10 +17,13 @@ public class PlayerRespawn : MonoBehaviour
     private GameObject waterCountdown;
     private TextMeshProUGUI countdownText;
 
+    private hud_gui_controller coinInventory; 
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         initialPosition = transform.position;
+        coinInventory = FindObjectOfType<hud_gui_controller>();
 
         waterCountdown = waterAlert.transform.Find("Countdown").gameObject;
         countdownText = waterCountdown.GetComponent<TextMeshProUGUI>();
@@ -34,8 +37,6 @@ public class PlayerRespawn : MonoBehaviour
         if (transform.position.y < respawnYThreshold)
         {
 
-
-            Debug.Log("Player is underwater!");
             timeInWater += Time.deltaTime;
 
 
@@ -51,7 +52,6 @@ public class PlayerRespawn : MonoBehaviour
             if (timeInWater >= timeThreshold && !isDyingTriggered)
             {
                 isDyingTriggered = true;
-                Debug.Log("Player exceeds underwater time!");
                 Respawn();
             }
 
@@ -74,6 +74,12 @@ public class PlayerRespawn : MonoBehaviour
         characterController.enabled = false;
         transform.position = respawnPoint.position;
         characterController.enabled = true;
+
+        if (coinInventory != null)
+        {
+            coinInventory.RespawnLoseCoins();
+        }
+        Debug.Log("Coins after respawn: " + coinInventory.coin_Count);
     }
 
 }

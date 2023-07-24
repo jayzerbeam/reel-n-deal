@@ -412,4 +412,22 @@ public class hud_gui_controller : MonoBehaviour
                 break;
         }
     }
+
+    public void RespawnLoseCoins()
+    {
+        if (coin_Count > 0)
+        {
+            int coinsToRemove = coin_Count / 2;
+            RemoveItemToInv("coin", coinsToRemove);
+        }
+        else
+        {
+            Debug.Log("Player has no coins");
+        }
+
+        if (has_boots)
+        {
+            RemoveItemToInv("boots", 1);
+        }
+    }
 }

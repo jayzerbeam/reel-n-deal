@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1470247, g: 0.36394262, b: 0.5799059, a: 1}
+  m_IndirectSpecularColor: {r: 0.14686076, g: 0.36449513, b: 0.5798105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2696,6 +2696,30 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 978062761}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &322393145 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6141649143267876795, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 978062761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &322393149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322393127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca26f1d28706ece42abdc4368c239fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dyingAnimation: {fileID: 322393145}
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
+  respawnPosition: {fileID: 1403999374}
+  isDying: 0
 --- !u!1 &325869414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2976,7 +3000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9022f5f3bc301ef0a519092383da28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CamOffset: {x: 0, y: 3, z: -5}
 --- !u!1001 &334120058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5645,7 +5668,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.13689317, y: 0}
   m_AnchorMax: {x: 0.20275843, y: 1}
-  m_AnchoredPosition: {x: 0.6010742, y: -0.000011444092}
+  m_AnchoredPosition: {x: 1.0432434, y: -0.000011444092}
   m_SizeDelta: {x: -27.914062, y: -31.000023}
   m_Pivot: {x: 0.0000009058317, y: 0.50000024}
 --- !u!114 &644962421
@@ -13414,6 +13437,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391664403}
   m_CullTransparentMesh: 1
+--- !u!1 &1403999373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403999374}
+  m_Layer: 0
+  m_Name: Respawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403999374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403999373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -62.334, y: 53.17, z: -199.48372}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404210516
 GameObject:
   m_ObjectHideFlags: 0

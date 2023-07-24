@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14686076, g: 0.36449513, b: 0.5798105, a: 1}
+  m_IndirectSpecularColor: {r: 0.1470247, g: 0.36394262, b: 0.5799059, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2710,7 +2710,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 1403999374}
   waterAlert: {fileID: 1765769295}
-  waterCountdown: {fileID: 0}
 --- !u!1 &325869414
 GameObject:
   m_ObjectHideFlags: 0
@@ -5659,7 +5658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.13689317, y: 0}
   m_AnchorMax: {x: 0.20275843, y: 1}
-  m_AnchoredPosition: {x: 4.6357727, y: -0.000011444092}
+  m_AnchoredPosition: {x: 4.636078, y: -0.000011444092}
   m_SizeDelta: {x: -27.914062, y: -31.000023}
   m_Pivot: {x: 0.0000009058317, y: 0.50000024}
 --- !u!114 &644962421
@@ -9065,7 +9064,7 @@ PrefabInstance:
       objectReference: {fileID: 1558971940}
     - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
       propertyPath: maxFish
-      value: 50
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
       propertyPath: m_Enabled
@@ -9077,7 +9076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
       propertyPath: spawnInterval
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
       propertyPath: maxSpawnDistance
@@ -9085,7 +9084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
       propertyPath: minSpawnDistance
-      value: 30
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 1122130438, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
       propertyPath: fishPrefabs.Array.data[10].weight

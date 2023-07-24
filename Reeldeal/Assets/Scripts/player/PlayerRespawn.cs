@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
@@ -58,4 +59,5 @@ public class PlayerRespawn : MonoBehaviour
         transform.position = respawnPoint.position;
         characterController.enabled = true;
     }
+
 }

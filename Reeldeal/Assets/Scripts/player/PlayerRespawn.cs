@@ -10,11 +10,15 @@ public class PlayerRespawn : MonoBehaviour
     private float timeInWater;
     private float timeThreshold = 3f;
     private bool isDyingTriggered = false;
+    public GameObject waterAlert;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         initialPosition = transform.position;
+
+        if (waterAlert != null)
+            waterAlert.SetActive(false);
     }
 
     private void Update()
@@ -32,12 +36,18 @@ public class PlayerRespawn : MonoBehaviour
                 Debug.Log("Player exceeds underwater time!");
                 Respawn();
             }
+
+            if (waterAlert != null)
+                waterAlert.SetActive(true);
         }
 
         else
         {
             timeInWater = 0f;
             isDyingTriggered = false;
+
+            if (waterAlert != null)
+                waterAlert.SetActive(false);
         }
     
     }

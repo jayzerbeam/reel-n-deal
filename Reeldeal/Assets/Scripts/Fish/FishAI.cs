@@ -300,7 +300,6 @@ public class FishAI : MonoBehaviour
             updatedPosition.y = newY;
             yValue = newY;
             transform.position = updatedPosition;
-            Debug.Log("fixed");
         }
 
         // keep at correct y-level
@@ -335,7 +334,6 @@ public class FishAI : MonoBehaviour
             if (collider.gameObject.layer == waterLayer)
                 return true; // fish in water
         }
-        Debug.Log("out of water");
         return false; // fish not in water
     }
 

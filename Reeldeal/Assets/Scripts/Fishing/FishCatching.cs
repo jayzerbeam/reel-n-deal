@@ -21,7 +21,7 @@ public class FishCatching : MonoBehaviour
     float countdownTimer = 10.0f;
 
     int keyPressesRemaining = 5;
-    string[] inputKeys = { "w", "a", "s", "d", "q", "e" };
+    string[] inputKeys = { "w", "a", "s", "d", "q", "f", "r", "x", "z", "f" };
     System.Random random = new System.Random();
     string randomInputKey = "";
 
@@ -127,19 +127,19 @@ public class FishCatching : MonoBehaviour
     {
         if (_fishMultiTag.HasTag("Easy"))
         {
-            countdownTimer = 20.0f;
+            countdownTimer = 10.0f;
         }
         else if (_fishMultiTag.HasTag("Medium"))
         {
-            countdownTimer = 15.0f;
+            countdownTimer = 8.0f;
         }
         else if (_fishMultiTag.HasTag("Hard"))
         {
-            countdownTimer = 10.0f;
+            countdownTimer = 6.0f;
         }
         else if (_fishMultiTag.HasTag("Boss"))
         {
-            countdownTimer = 7.0f;
+            countdownTimer = 4.0f;
         }
         else
         {

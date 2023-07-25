@@ -92,8 +92,7 @@ public class PlayerJump : MonoBehaviour
 
     void HandleJump()
     {
-        bool isFishing = GameObject.FindWithTag("Bobber");
-        if (_isJumpButtonPressed && _characterController.isGrounded && !isFishing)
+        if (_isJumpButtonPressed && _characterController.isGrounded && !_isFishing)
         {
             _characterVelocity.y += Mathf.Sqrt(_jumpHeight * -2.0f * _gravity);
             _isJumpButtonPressed = false;

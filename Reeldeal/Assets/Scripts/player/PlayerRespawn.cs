@@ -1,4 +1,4 @@
-using System;
+ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro; 
@@ -17,7 +17,9 @@ public class PlayerRespawn : MonoBehaviour
     private GameObject waterCountdown;
     private TextMeshProUGUI countdownText;
 
-    private hud_gui_controller coinInventory; 
+    private hud_gui_controller coinInventory;
+
+    private PlayerDrownVolume drownVolumeScript;
 
     private void Start()
     {
@@ -30,6 +32,9 @@ public class PlayerRespawn : MonoBehaviour
 
         if (waterAlert != null)
             waterAlert.SetActive(false);
+
+
+        drownVolumeScript = GetComponent<PlayerDrownVolume>();
     }
 
     private void Update()
@@ -55,6 +60,11 @@ public class PlayerRespawn : MonoBehaviour
                 Respawn();
             }
 
+            if (drownVolumeScript != null)
+            {
+                drownVolumeScript.drowned = true;
+            }
+
 
         }
 
@@ -65,6 +75,11 @@ public class PlayerRespawn : MonoBehaviour
 
             if (waterAlert != null)
                 waterAlert.SetActive(false);
+
+            if (drownVolumeScript != null)
+            {
+                drownVolumeScript.drowned = false; 
+            }
         }
     
     }
@@ -80,6 +95,11 @@ public class PlayerRespawn : MonoBehaviour
             coinInventory.RespawnLoseCoins();
         }
         Debug.Log("Coins after respawn: " + coinInventory.coin_Count);
+
+        if (drownVolumeScript != null)
+        {
+            drownVolumeScript.drowned = false;
+        }
     }
 
 }

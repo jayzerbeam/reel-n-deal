@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Villager3Approach : MonoBehaviour
+public class Vendor1Audio : MonoBehaviour
 {
-    GameObject villager3;
+    GameObject vendor1;
 
     private void Start()
-    {
-        villager3 = GameObject.Find("Cassye's_Villagers/cassye_villager_3");
+    {    
+            vendor1 = GameObject.Find("Town and Marketplace/Vendor1");
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            AudioSource audioPlay = villager3.GetComponent<AudioSource>();
+            AudioSource audioPlay = vendor1.GetComponent<AudioSource>();
             audioPlay.Play();
 
         }

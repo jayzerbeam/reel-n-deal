@@ -75,6 +75,11 @@ public class PlayerRespawn : MonoBehaviour
 
             if (waterAlert != null)
                 waterAlert.SetActive(false);
+
+            if (drownVolumeScript != null)
+            {
+                drownVolumeScript.drowned = false; 
+            }
         }
     
     }

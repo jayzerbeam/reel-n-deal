@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1470247, g: 0.36394262, b: 0.5799059, a: 1}
+  m_IndirectSpecularColor: {r: 0.14686076, g: 0.36449513, b: 0.5798105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6237,7 +6237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.13689317, y: 0}
   m_AnchorMax: {x: 0.20275843, y: 1}
-  m_AnchoredPosition: {x: 4.6363525, y: -0.000011444092}
+  m_AnchoredPosition: {x: 4.8469543, y: -0.000011444092}
   m_SizeDelta: {x: -27.914062, y: -31.000023}
   m_Pivot: {x: 0.0000009058317, y: 0.50000024}
 --- !u!114 &644962421
@@ -22823,7 +22823,7 @@ GameObject:
   - component: {fileID: 953136574}
   - component: {fileID: 7489985174636529041}
   m_Layer: 0
-  m_Name: cassye_villager_3
+  m_Name: Vendor3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23324,7 +23324,7 @@ GameObject:
   - component: {fileID: 1885761441}
   - component: {fileID: 5866666019945169932}
   m_Layer: 0
-  m_Name: cassye_villager_1
+  m_Name: Vendor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26615,7 +26615,7 @@ GameObject:
   - component: {fileID: 2044321083}
   - component: {fileID: 5455103591232996686}
   m_Layer: 0
-  m_Name: cassye_villager_2
+  m_Name: Vendor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Villager3Approach : MonoBehaviour
+public class StairwayToHeavenAudio : MonoBehaviour
 {
-    GameObject villager3;
+
+    public GameObject stairway;
 
     private void Start()
     {
-        villager3 = GameObject.Find("Cassye's_Villagers/cassye_villager_3");
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            AudioSource audioPlay = villager3.GetComponent<AudioSource>();
+            AudioSource audioPlay = stairway.GetComponent<AudioSource>();
             audioPlay.Play();
 
         }

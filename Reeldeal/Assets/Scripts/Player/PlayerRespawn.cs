@@ -30,6 +30,7 @@ public class PlayerRespawn : MonoBehaviour
     public GameObject sharkAlert;
     private GameObject waterCountdown;
     private TextMeshProUGUI countdownText;
+    private TextMeshProUGUI sharkText;
 
     private hud_gui_controller coinInventory;
     private PlayerDrownVolume drownVolumeScript;
@@ -45,12 +46,7 @@ public class PlayerRespawn : MonoBehaviour
 
         waterCountdown = waterAlert.transform.Find("Countdown").gameObject;
         countdownText = waterCountdown.GetComponent<TextMeshProUGUI>();
-
-        if (waterAlert != null)
-            waterAlert.SetActive(false);
-
-        if (sharkAlert != null)
-            sharkAlert.SetActive(false);
+        sharkText = sharkAlert.transform.Find("SharkText").GetComponent<TextMeshProUGUI>();
 
         drownVolumeScript = GetComponent<PlayerDrownVolume>();
     }
@@ -64,17 +60,26 @@ public class PlayerRespawn : MonoBehaviour
     {
         _isDeadAnim = _animator.GetBool(_isDeadHash);
 
-        if (SharkAttack()) // && !IsPlayerUnderwater())
+        if (SharkAttack() && !IsPlayerUnderwater())
         {
             timeSharkAttack += Time.deltaTime;
 
             if (sharkAlert != null)
-                sharkAlert.SetActive(true);
-
-            if (timeSharkAttack >= sharkAttackLimit)
             {
+                sharkAlert.SetActive(true);
+                sharkText.text = "You're attracting sharks!\nRun away!";
+            }
+
+            if (timeSharkAttack >= sharkAttackLimit - 1.0f)
+            {
+                sharkText.text = "You passed out...";
                 Die();
             }
+        }
+        else if (!SharkAttack())
+        {
+            sharkAlert.SetActive(false);
+            timeSharkAttack = 0f;
         }
 
         if (IsPlayerUnderwater())
@@ -82,7 +87,10 @@ public class PlayerRespawn : MonoBehaviour
             timeInWater += Time.deltaTime;
 
             if (waterAlert != null)
+            {
+                sharkAlert.SetActive(false);
                 waterAlert.SetActive(true);
+            }
 
             if (waterCountdown != null)
             {
@@ -95,6 +103,7 @@ public class PlayerRespawn : MonoBehaviour
 
             if (timeInWater >= timeThreshold - 1.0f)
             {
+                countdownText.text = "You passed out...";
                 Die();
             }
         }
@@ -115,6 +124,7 @@ public class PlayerRespawn : MonoBehaviour
 
             if (waterAlert != null)
                 waterAlert.SetActive(false);
+
             if (sharkAlert != null)
                 sharkAlert.SetActive(false);
 
@@ -134,8 +144,7 @@ public class PlayerRespawn : MonoBehaviour
 
     private void Die()
     {
-        const float timeToCompleteAnim = 2.5f;
-        countdownText.text = "You passed out...";
+        const float timeToCompleteAnim = 2.3f;
         _animator.SetBool(_isDeadHash, true);
         dyingAnimCountdown += Time.deltaTime;
         characterController.enabled = false;

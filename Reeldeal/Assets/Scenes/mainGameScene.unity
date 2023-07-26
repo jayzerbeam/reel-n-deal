@@ -4477,7 +4477,7 @@ GameObject:
   - component: {fileID: 439957767}
   - component: {fileID: 439957766}
   m_Layer: 0
-  m_Name: Stairs (2)
+  m_Name: Stairs2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6219,7 +6219,7 @@ GameObject:
   - component: {fileID: 616180470}
   - component: {fileID: 616180469}
   m_Layer: 0
-  m_Name: Stairs (1)
+  m_Name: Stairs1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21972,7 +21972,7 @@ GameObject:
   - component: {fileID: 2064936111}
   - component: {fileID: 2064936110}
   m_Layer: 0
-  m_Name: Plank (1)
+  m_Name: Plank1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

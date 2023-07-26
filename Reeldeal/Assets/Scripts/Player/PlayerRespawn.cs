@@ -13,17 +13,21 @@ public class PlayerRespawn : MonoBehaviour
     private CharacterController characterController;
     private Vector3 initialPosition;
     private float dyingAnimCountdown;
+    private float revivingAnimCountdown;
+
     private float timeInWater;
     private float timeThreshold = 5f;
+
     private float sharkAttackLimit = 3f;
     private float timeSharkAttack;
-    private bool isSharkAttack = false;
+
     private int _isDeadHash;
     private bool _isDeadAnim;
-    private bool _isDead = false;
+
+    private bool playerRespawned = false;
 
     public GameObject waterAlert;
-    public GameObject sharkAlert; 
+    public GameObject sharkAlert;
     private GameObject waterCountdown;
     private TextMeshProUGUI countdownText;
 
@@ -51,40 +55,29 @@ public class PlayerRespawn : MonoBehaviour
         drownVolumeScript = GetComponent<PlayerDrownVolume>();
     }
 
+    private bool IsPlayerUnderwater()
+    {
+        return transform.position.y < respawnYThreshold;
+    }
+
     private void Update()
     {
         _isDeadAnim = _animator.GetBool(_isDeadHash);
 
-
-        if (SharkAttack())
+        if (SharkAttack()) // && !IsPlayerUnderwater())
         {
-
             timeSharkAttack += Time.deltaTime;
 
             if (sharkAlert != null)
                 sharkAlert.SetActive(true);
 
-            if (timeSharkAttack >= sharkAttackLimit && !isSharkAttack)
+            if (timeSharkAttack >= sharkAttackLimit)
             {
-                isSharkAttack = true;
-                KillThePlayer();
+                Die();
             }
         }
 
-        else
-        {
-            timeSharkAttack = 0f;
-            isSharkAttack = false;
-            dyingAnimCountdown = 0f;
-            _animator.SetBool(_isDeadHash, false);
-
-            if (sharkAlert != null)
-                sharkAlert.SetActive(false);
-        }
-
-
-
-        if (transform.position.y < respawnYThreshold)
+        if (IsPlayerUnderwater())
         {
             timeInWater += Time.deltaTime;
 
@@ -98,55 +91,70 @@ public class PlayerRespawn : MonoBehaviour
                     countdownText.text =
                         "Time Before Respawn: " + (timeThreshold - timeInWater).ToString("F0");
                 }
-                else
-                {
-                    countdownText.text = "You died...";
-                }
             }
 
-            if (timeInWater >= timeThreshold)
+            if (timeInWater >= timeThreshold - 1.0f)
             {
-                KillThePlayer();
-            }
-
-            if (drownVolumeScript != null)
-            {
-                drownVolumeScript.drowned = true;
+                Die();
             }
         }
-        // Not underwater
-        else
+        else if (!IsPlayerUnderwater())
         {
+            waterAlert.SetActive(false);
+            timeInWater = 0f;
+        }
+
+        if (playerRespawned)
+        {
+            const float timeToCompleteAnim = 2.2f;
+            revivingAnimCountdown += Time.deltaTime;
             timeInWater = 0f;
             dyingAnimCountdown = 0f;
+            timeSharkAttack = 0f;
             _animator.SetBool(_isDeadHash, false);
 
             if (waterAlert != null)
                 waterAlert.SetActive(false);
+            if (sharkAlert != null)
+                sharkAlert.SetActive(false);
 
             if (drownVolumeScript != null)
             {
                 drownVolumeScript.drowned = false;
             }
+
+            if (revivingAnimCountdown >= timeToCompleteAnim)
+            {
+                revivingAnimCountdown = 0.0f;
+                characterController.enabled = true;
+                playerRespawned = false;
+            }
         }
     }
 
-    private void KillThePlayer()
+    private void Die()
     {
+        const float timeToCompleteAnim = 2.5f;
+        countdownText.text = "You passed out...";
         _animator.SetBool(_isDeadHash, true);
         dyingAnimCountdown += Time.deltaTime;
         characterController.enabled = false;
+        playerRespawned = false;
 
-        if (dyingAnimCountdown >= 2.4f)
+        if (drownVolumeScript != null)
+        {
+            drownVolumeScript.drowned = true;
+        }
+        if (dyingAnimCountdown >= timeToCompleteAnim)
         {
             Respawn();
         }
     }
 
-    public void Respawn()
+    private void Respawn()
     {
         transform.position = respawnPoint.position;
-        characterController.enabled = true;
+        playerRespawned = true;
 
         if (coinInventory != null)
         {
@@ -175,4 +183,3 @@ public class PlayerRespawn : MonoBehaviour
         return false;
     }
 }
-

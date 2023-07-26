@@ -15,15 +15,19 @@ public class PlayerRespawn : MonoBehaviour
     private float dyingAnimCountdown;
     private float timeInWater;
     private float timeThreshold = 5f;
+    private float sharkAttackLimit = 3f;
+    private float timeSharkAttack;
+    private bool isSharkAttack = false;
     private int _isDeadHash;
     private bool _isDeadAnim;
     private bool _isDead = false;
+
     public GameObject waterAlert;
+    public GameObject sharkAlert; 
     private GameObject waterCountdown;
     private TextMeshProUGUI countdownText;
 
     private hud_gui_controller coinInventory;
-
     private PlayerDrownVolume drownVolumeScript;
 
     private void Start()
@@ -41,12 +45,45 @@ public class PlayerRespawn : MonoBehaviour
         if (waterAlert != null)
             waterAlert.SetActive(false);
 
+        if (sharkAlert != null)
+            sharkAlert.SetActive(false);
+
         drownVolumeScript = GetComponent<PlayerDrownVolume>();
     }
 
     private void Update()
     {
         _isDeadAnim = _animator.GetBool(_isDeadHash);
+
+
+        //if (SharkAttack())
+        //{
+
+        //    timeSharkAttack += Time.deltaTime;
+
+        //    if (sharkAlert != null)
+        //        sharkAlert.SetActive(true);
+
+        //    if (timeSharkAttack >= sharkAttackLimit && !isSharkAttack)
+        //    {
+        //        isSharkAttack = true;
+        //        KillThePlayer();
+        //    }
+        //}
+
+        //else
+        //{
+        //    timeSharkAttack = 0f;
+        //    isSharkAttack = false;
+        //    dyingAnimCountdown = 0f;
+        //    _animator.SetBool(_isDeadHash, false);
+
+        //    if (sharkAlert != null)
+        //        sharkAlert.SetActive(false);
+        //}
+
+
+
         if (transform.position.y < respawnYThreshold)
         {
             timeInWater += Time.deltaTime;
@@ -122,4 +159,20 @@ public class PlayerRespawn : MonoBehaviour
             drownVolumeScript.drowned = false;
         }
     }
+
+    //private bool SharkAttack()
+    //{
+    //    SharkIdentifier[] sharks = FindObjectsOfType<SharkIdentifier>();
+    //    foreach (SharkIdentifier shark in sharks)
+    //    {
+    //        FishAI fishAI = shark.GetComponent<FishAI>();
+    //        if (fishAI != null && fishAI.aiState == FishAI.AIState.aggressiveState)
+    //        {
+    //            Debug.Log("Shark attack");
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
 }
+

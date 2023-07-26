@@ -70,7 +70,7 @@ public class PlayerRespawn : MonoBehaviour
                 sharkText.text = "You're attracting sharks!\nRun away!";
             }
 
-            if (timeSharkAttack >= sharkAttackLimit - 1.0f)
+            if (timeSharkAttack >= sharkAttackLimit)
             {
                 sharkText.text = "You passed out...";
                 Die();

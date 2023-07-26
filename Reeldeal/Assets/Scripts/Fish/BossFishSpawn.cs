@@ -10,7 +10,7 @@ public class BossFishSpawn : MonoBehaviour
     private AudioSource audioPlay;
     private bool hasPlayedAudio = false; 
 
-    private GameObject bossFishAlert;
+    public GameObject bossFishAlert;
     private float timer = 3f;
     private bool isRunning = false;
 
@@ -33,13 +33,13 @@ public class BossFishSpawn : MonoBehaviour
         audioPlay = GetComponent<AudioSource>();
         audioPlay.playOnAwake = false;
 
-        bossFishAlert = GameObject.Find("UICanvas/BossFishAlert");
+        //bossFishAlert = GameObject.Find("UICanvas/BossFishAlert");
         bossFishAlert.SetActive(false);
     }
 
     private void Update()
     {
-        if (player_has_rod_upgrade == false && !isRunning)
+        if (player_has_rod_upgrade == true && !isRunning)
         {
             Renderer renderer = GetComponent<Renderer>();
             renderer.enabled = true;

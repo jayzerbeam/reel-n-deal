@@ -1652,7 +1652,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7335463383347075273}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4684,7 +4684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &453568779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4692,17 +4692,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453568778}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -680.7914}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7335463383347075273}
-  m_RootOrder: 7
+  m_Father: {fileID: 725784625}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -421.95508, y: -133.58667}
+  m_AnchoredPosition: {x: -1230.7528, y: -354.01624}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &453568780
@@ -7317,6 +7317,7 @@ RectTransform:
   - {fileID: 1558971938}
   - {fileID: 1765769296}
   - {fileID: 1722762941}
+  - {fileID: 453568779}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7768,7 +7769,7 @@ RectTransform:
   - {fileID: 565454937}
   - {fileID: 1391664404}
   m_Father: {fileID: 7335463383347075273}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -32401,7 +32402,6 @@ RectTransform:
   - {fileID: 7335463383737109200}
   - {fileID: 7335463385175709125}
   - {fileID: 7335463383562173316}
-  - {fileID: 453568779}
   - {fileID: 232845134}
   - {fileID: 782465045}
   m_Father: {fileID: 1597059251}
@@ -34590,6 +34590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossFish: {fileID: 8043800119619988122}
+  bossFishAlert: {fileID: 453568778}
 --- !u!82 &8404189589188512593
 AudioSource:
   m_ObjectHideFlags: 0

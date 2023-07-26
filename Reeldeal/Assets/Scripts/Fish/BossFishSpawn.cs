@@ -39,7 +39,7 @@ public class BossFishSpawn : MonoBehaviour
 
     private void Update()
     {
-        if (player_has_rod_upgrade == false && !isRunning)
+        if (player_has_rod_upgrade == true && !isRunning)
         {
             Renderer renderer = GetComponent<Renderer>();
             renderer.enabled = true;

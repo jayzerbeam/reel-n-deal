@@ -56,31 +56,31 @@ public class PlayerRespawn : MonoBehaviour
         _isDeadAnim = _animator.GetBool(_isDeadHash);
 
 
-        //if (SharkAttack())
-        //{
+        if (SharkAttack())
+        {
 
-        //    timeSharkAttack += Time.deltaTime;
+            timeSharkAttack += Time.deltaTime;
 
-        //    if (sharkAlert != null)
-        //        sharkAlert.SetActive(true);
+            if (sharkAlert != null)
+                sharkAlert.SetActive(true);
 
-        //    if (timeSharkAttack >= sharkAttackLimit && !isSharkAttack)
-        //    {
-        //        isSharkAttack = true;
-        //        KillThePlayer();
-        //    }
-        //}
+            if (timeSharkAttack >= sharkAttackLimit && !isSharkAttack)
+            {
+                isSharkAttack = true;
+                KillThePlayer();
+            }
+        }
 
-        //else
-        //{
-        //    timeSharkAttack = 0f;
-        //    isSharkAttack = false;
-        //    dyingAnimCountdown = 0f;
-        //    _animator.SetBool(_isDeadHash, false);
+        else
+        {
+            timeSharkAttack = 0f;
+            isSharkAttack = false;
+            dyingAnimCountdown = 0f;
+            _animator.SetBool(_isDeadHash, false);
 
-        //    if (sharkAlert != null)
-        //        sharkAlert.SetActive(false);
-        //}
+            if (sharkAlert != null)
+                sharkAlert.SetActive(false);
+        }
 
 
 

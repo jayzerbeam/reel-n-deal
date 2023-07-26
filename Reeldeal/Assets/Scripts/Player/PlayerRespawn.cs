@@ -160,19 +160,19 @@ public class PlayerRespawn : MonoBehaviour
         }
     }
 
-    //private bool SharkAttack()
-    //{
-    //    SharkIdentifier[] sharks = FindObjectsOfType<SharkIdentifier>();
-    //    foreach (SharkIdentifier shark in sharks)
-    //    {
-    //        FishAI fishAI = shark.GetComponent<FishAI>();
-    //        if (fishAI != null && fishAI.aiState == FishAI.AIState.aggressiveState)
-    //        {
-    //            Debug.Log("Shark attack");
-    //            return true;
-    //        }
-    //    }
-    //    return false;
-    //}
+    private bool SharkAttack()
+    {
+        SharkIdentifier[] sharks = FindObjectsOfType<SharkIdentifier>();
+        foreach (SharkIdentifier shark in sharks)
+        {
+            FishAI fishAI = shark.GetComponent<FishAI>();
+            if (fishAI != null && fishAI.aiState == FishAI.AIState.aggressiveState)
+            {
+                Debug.Log("Shark attack");
+                return true;
+            }
+        }
+        return false;
+    }
 }
 

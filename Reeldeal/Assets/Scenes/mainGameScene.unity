@@ -12225,14 +12225,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Welcom to Reel n'' Deal! On this remote island, there have been rumblings
-    regarding a ginormous fish... one that not even the most seasoned of fishmen
-    have been able to find. Your goal is to learn to fish and trade for items in
-    the market to aid in your quest of catching the biggest fish of all!
-
-
-    Click
-    the buttons to the right for additional hints and information.'
+  m_text: "To navigate the world of Reel n' Deal, use the following controls: \n\nMove
+    Forward:      W\nMove Back:            S\nRotate Left:            A\nRotate Right:        
+    D\nJump:                       Spacebar\nTrade:                      Q\nInventory:              
+    E\nCast Rod:                F \nCancel Cast:          C\nView Bobber:        
+    V"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -26331,7 +26328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7015048, y: 0.179}
   m_AnchorMax: {x: 0.9802951, y: 0.83100003}
-  m_AnchoredPosition: {x: -0.23217773, y: 0}
+  m_AnchoredPosition: {x: -0.23226929, y: 0}
   m_SizeDelta: {x: 0.4646001, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1571433497
@@ -30368,14 +30365,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Welcom to Reel n'' Deal! On this remote island, there have been rumblings
-    regarding a ginormous fish... one that not even the most seasoned of fishmen
-    have been able to find. Your goal is to learn to fish and trade for items in
-    the market to aid in your quest of catching the biggest fish of all!
+  m_text: 'To catch a hooked fish, you will be challenged to press randomly-chosen
+    keys on your keyboard within a limited time frame.
 
 
-    Click
-    the buttons to the right for additional hints and information.'
+    If you press the incorrect
+    key or time runs out, the fish will flee and you''ll need to cast again!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}

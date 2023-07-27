@@ -399,7 +399,7 @@ public class hud_gui_controller : MonoBehaviour
                 break;
             case "rod_upgrade":
                 Debug.Log("Added rod upgrade");
-                has_boots = true;
+                has_rod_upgrade = true;
                 rod_image.SetActive(true);
                 break;
             case "bobber":

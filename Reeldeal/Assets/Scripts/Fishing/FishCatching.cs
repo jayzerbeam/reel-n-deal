@@ -8,6 +8,7 @@ public class FishCatching : MonoBehaviour
 {
     GameObject _player;
     hud_gui_controller _inventoryController;
+    PlayerWonAlert _playerWonAlert;
     FishingMessaging _messaging;
     GameObject hookedFishGO;
     Rigidbody hookedFishRB;
@@ -36,9 +37,9 @@ public class FishCatching : MonoBehaviour
     {
         _bobberRB = GetComponent<Rigidbody>();
         _player = GameObject.FindWithTag("Player");
-        _inventoryController = new hud_gui_controller();
         _messaging = _player.GetComponent<FishingMessaging>();
         _inventoryController = FindObjectOfType<hud_gui_controller>();
+        _playerWonAlert = FindObjectOfType<PlayerWonAlert>();
         _keypressFailure = _player.GetComponents<AudioSource>()[0];
         _keypressSuccess = _player.GetComponents<AudioSource>()[1];
         _caughtFishBell = _player.GetComponents<AudioSource>()[3];
@@ -139,7 +140,7 @@ public class FishCatching : MonoBehaviour
         }
         else if (_fishMultiTag.HasTag("Boss"))
         {
-            countdownTimer = 4.0f;
+            countdownTimer = 5.0f;
         }
         else
         {
@@ -198,9 +199,17 @@ public class FishCatching : MonoBehaviour
         {
             _didFishEscape = false;
             _wasFishCaught = true;
-            _messaging.StopMessage();
-            _messaging.DisplayMessage("You caught a fish!");
-            _inventoryController.AddItemToInv(GetFishTypeByTag(), 1);
+            if (_fishMultiTag.HasTag("Boss"))
+            {
+                _messaging.StopMessage();
+                _playerWonAlert.PlayerWins();
+            }
+            else
+            {
+                _messaging.StopMessage();
+                _messaging.DisplayMessage("You caught a fish!");
+                _inventoryController.AddItemToInv(GetFishTypeByTag(), 1);
+            }
             Destroy(GameObject.FindWithTag("Bobber"));
         }
     }

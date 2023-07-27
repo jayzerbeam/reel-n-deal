@@ -10,7 +10,6 @@ public class PlayerRespawn : MonoBehaviour
     public Transform respawnPoint;
     private float respawnYThreshold = 47f;
     private Animator _animator;
-    private Rigidbody _rb;
 
     private CharacterController characterController;
     private Vector3 initialPosition;
@@ -41,7 +40,6 @@ public class PlayerRespawn : MonoBehaviour
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
         initialPosition = transform.position;
         coinInventory = FindObjectOfType<hud_gui_controller>();

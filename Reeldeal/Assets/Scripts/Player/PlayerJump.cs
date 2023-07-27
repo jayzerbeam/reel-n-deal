@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerJump : MonoBehaviour
 {
-    PlayerInput _playerInput;
+    public PlayerInput playerInput;
+    InputAction jumpAction;
     CharacterController _characterController;
+
     Animator _animator;
     Vector3 _characterVelocity;
+
     int _isJumpingHash;
     bool _isJumpButtonPressed;
     bool _isJumping;
@@ -26,12 +29,16 @@ public class PlayerJump : MonoBehaviour
 
     void Awake()
     {
-        _playerInput = new PlayerInput();
+        playerInput = GetComponent<PlayerInput>();
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
 
         _isJumpingHash = Animator.StringToHash("isJumping");
-        _playerInput.CharacterControls.Jump.performed += OnJump;
+    }
+
+    void Start()
+    {
+        playerInput.actions["Jump"].performed += OnJump;
     }
 
     void Update()
@@ -46,16 +53,6 @@ public class PlayerJump : MonoBehaviour
     {
         HandleGravity();
         HandleJump();
-    }
-
-    void OnEnable()
-    {
-        _playerInput.CharacterControls.Enable();
-    }
-
-    void OnDisable()
-    {
-        _playerInput.CharacterControls.Disable();
     }
 
     void OnJump(InputAction.CallbackContext context)

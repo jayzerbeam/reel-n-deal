@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerMove : MonoBehaviour
 {
-    PlayerInput _playerInput;
-    Rigidbody _rb;
+    public PlayerInput playerInput;
+
     CharacterController _characterController;
     Animator _animator;
     Vector2 _inputValues;
@@ -43,34 +43,24 @@ public class PlayerMove : MonoBehaviour
 
     void Awake()
     {
-        _playerInput = new PlayerInput();
+        playerInput = GetComponent<PlayerInput>();
         _characterController = GetComponent<CharacterController>();
-        _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
 
         _isWalkingHash = Animator.StringToHash("isWalking");
         _isRunningHash = Animator.StringToHash("isRunning");
         _velocityXHash = Animator.StringToHash("Velocity X");
         _velocityZHash = Animator.StringToHash("Velocity Z");
-
-        // Walk input
-        _playerInput.CharacterControls.Move.started += OnMovementInput;
-        _playerInput.CharacterControls.Move.canceled += OnMovementInput;
-        _playerInput.CharacterControls.Move.performed += OnMovementInput;
-
-        // Run input
-        _playerInput.CharacterControls.Run.performed += OnRun;
-        _playerInput.CharacterControls.Run.canceled += OnRun;
     }
 
-    void OnEnable()
+    void Start()
     {
-        _playerInput.CharacterControls.Enable();
-    }
-
-    void OnDisable()
-    {
-        _playerInput.CharacterControls.Disable();
+        playerInput.actions["Move"].started += OnMovementInput;
+        playerInput.actions["Move"].canceled += OnMovementInput;
+        playerInput.actions["Move"].performed += OnMovementInput;
+        playerInput.actions["Run"].started += OnRun;
+        playerInput.actions["Run"].performed += OnRun;
+        playerInput.actions["Run"].canceled += OnRun;
     }
 
     void Update()
@@ -197,12 +187,12 @@ public class PlayerMove : MonoBehaviour
         if (_isFishingAnim)
         {
             _isMovementFrozen = true;
-            _rb.isKinematic = true;
+            _characterController.enabled = false;
         }
         else
         {
             _isMovementFrozen = false;
-            _rb.isKinematic = false;
+            _characterController.enabled = true;
         }
     }
 }

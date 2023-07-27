@@ -4,10 +4,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerFish : MonoBehaviour
 {
-    PlayerInput _playerInput;
+    public PlayerInput playerInput;
     GameObject _player;
     playerInventory _playerInventory;
     CharacterController _characterController;
@@ -22,6 +22,9 @@ public class PlayerFish : MonoBehaviour
     GameObject _hookedFishGO;
 
     public GameObject bobberPrefab;
+    public GameObject newBobberPrefab;
+
+    public bool _doBobberSwap;
 
     bool _isCanceled;
     bool _isCastButtonPressed;
@@ -44,7 +47,7 @@ public class PlayerFish : MonoBehaviour
     void Awake()
     {
         _player = GameObject.FindWithTag("Player");
-        _playerInput = new PlayerInput();
+        playerInput = GetComponent<PlayerInput>();
         _playerInventory = _player.GetComponent<playerInventory>();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
@@ -52,35 +55,32 @@ public class PlayerFish : MonoBehaviour
 
         _isCastingHash = Animator.StringToHash("isCasting");
         _isFishingHash = Animator.StringToHash("isFishing");
+    }
 
-        _playerInput.CharacterControls.Cast.started += OnCast;
-        _playerInput.CharacterControls.Cast.canceled += OnCast;
-        _playerInput.CharacterControls.Cast.performed += OnCast;
-
-        _playerInput.CharacterControls.Cancel.started += OnCancel;
-        _playerInput.CharacterControls.Cancel.canceled += OnCancel;
-        _playerInput.CharacterControls.Cancel.performed += OnCancel;
+    void Start()
+    {
+        playerInput.actions["Cast"].started += OnCast;
+        playerInput.actions["Cast"].canceled += OnCast;
+        playerInput.actions["Cast"].performed += OnCast;
+        playerInput.actions["Cancel"].started += OnCancel;
+        playerInput.actions["Cancel"].canceled += OnCancel;
+        playerInput.actions["Cancel"].performed += OnCancel;
     }
 
     void Update()
     {
         HandleAnimation();
         HandleCancel();
+
+        if (_doBobberSwap)
+        {
+            SwapBobbers(newBobberPrefab);
+        }
     }
 
     void FixedUpdate()
     {
         HandleCast();
-    }
-
-    void OnEnable()
-    {
-        _playerInput.CharacterControls.Enable();
-    }
-
-    void OnDisable()
-    {
-        _playerInput.CharacterControls.Disable();
     }
 
     void OnCast(InputAction.CallbackContext context)
@@ -163,5 +163,10 @@ public class PlayerFish : MonoBehaviour
                 _bobberRB.AddForce(castVelocity, ForceMode.Impulse);
             }
         }
+    }
+
+    public void SwapBobbers(GameObject newBobberPrefab)
+    {
+        bobberPrefab = newBobberPrefab;
     }
 }

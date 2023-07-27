@@ -2,13 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using System.Collections;
 
 public class PlayerRespawn : MonoBehaviour
 {
     public Transform respawnPoint;
     private float respawnYThreshold = 47f;
     private Animator _animator;
-    private Rigidbody _rb;
 
     private CharacterController characterController;
     private Vector3 initialPosition;
@@ -22,7 +23,6 @@ public class PlayerRespawn : MonoBehaviour
     private float timeSharkAttack;
 
     private int _isDeadHash;
-    private bool _isDeadAnim;
 
     private bool playerRespawned = false;
 
@@ -35,9 +35,10 @@ public class PlayerRespawn : MonoBehaviour
     private hud_gui_controller coinInventory;
     private PlayerDrownVolume drownVolumeScript;
 
+    public GameObject respawnGUI; 
+
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
         initialPosition = transform.position;
         coinInventory = FindObjectOfType<hud_gui_controller>();
@@ -58,8 +59,6 @@ public class PlayerRespawn : MonoBehaviour
 
     private void Update()
     {
-        _isDeadAnim = _animator.GetBool(_isDeadHash);
-
         if (SharkAttack() && !IsPlayerUnderwater())
         {
             timeSharkAttack += Time.deltaTime;
@@ -104,6 +103,7 @@ public class PlayerRespawn : MonoBehaviour
             if (timeInWater >= timeThreshold - 1.0f)
             {
                 countdownText.text = "You passed out...";
+                _animator.SetBool(_isDeadHash, true);
                 Die();
             }
         }
@@ -139,13 +139,18 @@ public class PlayerRespawn : MonoBehaviour
                 characterController.enabled = true;
                 playerRespawned = false;
             }
+
+            if (respawnGUI != null)
+            {
+                respawnGUI.SetActive(true);
+                StartCoroutine(HideGUI());
+            }
         }
     }
 
     private void Die()
     {
         const float timeToCompleteAnim = 2.3f;
-        _animator.SetBool(_isDeadHash, true);
         dyingAnimCountdown += Time.deltaTime;
         characterController.enabled = false;
         playerRespawned = false;
@@ -190,5 +195,11 @@ public class PlayerRespawn : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private IEnumerator HideGUI()
+    {
+        yield return new WaitForSeconds(5f);
+        respawnGUI.SetActive(false);
     }
 }

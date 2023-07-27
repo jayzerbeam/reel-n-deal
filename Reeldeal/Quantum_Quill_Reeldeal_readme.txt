@@ -25,11 +25,11 @@ as the bobber, and its current speed also changes. The aggressive state only occ
 "see" the player, they set the player as their waypoint and charge towards them, killing the player if contact is made. The flee state is the
 counterpart to the agressive state, as smaller fish will run away from players if the fish "sees" them. The only other time this state is used
 is when a player fails to catch a fish. When this occurs, any fish, regardless of type, transitions to this flee state. This gives the player
-a small penalty for failing to catch the fish.
+a small penalty for failing to catch the fish. The flee and hungry states have associated 2D icons that appear when these conditions occur to
+give a visual cue to the player. 
 
 Known Issues:
-- occasional odd behavior when two fish collide
-- fish animations to be implemented
+- fish animations not implemented
 - Some items in marketplace do not disappear when purchased 
 
 Teammate Contributions
@@ -45,7 +45,7 @@ Grady
 - Bobber Prefabs / variants
 - BobberMultiTag.cs -- framework to give bobbers multiple tags
 - BobberPrefabInitializer.cs -- initializes bobber variants
-- FishCatching -- implemented the framework of catching/releasing fish
+- FishCatching.cs -- implemented the framework of catching/releasing fish
 - MainMenuScene
 - MainMenuCamera.cs -- rotates camera around island for nice menu background
 - GameStarter.cs -- starts game
@@ -53,6 +53,11 @@ Grady
 - shark_start.wav and shark_loop.wav -- trimmed sound files with Audacity
 - sharkAudioRandomizer.cs -- randomizes pitch and frequency of shark sounds based on player distance
 - SharkAudioManager.cs -- responsible for updating sound source settings and playing sounds to prevent audio overlap
+- Casting, reeling, and sound indications for fishing
+- Village Aesthetics -- houses, wells, crates, etc prefab creation from free assets and village layouts
+- PlayerFish.cs -- added bobber switching mechanic
+- Design for Instructions Layout
+- InstructionsNav.cs -- Navigation for the instructions menu
 
 Luis Alberto
 - Level design + game ideation
@@ -170,7 +175,7 @@ Cassandra Durkee
 
 Sources:
 
-Game Menu Music: Chunky Monkey - https://assetstore.unity.com/packages/audio/music/free-music-tracks-for-games-156413
+Game Menu Music: Chunky Monkey - https://assetstore.unity.com/packages/audio/music/free-music-tracks-for-games-156413	Licesnse: https://unity.com/legal/as-terms
 Shading: https://www.youtube.com/watch?v=qH4XQaZhihw, https://www.youtube.com/watch?v=78WCzTVmc28, https://www.youtube.com/watch?v=cq2CoHVDxSQ
 Textures: https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
 Scripting: https://stackoverflow.com/, https://www.youtube.com/watch?v=UCwwn2q4Vys, https://docs.unity3d.com/

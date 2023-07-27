@@ -3,35 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerJump : MonoBehaviour
 {
-    PlayerInput _playerInput;
+    public PlayerInput playerInput;
+    InputAction jumpAction;
     CharacterController _characterController;
+
     Animator _animator;
     Vector3 _characterVelocity;
+
     int _isJumpingHash;
     bool _isJumpButtonPressed;
     bool _isJumping;
     bool _isFishing;
 
-    // Can edit in Unity
-    [SerializeField]
     float _jumpHeight = 2f;
 
-    // Can edit in Unity
-    [SerializeField]
-    float _gravity = -9.81f;
-    float _groundedGravity = 0.05f;
+    public float _gravity = -9.81f;
+    public float _groundedGravity = 0.05f;
 
     void Awake()
     {
-        _playerInput = new PlayerInput();
+        playerInput = GetComponent<PlayerInput>();
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
 
         _isJumpingHash = Animator.StringToHash("isJumping");
-        _playerInput.CharacterControls.Jump.performed += OnJump;
+    }
+
+    void Start()
+    {
+        playerInput.actions["Jump"].started += OnJump;
+        playerInput.actions["Jump"].canceled += OnJump;
     }
 
     void Update()
@@ -46,16 +50,7 @@ public class PlayerJump : MonoBehaviour
     {
         HandleGravity();
         HandleJump();
-    }
-
-    void OnEnable()
-    {
-        _playerInput.CharacterControls.Enable();
-    }
-
-    void OnDisable()
-    {
-        _playerInput.CharacterControls.Disable();
+        _characterController.Move(_characterVelocity * Time.fixedDeltaTime);
     }
 
     void OnJump(InputAction.CallbackContext context)
@@ -86,7 +81,7 @@ public class PlayerJump : MonoBehaviour
         }
         else
         {
-            _characterVelocity.y += _gravity * Time.deltaTime;
+            _characterVelocity.y += _gravity * Time.fixedDeltaTime;
         }
     }
 
@@ -95,10 +90,7 @@ public class PlayerJump : MonoBehaviour
         if (_isJumpButtonPressed && _characterController.isGrounded && !_isFishing)
         {
             _characterVelocity.y += Mathf.Sqrt(_jumpHeight * -2.0f * _gravity);
-            _isJumpButtonPressed = false;
         }
-
-        _characterController.Move(_characterVelocity * Time.deltaTime);
     }
 
     public void increaseJumpHeight(float multiplier)

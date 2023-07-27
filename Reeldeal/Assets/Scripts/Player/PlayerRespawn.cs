@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using System.Collections;
 
 public class PlayerRespawn : MonoBehaviour
 {
@@ -34,6 +36,8 @@ public class PlayerRespawn : MonoBehaviour
 
     private hud_gui_controller coinInventory;
     private PlayerDrownVolume drownVolumeScript;
+
+    public GameObject respawnGUI; 
 
     private void Start()
     {
@@ -139,6 +143,12 @@ public class PlayerRespawn : MonoBehaviour
                 characterController.enabled = true;
                 playerRespawned = false;
             }
+
+            if (respawnGUI != null)
+            {
+                respawnGUI.SetActive(true);
+                StartCoroutine(HideGUI());
+            }
         }
     }
 
@@ -190,5 +200,11 @@ public class PlayerRespawn : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private IEnumerator HideGUI()
+    {
+        yield return new WaitForSeconds(5f);
+        respawnGUI.SetActive(false);
     }
 }

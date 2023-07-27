@@ -39,6 +39,7 @@ public class PlayerJump : MonoBehaviour
     void Start()
     {
         playerInput.actions["Jump"].started += OnJump;
+        playerInput.actions["Jump"].canceled += OnJump;
     }
 
     void Update()
@@ -92,7 +93,6 @@ public class PlayerJump : MonoBehaviour
         if (_isJumpButtonPressed && _characterController.isGrounded && !_isFishing)
         {
             _characterVelocity.y += Mathf.Sqrt(_jumpHeight * -2.0f * _gravity);
-            _isJumpButtonPressed = false;
         }
 
         _characterController.Move(_characterVelocity * Time.deltaTime);

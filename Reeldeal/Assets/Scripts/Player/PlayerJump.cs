@@ -38,7 +38,7 @@ public class PlayerJump : MonoBehaviour
 
     void Start()
     {
-        playerInput.actions["Jump"].performed += OnJump;
+        playerInput.actions["Jump"].started += OnJump;
     }
 
     void Update()

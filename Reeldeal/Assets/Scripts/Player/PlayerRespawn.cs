@@ -21,7 +21,6 @@ public class PlayerRespawn : MonoBehaviour
     private float timeSharkAttack;
 
     private int _isDeadHash;
-    private bool _isDeadAnim;
 
     private bool playerRespawned = false;
 
@@ -56,8 +55,6 @@ public class PlayerRespawn : MonoBehaviour
 
     private void Update()
     {
-        _isDeadAnim = _animator.GetBool(_isDeadHash);
-
         if (SharkAttack() && !IsPlayerUnderwater())
         {
             timeSharkAttack += Time.deltaTime;
@@ -102,6 +99,7 @@ public class PlayerRespawn : MonoBehaviour
             if (timeInWater >= timeThreshold - 1.0f)
             {
                 countdownText.text = "You passed out...";
+                _animator.SetBool(_isDeadHash, true);
                 Die();
             }
         }
@@ -143,7 +141,6 @@ public class PlayerRespawn : MonoBehaviour
     private void Die()
     {
         const float timeToCompleteAnim = 2.3f;
-        _animator.SetBool(_isDeadHash, true);
         dyingAnimCountdown += Time.deltaTime;
         characterController.enabled = false;
         playerRespawned = false;

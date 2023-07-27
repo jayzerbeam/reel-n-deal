@@ -11,7 +11,7 @@ public class FishCatching : MonoBehaviour
     FishingMessaging _messaging;
     GameObject hookedFishGO;
     Rigidbody hookedFishRB;
-    Rigidbody _rb;
+    Rigidbody _bobberRB;
     FishAI fishAIscript;
     FishMultiTag _fishMultiTag;
 
@@ -34,7 +34,7 @@ public class FishCatching : MonoBehaviour
 
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        _bobberRB = GetComponent<Rigidbody>();
         _player = GameObject.FindWithTag("Player");
         _inventoryController = new hud_gui_controller();
         _messaging = _player.GetComponent<FishingMessaging>();
@@ -93,7 +93,7 @@ public class FishCatching : MonoBehaviour
                 // 5 Second cooldown
                 if (!fishAIscript.WasRecentlyCaught)
                 {
-                    _rb.constraints = RigidbodyConstraints.FreezeAll;
+                    _bobberRB.constraints = RigidbodyConstraints.FreezeAll;
                     collision.transform.SetParent(transform);
                     SetCountdownTimer();
 

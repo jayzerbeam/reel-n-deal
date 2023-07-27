@@ -107,6 +107,7 @@ public class PlayerMove : MonoBehaviour
             else if (
                 (_isMovementPressed && !_isRunPressed)
                 || (_isRotationPressed && !_isMovementPressed && !_isRunPressed)
+                || (_isRotationPressed && !_isMovementPressed && _isRunPressed)
             )
             {
                 _animator.SetBool(_isWalkingHash, true);
@@ -136,7 +137,7 @@ public class PlayerMove : MonoBehaviour
 
     void HandleMove()
     {
-        Vector3 movement = transform.forward * _inputValues.y * _walkSpeed * Time.deltaTime;
+        Vector3 movement = transform.forward * _inputValues.y * _walkSpeed * Time.fixedDeltaTime;
         bool playerDoesNotHaveBoots = GameObject.Find("Boots");
         float bootSpeedMultiplier = 2.0f;
 

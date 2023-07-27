@@ -18,14 +18,10 @@ public class PlayerJump : MonoBehaviour
     bool _isJumping;
     bool _isFishing;
 
-    // Can edit in Unity
-    [SerializeField]
     float _jumpHeight = 2f;
 
-    // Can edit in Unity
-    [SerializeField]
-    float _gravity = -9.81f;
-    float _groundedGravity = 0.05f;
+    public float _gravity = -9.81f;
+    public float _groundedGravity = 0.05f;
 
     void Awake()
     {
@@ -39,6 +35,7 @@ public class PlayerJump : MonoBehaviour
     void Start()
     {
         playerInput.actions["Jump"].started += OnJump;
+        playerInput.actions["Jump"].canceled += OnJump;
     }
 
     void Update()
@@ -53,6 +50,7 @@ public class PlayerJump : MonoBehaviour
     {
         HandleGravity();
         HandleJump();
+        _characterController.Move(_characterVelocity * Time.fixedDeltaTime);
     }
 
     void OnJump(InputAction.CallbackContext context)
@@ -83,7 +81,7 @@ public class PlayerJump : MonoBehaviour
         }
         else
         {
-            _characterVelocity.y += _gravity * Time.deltaTime;
+            _characterVelocity.y += _gravity * Time.fixedDeltaTime;
         }
     }
 
@@ -92,10 +90,7 @@ public class PlayerJump : MonoBehaviour
         if (_isJumpButtonPressed && _characterController.isGrounded && !_isFishing)
         {
             _characterVelocity.y += Mathf.Sqrt(_jumpHeight * -2.0f * _gravity);
-            _isJumpButtonPressed = false;
         }
-
-        _characterController.Move(_characterVelocity * Time.deltaTime);
     }
 
     public void increaseJumpHeight(float multiplier)

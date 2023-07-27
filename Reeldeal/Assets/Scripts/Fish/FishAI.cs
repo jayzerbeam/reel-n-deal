@@ -132,7 +132,7 @@ public class FishAI : MonoBehaviour
                 {
                     Vector3 position = transform.position + transform.up * (i * spacing);
                     Ray ray = new Ray(position, transform.forward);
-                    Debug.DrawRay(ray.origin, ray.direction * rayLength, rayColor);
+                    //Debug.DrawRay(ray.origin, ray.direction * rayLength, rayColor);
                     RaycastHit[] hits = Physics.RaycastAll(ray, rayLength);
                     foreach (RaycastHit hit in hits)
                     {
@@ -149,7 +149,7 @@ public class FishAI : MonoBehaviour
 
                 // land collision ray
                 Ray landRay = new Ray(transform.position, transform.forward);
-                Debug.DrawRay(landRay.origin, landRay.direction * landRayLength, Color.green);
+                //Debug.DrawRay(landRay.origin, landRay.direction * landRayLength, Color.green);
                 RaycastHit[] landHits = Physics.RaycastAll(landRay, landRayLength);
                 foreach (RaycastHit hit in landHits)
                 {

@@ -22,6 +22,9 @@ public class PlayerFish : MonoBehaviour
     GameObject _hookedFishGO;
 
     public GameObject bobberPrefab;
+    public GameObject newBobberPrefab;
+
+    public bool _doBobberSwap;
 
     bool _isCanceled;
     bool _isCastButtonPressed;
@@ -66,6 +69,11 @@ public class PlayerFish : MonoBehaviour
     {
         HandleAnimation();
         HandleCancel();
+
+        if (_doBobberSwap)
+        {
+            SwapBobbers(newBobberPrefab);
+        }
     }
 
     void FixedUpdate()
@@ -163,5 +171,10 @@ public class PlayerFish : MonoBehaviour
                 _bobberRB.AddForce(castVelocity, ForceMode.Impulse);
             }
         }
+    }
+
+    public void SwapBobbers(GameObject newBobberPrefab)
+    {
+        bobberPrefab = newBobberPrefab;
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     public PlayerInput playerInput;
-    Rigidbody _rb;
+
     CharacterController _characterController;
     Animator _animator;
     Vector2 _inputValues;
@@ -45,7 +45,6 @@ public class PlayerMove : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         _characterController = GetComponent<CharacterController>();
-        _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
 
         _isWalkingHash = Animator.StringToHash("isWalking");
@@ -188,12 +187,12 @@ public class PlayerMove : MonoBehaviour
         if (_isFishingAnim)
         {
             _isMovementFrozen = true;
-            _rb.isKinematic = true;
+            _characterController.enabled = false;
         }
         else
         {
             _isMovementFrozen = false;
-            _rb.isKinematic = false;
+            _characterController.enabled = true;
         }
     }
 }

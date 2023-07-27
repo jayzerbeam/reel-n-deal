@@ -83,16 +83,6 @@ public class PlayerFish : MonoBehaviour
         HandleCast();
     }
 
-    void OnEnable()
-    {
-        // _playerInput.CharacterControls.Enable();
-    }
-
-    void OnDisable()
-    {
-        // _playerInput.CharacterControls.Disable();
-    }
-
     void OnCast(InputAction.CallbackContext context)
     {
         _isCastButtonPressed = context.ReadValueAsButton();

@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerFish : MonoBehaviour
 {
     public PlayerInput playerInput;
+    FishingMessaging _messaging;
     GameObject _player;
     playerInventory _playerInventory;
     CharacterController _characterController;
@@ -52,6 +53,7 @@ public class PlayerFish : MonoBehaviour
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
         _rodReel = _player.GetComponents<AudioSource>()[2];
+        _messaging = _player.GetComponent<FishingMessaging>();
 
         _isCastingHash = Animator.StringToHash("isCasting");
         _isFishingHash = Animator.StringToHash("isFishing");
@@ -136,6 +138,7 @@ public class PlayerFish : MonoBehaviour
     {
         if (_isCanceled)
         {
+            _messaging.StopMessage();
             Destroy(GameObject.FindWithTag("Bobber"));
             _animator.SetBool(_isCastingHash, false);
             _animator.SetBool(_isFishingHash, false);

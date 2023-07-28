@@ -26,19 +26,10 @@ public class PlayerMove : MonoBehaviour
     bool _isRunningAnim;
     bool _isFishingAnim;
 
-    [SerializeField]
     float _walkSpeed = 2.0f;
-
-    [SerializeField]
     float _stillRotationSpeed = 60f;
-
-    [SerializeField]
     float _walkRotationSpeed = 160f;
-
-    [SerializeField]
     float _runSpeed = 6.0f;
-
-    [SerializeField]
     float _runRotationSpeed = 240f;
 
     void Awake()
@@ -67,6 +58,7 @@ public class PlayerMove : MonoBehaviour
     {
         _isWalkingAnim = _animator.GetBool(_isWalkingHash);
         _isRunningAnim = _animator.GetBool(_isRunningHash);
+        // TODO: refactor for performance
         _isFishingAnim = GameObject.FindWithTag("Bobber");
 
         HandleAnimation();
@@ -135,9 +127,11 @@ public class PlayerMove : MonoBehaviour
         return Quaternion.Euler(Vector3.up * _inputValues.x * Time.fixedDeltaTime * rotationSpeed);
     }
 
+    // TODO: refactor to remove repeat .Move code - only update multipliers
     void HandleMove()
     {
         Vector3 movement = transform.forward * _inputValues.y * _walkSpeed * Time.fixedDeltaTime;
+        // TODO: refactor for performance
         bool playerDoesNotHaveBoots = GameObject.Find("Boots");
         float bootSpeedMultiplier = 2.0f;
 

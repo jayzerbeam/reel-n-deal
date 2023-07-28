@@ -17,11 +17,11 @@ public class PlayerJump : MonoBehaviour
     bool _isJumpButtonPressed;
     bool _isJumping;
     bool _isFishing;
+    bool _isGrounded;
 
     float _jumpHeight = 2f;
 
     public float _gravity = -9.81f;
-    public float _groundedGravity = 0.05f;
 
     void Awake()
     {
@@ -34,6 +34,7 @@ public class PlayerJump : MonoBehaviour
 
     void Start()
     {
+        _characterVelocity = new Vector3(0, 0, 0);
         playerInput.actions["Jump"].started += OnJump;
         playerInput.actions["Jump"].canceled += OnJump;
     }
@@ -41,6 +42,7 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
         _isJumping = _animator.GetBool(_isJumpingHash);
+        // TODO refactor for better performance
         _isFishing = GameObject.FindWithTag("Bobber");
 
         HandleAnimation();
@@ -48,9 +50,7 @@ public class PlayerJump : MonoBehaviour
 
     void FixedUpdate()
     {
-        HandleGravity();
         HandleJump();
-        _characterController.Move(_characterVelocity * Time.fixedDeltaTime);
     }
 
     void OnJump(InputAction.CallbackContext context)
@@ -73,24 +73,21 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-    void HandleGravity()
-    {
-        if (_characterController.isGrounded)
-        {
-            _characterVelocity.y = _groundedGravity;
-        }
-        else
-        {
-            _characterVelocity.y += _gravity * Time.fixedDeltaTime;
-        }
-    }
-
     void HandleJump()
     {
-        if (_isJumpButtonPressed && _characterController.isGrounded && !_isFishing)
+        if (_isGrounded && _characterVelocity.y < 0.0f)
+        {
+            _characterVelocity.y = 0.0f;
+        }
+
+        _characterVelocity.y -= _gravity * -1.0f * Time.fixedDeltaTime;
+
+        if (_isJumpButtonPressed && _isGrounded && !_isFishing)
         {
             _characterVelocity.y += Mathf.Sqrt(_jumpHeight * -2.0f * _gravity);
         }
+        _characterController.Move(_characterVelocity * Time.fixedDeltaTime);
+        _isGrounded = _characterController.isGrounded;
     }
 
     public void increaseJumpHeight(float multiplier)

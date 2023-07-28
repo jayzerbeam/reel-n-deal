@@ -425,9 +425,9 @@ public class hud_gui_controller : MonoBehaviour
             Debug.Log("Player has no coins");
         }
 
-        //if (has_boots)
-        //{
-        //    RemoveItemToInv("boots", 1);
-        //}
+        if (has_boots)
+        {
+            RemoveItemToInv("boots", 1);
+        }
     }
 }

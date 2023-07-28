@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour
 
     int _isWalkingHash;
     int _isRunningHash;
+    int _isFishingHash;
     int _velocityZHash;
     int _velocityXHash;
 
@@ -40,6 +41,7 @@ public class PlayerMove : MonoBehaviour
 
         _isWalkingHash = Animator.StringToHash("isWalking");
         _isRunningHash = Animator.StringToHash("isRunning");
+        _isFishingHash = Animator.StringToHash("isFishing");
         _velocityXHash = Animator.StringToHash("Velocity X");
         _velocityZHash = Animator.StringToHash("Velocity Z");
     }
@@ -58,8 +60,7 @@ public class PlayerMove : MonoBehaviour
     {
         _isWalkingAnim = _animator.GetBool(_isWalkingHash);
         _isRunningAnim = _animator.GetBool(_isRunningHash);
-        // TODO: refactor for performance
-        _isFishingAnim = GameObject.FindWithTag("Bobber");
+        _isFishingAnim = _animator.GetBool(_isFishingHash);
 
         HandleAnimation();
         FreezeIfFishing();

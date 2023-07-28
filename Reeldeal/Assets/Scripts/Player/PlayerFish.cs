@@ -99,10 +99,12 @@ public class PlayerFish : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bobber"))
         {
+            // TODO
             Destroy(GameObject.FindWithTag("Bobber"));
         }
     }
 
+    // TODO
     bool FindBobber()
     {
         return GameObject.FindWithTag("Bobber");
@@ -139,6 +141,7 @@ public class PlayerFish : MonoBehaviour
         if (_isCanceled)
         {
             _messaging.StopMessage();
+            // TODO
             Destroy(GameObject.FindWithTag("Bobber"));
             _animator.SetBool(_isCastingHash, false);
             _animator.SetBool(_isFishingHash, false);

@@ -19,7 +19,7 @@ public class PlayerRespawn : MonoBehaviour
     private float timeInWater;
     private float timeThreshold = 5f;
 
-    private float sharkAttackLimit = 3f;
+    private float sharkAttackLimit = 5f;
     private float timeSharkAttack;
 
     private int _isDeadHash;

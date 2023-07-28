@@ -87,6 +87,8 @@ public class PlayerJump : MonoBehaviour
             _characterVelocity.y += Mathf.Sqrt(_jumpHeight * -2.0f * _gravity);
         }
         _characterController.Move(_characterVelocity * Time.fixedDeltaTime);
+        // Suggestion to move the grounded check to AFTER .Move found here:
+        // https://forum.unity.com/threads/charactercontroller-isgrounded-not-working.929859/
         _isGrounded = _characterController.isGrounded;
     }
 

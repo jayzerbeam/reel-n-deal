@@ -120,7 +120,6 @@ public class FishCatching : MonoBehaviour
         fishAIscript.WasRecentlyCaught = true;
         hookedFishRB.constraints = RigidbodyConstraints.None;
         hookedFishGO.transform.SetParent(null);
-        // TODO
         Destroy(GameObject.FindWithTag("Bobber"));
         _escape.Play();
     }
@@ -211,7 +210,6 @@ public class FishCatching : MonoBehaviour
                 _messaging.DisplayMessage("You caught a fish!");
                 _inventoryController.AddItemToInv(GetFishTypeByTag(), 1);
             }
-            // TODO
             Destroy(GameObject.FindWithTag("Bobber"));
         }
     }

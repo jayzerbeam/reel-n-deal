@@ -95,15 +95,6 @@ public class PlayerFish : MonoBehaviour
         _isCanceled = context.ReadValueAsButton();
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Bobber"))
-        {
-            // TODO
-            Destroy(GameObject.FindWithTag("Bobber"));
-        }
-    }
-
     // TODO
     bool FindBobber()
     {

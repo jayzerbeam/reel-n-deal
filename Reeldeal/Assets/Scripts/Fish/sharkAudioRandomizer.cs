@@ -20,7 +20,7 @@ public class sharkAudioRandomizer : MonoBehaviour
 
         frequency = 10;
         float playerDistance = Vector3.Distance(transform.position, player.transform.position);
-        if (playerDistance < 60)
+        if (playerDistance < 100)
             SharkAudioManager.PlayStartSound(transform.position, 1f);  
     }
 
@@ -31,16 +31,16 @@ public class sharkAudioRandomizer : MonoBehaviour
         {
             float playerDistance = Vector3.Distance(transform.position, player.transform.position);
             float r = Random.Range(0, playerDistance); // plays sound if r matches required threshold
-            if (r < 0.5)
+            if (r < 1)
             {
                 // update pitch, but not frequently enough to cause audio to be skipped
-                if (playerDistance < 5)
+                if (playerDistance < 20)
                     SharkAudioManager.PlayLoopSound(transform.position, 1.3f);
-                else if (playerDistance < 10)
+                else if (playerDistance < 40)
                     SharkAudioManager.PlayLoopSound(transform.position, 1.2f);
-                else if (playerDistance < 20)
+                else if (playerDistance < 60)
                     SharkAudioManager.PlayLoopSound(transform.position, 1.1f);
-                else if (playerDistance < 30)
+                else if (playerDistance < 80)
                     SharkAudioManager.PlayLoopSound(transform.position, 1f);
             }     
         }

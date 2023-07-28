@@ -1292,7 +1292,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!95 &6141649143267876795
 Animator:
   serializedVersion: 5
@@ -1378,7 +1378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 6141649143267876809}
-  _jumpHeight: 2
   _gravity: -9.81
 --- !u!114 &6141649143267876812
 MonoBehaviour:
@@ -1393,11 +1392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 6141649143267876809}
-  _walkSpeed: 2
-  _stillRotationSpeed: 60
-  _walkRotationSpeed: 160
-  _runSpeed: 6
-  _runRotationSpeed: 240
 --- !u!114 &2063810464150162670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2154,6 +2148,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 0}
   waterAlert: {fileID: 0}
   sharkAlert: {fileID: 0}
+  respawnGUI: {fileID: 0}
 --- !u!1 &6507593493205178434
 GameObject:
   m_ObjectHideFlags: 0

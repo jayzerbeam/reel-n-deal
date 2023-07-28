@@ -9897,7 +9897,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.13689317, y: 0}
   m_AnchorMax: {x: 0.20275843, y: 1}
-  m_AnchoredPosition: {x: 5.416443, y: -0.000011444092}
+  m_AnchoredPosition: {x: 5.4283447, y: -0.000011444092}
   m_SizeDelta: {x: -27.914062, y: -31.000023}
   m_Pivot: {x: 0.0000009058317, y: 0.50000024}
 --- !u!114 &644962421
@@ -15961,18 +15961,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &953136574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395241800695367733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d4567359bb4cab4090f4985c564b3d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &978062761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38432,6 +38420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d50c485a432ba41bbf1eec0e8c9101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vendor1Audio: {fileID: 1885761442}
 --- !u!82 &1885761442
 AudioSource:
   m_ObjectHideFlags: 0
@@ -42821,8 +42810,8 @@ GameObject:
   - component: {fileID: 2302475294599118832}
   - component: {fileID: 7489985174636529040}
   - component: {fileID: 953136573}
-  - component: {fileID: 953136574}
   - component: {fileID: 7489985174636529041}
+  - component: {fileID: 7489985174636529042}
   m_Layer: 0
   m_Name: Marketplace Villager 3
   m_TagString: Untagged
@@ -53784,6 +53773,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selling_item: bobber
   sale_price: 10
+--- !u!114 &7489985174636529042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395241800695367733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0459a391a9eb86c498e5d781d5ed2997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vendor2Audio: {fileID: 953136573}
 --- !u!4 &7527487825539318541
 Transform:
   m_ObjectHideFlags: 0

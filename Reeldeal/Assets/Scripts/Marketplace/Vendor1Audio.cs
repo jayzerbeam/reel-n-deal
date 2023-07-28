@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Vendor1Audio : MonoBehaviour
 {
-    GameObject vendor1;
+    public AudioSource vendor1Audio;
 
     private void Start()
     {    
-            vendor1 = GameObject.Find("Town and Marketplace/Vendor1");
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            AudioSource audioPlay = vendor1.GetComponent<AudioSource>();
-            audioPlay.Play();
+            vendor1Audio.Play();
 
         }
     }

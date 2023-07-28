@@ -62,18 +62,10 @@ public class FishSpawning : MonoBehaviour
     {
         // counts up total number of fish near player
         int totalFish = 0;
-        Collider[] collidersInRange = Physics.OverlapSphere(playerTransform.position, maxSpawnDistance); // get collider of any object in range
+        GameObject[] fishObjects = GameObject.FindGameObjectsWithTag("Fish"); // get all fish in range
 
-        // add to counter if it is a fish
-        foreach (Collider collider in collidersInRange)
-        {
-            if (collider.gameObject.CompareTag("Fish"))
-            {
-                totalFish++;
-            }
-        }
-
-        return totalFish;
+        // no need for checking fish distances - despawn makes it so all fish are within the spawning sphere 
+        return fishObjects.Length;
     }
 
     private void spawnFish()

@@ -117,6 +117,10 @@ public class FishPrefabInitializer : MonoBehaviour
         int maxWaypointAttempts = 5;
         int currWaypointAttempt = 0;
 
+        FishMultiTag multiTag = GetComponent<FishMultiTag>();
+        if (multiTag.HasTag("river_f_1") || multiTag.HasTag("river_f_2") || multiTag.HasTag("river_f_3") || multiTag.HasTag("river_f_4"))
+            maxWaypointSpacing = 5f;
+
         for (int i = 0; i < totalWaypoints; i++)
         {
             // initialize default variables for each new waypoint

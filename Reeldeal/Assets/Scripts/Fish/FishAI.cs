@@ -65,6 +65,11 @@ public class FishAI : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         fishMultiTag = GetComponent<FishMultiTag>();
+        if (fishMultiTag.HasTag("river_f_1") || fishMultiTag.HasTag("river_f_2") || fishMultiTag.HasTag("river_f_3") || fishMultiTag.HasTag("river_f_4"))
+        {
+            rotationSpeed = 40f;
+            rayLength = 20f;
+        }
 
         yValue = transform.position.y;
         currentSpeed = idleSpeed; // default speed
@@ -187,7 +192,11 @@ public class FishAI : MonoBehaviour
                     bobberDistance = Vector3.Distance(transform.position, bobber.transform.position);
                     if (bobberDistance > bobberMechanics.radius) // if bobber is too far away
                     {
-                        rotationSpeed /= 8; // revert to orginal rotation to be smoother in idle
+                        fishMultiTag = GetComponent<FishMultiTag>();
+                        if (fishMultiTag.HasTag("river_f_1") || fishMultiTag.HasTag("river_f_2") ||fishMultiTag.HasTag("river_f_3") || fishMultiTag.HasTag("river_f_4"))
+                            rotationSpeed /= 2f;
+                        else
+                            rotationSpeed /= 8; // revert to orginal rotation to be smoother in idle
                         aiState = AIState.idleState;
                     }
                 }

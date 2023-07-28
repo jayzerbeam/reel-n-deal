@@ -4610,22 +4610,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 978062761}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &322393150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322393127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c6861f8efef2d4099a054bb07d5940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnPoint: {fileID: 1403999374}
-  waterAlert: {fileID: 1765769295}
-  sharkAlert: {fileID: 1722762940}
-  respawnGUI: {fileID: 110248887}
 --- !u!114 &322393172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15747,7 +15731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.54800004, y: 0}
   m_AnchorMax: {x: 0.62, y: 1}
-  m_AnchoredPosition: {x: -0.098587036, y: -0.000011444092}
+  m_AnchoredPosition: {x: -0.09856796, y: -0.000011444092}
   m_SizeDelta: {x: -34.914062, y: -31.000023}
   m_Pivot: {x: 0.0000009058317, y: 0.50000024}
 --- !u!114 &952613853
@@ -16012,6 +15996,26 @@ PrefabInstance:
       propertyPath: fishPrefabs.Array.data[12].weight
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1635181269911488039, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: respawnGUI
+      value: 
+      objectReference: {fileID: 110248887}
+    - target: {fileID: 1635181269911488039, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: sharkAlert
+      value: 
+      objectReference: {fileID: 1722762940}
+    - target: {fileID: 1635181269911488039, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: waterAlert
+      value: 
+      objectReference: {fileID: 1765769295}
+    - target: {fileID: 1635181269911488039, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1403999374}
     - target: {fileID: 2063810464150162670, guid: 303e4658defaa73c7bac6ab02a91e0bc,
         type: 3}
       propertyPath: despawnRange
@@ -16204,8 +16208,7 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 322393150, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
 --- !u!4 &978081351 stripped
 Transform:

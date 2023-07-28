@@ -1250,7 +1250,7 @@ GameObject:
   - component: {fileID: 322393157}
   - component: {fileID: 2974429082860175369}
   - component: {fileID: 3285272887295833646}
-  - component: {fileID: 322393150}
+  - component: {fileID: 1635181269911488039}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1290,7 +1290,7 @@ CharacterController:
   m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.04
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!95 &6141649143267876795
@@ -2133,7 +2133,7 @@ MonoBehaviour:
   item_type_text: {fileID: 0}
   item_price_text: {fileID: 0}
   market_item_price: 0
---- !u!114 &322393150
+--- !u!114 &1635181269911488039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

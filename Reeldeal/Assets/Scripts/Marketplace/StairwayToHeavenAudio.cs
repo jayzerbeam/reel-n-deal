@@ -6,19 +6,28 @@ public class StairwayToHeavenAudio : MonoBehaviour
 {
 
     public GameObject stairway;
+    public AudioSource audioPlay;
 
     private void Start()
     {
-
+        AudioSource audioPlay = stairway.GetComponent<AudioSource>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider c)
     {
-        if (other.CompareTag("Player"))
+        if (c.CompareTag("Player"))
         {
-            AudioSource audioPlay = stairway.GetComponent<AudioSource>();
             audioPlay.Play();
 
         }
     }
+
+    private void OnTriggerExit(Collider c)
+    {
+        if (c.CompareTag("Player"))
+        {
+            audioPlay.Stop();
+        }
+    }
+
 }

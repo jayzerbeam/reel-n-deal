@@ -4610,22 +4610,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 978062761}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &322393150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322393127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c6861f8efef2d4099a054bb07d5940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnPoint: {fileID: 1403999374}
-  waterAlert: {fileID: 1765769295}
-  sharkAlert: {fileID: 1722762940}
-  respawnGUI: {fileID: 110248887}
 --- !u!114 &322393172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9897,7 +9881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.13689317, y: 0}
   m_AnchorMax: {x: 0.20275843, y: 1}
-  m_AnchoredPosition: {x: 5.323242, y: -0.000011444092}
+  m_AnchoredPosition: {x: 5.4283447, y: -0.000011444092}
   m_SizeDelta: {x: -27.914062, y: -31.000023}
   m_Pivot: {x: 0.0000009058317, y: 0.50000024}
 --- !u!114 &644962421
@@ -10072,10 +10056,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Half of your coins floated away and you have no shoes!
-
-    Get more coins
-    and buy new boots'
+  m_text: "You lost half your coins! \nCheck your inventory to see how many coins
+    you have left"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -12186,6 +12168,7 @@ Transform:
   - {fileID: 1507406555}
   - {fileID: 947742243}
   - {fileID: 1202168911}
+  - {fileID: 1361933592}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15473,7 +15456,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8b121c659a2e43742b8ff4421bb1b26e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -15746,7 +15729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.54800004, y: 0}
   m_AnchorMax: {x: 0.62, y: 1}
-  m_AnchoredPosition: {x: -0.098594666, y: -0.000011444092}
+  m_AnchoredPosition: {x: -0.09857178, y: -0.000011444092}
   m_SizeDelta: {x: -34.914062, y: -31.000023}
   m_Pivot: {x: 0.0000009058317, y: 0.50000024}
 --- !u!114 &952613853
@@ -15960,18 +15943,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &953136574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395241800695367733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d4567359bb4cab4090f4985c564b3d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &978062761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16023,6 +15994,26 @@ PrefabInstance:
       propertyPath: fishPrefabs.Array.data[12].weight
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1635181269911488039, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: respawnGUI
+      value: 
+      objectReference: {fileID: 110248887}
+    - target: {fileID: 1635181269911488039, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: sharkAlert
+      value: 
+      objectReference: {fileID: 1722762940}
+    - target: {fileID: 1635181269911488039, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: waterAlert
+      value: 
+      objectReference: {fileID: 1765769295}
+    - target: {fileID: 1635181269911488039, guid: 303e4658defaa73c7bac6ab02a91e0bc,
+        type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1403999374}
     - target: {fileID: 2063810464150162670, guid: 303e4658defaa73c7bac6ab02a91e0bc,
         type: 3}
       propertyPath: despawnRange
@@ -16215,8 +16206,7 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 322393150, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 303e4658defaa73c7bac6ab02a91e0bc, type: 3}
 --- !u!4 &978081351 stripped
 Transform:
@@ -16980,6 +16970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stairway: {fileID: 1024274987}
+  audioPlay: {fileID: 1024274990}
 --- !u!82 &1024274990
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16992,7 +16983,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c1f899af30a6dd94f8b1782c1bdb6ddb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -23422,6 +23413,149 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26da249bf16058c4a92852860b9d0181, type: 3}
+--- !u!1 &1361933591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1361933592}
+  - component: {fileID: 1361933594}
+  - component: {fileID: 1361933593}
+  m_Layer: 0
+  m_Name: StairwayAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1361933592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361933591}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 783745400}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1361933593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361933591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d140e01266e05c4b8a58d62a206bd65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stairway: {fileID: 1361933591}
+  audioPlay: {fileID: 1361933594}
+--- !u!82 &1361933594
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361933591}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c1f899af30a6dd94f8b1782c1bdb6ddb, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.495
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1364236704
 GameObject:
   m_ObjectHideFlags: 0
@@ -32108,7 +32242,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7015048, y: 0.179}
   m_AnchorMax: {x: 0.9802951, y: 0.83100003}
-  m_AnchoredPosition: {x: -0.23226929, y: 0}
+  m_AnchoredPosition: {x: -0.2322998, y: 0}
   m_SizeDelta: {x: 0.4646001, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1571433497
@@ -38287,6 +38421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d50c485a432ba41bbf1eec0e8c9101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vendor1Audio: {fileID: 1885761442}
 --- !u!82 &1885761442
 AudioSource:
   m_ObjectHideFlags: 0
@@ -41355,7 +41490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090030020}
   m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: -110.17, y: -19.02, z: -329.7}
+  m_LocalPosition: {x: -109.4, y: -19.02, z: -329.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42676,8 +42811,8 @@ GameObject:
   - component: {fileID: 2302475294599118832}
   - component: {fileID: 7489985174636529040}
   - component: {fileID: 953136573}
-  - component: {fileID: 953136574}
   - component: {fileID: 7489985174636529041}
+  - component: {fileID: 7489985174636529042}
   m_Layer: 0
   m_Name: Marketplace Villager 3
   m_TagString: Untagged
@@ -53639,6 +53774,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selling_item: bobber
   sale_price: 10
+--- !u!114 &7489985174636529042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395241800695367733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0459a391a9eb86c498e5d781d5ed2997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vendor2Audio: {fileID: 953136573}
 --- !u!4 &7527487825539318541
 Transform:
   m_ObjectHideFlags: 0

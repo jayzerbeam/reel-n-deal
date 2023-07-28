@@ -11,44 +11,33 @@ public class PlayerMove : MonoBehaviour
     CharacterController _characterController;
     Animator _animator;
     Vector2 _inputValues;
+    hud_gui_controller _playerInventory;
 
     int _isWalkingHash;
     int _isRunningHash;
+    int _isFishingHash;
     int _velocityZHash;
     int _velocityXHash;
 
+    bool _isMovementFrozen;
     bool _isMovementPressed;
     bool _isRotationPressed;
     bool _isRunPressed;
-    bool _isMovementFrozen;
 
     bool _isWalkingAnim;
     bool _isRunningAnim;
     bool _isFishingAnim;
-
-    [SerializeField]
-    float _walkSpeed = 2.0f;
-
-    [SerializeField]
-    float _stillRotationSpeed = 60f;
-
-    [SerializeField]
-    float _walkRotationSpeed = 160f;
-
-    [SerializeField]
-    float _runSpeed = 6.0f;
-
-    [SerializeField]
-    float _runRotationSpeed = 240f;
 
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        _playerInventory = FindObjectOfType<hud_gui_controller>();
 
         _isWalkingHash = Animator.StringToHash("isWalking");
         _isRunningHash = Animator.StringToHash("isRunning");
+        _isFishingHash = Animator.StringToHash("isFishing");
         _velocityXHash = Animator.StringToHash("Velocity X");
         _velocityZHash = Animator.StringToHash("Velocity Z");
     }
@@ -67,7 +56,7 @@ public class PlayerMove : MonoBehaviour
     {
         _isWalkingAnim = _animator.GetBool(_isWalkingHash);
         _isRunningAnim = _animator.GetBool(_isRunningHash);
-        _isFishingAnim = GameObject.FindWithTag("Bobber");
+        _isFishingAnim = _animator.GetBool(_isFishingHash);
 
         HandleAnimation();
         FreezeIfFishing();
@@ -137,50 +126,43 @@ public class PlayerMove : MonoBehaviour
 
     void HandleMove()
     {
-        Vector3 movement = transform.forward * _inputValues.y * _walkSpeed * Time.fixedDeltaTime;
-        bool playerDoesNotHaveBoots = GameObject.Find("Boots");
-        float bootSpeedMultiplier = 2.0f;
+        const float bootSpeedMultiplier = 1.75f;
+        const float walkSpeed = 2.0f;
+        const float runSpeed = 6.0f;
+        float appliedSpeed = 1.0f;
+
+        const float stillRotationSpeed = 60.0f;
+        const float walkRotationSpeed = 160.0f;
+        const float runRotationSpeed = 240.0f;
+        float appliedRotationSpeed = 1.0f;
+
+        Vector3 movement = transform.forward * _inputValues.y * walkSpeed * Time.fixedDeltaTime;
 
         if (_isMovementFrozen)
         {
             return;
         }
-        if (_isMovementPressed)
-        {
-            if (_isRunPressed)
-            {
-                if (playerDoesNotHaveBoots)
-                {
-                    _characterController.Move(movement * _runSpeed);
-                }
-                else
-                {
-                    _characterController.Move(movement * _runSpeed * bootSpeedMultiplier);
-                }
-                transform.rotation *= GetRotationAngle(_runRotationSpeed);
-            }
-            else
-            {
-                if (playerDoesNotHaveBoots)
-                {
-                    _characterController.Move(movement * _walkSpeed);
-                }
-                else
-                {
-                    _characterController.Move(movement * _walkSpeed * bootSpeedMultiplier);
-                }
-                transform.rotation *= GetRotationAngle(_walkRotationSpeed);
-            }
-        }
-        else if (!_isMovementPressed && _isRotationPressed)
-        {
-            transform.rotation *= GetRotationAngle(_stillRotationSpeed);
-        }
-    }
 
-    public void increaseWalkSpeed(float multiplier)
-    {
-        _walkSpeed *= multiplier;
+        if (_isMovementPressed && _isRunPressed)
+        {
+            appliedSpeed = _playerInventory.has_boots ? (runSpeed * bootSpeedMultiplier) : runSpeed;
+            appliedRotationSpeed = runRotationSpeed;
+        }
+
+        if (_isMovementPressed && !_isRunPressed)
+        {
+            appliedSpeed = _playerInventory.has_boots
+                ? (walkSpeed * bootSpeedMultiplier)
+                : walkSpeed;
+            appliedRotationSpeed = walkRotationSpeed;
+        }
+
+        if (!_isMovementPressed && _isRotationPressed)
+        {
+            appliedRotationSpeed = stillRotationSpeed;
+        }
+        _characterController.Move(movement * appliedSpeed);
+        transform.rotation *= GetRotationAngle(appliedRotationSpeed);
     }
 
     void FreezeIfFishing()

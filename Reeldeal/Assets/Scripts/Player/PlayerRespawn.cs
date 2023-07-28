@@ -35,7 +35,7 @@ public class PlayerRespawn : MonoBehaviour
     private hud_gui_controller coinInventory;
     private PlayerDrownVolume drownVolumeScript;
 
-    public GameObject respawnGUI; 
+    public GameObject respawnGUI;
 
     private void Start()
     {
@@ -72,6 +72,7 @@ public class PlayerRespawn : MonoBehaviour
             if (timeSharkAttack >= sharkAttackLimit)
             {
                 sharkText.text = "You passed out...";
+                _animator.SetBool(_isDeadHash, true);
                 Die();
             }
         }
@@ -151,6 +152,10 @@ public class PlayerRespawn : MonoBehaviour
     private void Die()
     {
         const float timeToCompleteAnim = 2.3f;
+        if (GameObject.FindWithTag("Bobber"))
+        {
+            Destroy(GameObject.FindWithTag("Bobber"));
+        }
         dyingAnimCountdown += Time.deltaTime;
         characterController.enabled = false;
         playerRespawned = false;

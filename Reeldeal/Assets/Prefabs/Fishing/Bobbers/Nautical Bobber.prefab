@@ -74,6 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
+      propertyPath: bobberMaterials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7f5a18dba89d42e408097b246b044f11, type: 2}
+    - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
+        type: 3}
       propertyPath: bobberMaterials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: aef4a0120b8e18c469ae4af661de819c, type: 2}

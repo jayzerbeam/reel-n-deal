@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 810850175728014205, guid: 135aeada52e85c64c8f5493b85d529ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7f5a18dba89d42e408097b246b044f11, type: 2}
     - target: {fileID: 1268496698446942888, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: m_RootOrder
@@ -65,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 2886670933728575070, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: m_Name
-      value: Beginner Bobber
+      value: Beginner Bobber Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
@@ -80,72 +85,77 @@ PrefabInstance:
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[0].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[1].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[2].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[3].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[4].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[5].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[6].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[7].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[8].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[9].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[10].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[11].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[12].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[13].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7621073102345273692, guid: 135aeada52e85c64c8f5493b85d529ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 09f01faf72be43d40b096ef610a23bd7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 135aeada52e85c64c8f5493b85d529ad, type: 3}

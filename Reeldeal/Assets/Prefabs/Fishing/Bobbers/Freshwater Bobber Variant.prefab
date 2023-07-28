@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 2886670933728575070, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: m_Name
-      value: Freshwater Bobber
+      value: Freshwater Bobber Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
@@ -81,7 +81,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bobberMaterials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: f7c2deb7be33c61418c105b4da4da2d8, type: 2}
+      objectReference: {fileID: 2100000, guid: 305e8beb1a03f634883fc49111794c2e, type: 2}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[0].radius
@@ -105,22 +105,22 @@ PrefabInstance:
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[4].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[5].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[6].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[7].radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}

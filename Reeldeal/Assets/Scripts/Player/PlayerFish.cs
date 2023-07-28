@@ -14,12 +14,9 @@ public class PlayerFish : MonoBehaviour
     CharacterController _characterController;
     Animator _animator;
     FishCatching _fishCatching;
-
     AudioSource _rodReel;
-
     GameObject _bobber;
     Rigidbody _bobberRB;
-
     GameObject _hookedFishGO;
 
     public GameObject bobberPrefab;
@@ -27,22 +24,16 @@ public class PlayerFish : MonoBehaviour
 
     public bool _doBobberSwap;
 
+    bool _isCastingAnim;
+    bool _isFishingAnim;
     bool _isCanceled;
     bool _isCastButtonPressed;
 
     int _isCastingHash;
     int _isFishingHash;
 
-    bool _isCastingAnim;
-    bool _isFishingAnim;
-
-    [SerializeField]
     float _castCountdown = 2.0f;
-
-    [SerializeField]
     float _castSpeed = 20f;
-
-    [SerializeField]
     float _castHeight = 2.5f;
 
     void Awake()
@@ -95,25 +86,12 @@ public class PlayerFish : MonoBehaviour
         _isCanceled = context.ReadValueAsButton();
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Bobber"))
-        {
-            Destroy(GameObject.FindWithTag("Bobber"));
-        }
-    }
-
-    bool FindBobber()
-    {
-        return GameObject.FindWithTag("Bobber");
-    }
-
     void HandleAnimation()
     {
         _isCastingAnim = _animator.GetBool(_isCastingHash);
         _isFishingAnim = _animator.GetBool(_isFishingHash);
 
-        if (_isCastButtonPressed && !_isCastingAnim && !FindBobber())
+        if (_isCastButtonPressed && !_isCastingAnim && !_isFishingAnim)
         {
             _animator.SetBool(_isCastingHash, true);
             _animator.SetBool(_isFishingHash, true);
@@ -123,31 +101,13 @@ public class PlayerFish : MonoBehaviour
         {
             _animator.SetBool(_isCastingHash, false);
         }
-        if (_isFishingAnim && !FindBobber())
-        {
-            _animator.SetBool(_isFishingHash, false);
-        }
-    }
-
-    float DistanceToPlayer()
-    {
-        return (_player.transform.position - _bobber.transform.position).magnitude;
-    }
-
-    void HandleCancel()
-    {
-        if (_isCanceled)
-        {
-            _messaging.StopMessage();
-            Destroy(GameObject.FindWithTag("Bobber"));
-            _animator.SetBool(_isCastingHash, false);
-            _animator.SetBool(_isFishingHash, false);
-        }
     }
 
     void HandleCast()
     {
-        if (_isCastButtonPressed && !FindBobber() && _characterController.isGrounded)
+        bool doesBobberExist = GameObject.FindWithTag("Bobber");
+
+        if (_isCastButtonPressed && !doesBobberExist && _characterController.isGrounded)
         {
             _castCountdown = 2.0f;
             _bobber = Instantiate(
@@ -165,6 +125,17 @@ public class PlayerFish : MonoBehaviour
                 Vector3 castVelocity = castDirection * _castSpeed;
                 _bobberRB.AddForce(castVelocity, ForceMode.Impulse);
             }
+        }
+    }
+
+    void HandleCancel()
+    {
+        if (_isCanceled)
+        {
+            _messaging.StopMessage();
+            Destroy(GameObject.FindWithTag("Bobber"));
+            _animator.SetBool(_isCastingHash, false);
+            _animator.SetBool(_isFishingHash, false);
         }
     }
 

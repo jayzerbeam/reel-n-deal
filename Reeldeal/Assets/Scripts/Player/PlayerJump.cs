@@ -16,7 +16,9 @@ public class PlayerJump : MonoBehaviour
     int _isJumpingHash;
     bool _isJumpButtonPressed;
     bool _isJumping;
+    int _isFishingHash;
     bool _isFishing;
+
     bool _isGrounded;
 
     float _jumpHeight = 2f;
@@ -30,6 +32,7 @@ public class PlayerJump : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         _isJumpingHash = Animator.StringToHash("isJumping");
+        _isFishingHash = Animator.StringToHash("isFishing");
     }
 
     void Start()
@@ -42,8 +45,7 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
         _isJumping = _animator.GetBool(_isJumpingHash);
-        // TODO refactor for better performance
-        _isFishing = GameObject.FindWithTag("Bobber");
+        _isFishing = _animator.GetBool(_isFishingHash);
 
         HandleAnimation();
     }
@@ -86,14 +88,11 @@ public class PlayerJump : MonoBehaviour
         {
             _characterVelocity.y += Mathf.Sqrt(_jumpHeight * -2.0f * _gravity);
         }
+
         _characterController.Move(_characterVelocity * Time.fixedDeltaTime);
+
         // Suggestion to move the grounded check to AFTER .Move found here:
         // https://forum.unity.com/threads/charactercontroller-isgrounded-not-working.929859/
         _isGrounded = _characterController.isGrounded;
-    }
-
-    public void increaseJumpHeight(float multiplier)
-    {
-        _jumpHeight *= multiplier;
     }
 }

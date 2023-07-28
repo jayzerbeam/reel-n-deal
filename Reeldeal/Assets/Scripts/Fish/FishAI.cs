@@ -175,7 +175,7 @@ public class FishAI : MonoBehaviour
 
             case AIState.hungryState:
                 bobber = GameObject.FindWithTag("Bobber");
-                rotationSpeed = 40; // makes it easier for fish to turn towards bobber when nearby
+                rotationSpeed = 80; // makes it easier for fish to turn towards bobber when nearby
 
                 if (bobber == null) // if bobber gets deleted
                 {
@@ -187,7 +187,7 @@ public class FishAI : MonoBehaviour
                     bobberDistance = Vector3.Distance(transform.position, bobber.transform.position);
                     if (bobberDistance > bobberMechanics.radius) // if bobber is too far away
                     {
-                        rotationSpeed /= 4; // revert to orginal rotation to be smoother in idle
+                        rotationSpeed /= 8; // revert to orginal rotation to be smoother in idle
                         aiState = AIState.idleState;
                     }
                 }

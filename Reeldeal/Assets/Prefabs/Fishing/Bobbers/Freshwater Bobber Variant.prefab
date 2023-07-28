@@ -71,7 +71,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bobberMaterials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7f5a18dba89d42e408097b246b044f11, type: 2}
+      objectReference: {fileID: 2100000, guid: 8117e74ca190335479975c5dd8a73f62, type: 2}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: bobberMaterials.Array.data[1]
@@ -85,22 +85,22 @@ PrefabInstance:
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[0].radius
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[1].radius
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[2].radius
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}
       propertyPath: attractiveBobberInfo.Array.data[3].radius
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3585576198716771717, guid: 135aeada52e85c64c8f5493b85d529ad,
         type: 3}

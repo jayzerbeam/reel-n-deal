@@ -11700,7 +11700,7 @@ MonoBehaviour:
   river_f_2_disp: {fileID: 1572253498}
   river_f_3_disp: {fileID: 898204338}
   river_f_4_disp: {fileID: 583691587}
-  coin_Count: 100
+  coin_Count: 0
   lake_f_1_count: 0
   lake_f_2_count: 0
   lake_f_3_count: 0

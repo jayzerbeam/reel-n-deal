@@ -59,7 +59,6 @@ public class PlayerMove : MonoBehaviour
         _isFishingAnim = _animator.GetBool(_isFishingHash);
 
         HandleAnimation();
-        FreezeIfFishing();
     }
 
     void FixedUpdate()
@@ -138,7 +137,8 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 movement = transform.forward * _inputValues.y * walkSpeed * Time.fixedDeltaTime;
 
-        if (_isMovementFrozen)
+        // Don't move if player is fishing or dead.
+        if (_animator.GetBool("isFishing") == true || _animator.GetBool("isDead") == true)
         {
             return;
         }
@@ -163,19 +163,5 @@ public class PlayerMove : MonoBehaviour
         }
         _characterController.Move(movement * appliedSpeed);
         transform.rotation *= GetRotationAngle(appliedRotationSpeed);
-    }
-
-    void FreezeIfFishing()
-    {
-        if (_isFishingAnim)
-        {
-            _isMovementFrozen = true;
-            _characterController.enabled = false;
-        }
-        else
-        {
-            _isMovementFrozen = false;
-            _characterController.enabled = true;
-        }
     }
 }

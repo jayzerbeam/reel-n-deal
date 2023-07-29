@@ -8,12 +8,15 @@ Team Members (Name, email, Canvas account)
 Main Scene: mainGameScene
 
 Controls:
-movement controls - WASD, Gamepad Left Stick
+Move - WASD, Gamepad Left Stick
 Jump - Gamepad Button South, Spacebar
-sprint - Left Shift, Gamepad Left Shoulder
-cast rod - Gamepad Right Trigger, Mouse Right Button, F Key
-reel in rod - Gamepad Left Trigger, Mouse Left Button
+Sprint - Left Shift, Gamepad Left Shoulder
+Cast Rod - Gamepad Right Trigger, Mouse Right Button, F Key
 Look - Gamepad Right Stick, Mouse Delta (X-axis scrolling)
+Cancel Cast Rod - C 
+Change to Bobber View - V
+Inventory - E
+Trade - Q
 
 Gameplay Information:
 This game revolves fishing and trading in catches for trades in the market to geat up and catch the big goldfish boss.
@@ -29,7 +32,7 @@ a small penalty for failing to catch the fish. The flee and hungry states have a
 give a visual cue to the player. 
 
 Known Issues:
-- fish animations not implemented
+- fish animations not implemented (this feature has been canceled)
 - Some items in marketplace do not disappear when purchased 
 
 Teammate Contributions
@@ -105,18 +108,18 @@ Jason Long
 - Camera control
   - PlayerLook.cs
 - Player Input controller
-  - PlayerInput.cs (Input System package)
+  - PlayerInput.cs
 - Player animation / blendtree
   - PlayerAnimationController
-- Player cast and reel mechanic (w/Grady's help)
-  - PlayerCast.cs
-  - PlayerReel.cs
-- Fish rigging (in Blender) and animations (Unity)
-  - Fish1Rigged / Fish1Swim
-  - Fish2Rigged / Fish2Swim
-  - Fish3Rigged / Fish3Swim
-  - Fish4Rigged / Fish4Swim
-  - SharkRigged / SharkSwim
+- Player cast mechanic
+  - PlayerFish.cs
+- Fish catching mechanic (w/Grady)
+  - FishCatching.cs
+- Player death / respawn mechanic (w/Cassye)
+  - PlayerRespawn.cs
+- Player sound effects (assets listed below)
+- Bobber behavior and audio (w/Grady, his contributions are in other Bobber scripts)
+  - BobberBehavior.cs
 
 Cassandra Durkee
  - Added marketplace items tables, TNT, boots, boats, fishing rods, villagers 
@@ -200,3 +203,9 @@ Village Well: https://assetstore.unity.com/packages/3d/environments/old-water-we
 Crates:https://assetstore.unity.com/packages/3d/props/furniture/cartoon-wooden-box-242926
 Food Sprite: https://assetstore.unity.com/packages/2d/environments/free-pixel-food-113523 License: https://unity.com/legal/as-terms
 Scared Emoji Sprite: https://assetstore.unity.com/packages/2d/gui/icons/free-emojis-pixel-art-231243 License: https://unity.com/legal/as-terms
+Player & bobber sounds: 
+  - https://freesound.org/people/pan14/sounds/263133/
+  - https://freesound.org/people/MLaudio/sounds/511484/
+  - https://freesound.org/people/TitanKaempfer/sounds/689902/
+  - https://freesound.org/people/tran5ient/sounds/190119/
+  - https://freesound.org/people/alegemaate/sounds/364700/

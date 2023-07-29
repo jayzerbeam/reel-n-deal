@@ -70,6 +70,8 @@ public class FishAI : MonoBehaviour
             rotationSpeed = 40f;
             rayLength = 20f;
         }
+        if (fishMultiTag.HasTag("Boss"))
+            rotationSpeed = 30f;
 
         yValue = transform.position.y;
         currentSpeed = idleSpeed; // default speed
@@ -193,10 +195,12 @@ public class FishAI : MonoBehaviour
                     if (bobberDistance > bobberMechanics.radius) // if bobber is too far away
                     {
                         fishMultiTag = GetComponent<FishMultiTag>();
-                        if (fishMultiTag.HasTag("river_f_1") || fishMultiTag.HasTag("river_f_2") ||fishMultiTag.HasTag("river_f_3") || fishMultiTag.HasTag("river_f_4"))
+                        if (fishMultiTag.HasTag("river_f_1") || fishMultiTag.HasTag("river_f_2") || fishMultiTag.HasTag("river_f_3") || fishMultiTag.HasTag("river_f_4"))
                             rotationSpeed /= 2f;
+                        else if (fishMultiTag.HasTag("Boss"))
+                            rotationSpeed = 30f;
                         else
-                            rotationSpeed /= 8; // revert to orginal rotation to be smoother in idle
+                            rotationSpeed /= 8f; // revert to orginal rotation to be smoother in idle
                         aiState = AIState.idleState;
                     }
                 }

@@ -56,7 +56,8 @@ public class FishPrefabInitializer : MonoBehaviour
 
         SelectTexture();
 
-        GenerateWaypoints();
+        if (!multiTag.HasTag("Boss"))
+            GenerateWaypoints();
     }
 
     private void SelectSize(FishMultiTag multiTag)

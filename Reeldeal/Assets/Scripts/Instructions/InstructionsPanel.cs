@@ -23,10 +23,12 @@ public class InstructionsPanel : MonoBehaviour
         if (activePanel)
         {
             instructionsPanel.SetActive(true);
+            Time.timeScale = 0f;
         }
         else
         {
             instructionsPanel.SetActive(false);
+            Time.timeScale = 1f;
         }
     }
 }

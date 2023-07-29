@@ -5,36 +5,26 @@ using UnityEngine;
 public class BossFishAudio : MonoBehaviour
 
 {
-    AudioSource audioSource;
-    bool playMusic;
-    bool toggleMusic;
+    public AudioSource audioSource;
+    public bool playMusic = false;
 
-    float maxDistance = 250f;
-    float minDistance = 50f;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        playMusic = true;
-
-        audioSource.maxDistance = maxDistance;
-        audioSource.minDistance = minDistance;
-        audioSource.loop = true;
 
     }
 
     private void Update()
     {
-        if (playMusic && toggleMusic)
+        if (playMusic)
         {
             audioSource.Play();
-            toggleMusic = false;
         }
 
-        if (!playMusic && toggleMusic)
+        if (!playMusic)
         {
             audioSource.Stop();
-            toggleMusic = false;
         }
     }
 }

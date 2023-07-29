@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossFishSpawn : MonoBehaviour
@@ -13,6 +14,8 @@ public class BossFishSpawn : MonoBehaviour
     public GameObject bossFishAlert;
     private float timer = 3f;
     private bool isRunning = false;
+
+    public bool testing = false; 
 
     private hud_gui_controller inventoryController;
 
@@ -33,13 +36,25 @@ public class BossFishSpawn : MonoBehaviour
         audioPlay = GetComponent<AudioSource>();
         audioPlay.playOnAwake = false;
 
-        //bossFishAlert = GameObject.Find("UICanvas/BossFishAlert");
         bossFishAlert.SetActive(false);
     }
 
     private void Update()
     {
+        SpawnFish();
+
+    }
+
+    IEnumerator guiAppear()
+    {
+        yield return new WaitForSeconds(timer);
+        bossFishAlert.SetActive(false);
+    }
+
+    public void SpawnFish()
+    {
         if (player_has_rod_upgrade == true && !isRunning)
+        //if (testing == true && !isRunning)
         {
             Renderer renderer = GetComponent<Renderer>();
             renderer.enabled = true;
@@ -50,7 +65,13 @@ public class BossFishSpawn : MonoBehaviour
                 hasPlayedAudio = true;
                 bossFishAlert.SetActive(true);
                 StartCoroutine(guiAppear());
-                
+
+            }
+
+            BossFishAudio bossFishAudio = GetComponent<BossFishAudio>();
+            if (bossFishAudio != null)
+            {
+                bossFishAudio.playMusic = true; 
             }
 
             isRunning = true;
@@ -61,12 +82,5 @@ public class BossFishSpawn : MonoBehaviour
 
             //Debug.Log("Playing");
         }
-
-    }
-
-    IEnumerator guiAppear()
-    {
-        yield return new WaitForSeconds(timer);
-        bossFishAlert.SetActive(false);
     }
 }

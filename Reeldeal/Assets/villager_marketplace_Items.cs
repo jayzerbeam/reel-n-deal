@@ -10,6 +10,8 @@ public class villager_marketplace_Items : MonoBehaviour
     //private string villager_type = "marketplace_seller";
     public int sale_price;
 
+    public int bobber_type = 0;
+
     private void Start()
     {
         // Check if selling_item is a marketplace_items
@@ -21,6 +23,10 @@ public class villager_marketplace_Items : MonoBehaviour
                 is_marketplace_item = true;
                 break;
             }
+            if (selling_item == "bobber")
+            {
+                updateBobberType();
+            }
         }
 
         if (is_marketplace_item)
@@ -31,5 +37,11 @@ public class villager_marketplace_Items : MonoBehaviour
         {
             Debug.Log("Marketplace Villager has an invalid selling item set in selling_item.");
         }
+    }
+
+    public void updateBobberType()
+    {
+        bobber_type = Random.Range(0, 5);
+        Debug.Log("Updated bobber_type to: " + bobber_type);
     }
 }

@@ -112,7 +112,7 @@ public class player_based_trading : MonoBehaviour
 
         if (nearestVillager != null && shortestDistance <= tradeDistance)
         {
-            if (Input.GetButtonDown("Trade1") && inventoryController.HasFish(nearestVillager.fish_type, 1))
+            if (Input.GetButtonDown("Trade1") && inventoryController.checkItemInInv(nearestVillager.fish_type, 1))
             {
                 tradingVillager = nearestVillager;
                 tradeMenu.SetActive(true);

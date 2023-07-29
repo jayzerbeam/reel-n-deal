@@ -6,6 +6,7 @@ using TMPro;
 
 public class FishCatching : MonoBehaviour
 {
+    Animator _animator;
     GameObject _player;
     hud_gui_controller _inventoryController;
     PlayerWonAlert _playerWonAlert;
@@ -21,6 +22,8 @@ public class FishCatching : MonoBehaviour
     bool _wasFishCaught = false;
     float countdownTimer = 10.0f;
 
+    int _isFishingHash;
+
     int keyPressesRemaining = 5;
     string[] inputKeys = { "w", "a", "s", "d", "q", "r", "x", "z" };
     System.Random random = new System.Random();
@@ -33,10 +36,16 @@ public class FishCatching : MonoBehaviour
 
     private BobberPrefabInitializer.AttractiveBobberInfo bobberMechanics;
 
+    void Awake()
+    {
+        _isFishingHash = Animator.StringToHash("isFishing");
+    }
+
     void Start()
     {
         _bobberRB = GetComponent<Rigidbody>();
         _player = GameObject.FindWithTag("Player");
+        _animator = _player.GetComponent<Animator>();
         _messaging = _player.GetComponent<FishingMessaging>();
         _inventoryController = FindObjectOfType<hud_gui_controller>();
         _playerWonAlert = FindObjectOfType<PlayerWonAlert>();
@@ -65,10 +74,12 @@ public class FishCatching : MonoBehaviour
         }
         if (_didFishEscape)
         {
+            _animator.SetBool(_isFishingHash, false);
             ReleaseFish();
         }
         else if (_wasFishCaught)
         {
+            _animator.SetBool(_isFishingHash, false);
             _caughtFishBell.Play();
         }
     }

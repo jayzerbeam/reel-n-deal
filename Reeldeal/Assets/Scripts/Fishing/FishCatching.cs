@@ -122,7 +122,7 @@ public class FishCatching : MonoBehaviour
         }
     }
 
-    private void ReleaseFish()
+    public void ReleaseFish()
     {
         SetCountdownTimer(); // Will reset to 10f
         keyPressesRemaining = 5;

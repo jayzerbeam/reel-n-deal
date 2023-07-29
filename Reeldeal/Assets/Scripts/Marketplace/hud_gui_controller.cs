@@ -41,7 +41,13 @@ public class hud_gui_controller : MonoBehaviour
 
     public GameObject boots_image;
     public GameObject rod_image;
-    public GameObject bobber_image;
+    public GameObject upgraded_rod_image;
+    public GameObject stand_0_bobber_image;
+    public GameObject begin_1_bobber_image;
+    public GameObject fresh_2_bobber_image;
+    public GameObject river_3_bobber_image;
+    public GameObject nauti_4_bobber_image;
+
     public bool has_boots = false;
     public bool has_rod_upgrade = false;
     public int bobber = 0;
@@ -50,8 +56,13 @@ public class hud_gui_controller : MonoBehaviour
     {
         isInventoryVisible = false;
         boots_image.SetActive(false);
-        rod_image.SetActive(false);
-        bobber_image.SetActive(false);
+        rod_image.SetActive(true);
+        upgraded_rod_image.SetActive(false);
+        stand_0_bobber_image.SetActive(true);
+        begin_1_bobber_image.SetActive(false);
+        fresh_2_bobber_image.SetActive(false);
+        river_3_bobber_image.SetActive(false);
+        nauti_4_bobber_image.SetActive(false);
         inventoryHUD.SetActive(false);
     }
 
@@ -306,7 +317,7 @@ public class hud_gui_controller : MonoBehaviour
     }
 
     // Function to check if the Player has at least a certain amount of a certain type of fish
-    public bool HasFish(string fishType, int amount)
+    public bool checkItemInInv(string fishType, int amount)
     {
         // Check if the Player has at least any fish of this type
         switch (fishType)
@@ -509,12 +520,63 @@ public class hud_gui_controller : MonoBehaviour
             case "rod_upgrade":
                 Debug.Log("Added rod upgrade");
                 has_rod_upgrade = true;
-                rod_image.SetActive(true);
+                rod_image.SetActive(false);
+                upgraded_rod_image.SetActive(true);
                 break;
             case "bobber":
                 Debug.Log("Added bobber");
                 bobber = bobber_type;
-                bobber_image.SetActive(true);
+                switch (bobber)
+                {
+                    case 0:
+                        stand_0_bobber_image.SetActive(true);
+                        begin_1_bobber_image.SetActive(false);
+                        fresh_2_bobber_image.SetActive(false);
+                        river_3_bobber_image.SetActive(false);
+                        nauti_4_bobber_image.SetActive(false);
+                        Debug.Log("Standard Bobber added bobber index: " + bobber);
+                        break;
+                    case 1:
+                        stand_0_bobber_image.SetActive(false);
+                        begin_1_bobber_image.SetActive(true);
+                        fresh_2_bobber_image.SetActive(false);
+                        river_3_bobber_image.SetActive(false);
+                        nauti_4_bobber_image.SetActive(false);
+                        Debug.Log("Beginner Bobber added bobber index: " + bobber);
+                        break;
+                    case 2:
+                        stand_0_bobber_image.SetActive(false);
+                        begin_1_bobber_image.SetActive(false);
+                        fresh_2_bobber_image.SetActive(true);
+                        river_3_bobber_image.SetActive(false);
+                        nauti_4_bobber_image.SetActive(false);
+                        Debug.Log("Freshwater Bobber added bobber index: " + bobber);
+                        break;
+                    case 3:
+                        stand_0_bobber_image.SetActive(false);
+                        begin_1_bobber_image.SetActive(false);
+                        fresh_2_bobber_image.SetActive(false);
+                        river_3_bobber_image.SetActive(true);
+                        nauti_4_bobber_image.SetActive(false);
+                        Debug.Log("River Bobber added bobber index: " + bobber);
+                        break;
+                    case 4:
+                        stand_0_bobber_image.SetActive(false);
+                        begin_1_bobber_image.SetActive(false);
+                        fresh_2_bobber_image.SetActive(false);
+                        river_3_bobber_image.SetActive(false);
+                        nauti_4_bobber_image.SetActive(true);
+                        Debug.Log("Nautical Bobber added bobber index: " + bobber);
+                        break;
+                    default:
+                        stand_0_bobber_image.SetActive(true);
+                        begin_1_bobber_image.SetActive(false);
+                        fresh_2_bobber_image.SetActive(false);
+                        river_3_bobber_image.SetActive(false);
+                        nauti_4_bobber_image.SetActive(false);
+                        Debug.Log("Tried to add an invalid bobber: " + bobber);
+                        break;
+                }
                 break;
             default:
                 Debug.Log("Tried to add an invalid item type: " + item_type);

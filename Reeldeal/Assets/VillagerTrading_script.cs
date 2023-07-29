@@ -88,7 +88,7 @@ public class VillagerTrading_script : MonoBehaviour
                 inventoryController = FindObjectOfType<hud_gui_controller>();
 
                 // Check if the player has fish of the desired type
-                if (inventoryController.HasFish(fish_type, 1))
+                if (inventoryController.checkItemInInv(fish_type, 1))
                 {
                     // Make canvas active
                     canvas.SetActive(true);

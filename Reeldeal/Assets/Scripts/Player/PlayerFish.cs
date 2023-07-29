@@ -38,14 +38,14 @@ public class PlayerFish : MonoBehaviour
 
     void Awake()
     {
-        _player = GameObject.FindWithTag("Player");
         playerInput = GetComponent<PlayerInput>();
+
+        _player = GameObject.FindWithTag("Player");
         _playerInventory = _player.GetComponent<playerInventory>();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
         _rodReel = _player.GetComponents<AudioSource>()[2];
         _messaging = _player.GetComponent<FishingMessaging>();
-
         _isCastingHash = Animator.StringToHash("isCasting");
         _isFishingHash = Animator.StringToHash("isFishing");
     }
@@ -133,7 +133,10 @@ public class PlayerFish : MonoBehaviour
         if (_isCanceled)
         {
             _messaging.StopMessage();
-            Destroy(GameObject.FindWithTag("Bobber"));
+            if (_fishCatching.GetHookedFishGO())
+            {
+                _fishCatching.ReleaseFish();
+            }
             _animator.SetBool(_isCastingHash, false);
             _animator.SetBool(_isFishingHash, false);
         }

@@ -22,7 +22,7 @@ public class FishCatching : MonoBehaviour
     float countdownTimer = 10.0f;
 
     int keyPressesRemaining = 5;
-    string[] inputKeys = { "w", "a", "s", "d", "q", "f", "r", "x", "z", "f" };
+    string[] inputKeys = { "w", "a", "s", "d", "q", "r", "x", "z" };
     System.Random random = new System.Random();
     string randomInputKey = "";
 

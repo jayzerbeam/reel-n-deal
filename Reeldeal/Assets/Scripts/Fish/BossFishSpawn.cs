@@ -10,16 +10,19 @@ public class BossFishSpawn : MonoBehaviour
     private AudioSource audioPlay;
     private bool hasPlayedAudio = false;
     BossFishAudio bossFishAudio;
+    AmbianceBackground _ambianceBG;
 
     public GameObject bossFishAlert;
     private float timer = 4f;
     private bool isRunning = false;
+    public bool hasBossFishSpawned = false;
 
     private hud_gui_controller inventoryController;
 
     private void Start()
     {
         inventoryController = FindObjectOfType<hud_gui_controller>();
+        _ambianceBG = FindObjectOfType<AmbianceBackground>();
         Renderer renderer = GetComponent<Renderer>();
         bossFishAudio = GetComponent<BossFishAudio>();
         renderer.enabled = false;
@@ -50,6 +53,8 @@ public class BossFishSpawn : MonoBehaviour
     {
         if (inventoryController.has_rod_upgrade == true && !isRunning)
         {
+            _ambianceBG.StopBgClip();
+            hasBossFishSpawned = true;
             Renderer renderer = GetComponent<Renderer>();
             renderer.enabled = true;
 

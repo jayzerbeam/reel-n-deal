@@ -120,6 +120,8 @@ Jason Long
 - Player sound effects (assets listed below)
 - Bobber behavior and audio (w/Grady, his contributions are in other Bobber scripts)
   - BobberBehavior.cs
+- Background ocean sounds (listed under assets below)
+- Background piano music (listed under assets below)
 
 Cassandra Durkee
  - Added marketplace items tables, TNT, boots, boats, fishing rods, villagers 
@@ -209,3 +211,7 @@ Player & bobber sounds:
   - https://freesound.org/people/TitanKaempfer/sounds/689902/
   - https://freesound.org/people/tran5ient/sounds/190119/
   - https://freesound.org/people/alegemaate/sounds/364700/
+Background ocean sounds: 
+  - https://freesound.org/people/davidgtr1/sounds/581489/
+Background happy piano sounds: 
+  - https://freesound.org/people/Migfus20/sounds/560446/

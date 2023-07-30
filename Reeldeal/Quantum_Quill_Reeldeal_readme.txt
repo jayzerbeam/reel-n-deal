@@ -212,6 +212,7 @@ Player & bobber sounds:
   - https://freesound.org/people/TitanKaempfer/sounds/689902/
   - https://freesound.org/people/tran5ient/sounds/190119/
   - https://freesound.org/people/alegemaate/sounds/364700/
+  - https://freesound.org/people/Reitanna/sounds/344004/
 Background ocean sounds: 
   - https://freesound.org/people/davidgtr1/sounds/581489/
 Background happy piano sounds: 

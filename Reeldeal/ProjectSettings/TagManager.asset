@@ -21,6 +21,7 @@ TagManager:
   - HUD_Inventory
   - Villager
   - UsedBobber
+  - villager_body
   layers:
   - Default
   - TransparentFX

@@ -526,7 +526,7 @@ public class hud_gui_controller : MonoBehaviour
                 has_rod_upgrade = true;
                 rod_image.SetActive(false);
                 upgraded_rod_image.SetActive(true);
-                spawnBossFish();
+                // spawnBossFish();
                 break;
             case "bobber":
                 Debug.Log("Added bobber");
@@ -607,23 +607,23 @@ public class hud_gui_controller : MonoBehaviour
         }
     }
 
-    public void spawnBossFish()
-    {
-        // Check if the fishersPrefab is assigned.
-        if (bossfish_prefab != null)
-        {
-            Vector3 bossfish_spawn_loc = new Vector3(-360.6f, 48f, -36.4f);
-            Quaternion bossfish_spawn_rot = Quaternion.identity;
-            // Spawn the "fishers" GameObject at the position and rotation of this spawner's transform.
-            StartCoroutine(ActivateTextCoroutine(20f));
-            Instantiate(bossfish_prefab, bossfish_spawn_loc, bossfish_spawn_rot);
-            Debug.Log("The bossfish_prefab has been instantiated.");
-        }
-        else
-        {
-            Debug.LogError("The bossfish_prefab is not assigned. Please assign the prefab in the Inspector.");
-        }
-    }
+    // public void spawnBossFish()
+    // {
+    //     // Check if the fishersPrefab is assigned.
+    //     if (bossfish_prefab != null)
+    //     {
+    //         Vector3 bossfish_spawn_loc = new Vector3(-360.6f, 48f, -36.4f);
+    //         Quaternion bossfish_spawn_rot = Quaternion.identity;
+    //         // Spawn the "fishers" GameObject at the position and rotation of this spawner's transform.
+    //         StartCoroutine(ActivateTextCoroutine(20f));
+    //         Instantiate(bossfish_prefab, bossfish_spawn_loc, bossfish_spawn_rot);
+    //         Debug.Log("The bossfish_prefab has been instantiated.");
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("The bossfish_prefab is not assigned. Please assign the prefab in the Inspector.");
+    //     }
+    // }
 
 
 

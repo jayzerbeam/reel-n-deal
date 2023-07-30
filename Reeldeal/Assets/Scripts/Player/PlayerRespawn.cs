@@ -10,6 +10,8 @@ public class PlayerRespawn : MonoBehaviour
     public Transform respawnPoint;
     private float respawnYThreshold = 47f;
     private Animator _animator;
+    AudioSource _heavyGrunt;
+    bool audioPlayed;
 
     private CharacterController characterController;
     private Vector3 initialPosition;
@@ -44,6 +46,7 @@ public class PlayerRespawn : MonoBehaviour
         coinInventory = FindObjectOfType<hud_gui_controller>();
         _animator = GetComponent<Animator>();
         _isDeadHash = Animator.StringToHash("isDead");
+        _heavyGrunt = GetComponents<AudioSource>()[7];
 
         waterCountdown = waterAlert.transform.Find("Countdown").gameObject;
         countdownText = waterCountdown.GetComponent<TextMeshProUGUI>();
@@ -152,13 +155,21 @@ public class PlayerRespawn : MonoBehaviour
     private void Die()
     {
         const float timeToCompleteAnim = 2.3f;
+
         if (GameObject.FindWithTag("Bobber"))
         {
             Destroy(GameObject.FindWithTag("Bobber"));
         }
+
         dyingAnimCountdown += Time.deltaTime;
         characterController.enabled = false;
         playerRespawned = false;
+
+        if (!_heavyGrunt.isPlaying && !audioPlayed)
+        {
+            _heavyGrunt.Play();
+            audioPlayed = true;
+        }
 
         if (drownVolumeScript != null)
         {
@@ -174,6 +185,7 @@ public class PlayerRespawn : MonoBehaviour
     {
         transform.position = respawnPoint.position;
         playerRespawned = true;
+        audioPlayed = false;
 
         if (coinInventory != null)
         {

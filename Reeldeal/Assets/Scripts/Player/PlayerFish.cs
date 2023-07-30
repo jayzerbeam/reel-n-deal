@@ -33,7 +33,11 @@ public class PlayerFish : MonoBehaviour
     int _isFishingHash;
 
     float _castCountdown = 2.0f;
+
+    [SerializeField]
     float _castSpeed = 20f;
+
+    [SerializeField]
     float _castHeight = 2.5f;
 
     void Awake()
@@ -130,15 +134,20 @@ public class PlayerFish : MonoBehaviour
 
     void HandleCancel()
     {
+        bool doesBobberExist = GameObject.FindWithTag("Bobber");
         if (_isCanceled)
         {
             _messaging.StopMessage();
+            _animator.SetBool(_isCastingHash, false);
+            _animator.SetBool(_isFishingHash, false);
             if (_fishCatching.GetHookedFishGO())
             {
                 _fishCatching.ReleaseFish();
             }
-            _animator.SetBool(_isCastingHash, false);
-            _animator.SetBool(_isFishingHash, false);
+            if (doesBobberExist)
+            {
+                Destroy(GameObject.FindWithTag("Bobber"));
+            }
         }
     }
 

@@ -15,6 +15,9 @@ public class villagerMovement : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator; // Reference to the Animator component
 
+    private Vector3 lastPosition; // The agent's position in the last frame
+    private float stuckTimer = 0f; // Timer to track how long the agent has been stuck
+    private float stuckDistance = 0.01f; // The minimum distance the agent has to move to be considered "not stuck"
 
     //float _runSpeed = 8.0f;
     //float _walkSpeed = 2.8f;
@@ -25,6 +28,7 @@ public class villagerMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         MoveToNewDestination();
+        lastPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -35,6 +39,25 @@ public class villagerMovement : MonoBehaviour
         {
             MoveToNewDestination();
         }
+
+        // If the agent hasn't moved significantly, increment the stuck timer
+        if ((transform.position - lastPosition).magnitude < stuckDistance)
+        {
+            stuckTimer += Time.deltaTime;
+        }
+        else // If the agent has moved significantly, reset the stuck timer
+        {
+            stuckTimer = 0f;
+        }
+
+        // If the agent has been stuck for more than 1 second, move to a new destination
+        if (stuckTimer > 1f)
+        {
+            MoveToNewDestination();
+        }
+
+        // Update the last position
+        lastPosition = transform.position;
 
         Vector3 localVelocity = transform.InverseTransformDirection(agent.velocity);
         animator.SetFloat("velX", localVelocity.x);

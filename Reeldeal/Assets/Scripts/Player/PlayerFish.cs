@@ -154,5 +154,6 @@ public class PlayerFish : MonoBehaviour
     public void SwapBobbers(GameObject newBobberPrefab)
     {
         bobberPrefab = newBobberPrefab;
+        Debug.Log("Bobber after swap is: " + bobberPrefab.ToString());
     }
 }

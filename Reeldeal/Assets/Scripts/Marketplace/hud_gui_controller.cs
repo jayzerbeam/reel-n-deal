@@ -51,8 +51,8 @@ public class hud_gui_controller : MonoBehaviour
     public bool has_rod_upgrade = false;
     public int bobber = 0;
 
-    //public GameObject bossfish_prefab; 
-    //public TextMeshProUGUI bossfish_alert;
+    public PlayerFish player_fish_script;
+    public GameObject[] bobber_array;
 
     private void Start()
     {
@@ -534,6 +534,7 @@ public class hud_gui_controller : MonoBehaviour
                 switch (bobber)
                 {
                     case 0:
+                        player_fish_script.SwapBobbers(bobber_array[bobber]);
                         stand_0_bobber_image.SetActive(true);
                         begin_1_bobber_image.SetActive(false);
                         fresh_2_bobber_image.SetActive(false);
@@ -542,6 +543,7 @@ public class hud_gui_controller : MonoBehaviour
                         Debug.Log("Standard Bobber added bobber index: " + bobber);
                         break;
                     case 1:
+                        player_fish_script.SwapBobbers(bobber_array[bobber]);
                         stand_0_bobber_image.SetActive(false);
                         begin_1_bobber_image.SetActive(true);
                         fresh_2_bobber_image.SetActive(false);
@@ -550,6 +552,7 @@ public class hud_gui_controller : MonoBehaviour
                         Debug.Log("Beginner Bobber added bobber index: " + bobber);
                         break;
                     case 2:
+                        player_fish_script.SwapBobbers(bobber_array[bobber]);
                         stand_0_bobber_image.SetActive(false);
                         begin_1_bobber_image.SetActive(false);
                         fresh_2_bobber_image.SetActive(true);
@@ -558,6 +561,7 @@ public class hud_gui_controller : MonoBehaviour
                         Debug.Log("Freshwater Bobber added bobber index: " + bobber);
                         break;
                     case 3:
+                        player_fish_script.SwapBobbers(bobber_array[bobber]);
                         stand_0_bobber_image.SetActive(false);
                         begin_1_bobber_image.SetActive(false);
                         fresh_2_bobber_image.SetActive(false);
@@ -566,6 +570,7 @@ public class hud_gui_controller : MonoBehaviour
                         Debug.Log("River Bobber added bobber index: " + bobber);
                         break;
                     case 4:
+                        player_fish_script.SwapBobbers(bobber_array[bobber]);
                         stand_0_bobber_image.SetActive(false);
                         begin_1_bobber_image.SetActive(false);
                         fresh_2_bobber_image.SetActive(false);
@@ -574,6 +579,7 @@ public class hud_gui_controller : MonoBehaviour
                         Debug.Log("Nautical Bobber added bobber index: " + bobber);
                         break;
                     default:
+                        player_fish_script.SwapBobbers(bobber_array[0]);
                         stand_0_bobber_image.SetActive(true);
                         begin_1_bobber_image.SetActive(false);
                         fresh_2_bobber_image.SetActive(false);
@@ -606,41 +612,4 @@ public class hud_gui_controller : MonoBehaviour
             RemoveItemToInv("boots", 1);
         }
     }
-
-    // public void spawnBossFish()
-    // {
-    //     // Check if the fishersPrefab is assigned.
-    //     if (bossfish_prefab != null)
-    //     {
-    //         Vector3 bossfish_spawn_loc = new Vector3(-360.6f, 48f, -36.4f);
-    //         Quaternion bossfish_spawn_rot = Quaternion.identity;
-    //         // Spawn the "fishers" GameObject at the position and rotation of this spawner's transform.
-    //         StartCoroutine(ActivateTextCoroutine(20f));
-    //         Instantiate(bossfish_prefab, bossfish_spawn_loc, bossfish_spawn_rot);
-    //         Debug.Log("The bossfish_prefab has been instantiated.");
-    //     }
-    //     else
-    //     {
-    //         Debug.LogError("The bossfish_prefab is not assigned. Please assign the prefab in the Inspector.");
-    //     }
-    // }
-
-
-
-    //public void ActivateTextForDuration(float duration)
-    //{
-    //    StartCoroutine(ActivateTextCoroutine(duration));
-    //}
-
-    //private System.Collections.IEnumerator ActivateTextCoroutine(float duration)
-    //{
-    //    // Activate the Text object.
-    //    bossfish_alert.gameObject.SetActive(true);
-
-    //    // Wait for the specified duration.
-    //    yield return new WaitForSeconds(duration);
-
-    //    // Deactivate the Text object after the duration has passed.
-    //    bossfish_alert.gameObject.SetActive(false);
-    //}
 }

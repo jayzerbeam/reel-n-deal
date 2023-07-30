@@ -617,7 +617,7 @@ public class hud_gui_controller : MonoBehaviour
             // Spawn the "fishers" GameObject at the position and rotation of this spawner's transform.
             StartCoroutine(ActivateTextCoroutine(20f));
             Instantiate(bossfish_prefab, bossfish_spawn_loc, bossfish_spawn_rot);
-            Debug.LogError("The bossfish_prefab has been instantiated.");
+            Debug.Log("The bossfish_prefab has been instantiated.");
         }
         else
         {

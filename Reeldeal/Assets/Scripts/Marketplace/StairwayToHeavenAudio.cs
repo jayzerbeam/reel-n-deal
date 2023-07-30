@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class StairwayToHeavenAudio : MonoBehaviour
 {
-
     public GameObject stairway;
     public AudioSource audioPlay;
 
     private void Start()
     {
-        AudioSource audioPlay = stairway.GetComponent<AudioSource>();
+        audioPlay = stairway.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider c)
@@ -18,7 +17,6 @@ public class StairwayToHeavenAudio : MonoBehaviour
         if (c.CompareTag("Player"))
         {
             audioPlay.Play();
-
         }
     }
 
@@ -29,5 +27,4 @@ public class StairwayToHeavenAudio : MonoBehaviour
             audioPlay.Stop();
         }
     }
-
 }

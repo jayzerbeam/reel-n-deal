@@ -158,25 +158,43 @@ Cassandra Durkee
    - Assets/Sounds/Fish/bossfishboom.mp3
  - Add music that gets louder as player approaches boss fish
    - Assets/Fish/Scripts/BossFishAudio.cs
-   - Assets/Sounds/Fish/seashantybossfish.mp3  ********** move mp3? 
+   - Assets/Sounds/Fish/seashantybossfish.mp3 
  - Add functionality for player to increase speed 2x after purchasing boots 
    - added in Assets/Animations/Player/Scripts/PlayerMove.cs in HandleMove() 
  - Add script to have player have die and respawn animations 
   - Assets/Scripts/Player/playerDeath.cs 
  - Add Marketplace ambient noise that gets louder as player gets closer to marketplace
   - Assets/Scripts/Marketplace/MarketplaceAudio.cs 
-  - Assets/Scripts/Marketplace/marketplaceAudio.mp3 ********** move mp3?
+  - Assets/Scripts/Marketplace/marketplaceAudio.mp3 
  - Add villager greetings 
-  - Assets/Scripts/Marketplace/villager1greeting.mp3    ********** move mp3?
-  - Assets/Scripts/Marketplace/villager2greeting.mp3    ********** move mp3?
-  - Assets/Scripts/Marketplace/villager3greeting.mp3    ********** move mp3?
-  - Assets/Scripts/Marketplace/Villager1Approach.cs
-  - Assets/Scripts/Marketplace/Villager2Approach.cs
-  - Assets/Scripts/Marketplace/Villager3Approach.cs
+  - Assets/Scripts/Marketplace/Vendor1Audio.mp3    
+  - Assets/Scripts/Marketplace/Vendor2Audio.mp3    
+  - Assets/Scripts/Marketplace/Vendor3Audio.mp3   
  - Add instructions for game 
   - Assets/Scripts/Instructions/InstructionsOnPlay.cs
   - Assets/Scripts/Instructions/InstructionsPanel.cs
- - 
+ - Add respawning script where the player dies/respawns after 5 seconds underwater or being too close to a shark, with a punitive
+   effect of losing half their coins if they die. 
+  - PlayerRespawn.cs
+  - Main UI Canvas:
+    - RespawnCoinLoss 
+  - Let the player know they won when they catch the boss fish
+   - PlayerWonAlert.cs
+   - Main UI Canvas:
+    - WonGame UI
+    - ConfettiCelebration
+  - Add stairway leading to the rod that player has to jump to access, to satisfy movement requirements.  Player gets a clue about 
+    the staircase in the main marketplace by a vendor. 
+    - StairwayToHeavenAudio.cs
+    - Main UI Canvas:
+     - Clue Stairs 
+    - Towns and Marketplaces:
+      - Villager 1, fish piles
+    - Audio Manager 
+      - Stairway Audio 
+    - StairwayToHeaven
+      - Stairs, Stairs1, Stairs2, Plank, Plank1, Step, Step1, Step2, StairwayAudio, FishingRodUpgrade, FoldingTable2
+    
    
 
 Sources:
@@ -192,7 +210,9 @@ Boss Fish Audio: https://www.free-stock-music.com/alexander-nakarada-the-worlds-
 Boss Fish Spawn Music: https://pixabay.com/sound-effects/search/boom/
 Marketplace Vendor Greetings: https://pixabay.com/sound-effects/search/hello/
 Trading Sound Effects: https://mixkit.co/free-sound-effects/
-Ambiant Marketplace Items: https://pixabay.com/sound-effects/search/fish-market/
+Ambiant Marketplace Sounds: https://pixabay.com/sound-effects/search/fish-market/
+Stairway Music: https://pixabay.com/music/beautiful-plays-reflected-light-147979/
+Staircase assets: https://assetstore.unity.com/packages/3d/props/exterior/modular-wooden-bridge-tiles-29501
 Fish models: https://assetstore.unity.com/packages/3d/characters/animals/fish/fish-polypack-202232
 Player models: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/stylized-npc-peasant-nolant-252440
 Player animations: https://mixamo.com/ (Links to individual animations are not available)

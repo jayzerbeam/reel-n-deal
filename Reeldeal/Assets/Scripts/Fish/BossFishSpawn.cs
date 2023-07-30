@@ -9,12 +9,11 @@ public class BossFishSpawn : MonoBehaviour
 
     private AudioSource audioPlay;
     private bool hasPlayedAudio = false;
+    BossFishAudio bossFishAudio;
 
     public GameObject bossFishAlert;
     private float timer = 4f;
     private bool isRunning = false;
-
-    public bool testing = false;
 
     private hud_gui_controller inventoryController;
 
@@ -22,6 +21,7 @@ public class BossFishSpawn : MonoBehaviour
     {
         inventoryController = FindObjectOfType<hud_gui_controller>();
         Renderer renderer = GetComponent<Renderer>();
+        bossFishAudio = GetComponent<BossFishAudio>();
         renderer.enabled = false;
 
         if (bossFish == null)
@@ -49,7 +49,6 @@ public class BossFishSpawn : MonoBehaviour
     public void SpawnFish()
     {
         if (inventoryController.has_rod_upgrade == true && !isRunning)
-        // if (testing == true && !isRunning)
         {
             Renderer renderer = GetComponent<Renderer>();
             renderer.enabled = true;
@@ -62,11 +61,11 @@ public class BossFishSpawn : MonoBehaviour
                 StartCoroutine(guiAppear());
             }
 
-            BossFishAudio bossFishAudio = GetComponent<BossFishAudio>();
             if (bossFishAudio != null)
             {
-                bossFishAudio.playMusic = true;
+                bossFishAudio.PlayMusic();
             }
+
             isRunning = true;
             enabled = false;
         }

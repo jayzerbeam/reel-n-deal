@@ -3,28 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossFishAudio : MonoBehaviour
-
 {
-    public AudioSource audioSource;
-    public bool playMusic = false;
-
+    AudioSource audioSource;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-
+        audioSource = GetComponents<AudioSource>()[1];
     }
 
-    private void Update()
+    public void PlayMusic()
     {
-        if (playMusic)
-        {
-            audioSource.Play();
-        }
-
-        if (!playMusic)
-        {
-            audioSource.Stop();
-        }
+        audioSource.Play();
     }
 }

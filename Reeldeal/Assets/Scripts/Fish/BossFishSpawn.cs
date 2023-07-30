@@ -6,27 +6,23 @@ using UnityEngine;
 public class BossFishSpawn : MonoBehaviour
 {
     public GameObject bossFish;
-    private bool player_has_rod_upgrade;
 
     private AudioSource audioPlay;
-    private bool hasPlayedAudio = false; 
+    private bool hasPlayedAudio = false;
 
     //public GameObject bossFishAlert;
     private float timer = 3f;
     private bool isRunning = false;
 
-    public bool testing = false; 
+    public bool testing = false;
 
     private hud_gui_controller inventoryController;
-
 
     private void Start()
     {
         inventoryController = FindObjectOfType<hud_gui_controller>();
-        player_has_rod_upgrade = inventoryController.has_rod_upgrade;
         Renderer renderer = GetComponent<Renderer>();
         renderer.enabled = false;
-
 
         if (bossFish == null)
         {
@@ -42,7 +38,6 @@ public class BossFishSpawn : MonoBehaviour
     private void Update()
     {
         SpawnFish();
-
     }
 
     IEnumerator guiAppear()
@@ -53,8 +48,8 @@ public class BossFishSpawn : MonoBehaviour
 
     public void SpawnFish()
     {
-        if (player_has_rod_upgrade == true && !isRunning)
-        //if (testing == true && !isRunning)
+        if (inventoryController.has_rod_upgrade == true && !isRunning)
+        // if (testing == true && !isRunning)
         {
             Renderer renderer = GetComponent<Renderer>();
             renderer.enabled = true;
@@ -65,22 +60,15 @@ public class BossFishSpawn : MonoBehaviour
                 hasPlayedAudio = true;
                 //bossFishAlert.SetActive(true);
                 StartCoroutine(guiAppear());
-
             }
 
             BossFishAudio bossFishAudio = GetComponent<BossFishAudio>();
             if (bossFishAudio != null)
             {
-                bossFishAudio.playMusic = true; 
+                bossFishAudio.playMusic = true;
             }
-
             isRunning = true;
-
-
-
             enabled = false;
-
-            //Debug.Log("Playing");
         }
     }
 }

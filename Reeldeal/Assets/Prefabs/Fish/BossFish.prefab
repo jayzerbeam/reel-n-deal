@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 3692200581407169933}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 410.8, y: 48.1, z: -36.8}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5854769627181600277}
@@ -215,7 +215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossFish: {fileID: 3692200581407169933}
-  bossFishAlert: {fileID: 0}
   testing: 0
 --- !u!82 &2899659199987088454
 AudioSource:

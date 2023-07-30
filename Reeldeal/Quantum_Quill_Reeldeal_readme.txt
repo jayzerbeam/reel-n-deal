@@ -122,6 +122,7 @@ Jason Long
   - BobberBehavior.cs
 - Background ocean sounds (listed under assets below)
 - Background piano music (listed under assets below)
+  - AmbianceBackground.cs
 
 Cassandra Durkee
  - Added marketplace items tables, TNT, boots, boats, fishing rods, villagers 

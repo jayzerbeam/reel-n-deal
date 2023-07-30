@@ -51,8 +51,8 @@ public class hud_gui_controller : MonoBehaviour
     public bool has_rod_upgrade = false;
     public int bobber = 0;
 
-    public GameObject bossfish_prefab; //really???
-    public TextMeshProUGUI bossfish_alert;
+    //public GameObject bossfish_prefab; 
+    //public TextMeshProUGUI bossfish_alert;
 
     private void Start()
     {
@@ -67,7 +67,7 @@ public class hud_gui_controller : MonoBehaviour
         nauti_4_bobber_image.SetActive(false);
         inventoryHUD.SetActive(false);
 
-        bossfish_alert.gameObject.SetActive(false);
+        //bossfish_alert.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -627,20 +627,20 @@ public class hud_gui_controller : MonoBehaviour
 
 
 
-    public void ActivateTextForDuration(float duration)
-    {
-        StartCoroutine(ActivateTextCoroutine(duration));
-    }
+    //public void ActivateTextForDuration(float duration)
+    //{
+    //    StartCoroutine(ActivateTextCoroutine(duration));
+    //}
 
-    private System.Collections.IEnumerator ActivateTextCoroutine(float duration)
-    {
-        // Activate the Text object.
-        bossfish_alert.gameObject.SetActive(true);
+    //private System.Collections.IEnumerator ActivateTextCoroutine(float duration)
+    //{
+    //    // Activate the Text object.
+    //    bossfish_alert.gameObject.SetActive(true);
 
-        // Wait for the specified duration.
-        yield return new WaitForSeconds(duration);
+    //    // Wait for the specified duration.
+    //    yield return new WaitForSeconds(duration);
 
-        // Deactivate the Text object after the duration has passed.
-        bossfish_alert.gameObject.SetActive(false);
-    }
+    //    // Deactivate the Text object after the duration has passed.
+    //    bossfish_alert.gameObject.SetActive(false);
+    //}
 }

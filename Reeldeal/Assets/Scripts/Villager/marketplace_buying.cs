@@ -10,7 +10,7 @@ public class marketplace_buying : MonoBehaviour
     public Button buyButton;
     public Button closeButton;
     public Button rerollButton;
-    public float tradeDistance = 2.5f; // Can be adjusted in Inspector
+    public float tradeDistance = 3.75f; // Can be adjusted in Inspector
     private hud_gui_controller inventoryController;
 
     private villager_marketplace_Items nearestVillager;

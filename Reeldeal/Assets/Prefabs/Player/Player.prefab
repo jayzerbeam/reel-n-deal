@@ -1482,7 +1482,6 @@ MonoBehaviour:
     type: 3}
   newBobberPrefab: {fileID: 0}
   _doBobberSwap: 0
-  _castCountdown: 2
   _castSpeed: 20
   _castHeight: 2.5
 --- !u!114 &6887098017651368848
@@ -2114,6 +2113,19 @@ MonoBehaviour:
   fish_amount_text: {fileID: 0}
   fish_price_text: {fileID: 0}
   trading_fish_price: 0
+  lake_1_image: {fileID: 0}
+  lake_2_image: {fileID: 0}
+  lake_3_image: {fileID: 0}
+  lake_4_image: {fileID: 0}
+  river_1_image: {fileID: 0}
+  river_2_image: {fileID: 0}
+  river_3_image: {fileID: 0}
+  river_4_image: {fileID: 0}
+  ocean_1_image: {fileID: 0}
+  ocean_2_image: {fileID: 0}
+  ocean_3_image: {fileID: 0}
+  ocean_4_image: {fileID: 0}
+  shark_image: {fileID: 0}
 --- !u!114 &3285272887295833646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,8 +2141,15 @@ MonoBehaviour:
   marketplaceMenu: {fileID: 0}
   buyButton: {fileID: 0}
   closeButton: {fileID: 0}
-  tradeDistance: 2.5
-  item_type_text: {fileID: 0}
+  rerollButton: {fileID: 0}
+  tradeDistance: 3.75
+  boots_image: {fileID: 0}
+  rod_image: {fileID: 0}
+  stand_0_bobber_image: {fileID: 0}
+  begin_1_bobber_image: {fileID: 0}
+  fresh_2_bobber_image: {fileID: 0}
+  river_3_bobber_image: {fileID: 0}
+  nauti_4_bobber_image: {fileID: 0}
   item_price_text: {fileID: 0}
   market_item_price: 0
 --- !u!114 &1635181269911488039

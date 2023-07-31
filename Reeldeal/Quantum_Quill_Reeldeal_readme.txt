@@ -1,9 +1,9 @@
 Team: Quantum Quill
 Team Members (Name, email, Canvas account)
-- Cassandra Durkee, cdurkee6@gatech.edu, 
-- Beto Icaza, laip3@gatech.edu
-- Jason Long, jlong326@gatech.edu, jlong326
+- Luis Alberto Icaza, laip3@gatech.edu
 - Grady Sullivan, gsullivan36@gatech.edu, gsullivan36
+- Jason Long, jlong326@gatech.edu, jlong326
+- Cassandra Durkee, cdurkee6@gatech.edu, 
 
 Main Scene: mainGameScene
 
@@ -65,6 +65,7 @@ Grady
 Luis Alberto
 - Level design + game ideation
 - Terrain generation
+	- added vegetation, lighting villagers, colliders, boats, cameras, structures...
 - Water planes and shading
 	- waveDisplay, waveSingle
 - Terrain texturing
@@ -73,8 +74,9 @@ Luis Alberto
 - Playtesting
 - Original scene creation and groundwork
 - Map Texturing
-- Main menu integration into build and quit behaviour on escape while in game
+- Main menu integration into build and quit behaviour on escape while in game. Did ~90% of the UI and inventory item system in the game
 	- goToMainMenu
+	- hud_gui_controller
 - Getting player movement done for Jumping and physics
 	- BasicControlScript, myBasicControlScript, myBasicControlScript_2
 - Added Walking, Running, Turning for player, initial player model, initial camera and lighting for development work
@@ -85,21 +87,35 @@ Luis Alberto
 	- playerInventory, player_controller2
 - Keep track of the fishes caught
 	- playerInventory
+	- hud_gui_controller
 - Keep track of currency in the game
-	- playerInventory
+	- hud_gui_controller
 - Simple economy system implemented
 - Icon displaying for user input prompts (instead of a tutorial player learns by playing) also sets up a rythm game like mechnaic (game-feel) for fish catching (ideated, playtested and prototyped idea for implementation)
 	- iconPopUpController
+- Bug fixing and code auditing
+	- spent around ~90hrs fixing bugs and code submitted by the dev team to have everythign work together
 - Added a player death mechanich, it removes between 45-55% of fish inventory to give player a cost for death but keep game in the relaxing slice of life genre. Game-feel should be relaxing and playful not hardcore
 	- playerInventory
+	- hud_gui_controller
 - Added a trading villager subsystem. Villagers have villages they congregate on and can trade with the players. Vilagers want different fish types and will greet the player with a set of different greetings.
 	- villagerMovement
+	- Collectables
 - Villager payouts are determined by fish type plus some market differences in rates. Currently all villagers can trade all fishes but later different villagers can trade fish from different locations and may give vetter prices based on familiarity.
 	- villagerTrading
+	- villagerMovement
 - Added currency and inventory GUI
 	- playerInventory
+	- marketplace_buying
+	- player_based_trading
+	- villagerTrading
+	- villager_Trades
 - Added a struct to store details of fishes caught
+	- hud_gui_controller
 	- playerInventory
+- Also worked extensively on debugging optimization of the game
+	- random_fish_found
+	- multiple other scripts
 
 Jason Long
 - Player movement 

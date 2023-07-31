@@ -64,6 +64,7 @@ Grady
 
 Luis Alberto
 - Level design + game ideation
+	- Worked extensively on implementing TA feedback from alpha as well as coordinating team meetings, helping teammates with code issues, questions, bugs...
 - Terrain generation
 	- added vegetation, lighting villagers, colliders, boats, cameras, structures...
 - Water planes and shading

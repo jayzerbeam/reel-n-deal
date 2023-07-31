@@ -47,6 +47,23 @@ public class player_based_trading : MonoBehaviour
     //private int max_buy_amount;
     //private int buy_amount;
     public int trading_fish_price;
+    
+    public GameObject lake_1_image;
+    public GameObject lake_2_image;
+    public GameObject lake_3_image;
+    public GameObject lake_4_image;
+
+    
+    public GameObject river_1_image;
+    public GameObject river_2_image;
+    public GameObject river_3_image;
+    public GameObject river_4_image;
+
+    public GameObject ocean_1_image;
+    public GameObject ocean_2_image;
+    public GameObject ocean_3_image;
+    public GameObject ocean_4_image;
+    public GameObject shark_image;
 
 
 
@@ -62,6 +79,21 @@ public class player_based_trading : MonoBehaviour
         tradeButton.onClick.AddListener(PerformTrade);
         closeButton.onClick.AddListener(CloseMenuTrade);
         tradeMenu.SetActive(false);
+        lake_1_image.SetActive(false);
+        lake_2_image.SetActive(false);
+        lake_3_image.SetActive(false);
+        lake_4_image.SetActive(false);
+
+        river_1_image.SetActive(false);
+        river_2_image.SetActive(false);
+        river_3_image.SetActive(false);
+        river_4_image.SetActive(false);
+
+        ocean_1_image.SetActive(false);
+        ocean_2_image.SetActive(false);
+        ocean_3_image.SetActive(false);
+        ocean_4_image.SetActive(false);
+        shark_image.SetActive(false);
     }
 
     // Update is called once per frame
@@ -151,6 +183,21 @@ public class player_based_trading : MonoBehaviour
 
     private void getFishType(string fish_type)
     {
+        lake_1_image.SetActive(false);
+        lake_2_image.SetActive(false);
+        lake_3_image.SetActive(false);
+        lake_4_image.SetActive(false);
+
+        river_1_image.SetActive(false);
+        river_2_image.SetActive(false);
+        river_3_image.SetActive(false);
+        river_4_image.SetActive(false);
+
+        ocean_1_image.SetActive(false);
+        ocean_2_image.SetActive(false);
+        ocean_3_image.SetActive(false);
+        ocean_4_image.SetActive(false);
+        shark_image.SetActive(false);
         switch (fish_type)
         {
             case "lake_f_1":
@@ -160,24 +207,28 @@ public class player_based_trading : MonoBehaviour
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.lake_f_1_count;
                 max_pos_buy_amount = inventoryController.lake_f_1_count;
+                lake_1_image.SetActive(true);
                 Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
                 break;
             case "lake_f_2":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.lake_f_2_count;
                 max_pos_buy_amount = inventoryController.lake_f_2_count;
+                lake_2_image.SetActive(true);
                 Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
                 break;
             case "lake_f_3":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.lake_f_3_count;
                 max_pos_buy_amount = inventoryController.lake_f_3_count;
+                lake_3_image.SetActive(true);
                 Debug.Log("slider max value set to blue " + fish_slider.maxValue.ToString());
                 break;
             case "lake_f_4":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.lake_f_4_count;
                 max_pos_buy_amount = inventoryController.lake_f_4_count;
+                lake_4_image.SetActive(true);
                 Debug.Log("slider max value set to blue " + fish_slider.maxValue.ToString());
                 break;
             case "ocean_f_1":
@@ -185,60 +236,69 @@ public class player_based_trading : MonoBehaviour
                 fish_slider.maxValue = inventoryController.ocean_f_1_count;
                 Debug.Log("slider max value set to blue " + fish_slider.maxValue.ToString());
                 max_pos_buy_amount = inventoryController.ocean_f_1_count;
+                ocean_1_image.SetActive(true);
                 break;
             case "ocean_f_2":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.ocean_f_2_count;
                 Debug.Log("slider max value set to blue " + fish_slider.maxValue.ToString());
                 max_pos_buy_amount = inventoryController.ocean_f_2_count;
+                ocean_2_image.SetActive(true);
                 break;
             case "ocean_f_3":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.ocean_f_3_count;
                 Debug.Log("slider max value set to blue " + fish_slider.maxValue.ToString());
                 max_pos_buy_amount = inventoryController.ocean_f_3_count;
+                ocean_3_image.SetActive(true);
                 break;
             case "ocean_f_4":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.ocean_f_4_count;
                 Debug.Log("slider max value set to blue " + fish_slider.maxValue.ToString());
                 max_pos_buy_amount = inventoryController.ocean_f_4_count;
+                ocean_4_image.SetActive(true);
                 break;
             case "ocean_shark":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.ocean_shark_count;
                 Debug.Log("slider max value set to blue " + fish_slider.maxValue.ToString());
                 max_pos_buy_amount = inventoryController.ocean_shark_count;
+                shark_image.SetActive(true);
                 break;
             case "river_f_1":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.river_f_1_count;
                 max_pos_buy_amount = inventoryController.river_f_1_count;
                 Debug.Log("slider max value set to blue " + fish_slider.maxValue.ToString());
+                river_1_image.SetActive(true);
                 break;
             case "river_f_2":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.river_f_2_count;
                 max_pos_buy_amount = inventoryController.river_f_2_count;
                 Debug.Log("slider max value set to blue " + fish_slider.maxValue.ToString());
+                river_2_image.SetActive(true);
                 break;
             case "river_f_3":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.river_f_3_count;
                 max_pos_buy_amount = inventoryController.river_f_3_count;
                 Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                river_3_image.SetActive(true);
                 break;
             case "river_f_4":
                 fish_slider.minValue = 0;
                 fish_slider.maxValue = inventoryController.river_f_4_count;
                 max_pos_buy_amount = inventoryController.river_f_4_count;
                 Debug.Log("Slider max value set to blue " + fish_slider.maxValue.ToString());
+                river_4_image.SetActive(true);
                 break;
             default:
                 Debug.Log("Invalid item type: " + fish_type.ToString());
                 break;
         }
-        fish_type_text.text = fish_type.ToString();
+        //fish_type_text.text = fish_type.ToString();
     }
 }
 

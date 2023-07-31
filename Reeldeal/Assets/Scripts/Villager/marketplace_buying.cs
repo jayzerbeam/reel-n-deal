@@ -131,10 +131,12 @@ public class marketplace_buying : MonoBehaviour
                     nauti_4_bobber_image.SetActive(false);
                     if (tradingVillager.selling_item == "rod_upgrade")
                     {
+                        boots_image.SetActive(false); 
                         rod_image.SetActive(true);
                     }
                     else //boots
                     {
+                        rod_image.SetActive(false); 
                         boots_image.SetActive(true);
                     }
                 }
